@@ -1,0 +1,405 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	background-color: #f8f8f8;
+	font-family: "Montserrat", sans-serif;
+}
+
+/* bootstrap */
+
+.modal-header{
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+}
+
+.circulo-border{
+	background-color: #07f11762;
+	color:#07f116 !important;
+	font-size: 70px;
+	border-radius: 200px;
+	padding:20px;
+	
+}
+
+.modal-erro{
+	background-color:  hsla(0, 100%, 50%);
+	color:white !important;
+	font-size: 50px;
+	border-radius: 50%;
+	padding:10px;
+	width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px
+}
+
+.olhos-icone{
+	position: relative;
+	bottom:2.5em;
+	left:21em;
+	cursor: pointer;
+}
+
+
+.modal{
+	margin-top: 10%;
+}
+
+.titulo-modal{
+	margin-top:25px;
+	margin-bottom: 25px;
+}
+.nav-sidebar {
+	padding: 0%;
+	font-size: 18px;
+	
+}
+.Toastify__toast--custom {
+  background: rgb(41, 165, 51); /* Cor verde mais atrativa */
+  color: #fff;
+  border-radius: 12px; /* Borda arredondada */
+  font-size: 16px; /* Tamanho da fonte */
+  padding: 20px; /* Espaçamento interno */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.nav-sidebar .active {
+	background-color: #e4e4e4;
+	color: #183153;
+}
+
+.nav-sidebar a {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	width: 95%;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 0.3em;
+	font-size: 1.1em;
+	color: #fff;
+	transition: ease-in-out 0.3s;
+}
+
+.nav-sidebar a:hover {
+	background-color: #e4e4e4;
+	color: #2d2d2d;
+}
+
+.nav-sidebar i {
+	width: 28px;
+}
+
+.nav-sidebar a span {
+	margin-left: 0.5em;
+}
+
+.abracaMenu p {
+	padding: 0.3em;
+	font-size: 1.2em;
+	display: flex;
+	align-items: center;
+	width: 95%;
+}
+
+
+#email-cand {
+	font-size: 1em;
+}
+
+.logoSumare {
+	margin-top: 20px;
+	width: 80%;
+}
+
+.modal-cand {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content-cand {
+	position: absolute;
+	width: auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 30px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal-content-cand h5 {
+	margin: 2em 0.5em;
+}
+
+.modal-content-cand button {
+	margin-top: 2em;
+	margin-right: 0.5em;
+	border-radius: 0;
+	padding: 0.6em 0.8em;
+	background-color: #0B1126;
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+	transition: box-shadow 0.3s;
+}
+
+.modal-content-cand button:hover {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tableVertical {
+	margin-top: 2.5em;
+	min-width: 700px;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.tableVertical th {
+	padding: 10px;
+	text-align: left;
+	width: 220px;
+}
+
+.tableVertical td {
+	padding: 10px;
+}
+
+.close {
+	font-size: 28px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+.abracaMenu {
+	position: fixed;
+	left: 0;
+	height: 100%;
+	width: 280px;
+	background-color: #2d2d2d;
+	min-height: 100vh;
+	top: 0;
+	color: #fff;
+	text-align: left;
+	padding-left: 15px;
+	box-shadow: 1px 0px 11px -8px #000;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	color: #183153;
+}
+
+.title span {
+	margin-left: 0.8em;
+	font-size: 1.4em;
+}
+
+#sair {
+	position: absolute;
+	width: 251.75px;
+	bottom: 15px;
+}
+
+.form div .inputForm {
+	border-color: #25487a !important;
+	margin-top: 0.2em;
+	margin-bottom: 1.5em;
+}
+
+.btn-register {
+	width: 10em;
+	max-height: 38px;
+	margin: 0 auto;
+	margin-top: 1em;
+	letter-spacing: 1px;
+	font-size: 18px !important;
+}
+
+.btn-add {
+	margin-top: 8px;
+}
+
+.btn-primary {
+	border-radius: 6px;
+	background-color: #000000!important;
+	border-color: #25487a !important;
+	transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out !important;
+	overflow:hidden;
+}
+
+.card-table {
+	height: 640px !important;
+}
+
+#card-table {
+	height: 480px !important;
+}
+
+.btn-primary:hover {
+	background-color: #183153 !important;
+	border-color: #183153 !important;
+}
+
+.form-check-input:checked {
+	background-color: #183153;
+	border-color: #183153;
+}
+
+#prev,
+#next {
+	padding: 6px;
+	width: 4em;
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	color: #333;
+	cursor: pointer;
+	margin-top: 1em;
+	margin-right: 5px;
+}
+
+#prev:hover,
+#next:hover {
+	background-color: #ddd;
+}
+
+.table thead {
+	font-size: 1em;
+}
+
+#colaTabela {
+	font-size: 1.2em;
+}
+
+.container-res {
+	margin-left: 19em;
+	margin-right: 10%;
+}
+
+table {
+	width: 100%;
+	table-layout: fixed !important;
+}
+
+th,
+td {
+	max-width: 500px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1439px) {
+	.container-res {
+		margin-left: 17em;
+		margin-right: 3em;
+	}
+
+	#th-acao {
+		width: 25%;
+	}
+
+	#th-duracao {
+		width: 18%;
+	}
+
+	th,
+	td {
+		max-width: 200px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.tabela-descontos td {
+		font-size: 1em;
+		max-width: 250px;
+	}
+	
+	#btn-vincula {
+		font-size: 0.9em;
+	}
+	#th-celular-cand, #th-cpf-cand {
+		width: 16%;
+	}
+	#th-condicoes {
+		width: 13%;
+	}
+
+	.abracaMenu {
+		width: 250px;
+	}
+
+	.nav-sidebar {
+		font-size: 16px;
+	}
+
+	.nav-sidebar i {
+		width: 24px;
+	}
+
+	.nav-sidebar a span {
+		margin-left: 0.5em;
+	}
+
+	#sair {
+		position: absolute;
+		width: 223.25px;
+		bottom: 15px;
+	}
+
+	.card-table {
+		height: 580px !important;
+	}
+
+	.card-table .btn-primary {
+		align-self: flex-end;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 34px;
+		padding: 0.5em !important;
+		font-size: 1em;
+	}
+
+	.table thead {
+		font-size: 0.9em;
+	}
+
+	.table tbody td {
+		padding: 0.3em;
+	}
+
+	#colaTabela {
+		font-size: 1.1em;
+	}
+}
+
+@media screen and (min-width: 1279px) {
+	#form-login {
+		width: 45%;
+	}
+}
+
+@media screen and (max-width: 1199px) {
+	.container-res {
+		margin-right: 2em;
+	}
+}
