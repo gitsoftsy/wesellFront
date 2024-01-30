@@ -66,18 +66,19 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	<header>
-		<section class="abracaMenu">
+		<section id="modalMenu" class="abracaMenu modalMenu">
 			<img class="logoSumare"
-				src="<%=contextPath%>/resources/assets/img/logo-sumare.png"
+				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
+			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
 			<hr />
 			<p>
 				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
 			</p>
 			<hr />
 			<nav class="nav-sidebar">
-			
-			
+
+				
 			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
 				<span>Cargos</span> 
 			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
@@ -99,6 +100,8 @@ String contextPath = request.getContextPath();
 			</nav>
 		</section>
 	</header>
+	
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">

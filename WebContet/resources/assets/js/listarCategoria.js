@@ -1,3 +1,20 @@
+const botaoDesativa = document.querySelector('#teste');
+const botaoAtiva = document.querySelector('.botaoAtivaMenu');
+const elemento = document.querySelector('#modalMenu');
+
+botaoDesativa.addEventListener('click', () => {
+  elemento.classList.add('animar-sair');
+ elemento.classList.remove('animar-entrar');
+
+});
+
+botaoAtiva.addEventListener('click', () => {
+  elemento.classList.add('animar-entrar');
+  elemento.classList.remove('animar-sair');
+  });
+
+
+
 var funcionarios = []
 
 $(document).ready(function () {
@@ -131,7 +148,7 @@ $(document).ready(function () {
 
 function editar(user) {
   var idUsuario = user.getAttribute("data-value");
-  window.location.href = "cadastroFuncionario?id=" + idUsuario;
+  window.location.href = "cadastroDeCategoria?id=" + idUsuario;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");

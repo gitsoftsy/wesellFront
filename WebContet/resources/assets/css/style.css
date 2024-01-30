@@ -29,6 +29,14 @@ body {
 	
 }
 
+.botaoAtivaMenu{
+	display:none
+}
+
+.botaoDesativaMenu{
+	display:none
+}
+
 .modal-erro{
 	background-color:  hsla(0, 100%, 50%);
 	color:white !important;
@@ -47,6 +55,12 @@ body {
 	bottom:2.5em;
 	left:21em;
 	cursor: pointer;
+}
+
+.icone-pesquisa{
+	position: relative;
+	
+	
 }
 
 
@@ -292,9 +306,12 @@ body {
 	margin-right: 10%;
 }
 
+
 table {
 	width: 100%;
 	table-layout: fixed !important;
+	overflow: auto; 
+	display:block;
 }
 
 th,
@@ -320,7 +337,7 @@ td {
 	}
 
 	th,
-	td {
+	tr {
 		max-width: 200px;
 		overflow: hidden;
 		white-space: nowrap;
@@ -402,4 +419,110 @@ td {
 	.container-res {
 		margin-right: 2em;
 	}
+}
+
+@media screen and (max-width: 425px) {
+
+
+	.container-res {
+     margin-left:0; 
+     margin-right: 0; 
+	}
+	
+	.icone-pesquisa{
+	display:none;
+	
+}
+
+.input-group>.form-control{
+	
+}
+	.form-control{
+	width:auto !important;
+	min-width: auto !important;
+	
+	}
+	.mx-auto {
+     margin-right:0; 
+     margin-left: 0; 
+    }
+    
+    .col-8 {
+    flex: 0 0 auto;
+    width: auto;
+    }
+    
+    .modalMenu{
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 100;
+	  
+	 
+    }
+    
+    .animar-sair{
+    animation:animar-sair 3s;
+    animation-fill-mode: forwards;
+    }
+    
+    
+    
+    @keyframes animar-sair {
+  0%{
+ transform: translateX(0px);
+    }
+100%{
+
+ transform: translateX(1000px);
+
+}
+}
+
+ .animar-entrar{
+    animation:animar-entrar 3s;
+    animation-fill-mode: forwards;
+    }
+
+   @keyframes animar-entrar {
+  0%{
+ transform: translateX(1000px);
+    }
+100%{
+
+ transform: translateX(0px);
+
+}
+}
+
+
+
+	.botaoAtivaMenu{
+	display:block;
+	position: fixed;
+	z-index:99;
+	left: 85%;
+    top:5px;
+	border:none;
+	font-size: 30px;
+	
+	
+	}
+
+	
+	.botaoDesativaMenu{
+	display:inline;
+	position:relative;
+	top:10px;
+	border:none;
+	font-size: 30px;
+	
+	}
+	
+	
+	
+	
+	
 }

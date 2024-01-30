@@ -1,3 +1,17 @@
+const botaoDesativa = document.querySelector('#teste');
+const botaoAtiva = document.querySelector('.botaoAtivaMenu');
+const elemento = document.querySelector('#modalMenu');
+
+botaoDesativa.addEventListener('click', () => {
+  elemento.classList.add('animar-sair');
+ elemento.classList.remove('animar-entrar');
+
+});
+
+botaoAtiva.addEventListener('click', () => {
+  elemento.classList.add('animar-entrar');
+  elemento.classList.remove('animar-sair');
+  });
 
 
 
@@ -35,13 +49,13 @@ function mostraModalFeedback(tipo, mensagem) {
 		if (dadosFormulario.nome === "") {
 			mostraModalFeedback("erro", "Digite o Nome do Colaborador!")
 		}
-		else if (dadosFormulario.cpf === "") {
+		else if (dadosFormulario.cpf === "" || dadosFormulario.cpf.length < 11) {
 			mostraModalFeedback("erro", "Digite o CPF, 11 Dígitos!")
 		}
 		else if (dadosFormulario.usuario === "") {
 			mostraModalFeedback("erro", "Digite o Usuário!")
 		}
-		else if (dadosFormulario.email === "") {
+		else if (dadosFormulario.email === "" && dadosFormulario.email.includes("@" ) == false && dadosFormulario.email.includes("@" ) == false ){
 			mostraModalFeedback("erro", "Digite o E-mail!")
 		}
 		else if (dadosFormulario.senha === "") {

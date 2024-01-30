@@ -66,10 +66,11 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	<header>
-		<section class="abracaMenu">
+		<section id="modalMenu" class="abracaMenu modalMenu">
 			<img class="logoSumare"
-				src="<%=contextPath%>/resources/assets/img/logo-sumare.png"
+				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
+			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
 			<hr />
 			<p>
 				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
@@ -77,6 +78,7 @@ String contextPath = request.getContextPath();
 			<hr />
 			<nav class="nav-sidebar">
 
+				
 			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
 				<span>Cargos</span> 
 			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
@@ -98,6 +100,8 @@ String contextPath = request.getContextPath();
 			</nav>
 		</section>
 	</header>
+	
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
@@ -130,12 +134,12 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="usuario" class="form-label">Usuário:</label> <input
-							type="email" id="usuario" required autocomplete="off" name="usuario"
+							type="text" id="usuario" required autocomplete="off" name="usuario"
 							class="form-control inputForm" maxlength="40" />
 					</div>
 					<div class="col-md-6">
 						<label for="email" class="form-label">E-mail:</label> <input
-							type="email" id="email" required autocomplete="off" name="email"
+							type="email" id="email" required="required" autocomplete="off" name="email"
 							class="form-control inputForm" 
 							maxlength="255" />
 					</div>
@@ -145,7 +149,7 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="senha" class="form-label">Senha:</label> <input
-							type="password" id="senha" required autocomplete="off" name="senha"
+							type="text" id="senha" required autocomplete="off" name="senha"
 							class="form-control inputForm" maxlength="255" />
 							
 					</div>
@@ -223,6 +227,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/editarColaborador.js"></script>
+		src="<%=contextPath%>/resources//assets/js/cadastroDeColaboradores.js"></script>
 </body>
 </html>
