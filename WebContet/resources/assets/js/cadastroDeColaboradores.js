@@ -55,7 +55,7 @@ function mostraModalFeedback(tipo, mensagem) {
 		else if (dadosFormulario.usuario === "") {
 			mostraModalFeedback("erro", "Digite o Usuário!")
 		}
-		else if (dadosFormulario.email === "" && dadosFormulario.email.includes("@" ) == false && dadosFormulario.email.includes("@" ) == false ){
+		else if (dadosFormulario.email === "" || dadosFormulario.email.includes("@") == false ){
 			mostraModalFeedback("erro", "Digite o E-mail!")
 		}
 		else if (dadosFormulario.senha === "") {

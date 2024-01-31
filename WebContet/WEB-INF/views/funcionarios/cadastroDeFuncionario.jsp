@@ -114,7 +114,7 @@ String contextPath = request.getContextPath();
 		<section class="pt-4">
 			<form id="form-funcionario" onsubmit="ativaPopUp()"
 				class="card form p-5 col-8 mx-auto">
-				<h1 class="text-center mb-5">Cadastrar Funcionário</h1>
+				<h1 class="text-left mb-5">Cadastrar Funcionário</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 

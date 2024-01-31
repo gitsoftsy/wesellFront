@@ -54,6 +54,20 @@ button.addEventListener("click", (event) => {
 	}
   	
 	validacaoDados()
+	
+	$.ajax({
+		url:"https://api-relatorios.sumare.edu.br/api-wesell/cargos",
+		type:"POST",
+		data:{
+			carga:dadosFormulario.cargo,
+			
+		},
+		success: function(){
+			console.log("teste de requisição aceito")
+		}
+	})
+	
+	
 });
 
 
@@ -66,26 +80,4 @@ button.addEventListener("click", (event) => {
   
   
 
-     var userData = {};
-      $(formArray).each(function (index, obj) {
-        userData[obj.name] = obj.value;
-      });
-   
-    var nomeInput = $('#nome').val();
-   
-    var ativoCheckbox = $('input[name="ativo"]');
-    
-    var numeroInput = $('#numero');
-     
-    var cpfInput = $("#cpf");
-    
-    var emailInput = $('#email').val();
-    
-    var cargoInput = $('#cargo').val();
-    
-    userData['ativo'] = ativoCheckbox.is(':checked') ? 'S' : 'N';
-    
-    userData['numero'] = numeroInput.cleanVal();
-    
-    userData["cpf"] = cpfInput.cleanVal();
-
+  

@@ -121,7 +121,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="cargo" class="form-label">Cargo:</label> <input
 							type="text" id="cargo" required autocomplete="off" name="cargo"
-							class="form-control inputForm" maxlength="8" />
+							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
 						<label for="descricao" class="form-label">Descrição:</label> <input

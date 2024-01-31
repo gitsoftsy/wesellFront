@@ -252,10 +252,16 @@ body {
 
 .btn-primary {
 	border-radius: 6px;
-	background-color: #000000!important;
-	border-color: #25487a !important;
-	transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out !important;
+	
+	
 	overflow:hidden;
+	box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0  #3498db !important;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db !important;
 }
 
 .card-table {
@@ -266,10 +272,7 @@ body {
 	height: 480px !important;
 }
 
-.btn-primary:hover {
-	background-color: #183153 !important;
-	border-color: #183153 !important;
-}
+
 
 .form-check-input:checked {
 	background-color: #183153;
@@ -438,7 +441,7 @@ td {
 	
 }
 	.form-control{
-	width:auto !important;
+	
 	min-width: auto !important;
 	
 	}
@@ -451,6 +454,15 @@ td {
     flex: 0 0 auto;
     width: auto;
     }
+    
+    .btn-register {
+	width: 12em;
+	max-height: 38px;
+	margin: 0 auto;
+	margin-top: 1em;
+	letter-spacing: 1px;
+	font-size: 18px !important;
+}
     
     .modalMenu{
 	  position: fixed;
@@ -482,13 +494,13 @@ td {
 }
 
  .animar-entrar{
-    animation:animar-entrar 3s;
+    animation:animar-entrar 2s;
     animation-fill-mode: forwards;
     }
 
    @keyframes animar-entrar {
   0%{
- transform: translateX(1000px);
+ transform: translateX(500px);
     }
 100%{
 
@@ -503,10 +515,13 @@ td {
 	display:block;
 	position: fixed;
 	z-index:99;
-	left: 85%;
+	left: 83%;
     top:5px;
 	border:none;
+	border-radius:100%;
 	font-size: 30px;
+	background-color: #2d2d2d90;
+	color:white;
 	
 	
 	}
@@ -517,7 +532,7 @@ td {
 	position:relative;
 	top:10px;
 	border:none;
-	font-size: 30px;
+	font-size: 22px;
 	
 	}
 	
