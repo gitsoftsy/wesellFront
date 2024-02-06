@@ -15,26 +15,26 @@ botaoAtiva.addEventListener('click', () => {
 
 
 
-var funcionarios = []
+var subCategorias = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/listaUsuarioInterno",
+    url: url_base + "/subcategorias",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      funcionarios = data;
-      renderizarFuncionarios(data);
+     subCategoria = data;
+      renderizarSubCategorias(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarFuncionarios(funcionarios) {
-      var html = funcionarios.map(function (item) {
+    function renderizarSubCategorias(subCategoria) {
+      var html = subCategoria.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         return (
           "<tr>" +
@@ -48,17 +48,17 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.usuario +
+          item.nome +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.categoriaId +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idUsuario +
+          item.id +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idUsuario +
+          item.id +
           '" data-usuario="' +
           item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
@@ -150,8 +150,8 @@ $(document).ready(function () {
 });
 
 function editar(user) {
-  var idUsuario = user.getAttribute("data-value");
-  window.location.href = "cadastroDeSubCategoria?id=" + idUsuario;
+  var idSub = user.getAttribute("data-value");
+  window.location.href = "cadastroDeSubCategoria?id=" + idSub;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
@@ -184,10 +184,5 @@ function alteraStatus(element) {
     }
   });
 
-  funcionarios = funcionarios.map((funcionario) => {
-    if (funcionario.idUsuario === id) {
-      return { ...funcionario, ativo: status === "S" ? "N" : "S" };
-    }
-    return funcionario;
-  });
+
 }

@@ -135,7 +135,6 @@ String contextPath = request.getContextPath();
 						<th scope="col" >Inscrição Estadual</th>
 						<th scope="col">Endereço</th>
 						<th scope="col" >Número</th>
-						<th scope="col">Complemento</th>
 						<th scope="col" >Bairro</th>
 						<th scope="col" >Cidade</th>
 						<th scope="col">Estado</th>

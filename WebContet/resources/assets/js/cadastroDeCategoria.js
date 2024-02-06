@@ -1,17 +1,19 @@
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
+var edição = ""
+const idCategoria = params.get("id");
 
 botaoDesativa.addEventListener('click', () => {
-  elemento.classList.add('animar-sair');
- elemento.classList.remove('animar-entrar');
+	elemento.classList.add('animar-sair');
+	elemento.classList.remove('animar-entrar');
 
 });
 
 botaoAtiva.addEventListener('click', () => {
-  elemento.classList.add('animar-entrar');
-  elemento.classList.remove('animar-sair');
-  });
+	elemento.classList.add('animar-entrar');
+	elemento.classList.remove('animar-sair');
+});
 
 
 
@@ -30,62 +32,101 @@ function mostraModalFeedback(tipo, mensagem) {
 }
 
 
-button.addEventListener("click", (event) => {
-	event.preventDefault()
 
-	var dadosFormulario = {
 
-		
-		descriçãoCategoria: $('#descricaoCategoria').val(),
-		
+
+
+function cadastrar() {
+
+	var objeto = {
+		"categoria": $('#descricaoCategoria').val(),
+	};
+
+	$.ajax({
+
+		url: url_base + '/categorias',
+		type: "post",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		error: function(data) {
+			mostraModalFeedback("erro", "erro na requisição!");
+
+		}
+	}).done(function(data) {
+		Toastify({
+			text: "cadastrado com sucesso!",
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		setTimeout(function() {
+			window.location.href = 'listarCategoria';
+		}, 2000);
+	})
+}
+
+function editar() {
+
+	var objetoEdit = {
+
+		"idCategoria": idCategoria,
+		"categoria": $('#descricaoCategoria').val(),
 
 	}
 
-	function validacaoDados() {
-		
-		 if (dadosFormulario.descriçãoCategoria === "") {
-			mostraModalFeedback("erro", "Invalido, Selecione uma Categoria!")
-		}
-		else  {
-			mostraModalFeedback("sucesso", "Seu Cadastro Foi Realizado!")	
-		}
+	$.ajax({
+		url: url_base + "/categorias",
+		type: "PUT",
+		data: JSON.stringify(objetoEdit),
+		contentType: "application/json; charset=utf-8",
+	})
+		.done(function(data) {
+			Toastify({
+				text: "Editado com sucesso!",
+				duration: 2000,
+				position: "center",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+			setTimeout(function() {
+				window.location.href = 'listarCategoria';
+			}, 2000);
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
+}
+
+$(document).ready(function() {
+
+
+	if (idCategoria == undefined) {
+
+	} else {
+		$.ajax({
+			url: url_base + "/categorias/" + idCategoria,
+			type: "GET",
+			async: false,
+		})
+			.done(function(data) {
+				$('#descricaoCategoria').val(data.categoria);
+				edição = "sim"
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log('erro ao buscar dados.')
+				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			});
 	}
-  	
-	validacaoDados()
+
 });
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-     var userData = {};
-      $(formArray).each(function (index, obj) {
-        userData[obj.name] = obj.value;
-      });
-   
-    var nomeInput = $('#nome').val();
-   
-    var ativoCheckbox = $('input[name="ativo"]');
-    
-    var numeroInput = $('#numero');
-     
-    var cpfInput = $("#cpf");
-    
-    var emailInput = $('#email').val();
-    
-    var cargoInput = $('#cargo').val();
-    
-    userData['ativo'] = ativoCheckbox.is(':checked') ? 'S' : 'N';
-    
-    userData['numero'] = numeroInput.cleanVal();
-    
-    userData["cpf"] = cpfInput.cleanVal();
-
+$("#form-funcionario").on("submit", function(e) {
+	e.preventDefault();
+	if (edição == "sim") {
+		
+		editar()
+	} else {
+		cadastrar()
+	}
+});

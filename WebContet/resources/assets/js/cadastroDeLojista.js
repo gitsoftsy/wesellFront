@@ -1,17 +1,19 @@
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
+var edição = ""
+const idLojista = params.get("id");
 
 botaoDesativa.addEventListener('click', () => {
-  elemento.classList.add('animar-sair');
- elemento.classList.remove('animar-entrar');
+	elemento.classList.add('animar-sair');
+	elemento.classList.remove('animar-entrar');
 
 });
 
 botaoAtiva.addEventListener('click', () => {
-  elemento.classList.add('animar-entrar');
-  elemento.classList.remove('animar-sair');
-  });
+	elemento.classList.add('animar-entrar');
+	elemento.classList.remove('animar-sair');
+});
 
 
 
@@ -30,69 +32,143 @@ function mostraModalFeedback(tipo, mensagem) {
 }
 
 $("#cep").blur(function() {
-	
+
 	$.ajax({
-		
-		url :'https://viacep.com.br/ws/' + $('#cep').val() + '/json/',
-		type : "get",
-		async : false,
+
+		url: 'https://viacep.com.br/ws/' + $('#cep').val() + '/json/',
+		type: "get",
+		async: false,
 	})
-	.done(function(data) {
-		$('#endereco').val(data.logradouro);
-		$('#bairro').val(data.bairro);
-		$('#cidade').val(data.localidade);
-		$('#estado').val(data.uf);
-		$('#numero').val(data.ddd);
-		
+		.done(function(data) {
+			$('#endereco').val(data.logradouro);
+			$('#bairro').val(data.bairro);
+			$('#cidade').val(data.localidade);
+			$('#estado').val(data.uf);
+
+
 		});
-	
-	});
-	
-button.addEventListener("click", (event) => {
-	event.preventDefault()
 
-	var dadosFormulario = {
+});
 
-		cnpj: $('#cnpj').val(),
-		endereço: $('#endereco').val(),
-		numero: $('#numero').val(),
-		bairro: $('#bairro').val(),
-		cidade: $('#cidade').val(),
-		estado: $('#estado').val(),
-		cep: $('#cep').val(),
-		site: $('#site').val(),
+
+function cadastrar() {
+
+	var objeto = {
+		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"inscrEstadual": $('#inscricaoEstadual').val(),
+		"endereco": $('#endereco').val(),
+		"numero": $('#numero').val(),
+		"complemento": $('#complemento').val(),
+		"bairro": $('#bairro').val(),
+		"cidade": $('#cidade').val(),
+		"estado": $('#estado').val(),
+		"cep": $('#cep').val(),
+		"site": $('#site').val(),
+	};
+
+	$.ajax({
+
+		url: url_base + '/lojistas',
+		type: "post",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		error: function(data) {
+			mostraModalFeedback("erro", "erro na requisição!");
+
+		}
+	}).done(function(data) {
+		Toastify({
+			text: "cadastrado com sucesso!",
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		setTimeout(function() {
+			window.location.href = 'listarLojista';
+		}, 2000);
+	})
+}
+
+function editar() {
+
+	var objetoEdit = {
+
+		"idLojista": idLojista,
+		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"inscrEstadual": $('#inscricaoEstadual').val(),
+		"endereco": $('#endereco').val(),
+		"numero": $('#numero').val(),
+		"complemento": $('#complemento').val(),
+		"bairro": $('#bairro').val(),
+		"cidade": $('#cidade').val(),
+		"estado": $('#estado').val(),
+		"cep": $('#cep').val(),
+		"site": $('#site').val(),
 
 	}
 
-	function validacaoDados() {
-		if (dadosFormulario.cnpj.length < 14) {
-			mostraModalFeedback("erro", " CNPJ Invalido, CNPJ Necessita de 14 Dígitos!")
-		}
-		else if (dadosFormulario.endereço === "") {
-			mostraModalFeedback("erro", "Erro, Escreva Seu Endereço!")
-		}
-		else if (dadosFormulario.numero.length < 10) {
-			mostraModalFeedback("erro", "Número Invalido, (dd) 00000-0000  !")
-		}
-		else if (dadosFormulario.bairro === "") {
-			mostraModalFeedback("erro", "Invalido, Escreva seu Bairro!")
-		}
-		else if (dadosFormulario.cidade === "") {
-			mostraModalFeedback("erro", "Invalido, Escreva sua Cidade!")
-		}
-		else if (dadosFormulario.estado < 2) {
-			mostraModalFeedback("erro", "Invalido, Escreva seu Estado!")
-		}
-		else if (dadosFormulario.cep < 8) {
-			mostraModalFeedback("erro", "Seu Cep precisa de 8 Dígitos!")	
-		}
-		else if (dadosFormulario.site === "") {
-			mostraModalFeedback("erro", "Invalido, Digite seu Site!")
-		}
-		else  {
-			mostraModalFeedback("sucesso", "Seu Cadastro Foi Realizado!")	
-		}
+	$.ajax({
+		url: url_base + "/lojistas",
+		type: "PUT",
+		data: JSON.stringify(objetoEdit),
+		contentType: "application/json; charset=utf-8",
+	})
+		.done(function(data) {
+			Toastify({
+				text: "Editado com sucesso!",
+				duration: 2000,
+				position: "center",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+			setTimeout(function() {
+				window.location.href = 'listarLojista';
+			}, 2000);
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
+
+}
+
+$(document).ready(function() {
+
+
+	if (idLojista == undefined) {
+
+	} else {
+		$.ajax({
+			url: url_base + "/lojistas/" + idLojista,
+			type: "GET",
+			async: false,
+		})
+			.done(function(data) {
+				    $('#cnpj').val(data.cnpj),
+					$('#inscricaoEstadual').val(data.inscrEstadual),
+					$('#endereco').val(data.endereco),
+					$('#numero').val(data.numero),
+					$('#complemento').val(data.complemento),
+					$('#bairro').val(data.bairro),
+					$('#cidade').val(data.cidade),
+					$('#estado').val(data.estado),
+					$('#cep').val(data.cep),
+					$('#site').val(data.site),
+					edição = "sim"
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log('erro ao buscar dados.')
+				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			});
 	}
-  	
-	validacaoDados()
+
+});
+$("#form-funcionario").on("submit", function(e) {
+	e.preventDefault();
+	if (edição == "sim") {
+
+		editar()
+	} else {
+		cadastrar()
+	}
 });

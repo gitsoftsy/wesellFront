@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	const idParceiro = params.get('id');
+	const idParceiro = params.get('idCategoria');
 	$.ajax({
 		url: url_base + `/obtemParceiro?idParceiro=${idParceiro}`,
 		type: "GET",

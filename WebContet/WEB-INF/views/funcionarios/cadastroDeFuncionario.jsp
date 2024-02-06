@@ -158,14 +158,7 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" data-mask="(00)00000-0000"
 							maxlength="11" />
 					</div>
-					<div class="col-md-2">
-						<label for="ativo" class="form-label">Ativo:</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="ativo" checked data-toggle="toggle"
-								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
-								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
-						</div>
-					</div>
+					
 				</div>
 				
 				

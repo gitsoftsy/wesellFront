@@ -123,23 +123,11 @@ String contextPath = request.getContextPath();
 							type="text" id="cargo" required autocomplete="off" name="cargo"
 							class="form-control inputForm" maxlength="255" />
 					</div>
-					<div class="col-md-6">
-						<label for="descricao" class="form-label">Descrição:</label> <input
-							type="text" id="descricao" required autocomplete="off" name="descricao"
-							class="form-control inputForm" maxlength="255" />
-					</div>
+					
+					
+				
 				</div>
 				
-				<div class="row mb-2">
-					<div class="col-md-2">
-						<label for="ativo" class="form-label">Ativo:</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="ativo" checked data-toggle="toggle"
-								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
-								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
-						</div>
-					</div>
-				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">

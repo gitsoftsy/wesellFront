@@ -112,7 +112,7 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-funcionario" onsubmit="ativaPopUp()"
+			<form id="form-funcionario" 
 				class="card form p-5 col-8 mx-auto">
 				<h1 class="text-center mb-5">Cadastrar Colaborador</h1>
 				<input type="text" id="usuarioCadastro" hidden
@@ -125,8 +125,8 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="cpf" class="form-label">CPF:</label> <input
-							id="cpf" type="text" required autocomplete="off"
+						<label for="cpf" class="form-label">CPF:</label> <input required
+							autocomplete="off" type="text" id="cpf" name="cpf"
 							class="form-control inputForm" maxlength="11" data-mask="000.000.000-00" />
 					</div>
 				</div>
@@ -156,25 +156,12 @@ String contextPath = request.getContextPath();
 					<div class="col-md-2">
 						<label for="adm" class="form-label">Administrador:</label>
 						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="adm" checked data-toggle="toggle"
+							<input id="administrador" type="checkbox" name="adm" checked data-toggle="toggle"
 								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
 								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
 						</div>
 					</div>
 				</div>
-				
-				<div class="row mb-2">
-					<div class="col-md-2">
-						<label for="ativo" class="form-label">Ativo:</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="ativo" checked data-toggle="toggle"
-								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
-								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
-						</div>
-					</div>
-				</div>
-				
-				
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">

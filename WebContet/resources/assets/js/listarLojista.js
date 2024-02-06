@@ -15,26 +15,26 @@ botaoAtiva.addEventListener('click', () => {
 
 
 
-var funcionarios = []
+var lojistas = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/listaUsuarioInterno",
+    url: url_base + "/lojistas",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      funcionarios = data;
-      renderizarFuncionarios(data);
+      lojistas = data;
+      renderizarLojistas(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarFuncionarios(funcionarios) {
-      var html = funcionarios.map(function (item) {
+    function renderizarLojistas(funcionarios) {
+      var html = lojistas.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         return (
           "<tr>" +
@@ -48,42 +48,38 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.usuario +
+          item.cnpj +
           "</td>" +
           "<td>" +
-          item.nome +
+          item.inscrEstadual +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.endereco +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.numero +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.bairro +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.cidade +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.estado +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.cep +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.site +
           "</td>" +
-           "<td>" +
-          item.usuario +
-          "</td>" +
-          
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idUsuario +
+          item.idLojista +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idUsuario +
+          item.idLojista +
           '" data-usuario="' +
           item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
@@ -175,8 +171,8 @@ $(document).ready(function () {
 });
 
 function editar(user) {
-  var idUsuario = user.getAttribute("data-value");
-  window.location.href = "cadastroDeLojista?id=" + idUsuario;
+  var idLojista = user.getAttribute("data-value");
+  window.location.href = "cadastroDeLojista?id=" + idLojista;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");

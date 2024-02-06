@@ -1,4 +1,4 @@
-var url_base = "https://api-captacao.sumare.edu.br/api-desconto-parceiro";
+var url_base = "http://localhost:8080/wesell";
 
 const queryString = window.location.search;
 

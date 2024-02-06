@@ -70,7 +70,9 @@ String contextPath = request.getContextPath();
 			<img class="logoSumare"
 				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+			<button id="teste" type="button" class="btn botaoDesativaMenu ">
+				<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+			</button>
 			<hr />
 			<p>
 				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
@@ -78,30 +80,32 @@ String contextPath = request.getContextPath();
 			<hr />
 			<nav class="nav-sidebar">
 
-				
-			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
-				<span>Cargos</span> 
-			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
-				<span>Categorias</span>
-				</a> <a href="listarSubCategoria" class="mb-1"> <i class="fa-solid fa-paste"></i>
-				<span>Sub-Categoria</span>
-				</a> <a href="listarLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Lojistas</span>
-				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
-				<span>Colaboradores</span>
-				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
-				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
+
+				<a href="listarCargos" class="mb-1"><i
+					class="fa-regular fa-address-card"></i> <span>Cargos</span> </a> <a
+					href="listarCategoria" class="mb-1"> <i
+					class="fa-solid fa-clipboard"></i> <span>Categorias</span>
+				</a> <a href="listarSubCategoria" class="mb-1"> <i
+					class="fa-solid fa-paste"></i> <span>Sub-Categoria</span>
+				</a> <a href="listarLojista" class="mb-1"> <i
+					class="fa-solid fa-shop"></i> <span>Lojistas</span>
+				</a> <a href="listarColaboradores" class="mb-1"> <i
+					class="fa-regular fa-handshake"></i> <span>Colaboradores</span>
+				</a> <a href="listarFuncionarios" class="mb-1"> <i
+					class="fa-solid fa-user-group"></i> <span>Funcionários</span>
+				</a> <a href="listarProduto" class="mb-1"> <i
+					class="fa-solid fa-barcode"></i> <span>Produtos</span>
+				</a> <a href="logoff" id="sair"> <i
+					class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
 				</a>
-				
+
 			</nav>
 		</section>
 	</header>
-	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+
+	<button type="button" class="btn botaoAtivaMenu ">
+		<i class="fa-solid fa-bars"></i>
+	</button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
@@ -113,15 +117,16 @@ String contextPath = request.getContextPath();
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-2"
-				style="display: flex; flex-flow:column;align-items:center; gap:20px">
-				<a href="cadastroDeCargo"
-					class="btn btn-primary btn-lg px-3 py-1">Novo Cargo</a>
+				style="display: flex; flex-flow: column; align-items: center; gap: 20px">
+				<a href="cadastroDeCargo" class="btn btn-primary btn-lg px-3 py-1">Novo
+					Cargo</a>
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar Cargo" /> <span
-						class="input-group-text icone-pesquisa"><i class="fas fa-search"></i></span>
+						class="input-group-text icone-pesquisa"><i
+						class="fas fa-search"></i></span>
 				</div>
-				
+
 			</div>
 
 			<table
@@ -130,8 +135,7 @@ String contextPath = request.getContextPath();
 				<thead>
 					<tr>
 						<th scope="col" width="10%">Ativo</th>
-						<th scope="col">Cargos</th>
-						<th scope="col">Descrição</th>
+						<th scope="col" width="100%">Cargos</th>
 						<th scope="col" width="15%">Ações</th>
 					</tr>
 				</thead>
@@ -167,5 +171,6 @@ String contextPath = request.getContextPath();
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 </body>
 </html>

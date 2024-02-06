@@ -124,13 +124,10 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="nomeProduto"
 							class="form-control inputForm" maxlength="255" />
 					</div>
-					<div class="col-md-2">
-						<label for="ativo" class="form-label">Ativo:</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="ativo" checked data-toggle="toggle"
-								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
-								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
-						</div>
+					<div class="col-md-6">
+						<label for="file" class="form-label">Imagem do Produto:</label> <input
+							required autocomplete="off" type="file" id="file"
+							name="file" class="form-control inputForm" />
 					</div>
 				</div>
 
@@ -186,14 +183,6 @@ String contextPath = request.getContextPath();
 
 					</div>
 				</div>
-
-					<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="file" class="form-label">Imagem do Produto:</label> <input
-							required autocomplete="off" type="file" id="file"
-							name="file" class="form-control inputForm" />
-					</div>
-					</div>
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">

@@ -15,26 +15,26 @@ botaoAtiva.addEventListener('click', () => {
 
 
 
-var funcionarios = []
+var categorias = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/listaUsuarioInterno",
+    url: url_base + "/categorias",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      funcionarios = data;
-      renderizarFuncionarios(data);
+      categorias = data;
+      renderizarCategorias(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarFuncionarios(funcionarios) {
-      var html = funcionarios.map(function (item) {
+    function renderizarCategorias(categorias) {
+      var html = categorias.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         return (
           "<tr>" +
@@ -48,14 +48,14 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.usuario +
+          item.categoria +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idUsuario +
+          item.idCategoria +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idUsuario +
+          item.idCategoria +
           '" data-usuario="' +
           item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +

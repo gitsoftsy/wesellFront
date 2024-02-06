@@ -130,10 +130,11 @@ String contextPath = request.getContextPath();
 				<thead>
 					<tr>
 						<th scope="col" width="10%">Ativo</th>
-						<th scope="col">Usuário</th>
-						<th scope="col">Senha</th>
 						<th scope="col">Nome</th>
-						<th scope="col">CPF</th>
+						<th scope="col">Cpf</th>
+						<th scope="col">Usuario</th>
+						<th scope="col">Senha</th>
+						<th scope="col">Administrativo</th>
 						<th scope="col">E-mail</th>
 						<th scope="col" width="15%">Ações</th>
 					</tr>

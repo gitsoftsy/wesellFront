@@ -33,39 +33,54 @@ function mostraModalFeedback(tipo, mensagem) {
 button.addEventListener("click", (event) => {
 	event.preventDefault()
 
-	var dadosFormulario = {
+	var objetos = {
 
-		nome: $('#nome').val(),
-		cargo: $('#cargo').val(),
-		email: $('#email').val(),
-		cpf: $('#cpf').val(),
-		telefone: $('#telefone').val(),
+		"cargoId": $('#cargo').val(),		
+		"cpf": $('#cpf').val(),
+		"email": $('#email').val(),
+		"lojistaId":2,
+		"nome": $('#nome').val(),
+		"telefone": $('#telefone').val(),
 		
 
 	}
 
-	function validacaoDados() {
-		if (dadosFormulario.nome === "") {
+	
+		if (objetos.nome === "") {
 			mostraModalFeedback("erro", "Digite o Nome do Funcionario!")
 		}
-		else if (dadosFormulario.cargo === "") {
+		else if (objetos.cargoId === "") {
 			mostraModalFeedback("erro", "Selecione o Cargo!")
 		}
-		else if (dadosFormulario.email === "") {
+		else if (objetos.email === "") {
 			mostraModalFeedback("erro", "Digite o E-mail do Funcionario!")
 		}
-		else if (dadosFormulario.cpf.length < 11) {
+		else if (objetos.cpf.length < 11) {
 			mostraModalFeedback("erro", "CPF necessita de 14 Dígitos!")
 		}
-		else if (dadosFormulario.telefone.length < 13) {
+		else if (objetos.telefone.length < 13) {
 			mostraModalFeedback("erro", "Telefone Invalido!")
 		}
 		else  {
-			mostraModalFeedback("sucesso", "Seu Cadastro Foi Realizado!")	
+			
+			$.ajax({
+                   
+		url: url_base + 'funcionarios',
+		type: "post",
+		data: JSON.stringify(objeto),
+		contentType: "application/json; charset=utf-8",
+		success: function(data) {
+			mostraModalFeedback("sucesso", "Seu funcionario foi Cadastrado!")
+		},
+		error: function (data) {
+       mostraModalFeedback("erro", " erro!");
+        
+      }
+});
 		}
-	}
+	
   	
-	validacaoDados()
+	
 });
 
   

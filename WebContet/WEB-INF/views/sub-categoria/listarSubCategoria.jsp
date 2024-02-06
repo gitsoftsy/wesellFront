@@ -113,7 +113,7 @@ String contextPath = request.getContextPath();
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-2"
 				style="display: flex; flex-flow:column;align-items:center; gap:20px">
-				<a href="cadastroDeCategoria"
+				<a href="cadastroDeSubCategoria"
 					class="btn btn-primary btn-lg px-3 py-1">Nova Categoria</a>
 				<div class="input-group" >
 					<input id="inputBusca" type="text" class="form-control inputForm"

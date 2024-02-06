@@ -15,26 +15,26 @@ botaoAtiva.addEventListener('click', () => {
 
 
 
-var funcionarios = []
+var colaboradores = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/listaUsuarioInterno",
+    url: url_base + "/colaboradores",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      funcionarios = data;
-      renderizarFuncionarios(data);
+      colaboradores = data;
+      renderizarColaboradores(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarFuncionarios(funcionarios) {
-      var html = funcionarios.map(function (item) {
+    function renderizarColaboradores(funcionarios) {
+      var html = colaboradores.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         return (
           "<tr>" +
@@ -48,26 +48,29 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.usuario +
-          "</td>" +
-          "<td>" +
           item.nome +
           "</td>" +
-           "<td>" +
-          item.usuario +
+          "<td>" +
+          item.cpf +
           "</td>" +
            "<td>" +
           item.usuario +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.senha +
+          "</td>" +
+           "<td>" +
+          item.administrador +
+          "</td>" +
+          "<td>" +
+          item.email +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idUsuario +
+          item.idColaborador +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idUsuario +
+          item.idColaborador +
           '" data-usuario="' +
           item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
@@ -159,8 +162,8 @@ $(document).ready(function () {
 });
 
 function editar(user) {
-  var idUsuario = user.getAttribute("data-value");
-  window.location.href = "cadastroDeColaboradores?id=" + idUsuario;
+  var idColaborador= user.getAttribute("data-value");
+  window.location.href = "cadastroDeColaboradores?id=" + idColaborador;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
@@ -193,10 +196,5 @@ function alteraStatus(element) {
     }
   });
 
-  funcionarios = funcionarios.map((funcionario) => {
-    if (funcionario.idUsuario === id) {
-      return { ...funcionario, ativo: status === "S" ? "N" : "S" };
-    }
-    return funcionario;
-  });
+  
 }

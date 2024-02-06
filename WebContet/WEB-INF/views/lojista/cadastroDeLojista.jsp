@@ -119,9 +119,9 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">Cep:</label> <input
-							type="text" id="cep" required autocomplete="off" name="cep"
-							class="form-control inputForm" maxlength="8" />
+						<label for="cnpj" class="form-label">CNPJ:</label> <input required
+							autocomplete="off" type="text" id="cnpj" name="cnpj"
+							class="form-control inputForm" maxlength="14" data-mask="00.000.000/0000-00." />
 					</div>
 					<div class="col-md-6">
 						<label for="inscricaoEstadual" class="form-label">Inscrição
@@ -133,22 +133,22 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
+						<label for="cep" class="form-label">Cep:</label> <input
+							type="text" id="cep" required autocomplete="off" name="cep"
+							class="form-control inputForm" maxlength="8" />
+					</div>
+					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:</label> <input
 							type="text" id="endereco" required autocomplete="off"
 							name="endereco" class="form-control inputForm" maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="numero" class="form-label">Número:</label> <input
-							required autocomplete="off" type="text" id="numero" name="numero"
-							class="form-control inputForm" maxlength="10" data-mask="(00)00000-0000"/>
 					</div>
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input
-							type="text" id="complemento" autocomplete="off"
-							name="complemento" class="form-control inputForm" maxlength="255" />
+						<label for="numero" class="form-label">N°:</label> <input
+							required autocomplete="off" type="text" id="numero" name="numero"
+							class="form-control inputForm" maxlength="10" />
 					</div>
 					<div class="col-md-6">
 						<label for="bairro" class="form-label">Bairro:</label> <input
@@ -159,9 +159,9 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cidade" class="form-label">Cidade:</label> <input
-							type="text" id="cidade" required autocomplete="off" name="text"
-							class="form-control inputForm" maxlength="255" />
+						<label for="complemento" class="form-label">Complemento:</label> <input
+							type="text" id="complemento" autocomplete="off"
+							name="complemento" class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
 						<label for="estado" class="form-label">Estado:</label> <input
@@ -171,26 +171,15 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cnpj" class="form-label">CNPJ:</label> <input required
-							autocomplete="off" type="text" id="cnpj" name="cnpj"
-							class="form-control inputForm" maxlength="14" data-mask="00.000.000/0000-00"/>
+				<div class="col-md-6">
+						<label for="cidade" class="form-label">Cidade:</label> <input
+							type="text" id="cidade" required autocomplete="off" name="text"
+							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
 						<label for="site" class="form-label">Site:</label> <input
 							type="text" id="site" required autocomplete="off" name="site"
 							class="form-control inputForm" maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-2">
-						<label for="ativo" class="form-label">Ativo:</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="ativo" checked data-toggle="toggle"
-								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
-								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
-						</div>
 					</div>
 				</div>
 
