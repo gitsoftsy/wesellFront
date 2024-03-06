@@ -11,6 +11,67 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+/* modal imagens */
+
+.carrossel {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%; /* Ajuste conforme necessário */
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+}
+
+.imagens img {
+  width: 500px;
+  display: none;
+}
+
+.imagem-ativa {
+  display: block !important;
+}
+
+.anterior, .proximo {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.anterior {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.proximo {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.anterior:hover, .proximo:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+/* CLASSES DE USO GERAL */
+
+.none{
+	display:none !important;
+}
+
 /* bootstrap */
 
 .modal-header{
@@ -59,10 +120,11 @@ body {
 
 .icone-pesquisa{
 	position: relative;
-	
-	
 }
 
+.btn{
+	cursor:pointer;
+}
 
 .modal{
 	margin-top: 10%;
@@ -205,7 +267,7 @@ body {
 	left: 0;
 	height: 100%;
 	width: 280px;
-	background-color: #2d2d2d;
+	background-color: #031E3B;
 	min-height: 100vh;
 	top: 0;
 	color: #fff;
@@ -255,13 +317,9 @@ body {
 	
 	
 	overflow:hidden;
-	box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0  #3498db !important;
+	box-shadow: 0 0 40px 40px #076B92 inset, 0 0 0 0  #076B92 !important;
   -webkit-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db !important;
 }
 
 .card-table {
@@ -515,16 +573,32 @@ td {
 	display:block;
 	position: fixed;
 	z-index:99;
-	left: 83%;
-    top:5px;
+	right: -31px;
+    top:240px;
 	border:none;
 	border-radius:100%;
 	font-size: 30px;
-	background-color: #2d2d2d90;
+	background-color: #2d2d2d;
 	color:white;
 	
 	
 	}
+	
+	.mover-left{
+	animation: left 3s ease-in-out infinite
+	}
+	
+	  @keyframes left {
+  0%{
+ transform: translateX(20px);
+    }
+100%{
+
+ transform: translateX(0px);
+
+}
+}
+	
 
 	
 	.botaoDesativaMenu{

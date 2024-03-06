@@ -56,8 +56,6 @@ $(document).ready(function () {
           item.ativo +
           '" data-id="' +
           item.idCategoria +
-          '" data-usuario="' +
-          item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -150,9 +148,9 @@ function editar(user) {
   var idUsuario = user.getAttribute("data-value");
   window.location.href = "cadastroDeCategoria?id=" + idUsuario;
 }
+
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
-  var usuario = element.getAttribute("data-usuario");
   var status = element.getAttribute("data-status");
 
   const button = $(element).closest("tr").find(".btn-status");
@@ -167,24 +165,17 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/alterarAtivoUsuario?usuario=${usuario}&ativo=${status === "S" ? "N" : "S"}`,
-    type: "GET",
-    success: function() {
-      if (status === "S") {
-        console.log("Desativado com sucesso!");
-      } else {
-        console.log("Ativado com sucesso!");
-      }
-    },
-    error: function(error) {
-      console.error("Erro ao alterar status do funcionario:", error);
-    }
-  });
-
-  funcionarios = funcionarios.map((funcionario) => {
-    if (funcionario.idUsuario === id) {
-      return { ...funcionario, ativo: status === "S" ? "N" : "S" };
-    }
-    return funcionario;
+    url: url_base + `/categorias/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    type: "put",
+    error: function(e) {
+			Toastify({
+			text: e.responseJSON.message,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+		}
   });
 }

@@ -54,6 +54,12 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
+
+<!-- Animation-css -->
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 
 <body>
@@ -67,7 +73,7 @@ String contextPath = request.getContextPath();
 	</div>
 	<header>
 		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
+			<img class="logoSumare animate__animated animate__bounceIn"
 				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
 			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
@@ -101,30 +107,28 @@ String contextPath = request.getContextPath();
 		</section>
 	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-paste"></i> <span>Cadastro
+					<i class="fa-solid fa-paste"></i> <span id="tituloPagina">Cadastro
 						de Sub-Categoria</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
 			<form id="form-funcionario" 
-				class="card form p-5 col-8 mx-auto">
-				<h1 class="text-center mb-5">Cadastrar Sub-Categoria</h1>
+				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Sub-Categoria</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="Categoria" class="form-label">Categoria:</label> <select
-							type="text" id="Categoria" required autocomplete="off" name="Categoria"
+						<label for="categoria" class="form-label">Categoria:</label> <select
+							type="text" id="categoria" required autocomplete="off" name="categoria"
 							class="form-control inputForm" >
-							<option>desenvolvedor</option>
-							<option>Recursos Humanos</option>
-							<option>Estagiario</option>
+							<option></option>
 							</select>
 					</div>
 					<div class="col-md-6">

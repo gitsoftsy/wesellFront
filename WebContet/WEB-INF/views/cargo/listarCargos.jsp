@@ -104,7 +104,7 @@ String contextPath = request.getContextPath();
 	</header>
 
 	<button type="button" class="btn botaoAtivaMenu ">
-		<i class="fa-solid fa-bars"></i>
+		<i class="fa-solid fa-arrow-left mover-left"></i>
 	</button>
 	<main class="py-4 container-res">
 		<section class="mb-5">

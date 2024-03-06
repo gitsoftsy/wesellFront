@@ -15,27 +15,64 @@ botaoAtiva.addEventListener('click', () => {
 
 
 
-var funcionarios = []
+var produto = []
+var imge = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/listaUsuarioInterno",
+    url: url_base + "/produtos",
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      funcionarios = data;
-      renderizarFuncionarios(data);
+      produto = data;
+      renderizarProduto(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarFuncionarios(funcionarios) {
-      var html = funcionarios.map(function (item) {
+    function renderizarProduto(produto) {
+	
+      var html = produto.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+        
+             var categoria = []
+        
+  $.ajax({
+    url: url_base + "/categorias/" + item.categoriaId,
+    type: "GET",
+    async: false,
+  }).done(function(data){
+	  
+	categoria = data.categoria
+  })
+  
+               var subcategoria = []
+        
+  $.ajax({
+    url: url_base + "/subcategorias/" + item.subcategoriaId,
+    type: "GET",
+    async: false,
+  }).done(function(data){
+	  
+	subcategoria = data.nome
+  })
+  
+                var lojista = []
+        
+  $.ajax({
+    url: url_base + "/lojistas/" + item.lojistaId,
+    type: "GET",
+    async: false,
+  }).done(function(data){
+	  
+	lojista = data.nomeFantasia
+  })
+  
+        
         return (
           "<tr>" +
           "<td>" +
@@ -48,37 +85,34 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.usuario +
+          item.nomeProduto +
           "</td>" +
           "<td>" +
-          item.nome +
+          item.descrProduto +
           "</td>" +
            "<td>" +
-          item.usuario +
+          categoria+
           "</td>" +
            "<td>" +
-          item.usuario +
+          subcategoria +
           "</td>" +
            "<td>" +
-          item.usuario +
+           "R$"+
+          item.preco +
           "</td>" +
            "<td>" +
-          item.usuario +
+           "R$"+
+          item.comissao +
           "</td>" +
            "<td>" +
-          item.usuario +
-          "</td>" +
-           "<td>" +
-          item.usuario +
+          lojista +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idUsuario +
+          item.idProduto +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idUsuario +
-          '" data-usuario="' +
-          item.usuario +
+          item.idProduto +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -109,6 +143,8 @@ $(document).ready(function () {
         }).show();
       }
     }
+
+
     
     $("#inputBusca").on("input", function() {
       var valorBusca = $(this).val().toLowerCase();
@@ -167,13 +203,14 @@ $(document).ready(function () {
   });
 });
 
+
+
 function editar(user) {
-  var idUsuario = user.getAttribute("data-value");
-  window.location.href = "cadastroDeProduto?id=" + idUsuario;
+  var idProduto = user.getAttribute("data-value");
+  window.location.href = "cadastroDeProduto?id=" + idProduto;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
-  var usuario = element.getAttribute("data-usuario");
   var status = element.getAttribute("data-status");
 
   const button = $(element).closest("tr").find(".btn-status");
@@ -188,24 +225,23 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/alterarAtivoUsuario?usuario=${usuario}&ativo=${status === "S" ? "N" : "S"}`,
-    type: "GET",
+    url: url_base + `/produtos/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    type: "put",
     success: function() {
-      if (status === "S") {
-        console.log("Desativado com sucesso!");
-      } else {
-        console.log("Ativado com sucesso!");
-      }
+    			  Toastify({
+					text: `${status === "S" ? 'desativado' : 'ativado'} Com Sucesso!`,
+					duration: 2000,
+					position: "center",
+					close: true,
+					className: "Toastify__toast--custom"
+				}).showToast();
+				
     },
     error: function(error) {
       console.error("Erro ao alterar status do funcionario:", error);
     }
+  }).done(function(){
+	   
   });
 
-  funcionarios = funcionarios.map((funcionario) => {
-    if (funcionario.idUsuario === id) {
-      return { ...funcionario, ativo: status === "S" ? "N" : "S" };
-    }
-    return funcionario;
-  });
 }

@@ -5,20 +5,14 @@ let olhos = document.querySelector('#olho');
 olhos.addEventListener('click', function() {
 	
     let input = document.querySelector('#senha');
-    
-    
-    
+   
     if(input.getAttribute('type') === 'password') {
-		
-       
+		  
         input.setAttribute('type', 'text');
        $('#valor-olho').replaceWith('<i id="valor-olho" class="fa-solid fa-eye"></i>')
-      
-        
-        
+         
     } else{
 		
-        
         input.setAttribute('type', 'password');
 		 $('#valor-olho').replaceWith('<i id="valor-olho" class="fa-solid fa-eye-slash"></i>')
        
@@ -32,8 +26,47 @@ olhos.addEventListener('click', function() {
 $("#form-login").submit(function(e) {
 	e.preventDefault();
 	var formArray = $("#form-login").serializeArray();
+	
+	var usuario = $("#user").val()
+	var senha = $("#senha").val()
+	
+	$.ajax({
 
-	var userData = {};
+		url: url_base + '/colaboradores',
+		type: "GET",
+		contentType: "application/json; charset=utf-8",
+		error: function(data) {
+			mostraModalFeedback("erro", "erro na requisição!");
+		}
+	}).done(function(){
+		
+		
+		if(usuario & senha === data.usuario & data.senha){}
+		
+	})
+	
+	
+	
+	
+
+	
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*	var userData = {};
 	$(formArray).each(function(index, obj) {
 		userData[obj.name] = obj.value;
 	});
@@ -56,5 +89,4 @@ $("#form-login").submit(function(e) {
 		} else {
 			alert("Login Inválido!");
 		}
-	});
-});
+	});   */

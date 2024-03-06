@@ -101,12 +101,12 @@ String contextPath = request.getContextPath();
 		</section>
 	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-user-group fa-lg"></i> <span>Lista de
+					<i class="fa-solid fa-barcode"></i>  <span>Lista de
 						Produtos</span>
 				</div>
 			</div>
@@ -136,7 +136,6 @@ String contextPath = request.getContextPath();
 						<th scope="col">Preço</th>
 						<th scope="col">Comissão</th>
 						<th scope="col">Lojista</th>
-						<th scope="col">Imagem</th>
 						<th scope="col" width="15%">Ações</th>
 					</tr>
 				</thead>
@@ -150,6 +149,21 @@ String contextPath = request.getContextPath();
 					<i class="fa-solid fa-angle-right fa-xl"></i>
 				</button>
 			</div>
+			
+				<button type="button" style="display: none;" class="btn btn-primary"
+					id="openModalBtn" data-bs-toggle="modal"
+					data-bs-target="#exampleModal">Launch demo modal</button>
+			
+					<div style="background-color: transparent;" class="modal fade" id="exampleModal" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div style="background-color: transparent;" class="modal-dialog">
+						<div style="background-color: transparent;" class="modal-content">
+							<div style="background-color: transparent; border:none;" class="modal-header">
+								<img style="width: 600px; height: 600px; position:fixed; top:8px;" id="exibirImagem" alt="" src="">
+							</div>
+						</div>
+					</div>
+				</div>
 		</section>
 	</main>
 

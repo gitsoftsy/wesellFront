@@ -21,7 +21,7 @@ $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/listaUsuarioInterno",
+    url: url_base + "/funcionarios",
     type: "GET",
     async: false,
   })
@@ -36,6 +36,18 @@ $(document).ready(function () {
     function renderizarFuncionarios(funcionarios) {
       var html = funcionarios.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+        
+                   var cargo = []
+        
+  $.ajax({
+    url: url_base + "/cargos/" + item.cargoId,
+    type: "GET",
+    async: false,
+  }).done(function(data){
+	  
+	cargo = data.cargo
+  })
+        
         return (
           "<tr>" +
           "<td>" +
@@ -48,28 +60,20 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.usuario +
-          "</td>" +
-          "<td>" +
           item.nome +
           "</td>" +
-           "<td>" +
-          item.usuario +
+          "<td>" +
+          cargo +
           "</td>" +
            "<td>" +
-          item.usuario +
-          "</td>" +
-           "<td>" +
-          item.usuario +
+          item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idUsuario +
+          item.idFuncionario +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idUsuario +
-          '" data-usuario="' +
-          item.usuario +
+          item.idFuncionario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -159,12 +163,11 @@ $(document).ready(function () {
 });
 
 function editar(user) {
-  var idUsuario = user.getAttribute("data-value");
-  window.location.href = "cadastroFuncionario?id=" + idUsuario;
+  var idFuncionario = user.getAttribute("data-value");
+  window.location.href = "cadastroFuncionario?id=" + idFuncionario;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
-  var usuario = element.getAttribute("data-usuario");
   var status = element.getAttribute("data-status");
 
   const button = $(element).closest("tr").find(".btn-status");
@@ -179,24 +182,19 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/alterarAtivoUsuario?usuario=${usuario}&ativo=${status === "S" ? "N" : "S"}`,
-    type: "GET",
-    success: function() {
-      if (status === "S") {
-        console.log("Desativado com sucesso!");
-      } else {
-        console.log("Ativado com sucesso!");
-      }
-    },
-    error: function(error) {
-      console.error("Erro ao alterar status do funcionario:", error);
-    }
+    url: url_base + `/funcionarios/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    type: "put",
+   error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+		}
   });
 
-  funcionarios = funcionarios.map((funcionario) => {
-    if (funcionario.idUsuario === id) {
-      return { ...funcionario, ativo: status === "S" ? "N" : "S" };
-    }
-    return funcionario;
-  });
+ 
 }

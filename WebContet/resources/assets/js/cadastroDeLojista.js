@@ -15,26 +15,9 @@ botaoAtiva.addEventListener('click', () => {
 	elemento.classList.remove('animar-sair');
 });
 
-
-
-const button = document.querySelector("#btn-submit");
-
-function mostraModalFeedback(tipo, mensagem) {
-	if (tipo == "erro") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-xmark modal-erro'></i>")
-		$("#openModalBtn").click()
-	} else if (tipo == "sucesso") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-check circulo-border'></i>")
-		$("#openModalBtn").click()
-	}
-}
-
 $("#cep").blur(function() {
 
 	$.ajax({
-
 		url: 'https://viacep.com.br/ws/' + $('#cep').val() + '/json/',
 		type: "get",
 		async: false,
@@ -44,17 +27,15 @@ $("#cep").blur(function() {
 			$('#bairro').val(data.bairro);
 			$('#cidade').val(data.localidade);
 			$('#estado').val(data.uf);
-
-
 		});
-
 });
-
 
 function cadastrar() {
 
 	var objeto = {
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"nomeFantasia": $("#nomeFantasia").val(),
+    	"razaoSocial": $("#razaoSocial").val(),
 		"inscrEstadual": $('#inscricaoEstadual').val(),
 		"endereco": $('#endereco').val(),
 		"numero": $('#numero').val(),
@@ -72,9 +53,15 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
-		error: function(data) {
-			mostraModalFeedback("erro", "erro na requisição!");
-
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.message,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
 		}
 	}).done(function(data) {
 		Toastify({
@@ -96,6 +83,8 @@ function editar() {
 
 		"idLojista": idLojista,
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"nomeFantasia": $("#nomeFantasia").val(),
+    	"razaoSocial":  $("#razaoSocial").val(),
 		"inscrEstadual": $('#inscricaoEstadual').val(),
 		"endereco": $('#endereco').val(),
 		"numero": $('#numero').val(),
@@ -113,6 +102,17 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+
+		}
 	})
 		.done(function(data) {
 			Toastify({
@@ -138,6 +138,10 @@ $(document).ready(function() {
 	if (idLojista == undefined) {
 
 	} else {
+		
+		$("#tituloPagina, #tituloForm").text("Editar Lojista")
+		$("#btn-submit").text("Editar")
+		
 		$.ajax({
 			url: url_base + "/lojistas/" + idLojista,
 			type: "GET",
@@ -145,6 +149,8 @@ $(document).ready(function() {
 		})
 			.done(function(data) {
 				    $('#cnpj').val(data.cnpj),
+				    $("#nomeFantasia").val(data.nomeFantasia),
+				    $("#razaoSocial").val(data.razaoSocial),
 					$('#inscricaoEstadual').val(data.inscrEstadual),
 					$('#endereco').val(data.endereco),
 					$('#numero').val(data.numero),

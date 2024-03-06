@@ -54,6 +54,11 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
+	<!-- Animation-css -->
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 
 <body>
@@ -67,7 +72,7 @@ String contextPath = request.getContextPath();
 	</div>
 	<header>
 		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
+			<img class="logoSumare animate__animated animate__bounceIn"
 				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
 			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
@@ -101,20 +106,20 @@ String contextPath = request.getContextPath();
 		</section>
 	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-user-pen fa-lg"></i>  <span>Cadastro
+					<i class="fa-solid fa-user-pen fa-lg"></i>  <span id="tituloPagina">Cadastro
 						de Funcionários</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-funcionario" onsubmit="ativaPopUp()"
-				class="card form p-5 col-8 mx-auto">
-				<h1 class="text-left mb-5">Cadastrar Funcionário</h1>
+			<form id="form-funcionario"
+				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+				<h1 id="tituloForm" class="text-left mb-5">Cadastrar Funcionário</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
@@ -125,14 +130,11 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="cargo" class="form-label">Cargo:</label> <select
-							id="cargo" required autocomplete="off"
-							class="form-control inputForm">
+						<label for="lojista" class="form-label">Lojista:</label> <select
+							id="lojista" required name="lojista"
+							class="form-control inputForm" >
 							<option></option>
-							<option>Desenvolvedor</option>
-							<option>Recursos Humanos</option>
-							<option>Jovem Aprediz</option>
-						</select>
+							</select>
 					</div>
 				</div>
 
@@ -158,10 +160,42 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" data-mask="(00)00000-0000"
 							maxlength="11" />
 					</div>
-					
+					<div class="col-md-6">
+						<label for="cargo" class="form-label">Cargo:</label> <select
+							id="cargo" required autocomplete="off"
+							class="form-control inputForm">
+							<option></option>
+						</select>
+					</div>
 				</div>
 				
-				
+				<div class="row mb-2">
+					<div id="escondeSenha" class="col-md-6">
+						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:</label> <input
+							type="text" id="senha" required autocomplete="off" name="senha"
+							class="form-control inputForm" maxlength="255"  />
+					</div>
+					<div id="escondeSenha" class="col-md-6">
+						<label id="confirmarSenhaLabel" for="confirmarSenha" class="form-label">Confirmar Senha:</label> <input
+							type="text" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
+							class="form-control inputForm" maxlength="255" />
+					</div>
+					</div>
+					
+				<div class="row mb-2 none" id="alteraSen" >
+					<div class="col-md">
+						<div class="form-control border-0 p-0">
+							<button onclick="ativaSenhas()" type="button" class="btn btn-primary">Alterar Senha</button>
+						</div>
+					</div>
+					<!--<div class="col-md-2">
+						<label for="adm" class="form-label">Administrador:</label>
+						<div class="form-control border-0 p-0">
+							<input id="administrador" type="checkbox" name="adm" checked data-toggle="toggle"
+								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"
+								data-off="Não" data-width="100%" data-height="40" data-size="sm" />
+						</div> -->
+					</div>
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">

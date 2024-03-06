@@ -101,7 +101,7 @@ String contextPath = request.getContextPath();
 		</section>
 	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
@@ -131,10 +131,8 @@ String contextPath = request.getContextPath();
 					<tr>
 						<th scope="col" width="10%">Ativo</th>
 						<th scope="col">Nome</th>
-						<th scope="col">Cpf</th>
-						<th scope="col">Usuario</th>
-						<th scope="col">Senha</th>
-						<th scope="col">Administrativo</th>
+						<th scope="col">CPF</th>
+						<th scope="col">Usuário</th>
 						<th scope="col">E-mail</th>
 						<th scope="col" width="15%">Ações</th>
 					</tr>

@@ -16,26 +16,6 @@ botaoAtiva.addEventListener('click', () => {
 });
 
 
-
-const button = document.querySelector("#btn-submit");
-
-function mostraModalFeedback(tipo, mensagem) {
-	if (tipo == "erro") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-xmark modal-erro'></i>")
-		$("#openModalBtn").click()
-	} else if (tipo == "sucesso") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-check circulo-border'></i>")
-		$("#openModalBtn").click()
-	}
-}
-
-
-
-
-
-
 function cadastrar() {
 
 	var objeto = {
@@ -48,8 +28,15 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
-		error: function(data) {
-			mostraModalFeedback("erro", "erro na requisição!");
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
 
 		}
 	}).done(function(data) {
@@ -80,6 +67,16 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+		}
 	})
 		.done(function(data) {
 			Toastify({
@@ -99,12 +96,22 @@ function editar() {
 
 }
 
+
+
+
+
 $(document).ready(function() {
+
+	
 
 
 	if (idCategoria == undefined) {
 
 	} else {
+		
+		$("#tituloPagina, #tituloForm").text("Editar Categoria")
+		$("#btn-submit").text("Editar")
+		
 		$.ajax({
 			url: url_base + "/categorias/" + idCategoria,
 			type: "GET",
@@ -124,7 +131,7 @@ $(document).ready(function() {
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
 	if (edição == "sim") {
-		
+
 		editar()
 	} else {
 		cadastrar()

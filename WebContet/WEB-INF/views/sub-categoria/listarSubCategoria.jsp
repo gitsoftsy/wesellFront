@@ -100,12 +100,12 @@ String contextPath = request.getContextPath();
 		</section>
 	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-user-group fa-lg"></i> <span>Lista de
+					<i class="fa-solid fa-paste"></i> <span>Lista de
 						Sub-Categorias</span>
 				</div>
 			</div>
@@ -114,7 +114,7 @@ String contextPath = request.getContextPath();
 			<div class="mt-3 mb-2"
 				style="display: flex; flex-flow:column;align-items:center; gap:20px">
 				<a href="cadastroDeSubCategoria"
-					class="btn btn-primary btn-lg px-3 py-1">Nova Categoria</a>
+					class="btn btn-primary btn-lg px-3 py-1">Nova Sub-Categoria</a>
 				<div class="input-group" >
 					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar Sub-Categoria" /> <span

@@ -54,6 +54,10 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
+
+<!-- Animation-css -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
@@ -67,10 +71,12 @@ String contextPath = request.getContextPath();
 	</div>
 	<header>
 		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
+			<img class="logoSumare animate__animated animate__bounceIn"
 				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+			<button id="teste" type="button" class="btn botaoDesativaMenu ">
+				<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+			</button>
 			<hr />
 			<p>
 				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
@@ -78,42 +84,45 @@ String contextPath = request.getContextPath();
 			<hr />
 			<nav class="nav-sidebar">
 
-				
-			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
-				<span>Cargos</span> 
-			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
-				<span>Categorias</span>
-				</a> <a href="listarSubCategoria" class="mb-1"> <i class="fa-solid fa-paste"></i>
-				<span>Sub-Categoria</span>
-				</a> <a href="listarLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Lojistas</span>
-				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
-				<span>Colaboradores</span>
-				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
-				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
+
+				<a href="listarCargos" class="mb-1"><i
+					class="fa-regular fa-address-card"></i> <span>Cargos</span> </a> <a
+					href="listarCategoria" class="mb-1"> <i
+					class="fa-solid fa-clipboard"></i> <span>Categorias</span>
+				</a> <a href="listarSubCategoria" class="mb-1"> <i
+					class="fa-solid fa-paste"></i> <span>Sub-Categoria</span>
+				</a> <a href="listarLojista" class="mb-1"> <i
+					class="fa-solid fa-shop"></i> <span>Lojistas</span>
+				</a> <a href="listarColaboradores" class="mb-1"> <i
+					class="fa-regular fa-handshake"></i> <span>Colaboradores</span>
+				</a> <a href="listarFuncionarios" class="mb-1"> <i
+					class="fa-solid fa-user-group"></i> <span>Funcionários</span>
+				</a> <a href="listarProduto" class="mb-1"> <i
+					class="fa-solid fa-barcode"></i> <span>Produtos</span>
+				</a> <a href="logoff" id="sair"> <i
+					class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
 				</a>
-				
+
 			</nav>
 		</section>
 	</header>
-	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+
+	<button type="button" class="btn botaoAtivaMenu ">
+		<i class="fa-solid fa-arrow-left mover-left"></i>
+	</button>
 	<main class="py-4 container-res">
-		<section class="mb-5">
+		<section id="section" class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-barcode"></i> <span>Cadastro
+					<i class="fa-solid fa-barcode"></i> <span id="tituloPagina">Cadastro
 						de Produto</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-funcionario" class="card form p-5 col-8 mx-auto">
-				<h1 class="text-center mb-5">Cadastrar Produto</h1>
+			<form id="form-funcionario"
+				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Produto</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
@@ -125,63 +134,79 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="file" class="form-label">Imagem do Produto:</label> <input
-							required autocomplete="off" type="file" id="file"
-							name="file" class="form-control inputForm" />
+						<label for="file" class="form-label">Imagens do Produto:</label> <input
+							required autocomplete="off" type="file" onchange="converterImagem();" id="imagem-produto" name="file"
+							class="form-control inputForm" multiple/>
 					</div>
 				</div>
 
 				<div class="row mb-2">
+
 					<div class="col-md-6">
 						<label for="descricao" class="form-label">Descrição:</label> <input
 							required autocomplete="off" type="text" id="descricao"
 							name="descricao" class="form-control inputForm" maxlength="2000" />
 					</div>
-					<div class="col-md-6">
-						<label for="categoria" class="form-label">Categoria:</label> <select
-							id="categoria" required autocomplete="off"
-							class="form-control inputForm" maxlength="8">
-							<option></option>
-							<option>Desenvolvedor</option>
-							<option>Recursos Humanos</option>
-							<option>Jovem Aprediz</option>
-						</select>
-					</div>
-				</div>
 
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="subCategoria" class="form-label">Sub-Categoria:</label>
-						<select type="text" id="subCategoria" required autocomplete="off"
-							name="subCategoria" class="form-control inputForm" maxlength="8">
-							<option></option>
-							<option>Desenvolvedor</option>
-							<option>Recursos Humanos</option>
-							<option>Jovem Aprediz</option>
-						</select>
-					</div>
 					<div class="col-md-6">
 						<label for="precoDeVenda" class="form-label">Preço de
 							Venda:</label> <input type="number" id="precoDeVenda" required
 							autocomplete="off" name="precoDeVenda" step="0.010"
-							class="form-control inputForm" data-mask="00.00000000" maxlength="10" />
+							class="form-control inputForm" data-mask="000.0000000"
+							maxlength="10" />
 					</div>
+
 				</div>
 
+
 				<div class="row mb-2">
+
 					<div class="col-md-6">
 						<label for="comissao" class="form-label">Comissão:</label> <input
 							required autocomplete="off" type="number" id="comissao"
-							name="comissao" step="0.010" class="form-control inputForm" maxlength="10"
-							data-mask="00.00000000" />
+							name="comissao" step="0.010" class="form-control inputForm"
+							maxlength="10" data-mask="0.000000000" />
 					</div>
-					<div class="col-md-6">
-						<label for="lojista" class="form-label">Lojista:</label> <input
-							id="lojista" required autocomplete="off" name="lojista"
-							class="form-control inputForm" type="text" maxlength="8" />
 
+					<div class="col-md-6">
+						<label for="categoria" class="form-label">Categoria:</label> 
+						<select id="categoria" required class="form-control inputForm">
+							<option selected></option>
+						</select>
 					</div>
+
+				</div>
+
+				<div class="row mb-2">
+
+					<div class="col-md-6">
+						<label for="subCategoria" class="form-label">Sub-Categoria:</label>
+						<select  id="subCategoria" required name="subCategoria" class="form-control inputForm">
+							<option></option>
+						</select>
+					</div>
+
+					<div class="col-md-6">
+						<label for="lojista" class="form-label">Lojista:</label> 
+						<select id="lojista" required name="lojista" class="form-control inputForm" >
+							<option></option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="row mb-2">
+					<div class="col-md-6">
+					<button class="btn btn-primary btn-register" id="abrirModalImg" >Ver imagens</button>
+					</div>
+					<div id="carrossel" class="carrossel none">
+			        <div class="imagens">
+			          <img id="img0" src="" alt="Imagem 1" class="imagem-ativa">
+			          <img id="img1" src="" alt="Imagem 2">
+			          <img id="img2" src="" alt="Imagem 3">
+			        </div>
+			        <button class="anterior" onclick="mudarImagem(-1)">❮</button>
+			        <button class="proximo" onclick="mudarImagem(1)">❯</button>
+			      </div>
 				</div>
 
 				<div class="row mb-2">
@@ -190,25 +215,10 @@ String contextPath = request.getContextPath();
 							class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
-				<!-- Button modal de cadastro  -->
-				<button type="button" style="display: none;" class="btn btn-primary"
-					id="openModalBtn" data-bs-toggle="modal"
-					data-bs-target="#exampleModal">Launch demo modal</button>
-
-				<!-- Modal de cadastro -->
-				<div class="modal fade" id="exampleModal" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<i id="icone-modal" class="fa-solid fa-check circulo-border"></i>
-								<h1 class="modal-title fs-5 titulo-modal" id="exampleModalLabel">Seu
-									Cadastro Foi Realizado!</h1>
-							</div>
-						</div>
-					</div>
-				</div>
 			</form>
+			
+			
+			
 		</section>
 	</main>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"

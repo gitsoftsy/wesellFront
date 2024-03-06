@@ -16,20 +16,6 @@ botaoAtiva.addEventListener('click', () => {
 
 
 
-const button = document.querySelector("#btn-submit");
-
-function mostraModalFeedback(tipo, mensagem) {
-	if (tipo == "erro") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-xmark modal-erro'></i>")
-		$("#openModalBtn").click()
-	} else if (tipo == "sucesso") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-check circulo-border'></i>")
-		$("#openModalBtn").click()
-	}
-}
-
 function cadastrar() {
 
 	var objeto = {
@@ -42,8 +28,15 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
-		error: function(data) {
-			mostraModalFeedback("erro", "erro na requisição!");
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.message,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
 
 		}
 	}).done(function(data) {
@@ -99,6 +92,10 @@ $(document).ready(function() {
 	if (idCargo == undefined) {
 
 	} else {
+		
+		$("#tituloPagina, #tituloForm").text("Editar Cargo")
+		$("#btn-submit").text("Editar")
+		
 		$.ajax({
 			url: url_base + "/cargos/" + idCargo,
 			type: "GET",

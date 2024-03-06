@@ -32,11 +32,13 @@ function mostraModalFeedback(tipo, mensagem) {
 }
 
 
+
+
 function cadastrar() {
 
 	var objeto = {
 		"nome": $('#descricaoSubCategoria').val(),
-		"categoriaId": 3,
+		"categoriaId": $("#categoria option:selected").attr("id"),
 	};
 
 	$.ajax({
@@ -45,8 +47,15 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
-		error: function(data) {
-			mostraModalFeedback("erro", "erro na requisição!");
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
 
 		}
 	}).done(function(data) {
@@ -69,7 +78,7 @@ function editar() {
 
 		"id": idSubCategoria,
 		"nome": $('#descricaoSubCategoria').val(),
-		"categoriaId":3,
+		"categoriaId":$("#categoria option:selected").attr("id"),
 
 	}
 
@@ -78,6 +87,17 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+
+		}
 	})
 		.done(function(data) {
 			Toastify({
@@ -97,18 +117,42 @@ function editar() {
 
 }
 
+var categorias = []
+
 $(document).ready(function() {
+	
+	$.ajax({
+		url: url_base + '/categorias',
+		type: "GET",
+		async: false,
+	}).done(function(data) {
+		categorias = data;
+		renderizarCategorias(data)
+	})
+	function renderizarCategorias(categorias) {
+		var html = categorias.map(function(item) {
+			return (
+				`<option id="${item.idCategoria}">${item.categoria}</option>`
+			)
+		});
+		$("#categoria").html(html);
+	};
 
 
 	if (idSubCategoria == undefined) {
 
 	} else {
+		
+		$("#tituloPagina, #tituloForm").text("Editar Sub-Categoria")
+		$("#btn-submit").text("Editar")
+		
 		$.ajax({
 			url: url_base + "/subcategorias/" + idSubCategoria,
 			type: "GET",
 			async: false,
 		})
 			.done(function(data) {
+				$('#categoria').find(`option[id=${data.categoriaId}]`).attr("selected", "selected"),
 				$('#descricaoSubCategoria').val(data.nome);
 				edição = "sim"
 			})

@@ -51,16 +51,10 @@ $(document).ready(function () {
           item.nome +
           "</td>" +
           "<td>" +
-          item.cpf +
+          item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +
           "</td>" +
            "<td>" +
           item.usuario +
-          "</td>" +
-           "<td>" +
-          item.senha +
-          "</td>" +
-           "<td>" +
-          item.administrador +
           "</td>" +
           "<td>" +
           item.email +
@@ -71,8 +65,6 @@ $(document).ready(function () {
           item.ativo +
           '" data-id="' +
           item.idColaborador +
-          '" data-usuario="' +
-          item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -103,6 +95,8 @@ $(document).ready(function () {
         }).show();
       }
     }
+    
+
     
     $("#inputBusca").on("input", function() {
       var valorBusca = $(this).val().toLowerCase();
@@ -167,7 +161,6 @@ function editar(user) {
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
-  var usuario = element.getAttribute("data-usuario");
   var status = element.getAttribute("data-status");
 
   const button = $(element).closest("tr").find(".btn-status");
@@ -182,19 +175,19 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/alterarAtivoUsuario?usuario=${usuario}&ativo=${status === "S" ? "N" : "S"}`,
-    type: "GET",
-    success: function() {
-      if (status === "S") {
-        console.log("Desativado com sucesso!");
-      } else {
-        console.log("Ativado com sucesso!");
-      }
-    },
-    error: function(error) {
-      console.error("Erro ao alterar status do funcionario:", error);
-    }
-  });
+    url: url_base + `/colaboradores/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    type: "put",
+   error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
 
+		}
+  });
   
 }

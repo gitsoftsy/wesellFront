@@ -48,7 +48,13 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.cnpj +
+          item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5") +
+          "</td>" +
+          "<td>" +
+          item.nomeFantasia +
+          "</td>" +
+          "<td>" +
+          item.razaoSocial +
           "</td>" +
           "<td>" +
           item.inscrEstadual +
@@ -69,7 +75,7 @@ $(document).ready(function () {
           item.estado +
           "</td>" +
            "<td>" +
-          item.cep +
+          item.cep.replace(/^(\d{5})(\d{3})$/, "$1-$2") +
           "</td>" +
            "<td>" +
           item.site +
@@ -80,8 +86,6 @@ $(document).ready(function () {
           item.ativo +
           '" data-id="' +
           item.idLojista +
-          '" data-usuario="' +
-          item.usuario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -174,9 +178,9 @@ function editar(user) {
   var idLojista = user.getAttribute("data-value");
   window.location.href = "cadastroDeLojista?id=" + idLojista;
 }
+
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
-  var usuario = element.getAttribute("data-usuario");
   var status = element.getAttribute("data-status");
 
   const button = $(element).closest("tr").find(".btn-status");
@@ -191,24 +195,18 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/alterarAtivoUsuario?usuario=${usuario}&ativo=${status === "S" ? "N" : "S"}`,
-    type: "GET",
-    success: function() {
-      if (status === "S") {
-        console.log("Desativado com sucesso!");
-      } else {
-        console.log("Ativado com sucesso!");
-      }
-    },
-    error: function(error) {
-      console.error("Erro ao alterar status do funcionario:", error);
-    }
+    url: url_base + `/lojistas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    type: "put",
+    error: function(e) {
+			Toastify({
+			text: e.responseJSON.error,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+		}
   });
 
-  funcionarios = funcionarios.map((funcionario) => {
-    if (funcionario.idUsuario === id) {
-      return { ...funcionario, ativo: status === "S" ? "N" : "S" };
-    }
-    return funcionario;
-  });
 }

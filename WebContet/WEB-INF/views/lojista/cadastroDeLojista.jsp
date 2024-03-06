@@ -54,6 +54,12 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
+	
+<!-- Animation-css -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 
 <body>
@@ -67,7 +73,7 @@ String contextPath = request.getContextPath();
 	</div>
 	<header>
 		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
+			<img class="logoSumare animate__animated animate__bounceIn"
 				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
 			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
@@ -101,21 +107,34 @@ String contextPath = request.getContextPath();
 		</section>
 	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-bars"></i></button>
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-shop"></i>  <span>Cadastro
+					<i class="fa-solid fa-shop"></i>  <span id="tituloPagina">Cadastro
 						de Lojista</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-funcionario" class="card form p-5 col-8 mx-auto">
-				<h1 class="text-center mb-5">Cadastrar Lojista</h1>
+			<form id="form-funcionario" class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Lojista</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="nomeFantasia" class="form-label">Nome Fantasia:</label> <input required
+							autocomplete="off" type="text" id="nomeFantasia" name="nomeFantasia"
+							class="form-control inputForm" maxlength="255"  />
+					</div>
+					<div class="col-md-6">
+						<label for="razaoSocial" class="form-label">Razão Social:</label> <input type="text" id="razaoSocial"
+							autocomplete="off" name="razaoSocial"
+							class="form-control inputForm" maxlength="255" />
+					</div>
+				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
@@ -133,7 +152,7 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">Cep:</label> <input
+						<label for="cep" class="form-label">CEP:</label> <input
 							type="text" id="cep" required autocomplete="off" name="cep"
 							class="form-control inputForm" maxlength="8" />
 					</div>
