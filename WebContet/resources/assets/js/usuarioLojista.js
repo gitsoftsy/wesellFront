@@ -1,10 +1,13 @@
+
+	
+	var user = localStorage.getItem("usuario")
+	var usuario = JSON.parse(user);
+	
+	$("#usuarioNome").text(usuario.nome)
+	
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
-var edição = ""
-const idFuncionarios = params.get("id");
-
-
 
 botaoDesativa.addEventListener('click', () => {
 	elemento.classList.add('animar-sair');
@@ -20,7 +23,7 @@ botaoAtiva.addEventListener('click', () => {
 function ativaSenhas() {
 
 	$("#senha, #confirmarSenha").removeAttr("disabled")
-	$("#senha, #confirmarSenha").attr("type", "text")
+	$("#senha, #confirmarSenha").attr("type", "password")
 	$("#labelSenha, #confirmarSenhaLabel").removeClass("none")
 	$("#labelSenha").text("Nova Senha:")
 	$("#senha").val("")
@@ -28,85 +31,20 @@ function ativaSenhas() {
 
 }
 
-function cadastrar() {
+var user = localStorage.getItem("usuario")
+var usuario = JSON.parse(user);
 
-	var objeto = {
-		"cargoId": $("#cargo option:selected").attr("id"),
-		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"email": $('#email').val(),
-		"senha": $('#senha').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
-		"nome": $('#nome').val(),
-	};
-
-	$.ajax({
-
-		url: url_base + '/funcionarios',
-		type: "post",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
-		}
-	}).done(function(data) {
-
-		var telefone = {
-			"funcionarioId": data.idFuncionario,
-			"telefone": $('#telefone').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"tpTelefone": "C"
-		}
-
-		$.ajax({
-
-			url: url_base + '/telefones',
-			type: "post",
-			data: JSON.stringify(telefone),
-			contentType: "application/json; charset=utf-8",
-			error: function(e) {
-				Toastify({
-					text: e.responseJSON.message,
-					duration: 2000,
-					position: "center",
-					backgroundColor: "red",
-					close: true,
-					className: "Toastify__toast--custom"
-				}).showToast();
-				console.log(e.responseJSON)
-			}
-		}).done((function(data) {
-
-			Toastify({
-				text: "cadastrado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
-				window.location.href = 'listarFuncionarios';
-			}, 1000);
-		}))
-	});
-};
 
 function editar() {
 
 	var objetoEdit = {
 
-		"idFuncionario": idFuncionarios,
+		"idFuncionario": usuario.id,
 		"cargoId": $("#cargo option:selected").attr("id"),
 		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"email": $('#email').val(),
 		"senha": $('#senha').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
+		"lojistaId": usuario.lojistaId,
 		"nome": $('#nome').val(),
 
 	}
@@ -128,18 +66,12 @@ function editar() {
 			console.log(e.responseJSON)
 		}
 	})
-		.done(function(data) {
+		.done(function() {
 
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
 			setTimeout(function() {
-				window.location.href = 'listarFuncionarios';
+				window.location.href = 'usuarioLojista';
 			}, 1000);
+			
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -150,7 +82,7 @@ function editar() {
 function editarTelefone() {
 
 	$.ajax({
-		url: url_base + "/telefones/funcionario/" + idFuncionarios,
+		url: url_base + "/telefones/funcionario/" + usuario.id,
 		type: "GET",
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
@@ -168,7 +100,7 @@ function editarTelefone() {
 
 		var telefoneEdit = {
 			"idTelefoneFuncionario": data[0].idTelefoneFuncionario, // idtelefone aqui
-			"funcionarioId": idFuncionarios,
+			"funcionarioId": usuario.id,
 			"telefone": $('#telefone').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 			"tpTelefone": "C"
 		}
@@ -234,11 +166,9 @@ $(document).ready(function() {
 	$("select option[value='exemplo']").attr("selected", "selected");
 
 
-	if (idFuncionarios == undefined) {
+	
 
-	} else {
-
-		$("#tituloPagina, #tituloForm").text("Editar Funcionario")
+		$("#tituloPagina, #tituloForm").text(usuario.nome)
 		$("#btn-submit").text("Editar")
 
 		$("#labelSenha").text("Senha Atual:")
@@ -250,7 +180,7 @@ $(document).ready(function() {
 		$("#labelSenha, #confirmarSenhaLabel").addClass("none")
 
 		$.ajax({
-			url: url_base + "/funcionarios/" + idFuncionarios,
+			url: url_base + "/funcionarios/" + usuario.id,
 			type: "GET",
 			async: false,
 		})
@@ -270,7 +200,7 @@ $(document).ready(function() {
 			});
 
 		$.ajax({
-			url: url_base + "/telefones/funcionario/" + idFuncionarios,
+			url: url_base + "/telefones/funcionario/" + usuario.id,
 			type: "GET",
 			async: false,
 		})
@@ -280,8 +210,6 @@ $(document).ready(function() {
 
 			})
 
-
-	}
 
 });
 $("#form-funcionario").on("submit", function(e) {
@@ -305,13 +233,8 @@ $("#form-funcionario").on("submit", function(e) {
 
 		} else {
 
-			if (edição == "sim") {
-
 				editar()
 				editarTelefone()
-			} else {
-				cadastrar()
-			}
 
 		}
 	};
@@ -320,3 +243,6 @@ $("#form-funcionario").on("submit", function(e) {
 
 
 });
+
+
+

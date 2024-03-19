@@ -106,7 +106,7 @@ String contextPath = request.getContextPath();
 			</nav>
 		</section>
 	</header>
-
+	
 	<button type="button" class="btn botaoAtivaMenu ">
 		<i class="fa-solid fa-arrow-left mover-left"></i>
 	</button>
@@ -129,12 +129,12 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="nomeProduto" class="form-label">Nome do
-							produto:</label> <input type="text" id="nomeProduto" required
+							produto:<span class="red">*</span></label> <input type="text" id="nomeProduto" required
 							autocomplete="off" name="nomeProduto"
 							class="form-control inputForm" maxlength="255" />
 					</div>
-					<div class="col-md-6">
-						<label for="file" class="form-label">Imagens do Produto:</label> <input
+					<div id="boxImg" class="col-md-6">
+						<label for="file" class="form-label">Imagens do Produto:<span class="red">*</span></label> <input
 							required autocomplete="off" type="file" onchange="converterImagem();" id="imagem-produto" name="file"
 							class="form-control inputForm" multiple/>
 					</div>
@@ -143,34 +143,32 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 
 					<div class="col-md-6">
-						<label for="descricao" class="form-label">Descrição:</label> <input
+						<label for="descricao" class="form-label">Descrição:<span class="red">*</span></label> <input
 							required autocomplete="off" type="text" id="descricao"
 							name="descricao" class="form-control inputForm" maxlength="2000" />
 					</div>
 
 					<div class="col-md-6">
 						<label for="precoDeVenda" class="form-label">Preço de
-							Venda:</label> <input type="number" id="precoDeVenda" required
-							autocomplete="off" name="precoDeVenda" step="0.010"
-							class="form-control inputForm" data-mask="000.0000000"
-							maxlength="10" />
+							Venda:<span class="red">*</span></label> <input type="text" id="precoDeVenda" required
+							autocomplete="off" name="precoDeVenda" class="form-control inputForm" 
+							maxlength="12" />
 					</div>
 
 				</div>
 
-
 				<div class="row mb-2">
 
 					<div class="col-md-6">
-						<label for="comissao" class="form-label">Comissão:</label> <input
-							required autocomplete="off" type="number" id="comissao"
-							name="comissao" step="0.010" class="form-control inputForm"
-							maxlength="10" data-mask="0.000000000" />
+						<label for="comissao" class="form-label">Comissão:<span class="red">*</span></label> <input
+							required autocomplete="off" type="text" id="comissao"
+							name="comissao"  class="form-control inputForm"
+							maxlength="12" />
 					</div>
 
 					<div class="col-md-6">
-						<label for="categoria" class="form-label">Categoria:</label> 
-						<select id="categoria" required class="form-control inputForm">
+						<label for="categoria" class="form-label">Categoria:<span class="red">*</span></label> 
+						<select id="categoria" required class="form-select inputForm">
 							<option selected></option>
 						</select>
 					</div>
@@ -181,14 +179,14 @@ String contextPath = request.getContextPath();
 
 					<div class="col-md-6">
 						<label for="subCategoria" class="form-label">Sub-Categoria:</label>
-						<select  id="subCategoria" required name="subCategoria" class="form-control inputForm">
+						<select  id="subCategoria" name="subCategoria" class="form-select inputForm">
 							<option></option>
 						</select>
 					</div>
 
 					<div class="col-md-6">
-						<label for="lojista" class="form-label">Lojista:</label> 
-						<select id="lojista" required name="lojista" class="form-control inputForm" >
+						<label for="lojista" class="form-label">Lojista:<span class="red">*</span></label> 
+						<select id="lojista" required name="lojista" class="form-select inputForm" >
 							<option></option>
 						</select>
 					</div>
@@ -196,7 +194,7 @@ String contextPath = request.getContextPath();
 				
 				<div class="row mb-2">
 					<div class="col-md-6">
-					<button class="btn btn-primary btn-register" id="abrirModalImg" >Ver imagens</button>
+					<button class="btn btn-primary btn-register none" id="abrirModalImg" >Ver imagens</button>
 					</div>
 					<div id="carrossel" class="carrossel none">
 			        <div class="imagens">

@@ -156,6 +156,9 @@ $("#subCategoria").change(function() {
   console.log(novoValor)
 });
 
+var user = localStorage.getItem("usuario")
+var usuario = JSON.parse(user);
+
 function cadastrar() {
 
 	console.log(imagensBase64)
@@ -167,7 +170,7 @@ function cadastrar() {
 		"comissao": $('#comissao').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"categoriaId": $("#categoria option:selected").attr("value"),
 		"subcategoriaId": novoValor,
-		"lojistaId": $('#lojista option:selected').attr("value"),
+		"lojistaId": usuario.lojistaId,
 
 	};
 
@@ -214,7 +217,7 @@ function cadastrar() {
 				className: "Toastify__toast--custom"
 			}).showToast();
 			setTimeout(function() {
-				window.location.href = 'listarProduto';
+				window.location.href = 'listarProdutoLojista';
 			}, 1000);
 		})
 	})
@@ -232,7 +235,7 @@ function editar() {
 		"comissao": $('#comissao').val(),
 		"categoriaId": $("#categoria option:selected").attr("id"),
 		"subcategoriaId": $('#subCategoria option:selected').attr("id"),
-		"lojistaId": 1,
+		"lojistaId": usuario.lojistaId,
 	}
 
 	$.ajax({
@@ -250,7 +253,7 @@ function editar() {
 				className: "Toastify__toast--custom"
 			}).showToast();
 			setTimeout(function() {
-				window.location.href = 'listarProduto';
+				window.location.href = 'listarProdutoLojista';
 			}, 1000);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {

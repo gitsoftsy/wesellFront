@@ -67,7 +67,7 @@ function cadastrar() {
 		}).showToast();
 		setTimeout(function() {
 			window.location.href = 'listarColaboradores';
-		}, 2000);
+		}, 1000);
 	})
 }
 
@@ -110,7 +110,7 @@ function editar() {
 			}).showToast();
 			setTimeout(function() {
 				window.location.href = 'listarColaboradores';
-			}, 2000);
+			}, 1000);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);

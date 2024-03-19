@@ -28,6 +28,9 @@ function ativaSenhas() {
 
 }
 
+var user = localStorage.getItem("usuario")
+var usuario = JSON.parse(user);
+
 function cadastrar() {
 
 	var objeto = {
@@ -35,7 +38,7 @@ function cadastrar() {
 		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"email": $('#email').val(),
 		"senha": $('#senha').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
+		"lojistaId": usuario.lojistaId,
 		"nome": $('#nome').val(),
 	};
 
@@ -91,7 +94,7 @@ function cadastrar() {
 				className: "Toastify__toast--custom"
 			}).showToast();
 			setTimeout(function() {
-				window.location.href = 'listarFuncionarios';
+				window.location.href = 'listarFuncionarioLojista';
 			}, 1000);
 		}))
 	});
@@ -106,7 +109,7 @@ function editar() {
 		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"email": $('#email').val(),
 		"senha": $('#senha').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
+		"lojistaId": usuario.lojistaId,
 		"nome": $('#nome').val(),
 
 	}
@@ -138,7 +141,7 @@ function editar() {
 				className: "Toastify__toast--custom"
 			}).showToast();
 			setTimeout(function() {
-				window.location.href = 'listarFuncionarios';
+				window.location.href = 'listarFuncionarioLojista';
 			}, 1000);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -311,6 +314,7 @@ $("#form-funcionario").on("submit", function(e) {
 				editarTelefone()
 			} else {
 				cadastrar()
+				
 			}
 
 		}

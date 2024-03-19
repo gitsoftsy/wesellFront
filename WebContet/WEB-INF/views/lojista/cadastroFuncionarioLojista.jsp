@@ -9,9 +9,9 @@ String contextPath = request.getContextPath();
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
 <title>Centro Universitário Sumaré</title>
@@ -35,7 +35,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
-	rel="stylesheet">
+	rel="stylesheet" />
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
@@ -54,7 +54,11 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
-
+	<!-- Animation-css -->
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 
 <body>
@@ -67,115 +71,121 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	<header>
-		<section class="abracaMenu">
+		<section id="modalMenu" class="abracaMenu modalMenu">
 			<img class="logoSumare"
-				src="<%=contextPath%>/resources/assets/img/logo-sumare.png"
+				src="<%=contextPath%>/resources/assets/img/logo.svg"
 				alt="Logo Sumare" />
-			<hr />
-			<p>
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
-			</p>
+			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
 			<hr />
 			<nav class="nav-sidebar">
-				<a href="dashboard" class="mb-1"> <i class="fa-solid fa-house"></i>
-					<span>Dashboard</span>
-				</a> <a href="listarDescontos" class="mb-1"> <i
-					class="fa-solid fa-percent fa-lg"></i> <span>Desconto</span>
-				</a> <a href="listarFuncionarios" class="mb-1"> <i
-					class="fa-solid fa-user-group"></i> <span>Funcionários</span>
-				</a> <a href="listarParceiros" class="mb-1"> <i
-					class="fa-solid fa-handshake"></i> <span>Parceiros</span>
-				</a> <a href="listarUsuarioParceiro" class="mb-1"> <i
-					class="fa-solid fa-user-group"></i> <span>Usuários Parceiros</span>
-				</a> <a href="logoff" id="sair"> <i
-					class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
+			<a href="usuarioLojista" class="mb-1">
+				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>Usuário</span>
+			</a>
+			</nav>
+			<hr />
+			<nav class="nav-sidebar">
+
+				<a href="lojaLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
+				<span>Minha Loja</span>
+				</a> <a href="listarFuncionarioLojista?4" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
+				<span>Funcionários</span>
+				</a> <a href="listarProdutoLojista" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
+				<span>Produtos</span>
+				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
+				<span>Sair</span>
 				</a>
+				
 			</nav>
 		</section>
 	</header>
+	
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-user-pen fa-lg"></i> <span>Editar
-						Usuário Parceiro</span>
+					<i class="fa-solid fa-user-pen fa-lg"></i>  <span id="tituloPagina">Cadastro
+						de Funcionários</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-editar" class="card form p-5 col-8 mx-auto">
-				<h1 class="text-center mb-5">Editar dados</h1>
+			<form id="form-funcionario"
+				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+				<h1 id="tituloForm" class="text-left mb-5">Cadastrar Funcionário</h1>
+				<input type="text" id="usuarioCadastro" hidden
+					value="${funcionario.idUsuario}" />
+
 				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="nome" class="form-label">Nome:</label> <input required
+					<div class="col-md-12">
+						<label for="nome" class="form-label">Nome:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="nome" name="nome"
-							class="form-control inputForm" />
-					</div>
-					<div class="col-md-6">
-						<label for="cpf" class="form-label">CPF:</label> <input type="tel"
-							id="cpf" required autocomplete="off" name="cpf"
-							class="form-control inputForm" data-mask="000.000.000-00" />
+							class="form-control inputForm" maxlength="255" />
 					</div>
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="email" class="form-label">Email:</label> <input
+						<label for="email" class="form-label">Email:<span class="red">*</span></label> <input
 							type="email" id="email" required autocomplete="off" name="email"
-							class="form-control inputForm" />
+							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="celular" class="form-label">Celular:</label> <input
-							type="tel" id="celular" required autocomplete="off"
-							name="celular" class="form-control inputForm"
-							data-mask="(00) 00000-0000" />
+						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label> <input
+							type="text" id="cpf" required autocomplete="off" name="cpf"
+							class="form-control inputForm" data-mask="000.000.000-00"
+							maxlength="11" />
 					</div>
-					<div class="col-md-3">
-						<label for="administrador" class="form-label">Administrador:</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="administrador" checked
-								data-toggle="toggle" data-onstyle="secondary"
-								data-offstyle="dark" data-on="Sim" data-off="Não"
-								data-width="100%" data-height="40" data-size="sm">
-						</div>
-					</div>
-					<div class="col-md-3">
-						<label for="alteraSenha" class="form-label">Alterar senha?</label>
-						<div class="form-control border-0 p-0">
-							<input type="checkbox" name="alteraSenha" id="alteraSenha"
-								data-toggle="toggle" data-onstyle="secondary"
-								data-offstyle="dark" data-on="Sim" data-off="Não"
-								data-width="100%" data-height="40" data-size="sm" />
-						</div>
-					</div>
-					<div class="col-md-6 campoSenha">
-						<label for="senha" class="form-label">Nova senha:</label> <input
-							type="password" id="senha" autocomplete="off" name="senha"
-							class="form-control inputForm" />
-					</div>
+
 				</div>
+
 				<div class="row mb-2">
-					<div class="col-md-6 campoSenha">
-						<label for="validSenha" class="form-label">Confirme
-							a senha:</label> <input autocomplete="off" type="password"
-							id="validSenha" name="validSenha" class="form-control inputForm" />
+					<div class="col-md-6">
+						<label for="telefone" class="form-label">Telefone:<span class="red">*</span></label> <input
+							type="text" id="telefone" required autocomplete="off" name="telefone"
+							class="form-control inputForm" data-mask="(00)00000-0000"
+							maxlength="11" />
+					</div>
+					<div class="col-md-6">
+						<label for="cargo" class="form-label">Cargo:<span class="red">*</span></label> <select
+							id="cargo" required autocomplete="off"
+							class="form-select inputForm">
+							<option></option>
+						</select>
 					</div>
 				</div>
-
-
+				
+				<div class="row mb-2">
+					<div id="escondeSenha" class="col-md-6">
+						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:<span class="red">*</span></label> <input
+							type="password" id="senha" required autocomplete="off" name="senha"
+							class="form-control inputForm" maxlength="255"  />
+					</div>
+					<div id="escondeSenha" class="col-md-6">
+						<label id="confirmarSenhaLabel" for="confirmarSenha" class="form-label">Confirmar Senha:<span class="red">*</span></label> <input
+							type="password" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
+							class="form-control inputForm" maxlength="255" />
+					</div>
+					</div>
+					
+				<div class="row mb-2 none" id="alteraSen" >
+					<div class="col-md">
+						<div class="form-control border-0 p-0">
+							<button onclick="ativaSenhas()" type="button" class="btn btn-primary">Alterar Senha</button>
+						</div>
+					</div>
+					</div>
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button type="submit" id="btn-submit"
-							class="btn btn-primary btn-register">
-							Salvar</button>
+							class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
+			
 			</form>
 		</section>
 	</main>
-
-
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
@@ -187,7 +197,7 @@ String contextPath = request.getContextPath();
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-				<script type="text/javascript"
+	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
@@ -195,12 +205,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources/assets/js/editarUserParceiro.js"></script>
-
-
-
-
-
-
+		src="<%=contextPath%>/resources//assets/js/cadastroFuncionarioLojista.js"></script>
 </body>
 </html>

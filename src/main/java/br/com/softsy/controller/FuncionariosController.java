@@ -73,8 +73,47 @@ public class FuncionariosController {
 		return "lojista/editarLojista";
 	}
 	
+	@RequestMapping(value = { "usuarioLojista" }, method = RequestMethod.GET)
+	public String usuarioLojista(HttpSession session, Model model) throws Exception {
+		
+		
+		return "lojista/usuarioLojista";
+	}
 	
+	@RequestMapping(value = { "listarFuncionarioLojista" }, method = RequestMethod.GET)
+	public String listarFuncionarioLojista(HttpSession session, Model model) throws Exception {
+			
+			
+		return "lojista/listarFuncionarioLojista";
+	}
+
+	@RequestMapping(value = { "lojaLojista" }, method = RequestMethod.GET)
+	public String lojaLojista(HttpSession session, Model model) throws Exception {
+			
+			
+		return "lojista/lojaLojista";
+	}
 	
+	@RequestMapping(value = { "listarProdutoLojista" }, method = RequestMethod.GET)
+	public String listarProdutoLojista(HttpSession session, Model model) throws Exception {
+			
+			
+		return "lojista/listarProdutoLojista";
+	}
+	
+	@RequestMapping(value = { "cadastroFuncionarioLojista" }, method = RequestMethod.GET)
+	public String cadastroFuncionarioLojista(HttpSession session, Model model) throws Exception {
+			
+			
+		return "lojista/cadastroFuncionarioLojista";
+	}
+	
+	@RequestMapping(value = { "cadastroProdutoLojista" }, method = RequestMethod.GET)
+	public String cadastroProdutoLojista(HttpSession session, Model model) throws Exception {
+			
+			
+		return "lojista/cadastroProdutoLojista";
+	}
 	
 	//categorias ------------------------------------------------------------------------------- //
 	
@@ -164,13 +203,24 @@ public class FuncionariosController {
 			return "colaboradores/listarColaboradores";
 		}
 		
-		@RequestMapping(value = { "editarColaborador" }, method = RequestMethod.GET)
-		public String editarColaborador(HttpSession session, Model model) throws Exception {
+		// fase 2 
+		
+		// lojista 
+		
+		@RequestMapping(value = { "cadastroEmpresa" }, method = RequestMethod.GET)
+		public String cadastroEmpresa(HttpSession session, Model model) throws Exception {
+			
+			return "fase2/cadastroEmpresa";
+		}
+		
+		// cadastrado com sucesso
+		
+		@RequestMapping(value = { "cadastroSucesso" }, method = RequestMethod.GET)
+		public String cadastroSucesso(HttpSession session, Model model) throws Exception {
 			
 			
-			return "colaboradores/editarColaborador";
+			return "fase2/cadastroSucesso";
 		}
 		
 	
-
 }

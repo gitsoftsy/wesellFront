@@ -49,7 +49,7 @@
       src="https://kit.fontawesome.com/2476720ce5.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/style.css" />
+    <link rel="stylesheet" href="<%=contextPath%>/resources/assets/css/login.css" />
     
     </head>
  
@@ -63,24 +63,24 @@
 		</div>
 	</div>
 	<body style="background-color: #183153">
-    <div class="container">
-      <div class="d-flex align-items-center" style="min-height: 100vh">
+ 
+      <div class="d-flex align-items-center justify-content-center pt-5 ">
         <form
           id="form-login"
-          class="card p-5 col-6 mx-auto shadow"
+          class="card p-5 col-6 shadow"
         >
           <h1 class="text-center mb-5">Faça o login</h1>
           <div class="form-floating mt-2 mb-3">
             <input
-              type="text"
+              type="email"
               class="form-control"
-              id="user"
+              id="email"
               autocomplete="off"
-              name="usuario"
+              name="email"
               required
-              placeholder="usuario"
+              placeholder="E-mail"
             />
-            <label for="user">Usuário</label>
+            <label for="email">E-mail</label>
           </div>
           <div class="form-floating">
             <input
@@ -93,7 +93,7 @@
               placeholder="senha"
             />
             <label for="senha">Senha</label>
-            <span id="olho" class="olhos-icone"><i id="valor-olho" class="fa-solid fa-eye-slash"></i></span>
+           <!-- <span id="olho" class="olhos-icone"><i id="valor-olho" class="fa-solid fa-eye-slash"></i></span -->
           </div>
           <button
             type="submit"
@@ -105,7 +105,7 @@
           <a class="text-center link-dark link-offset-2 link-underline-dark" href="home">Trocar perfil de acesso</a>
         </form>
       </div>
-    </div>
+
 
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"

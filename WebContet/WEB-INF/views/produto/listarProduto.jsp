@@ -141,29 +141,16 @@ String contextPath = request.getContextPath();
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
-			<div id="pagination" class="mx-auto">
-				<button id="prev" class="btn btn-sm">
-					<i class="fa-solid fa-angle-left fa-xl"></i>
-				</button>
-				<button id="next" class="btn btn-sm">
-					<i class="fa-solid fa-angle-right fa-xl"></i>
-				</button>
-			</div>
-			
-				<button type="button" style="display: none;" class="btn btn-primary"
-					id="openModalBtn" data-bs-toggle="modal"
-					data-bs-target="#exampleModal">Launch demo modal</button>
-			
-					<div style="background-color: transparent;" class="modal fade" id="exampleModal" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div style="background-color: transparent;" class="modal-dialog">
-						<div style="background-color: transparent;" class="modal-content">
-							<div style="background-color: transparent; border:none;" class="modal-header">
-								<img style="width: 600px; height: 600px; position:fixed; top:8px;" id="exibirImagem" alt="" src="">
-							</div>
-						</div>
-					</div>
-				</div>
+					<nav aria-label="Page navigation example">
+  <ul id="pagination-list" class="pagination">
+    <li id="prev" class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li id="next" class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
 		</section>
 	</main>
 

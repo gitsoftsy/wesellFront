@@ -12,30 +12,34 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.add('animar-entrar');
   elemento.classList.remove('animar-sair');
   });
+  
+  var user = localStorage.getItem("usuario")
+  var usuario = JSON.parse(user);
 
+	$("#usuarioNome").text(usuario.nome)
 
-
-var colaboradores = []
+var funcionarios = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/colaboradores",
+    url: url_base + "/funcionarios/lojista/" + usuario.lojistaId , //colocar o id lojista aqui 
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      colaboradores = data;
-      renderizarColaboradores(data);
+      funcionarios = data;
+      renderizarFuncionarios(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarColaboradores(funcionarios) {
-      var html = colaboradores.map(function (item) {
+    function renderizarFuncionarios(funcionarios) {
+      var html = funcionarios.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+        
         return (
           "<tr>" +
           "<td>" +
@@ -51,20 +55,17 @@ $(document).ready(function () {
           item.nome +
           "</td>" +
           "<td>" +
-          item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +
+          item.cargo.cargo +
           "</td>" +
            "<td>" +
-          item.usuario +
-          "</td>" +
-          "<td>" +
-          item.email +
+          item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idColaborador +
+          item.idFuncionario +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idColaborador +
+          item.idFuncionario +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -95,8 +96,6 @@ $(document).ready(function () {
         }).show();
       }
     }
-    
-
     
     $("#inputBusca").on("input", function() {
       var valorBusca = $(this).val().toLowerCase();
@@ -206,6 +205,8 @@ $(document).ready(function () {
         toggleNavigation();
     });
 }
+
+
   
   $('.checkbox-toggle').each(function() {
     var status = $(this).data('status');
@@ -215,9 +216,13 @@ $(document).ready(function () {
   });
 });
 
+
+
+
+
 function editar(user) {
-  var idColaborador= user.getAttribute("data-value");
-  window.location.href = "cadastroDeColaboradores?id=" + idColaborador;
+  var idFuncionario = user.getAttribute("data-value");
+  window.location.href = "cadastroFuncionarioLojista?id=" + idFuncionario;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
@@ -235,7 +240,7 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/colaboradores/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    url: url_base + `/funcionarios/${id}${status === "S" ? '/desativar' : '/ativar'}`,
     type: "put",
    error: function(e) {
 			Toastify({
@@ -246,8 +251,8 @@ function alteraStatus(element) {
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
-
 		}
   });
-  
+
+ 
 }

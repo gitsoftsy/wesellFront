@@ -68,7 +68,7 @@ function cadastrar() {
 		}).showToast();
 		setTimeout(function() {
 			window.location.href = 'listarSubCategoria';
-		}, 2000);
+		}, 1000);
 	})
 }
 
@@ -109,7 +109,7 @@ function editar() {
 			}).showToast();
 			setTimeout(function() {
 				window.location.href = 'listarSubCategoria';
-			}, 2000);
+			}, 1000);
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -137,6 +137,14 @@ $(document).ready(function() {
 		});
 		$("#categoria").html(html);
 	};
+	
+	const novaOpcao = $("<option>"); // Cria um novo elemento option
+	novaOpcao.text("Selecione..."); // Define o texto da opção
+	novaOpcao.val("exemplo");
+
+	$("select").prepend(novaOpcao).val();
+	$("select option[value='exemplo']").attr("selected", "selected");
+
 
 
 	if (idSubCategoria == undefined) {
@@ -152,7 +160,7 @@ $(document).ready(function() {
 			async: false,
 		})
 			.done(function(data) {
-				$('#categoria').find(`option[id=${data.categoriaId}]`).attr("selected", "selected"),
+				$('#categoria').find(`option[id=${data.categoria.idCategoria}]`).attr("selected", "selected"),
 				$('#descricaoSubCategoria').val(data.nome);
 				edição = "sim"
 			})

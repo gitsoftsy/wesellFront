@@ -126,12 +126,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="nome" class="form-label">Nome:</label> <input required
+						<label for="nome" class="form-label">Nome:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="nome" name="nome"
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="cpf" class="form-label">CPF:</label> <input required
+						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="cpf" name="cpf"
 							class="form-control inputForm" maxlength="11" required data-mask="000.000.000-00" />
 					</div>
@@ -139,12 +139,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="usuario" class="form-label">Usuário:</label> <input
+						<label for="usuario" class="form-label">Usuário:<span class="red">*</span></label> <input
 							type="text" id="usuario" required autocomplete="off" name="usuario"
 							class="form-control inputForm" maxlength="40" />
 					</div>
 					<div class="col-md-6">
-						<label for="email" class="form-label">E-mail:</label> <input
+						<label for="email" class="form-label">E-mail:<span class="red">*</span></label> <input
 							type="email" id="email" required="required" autocomplete="off" name="email"
 							class="form-control inputForm" 
 							maxlength="255" />
@@ -154,12 +154,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div id="escondeSenha" class="col-md-6">
-						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:</label> <input
+						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:<span class="red">*</span></label> <input
 							type="text" id="senha" required autocomplete="off" name="senha"
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div id="escondeSenha" class="col-md-6">
-						<label id="confirmarSenhaLabel"  for="confirmarSenha" class="form-label">Confirmar Senha:</label> <input
+						<label id="confirmarSenhaLabel"  for="confirmarSenha" class="form-label">Confirmar Senha:<span class="red">*</span></label> <input
 							type="text" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
 							class="form-control inputForm" maxlength="255" />
 					</div>
@@ -175,7 +175,7 @@ String contextPath = request.getContextPath();
 				
 				<div class="row mb-2"  >
 					<div class="col-md-2">
-						<label for="adm" class="form-label">Administrador:</label>
+						<label for="adm" class="form-label">Administrador:<span class="red">*</span></label>
 						<div class="form-control border-0 p-0">
 							<input id="administrador" type="checkbox" name="adm" checked="checked" data-toggle="toggle"
 								data-onstyle="secondary" data-offstyle="dark" data-on="Sim"

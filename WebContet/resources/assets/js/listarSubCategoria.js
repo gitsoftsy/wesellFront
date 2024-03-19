@@ -37,17 +37,6 @@ $(document).ready(function () {
       var html = subCategoria.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         
-        var categoria = []
-        
-  $.ajax({
-    url: url_base + "/categorias/" + item.categoriaId,
-    type: "GET",
-    async: false,
-  }).done(function(data){
-	  
-	categoria = data.categoria
-  })
-        
         
         
         return (
@@ -65,7 +54,7 @@ $(document).ready(function () {
           item.nome +
           "</td>" +
            "<td>" +
-          categoria +
+          item.categoria.categoria +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
           item.id +
@@ -126,6 +115,9 @@ $(document).ready(function () {
 	function toggleNavigation() {
 		var totalRows = $('.tabela-funcionarios tbody tr').length;
 		var totalPages = Math.ceil(totalRows / rows);
+		
+	    generatePaginationList(totalPages); // Chama a função para gerar a lista de paginação
+
 
 		if (totalRows > rows) {
 			$('#prev, #next').show();
@@ -152,6 +144,63 @@ $(document).ready(function () {
 			toggleNavigation();
 		}
 	});
+	
+	function generatePaginationList(totalPages) {
+    var paginationList = $('#pagination-list');
+    paginationList.empty(); // Limpa a lista antes de adicionar novos itens
+
+    // Adiciona item "Prev"
+    var prevListItem = $('<li class="page-item">');
+    var prevLink = $('<a class="page-link" href="#" aria-label="Previous">&laquo;</a>').attr('data-page', 'prev');
+    prevListItem.append(prevLink);
+    paginationList.append(prevListItem);
+
+    for (let i = 1; i <= totalPages; i++) {
+        var listItem = $('<li class="page-item">');
+        var link = $('<a class="page-link" href="#"></a>').text(i).attr('data-page', i);
+
+        link.on('click', function(e) {
+            e.preventDefault(); // Previne o comportamento padrão do link
+            var page = $(this).data('page');
+
+            // Atualiza currentPage baseado no item clicado
+            if (page === 'prev') {
+                currentPage = Math.max(1, currentPage - 1);
+            } else if (page === 'next') {
+                currentPage = Math.min(totalPages, currentPage + 1);
+            } else {
+                currentPage = page;
+            }
+
+            showPage(currentPage);
+            toggleNavigation();
+        });
+
+        listItem.append(link);
+        paginationList.append(listItem);
+    }
+
+    // Adiciona item "Next"
+    var nextListItem = $('<li class="page-item">');
+    var nextLink = $('<a class="page-link" href="#" aria-label="Next">&raquo;</a>').attr('data-page', 'next');
+    nextListItem.append(nextLink);
+    paginationList.append(nextListItem);
+
+    // Atualiza o manipulador de clique para 'prev' e 'next' separadamente para evitar conflitos
+    prevLink.add(nextLink).on('click', function(e) {
+        e.preventDefault();
+        var page = $(this).data('page');
+
+        if (page === 'prev' && currentPage > 1) {
+            currentPage--;
+        } else if (page === 'next' && currentPage < totalPages) {
+            currentPage++;
+        }
+
+        showPage(currentPage);
+        toggleNavigation();
+    });
+}
   
   $('.checkbox-toggle').each(function() {
     var status = $(this).data('status');

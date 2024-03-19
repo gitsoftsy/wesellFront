@@ -16,6 +16,8 @@ botaoAtiva.addEventListener('click', () => {
 });
 
 
+
+
 function cadastrar() {
 
 	var objeto = {

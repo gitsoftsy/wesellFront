@@ -53,12 +53,11 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
-	<!-- Animation-css -->
-	<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+	href="<%=contextPath%>/resources/assets/css/style-fase2.css" />
+
+<!-- Animation-css -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
@@ -70,7 +69,7 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header>
+	<!--	<header>
 		<section id="modalMenu" class="abracaMenu modalMenu">
 			<img class="logoSumare animate__animated animate__bounceIn"
 				src="<%=contextPath%>/resources/assets/img/logo.svg"
@@ -104,26 +103,144 @@ String contextPath = request.getContextPath();
 				
 			</nav>
 		</section>
-	</header>
+	</header>   -->
+
+
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
-	<main class="py-4 container-res">
+	
+		<div class="card-body title">
+					<img class="img-titulo" src="<%=contextPath%>/resources/assets/img/logo.svg">
+		</div>
+	<main class="container-res">
 		<section class="mb-5">
 			<div class="card">
-				<div class="card-body title">
-					<i class="fa-solid fa-user-pen fa-lg"></i>  <span id="tituloPagina">Cadastro
-						de Funcionários</span>
-				</div>
+			
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-funcionario"
-				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
-				<h1 id="tituloForm" class="text-left mb-5">Cadastrar Funcionário</h1>
+		
+		<h1 class="text-center">Vamos cadastrar sua Loja?</h1>
+		<div class="container-i-form">
+			<i id="primeiraSecao" class="fa-solid fa-shop"></i>
+			<i id="segundaSecao"  class="fa-solid fa-user-group"></i>
+		</div>
+		
+			<form id="container-empresa"
+				class="card form p-5 col-10 mb-5 mt-5 mx-auto animate__animated ">
+				
+				<h4 class="text-start mb-5 mt-4">Informe os Dados da Empresa</h4>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
 				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="nomeFantasia" class="form-label">Nome
+							Fantasia:<span class="red">*</span>
+						</label> <input required autocomplete="off" type="text" id="nomeFantasia"
+							name="nomeFantasia" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+					<div class="col-md-6">
+						<label for="razaoSocial" class="form-label">Razão Social:<span
+							class="red">*</span></label> <input type="text" id="razaoSocial"
+							autocomplete="off" name="razaoSocial" required
+							class="form-control inputForm" maxlength="255" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="cnpj" class="form-label">CNPJ:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="cnpj" name="cnpj" class="form-control inputForm"
+							maxlength="14" data-mask="00.000.000/0000-00." />
+					</div>
+					<div class="col-md-6">
+						<label for="inscricaoEstadual" class="form-label">Inscrição
+							Estadual:</label> <input type="text" id="inscricaoEstadual"
+							autocomplete="off" name="inscricaoEstadual"
+							class="form-control inputForm" maxlength="9" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
+						<input type="text" id="cep" required autocomplete="off" name="cep"
+							class="form-control inputForm" maxlength="8" />
+					</div>
+					<div class="col-md-6">
+						<label for="endereco" class="form-label">Endereço:<span
+							class="red">*</span></label> <input type="text" id="endereco" required
+							autocomplete="off" name="endereco" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="numero" class="form-label">N°:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="numero" name="numero"
+							class="form-control inputForm" maxlength="10" />
+					</div>
+					<div class="col-md-6">
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label> <input type="text" id="bairro" required
+							autocomplete="off" name="bairro" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="complemento" class="form-label">Complemento:</label> <input
+							type="text" id="complemento" autocomplete="off"
+							name="complemento" class="form-control inputForm" maxlength="255" />
+					</div>
+					<div class="col-md-6">
+						<label for="estado" class="form-label">Estado:<span
+							class="red">*</span></label> <input type="text" id="estado" required
+							autocomplete="off" name="estado" class="form-control inputForm"
+							maxlength="2" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="cidade" class="form-label">Cidade:<span
+							class="red">*</span></label> <input type="text" id="cidade" required
+							autocomplete="off" name="text" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+					<div class="col-md-6">
+						<label for="site" class="form-label">Site:<span
+							class="red">*</span></label> <input type="text" id="site" required
+							autocomplete="off" name="site" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-12 text-center">
+						<button id="proximo"
+							class=" btn confirm btn-primary btn-register">Próximo</button>
+					</div>
+				</div>
+				
+			
+				
+				
+			</form>
+			
+			<form id="container-funcionario"
+				class="card form p-5 col-10 mb-5 mt-5 mx-auto animate__animated none">
+				
+			
+				
+				<h4 class="text-start mb-5 mt-4">Informe os dados do Responsável pela Empresa</h4>
+				
+					<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="nome" class="form-label">Nome:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="nome" name="nome"
@@ -196,10 +313,11 @@ String contextPath = request.getContextPath();
 							class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
-			
+
 			</form>
 		</section>
 	</main>
+		<footer>Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
@@ -219,6 +337,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/cadastroFuncionario.js"></script>
+		src="<%=contextPath%>/resources//assets/js/cadastroEmpresa.js"></script>
 </body>
 </html>

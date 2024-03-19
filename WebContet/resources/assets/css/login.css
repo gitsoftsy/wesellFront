@@ -1,0 +1,250 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	background-color: #f8f8f8;
+	font-family: "Montserrat", sans-serif;
+}
+
+
+
+@media screen and (max-width: 1439px) {
+	.container-res {
+		margin-left: 17em;
+		margin-right: 3em;
+	}
+	
+	
+
+	#th-acao {
+		width: 25%;
+	}
+
+	#th-duracao {
+		width: 18%;
+	}
+
+	th,
+	tr {
+		max-width: 200px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.tabela-descontos td {
+		font-size: 1em;
+		max-width: 250px;
+	}
+	
+	#btn-vincula {
+		font-size: 0.9em;
+	}
+	#th-celular-cand, #th-cpf-cand {
+		width: 16%;
+	}
+	#th-condicoes {
+		width: 13%;
+	}
+
+	.abracaMenu {
+		width: 250px;
+	}
+
+	.nav-sidebar {
+		font-size: 16px;
+	}
+
+	.nav-sidebar i {
+		width: 24px;
+	}
+
+	.nav-sidebar a span {
+		margin-left: 0.5em;
+	}
+
+	#sair {
+		position: absolute;
+		width: 223.25px;
+		bottom: 15px;
+	}
+
+	.card-table {
+		height: 580px !important;
+	}
+
+	.card-table .btn-primary {
+		align-self: flex-end;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 34px;
+		padding: 0.5em !important;
+		font-size: 1em;
+	}
+
+	.table thead {
+		font-size: 0.9em;
+	}
+
+	.table tbody td {
+		padding: 0.3em;
+	}
+
+	#colaTabela {
+		font-size: 1.1em;
+	}
+}
+
+@media screen and (min-width: 1279px) {
+	#form-login {
+		width: 45%;
+	}
+}
+
+@media screen and (max-width: 1199px) {
+	.container-res {
+		margin-right: 2em;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	
+	
+#form-login {
+		width: 85%;
+	}
+
+	.container-res {
+     margin-left:0; 
+     margin-right: 0; 
+	}
+	
+	.icone-pesquisa{
+	display:none;
+	
+}
+
+	.form-control{
+	
+	min-width: auto !important;
+	
+	}
+	.mx-auto {
+     margin-right:0; 
+     margin-left: 0; 
+    }
+    
+    .col-8 {
+    flex: 0 0 auto;
+    width: auto;
+    }
+    
+    .btn-register {
+	width: 12em;
+	max-height: 38px;
+	margin: 0 auto;
+	margin-top: 1em;
+	letter-spacing: 1px;
+	font-size: 18px !important;
+}
+    
+    .modalMenu{
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 100;
+	  
+	 
+    }
+    
+    .animar-sair{
+    animation:animar-sair 3s;
+    animation-fill-mode: forwards;
+    }
+    
+    
+    
+    @keyframes animar-sair {
+  0%{
+ transform: translateX(0px);
+    }
+100%{
+
+ transform: translateX(1000px);
+
+}
+}
+
+ .animar-entrar{
+    animation:animar-entrar 2s;
+    animation-fill-mode: forwards;
+    }
+
+   @keyframes animar-entrar {
+  0%{
+ transform: translateX(500px);
+    }
+100%{
+
+ transform: translateX(0px);
+
+}
+}
+
+
+
+	.botaoAtivaMenu{
+	display:block;
+	position: fixed;
+	z-index:99;
+	right: -31px;
+    top:240px;
+	border:none;
+	border-radius:100%;
+	font-size: 30px;
+	background-color: #2d2d2d;
+	color:white;
+	
+	
+	}
+	
+	.mover-left{
+	animation: left 3s ease-in-out infinite
+	}
+	
+	  @keyframes left {
+  0%{
+ transform: translateX(20px);
+    }
+100%{
+
+ transform: translateX(0px);
+
+}
+}
+	
+
+	
+	.botaoDesativaMenu{
+	display:inline;
+	position:relative;
+	top:10px;
+	border:none;
+	font-size: 22px;
+	
+	}
+	
+	
+	
+	
+	
+}

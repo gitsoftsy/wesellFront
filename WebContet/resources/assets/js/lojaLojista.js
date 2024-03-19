@@ -1,8 +1,11 @@
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
-var edição = ""
-const idLojista = params.get("id");
+
+var user = localStorage.getItem("usuario")
+var usuario = JSON.parse(user);
+
+$("#usuarioNome").text(usuario.nome)
 
 botaoDesativa.addEventListener('click', () => {
 	elemento.classList.add('animar-sair');
@@ -30,58 +33,13 @@ $("#cep").blur(function() {
 		});
 });
 
-function cadastrar() {
 
-	var objeto = {
-		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"nomeFantasia": $("#nomeFantasia").val(),
-    	"razaoSocial": $("#razaoSocial").val(),
-		"inscrEstadual": $('#inscricaoEstadual').val(),
-		"endereco": $('#endereco').val(),
-		"numero": $('#numero').val(),
-		"complemento": $('#complemento').val(),
-		"bairro": $('#bairro').val(),
-		"cidade": $('#cidade').val(),
-		"estado": $('#estado').val(),
-		"cep": $('#cep').val(),
-		"site": $('#site').val(),
-	};
-
-	$.ajax({
-
-		url: url_base + '/lojistas',
-		type: "post",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			Toastify({
-			text: e.responseJSON.message,
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
-		}
-	}).done(function(data) {
-		Toastify({
-			text: "cadastrado com sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		setTimeout(function() {
-			window.location.href = 'listarLojista';
-		}, 1000);
-	})
-}
 
 function editar() {
 
 	var objetoEdit = {
 
-		"idLojista": idLojista,
+		"idLojista": usuario.lojistaId,
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"nomeFantasia": $("#nomeFantasia").val(),
     	"razaoSocial":  $("#razaoSocial").val(),
@@ -115,17 +73,12 @@ function editar() {
 
 		}
 	})
-		.done(function(data) {
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
+		.done(function() {
+			
 			setTimeout(function() {
-				window.location.href = 'listarLojista';
+				window.location.href = 'lojaLojista';
 			}, 1000);
+			
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -134,17 +87,9 @@ function editar() {
 }
 
 $(document).ready(function() {
-
-
-	if (idLojista == undefined) {
-
-	} else {
-		
-		$("#tituloPagina, #tituloForm").text("Editar Lojista")
-		$("#btn-submit").text("Editar")
 		
 		$.ajax({
-			url: url_base + "/lojistas/" + idLojista,
+			url: url_base + "/lojistas/" + usuario.lojistaId,
 			type: "GET",
 			async: false,
 		})
@@ -167,15 +112,11 @@ $(document).ready(function() {
 				console.log('erro ao buscar dados.')
 				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 			});
-	}
 
 });
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
-	if (edição == "sim") {
 
 		editar()
-	} else {
-		cadastrar()
-	}
+	
 });

@@ -124,8 +124,8 @@ String contextPath = request.getContextPath();
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="descricaoCategoria" class="form-label"> Categoria:</label> <input
+					<div class="col-md-12">
+						<label for="descricaoCategoria" class="form-label"> Categoria:<span class="red">*</span></label> <input
 							type="text" id="descricaoCategoria" required autocomplete="off" name="descricaoCategoria"
 							class="form-control inputForm" maxlength="255" />
 					</div>

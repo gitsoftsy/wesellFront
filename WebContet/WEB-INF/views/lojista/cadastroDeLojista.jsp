@@ -125,20 +125,20 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="nomeFantasia" class="form-label">Nome Fantasia:</label> <input required
+						<label for="nomeFantasia" class="form-label">Nome Fantasia:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="nomeFantasia" name="nomeFantasia"
 							class="form-control inputForm" maxlength="255"  />
 					</div>
 					<div class="col-md-6">
-						<label for="razaoSocial" class="form-label">Razão Social:</label> <input type="text" id="razaoSocial"
-							autocomplete="off" name="razaoSocial"
+						<label for="razaoSocial" class="form-label">Razão Social:<span class="red">*</span></label> <input type="text" id="razaoSocial"
+							autocomplete="off" name="razaoSocial" required
 							class="form-control inputForm" maxlength="255" />
 					</div>
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cnpj" class="form-label">CNPJ:</label> <input required
+						<label for="cnpj" class="form-label">CNPJ:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="cnpj" name="cnpj"
 							class="form-control inputForm" maxlength="14" data-mask="00.000.000/0000-00." />
 					</div>
@@ -152,12 +152,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:</label> <input
+						<label for="cep" class="form-label">CEP:<span class="red">*</span></label> <input
 							type="text" id="cep" required autocomplete="off" name="cep"
 							class="form-control inputForm" maxlength="8" />
 					</div>
 					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:</label> <input
+						<label for="endereco" class="form-label">Endereço:<span class="red">*</span></label> <input
 							type="text" id="endereco" required autocomplete="off"
 							name="endereco" class="form-control inputForm" maxlength="255" />
 					</div>
@@ -165,12 +165,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">N°:</label> <input
+						<label for="numero" class="form-label">N°:<span class="red">*</span></label> <input
 							required autocomplete="off" type="text" id="numero" name="numero"
 							class="form-control inputForm" maxlength="10" />
 					</div>
 					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:</label> <input
+						<label for="bairro" class="form-label">Bairro:<span class="red">*</span></label> <input
 							type="text" id="bairro" required autocomplete="off" name="bairro"
 							class="form-control inputForm" maxlength="255" />
 					</div>
@@ -183,7 +183,7 @@ String contextPath = request.getContextPath();
 							name="complemento" class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="estado" class="form-label">Estado:</label> <input
+						<label for="estado" class="form-label">Estado:<span class="red">*</span></label> <input
 							type="text" id="estado" required autocomplete="off" name="estado"
 							class="form-control inputForm" maxlength="2" />
 					</div>
@@ -191,12 +191,12 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 				<div class="col-md-6">
-						<label for="cidade" class="form-label">Cidade:</label> <input
+						<label for="cidade" class="form-label">Cidade:<span class="red">*</span></label> <input
 							type="text" id="cidade" required autocomplete="off" name="text"
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="site" class="form-label">Site:</label> <input
+						<label for="site" class="form-label">Site:<span class="red">*</span></label> <input
 							type="text" id="site" required autocomplete="off" name="site"
 							class="form-control inputForm" maxlength="255" />
 					</div>

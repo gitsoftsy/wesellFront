@@ -13,29 +13,35 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.remove('animar-sair');
   });
 
+var user = localStorage.getItem("usuario")
+var usuario = JSON.parse(user);
 
+$("#usuarioNome").text(usuario.nome)
 
-var colaboradores = []
+var produto = []
+var imge = []
 
 $(document).ready(function () {
 	
 
   $.ajax({
-    url: url_base + "/colaboradores",
+    url: url_base + "/produtos/lojista/" + usuario.lojistaId,
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      colaboradores = data;
-      renderizarColaboradores(data);
+      produto = data;
+      renderizarProduto(data);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
 
-    function renderizarColaboradores(funcionarios) {
-      var html = colaboradores.map(function (item) {
+    function renderizarProduto(produto) {
+	
+      var html = produto.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+    
         return (
           "<tr>" +
           "<td>" +
@@ -48,23 +54,34 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.nome +
+          item.nomeProduto +
           "</td>" +
           "<td>" +
-          item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +
+          item.descrProduto +
           "</td>" +
            "<td>" +
-          item.usuario +
+          item.categorias.categoria +
           "</td>" +
-          "<td>" +
-          item.email +
+           "<td>" +
+          item.subcategorias.nome +
+          "</td>" +
+           "<td>" +
+           "R$ "+
+          item.preco +
+          "</td>" +
+           "<td>" +
+           "R$ "+
+          item.comissao +
+          "</td>" +
+           "<td>" +
+          item.lojista.nomeFantasia +
           "</td>" +
           '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idColaborador +
+          item.idProduto +
           '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
           item.ativo +
           '" data-id="' +
-          item.idColaborador +
+          item.idProduto +
           '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
@@ -95,7 +112,7 @@ $(document).ready(function () {
         }).show();
       }
     }
-    
+
 
     
     $("#inputBusca").on("input", function() {
@@ -103,7 +120,7 @@ $(document).ready(function () {
       realizarBusca(valorBusca);
     });
 
-  var rows = 8;
+ var rows = 8;
 	var currentPage = 1;
 
 	showPage(currentPage);
@@ -215,9 +232,11 @@ $(document).ready(function () {
   });
 });
 
+
+
 function editar(user) {
-  var idColaborador= user.getAttribute("data-value");
-  window.location.href = "cadastroDeColaboradores?id=" + idColaborador;
+  var idProduto = user.getAttribute("data-value");
+  window.location.href = "cadastroProdutoLojista?id=" + idProduto;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
@@ -235,19 +254,23 @@ function alteraStatus(element) {
   }
 
   $.ajax({
-    url: url_base + `/colaboradores/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+    url: url_base + `/produtos/${id}${status === "S" ? '/desativar' : '/ativar'}`,
     type: "put",
-   error: function(e) {
-			Toastify({
-			text: e.responseJSON.error,
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
-
-		}
+    success: function() {
+    			  Toastify({
+					text: `${status === "S" ? 'desativado' : 'ativado'} Com Sucesso!`,
+					duration: 2000,
+					position: "center",
+					close: true,
+					className: "Toastify__toast--custom"
+				}).showToast();
+				
+    },
+    error: function(error) {
+      console.error("Erro ao alterar status do funcionario:", error);
+    }
+  }).done(function(){
+	   
   });
-  
+
 }

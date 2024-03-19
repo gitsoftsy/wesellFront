@@ -125,14 +125,14 @@ String contextPath = request.getContextPath();
 					value="${funcionario.idUsuario}" />
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="categoria" class="form-label">Categoria:</label> <select
-							type="text" id="categoria" required autocomplete="off" name="categoria"
-							class="form-control inputForm" >
+						<label for="categoria" class="form-label">Categoria:<span class="red">*</span></label> 
+						<select type="text" id="categoria" required autocomplete="off" name="categoria"
+							class="form-select inputForm" >
 							<option></option>
 							</select>
 					</div>
 					<div class="col-md-6">
-						<label for="descricaoSubCategoria" class="form-label"> Sub-Categoria:</label> <input
+						<label for="descricaoSubCategoria" class="form-label"> Sub-Categoria:<span class="red">*</span></label> <input
 							type="text" id="descricaoSubCategoria" required autocomplete="off" name="descricaoSubCategoria"
 							class="form-control inputForm" maxlength="255" />
 					</div>
