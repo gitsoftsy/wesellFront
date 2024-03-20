@@ -43,9 +43,26 @@ $(document).ready(function () {
     var valor = item.preco
     
 
-    valor = (valor * 1).toFixed(2) + ''; 
-    valor = valor.replace('.', ',');
-  
+ function formatarNumero(numero) {
+  let numeroFormatado = '';
+  if (numero >= 1 && numero <= 9) {
+    numeroFormatado = numero.toString();
+  } else if (numero >= 10 && numero <= 99) {
+    numeroFormatado = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  } else if (numero >= 100 && numero <= 999) {
+    numeroFormatado = numero.toLocaleString('pt-BR', { minimumIntegerDigits: 3 });
+  } else if (numero >= 1000 && numero <= 999999) {
+    numeroFormatado = numero.toLocaleString('pt-BR');
+  } else if (numero >= 1000000) {
+    numeroFormatado = numero.toLocaleString('pt-BR');
+  } else {
+    numeroFormatado = 'Número inválido';
+  }
+
+  return numeroFormatado;
+}
+
+ 
     
    
     
@@ -77,7 +94,7 @@ $(document).ready(function () {
           "</td>" +
            "<td>" +
            "R$ "+
-          valor +
+           formatarNumero(valor) +
           "</td>" +
            "<td>" +
            "R$ "+

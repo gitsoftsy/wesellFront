@@ -55,7 +55,7 @@ function cadastrar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-			text: e.responseJSON.message,
+			text:  e.responseJSON.error,
 			duration: 2000,
 			position: "center",
 			close: true,

@@ -35,7 +35,10 @@ document.getElementById('comissao').addEventListener('input', function(e) {
     e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
 });
 
+var user = localStorage.getItem("usuario")
+	var usuario = JSON.parse(user);
 
+$("#usuarioNome").text(usuario.nome)
 
 
 const button = document.querySelector("#btn-submit");

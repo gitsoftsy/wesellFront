@@ -38,6 +38,8 @@ $("#cep").blur(function() {
 		});
 });
 
+var lojistaId = []
+
 function cadastrarEmpresa() {
 	
 	var objetoEmpresa = {
@@ -62,8 +64,15 @@ function cadastrarEmpresa() {
 		data: JSON.stringify(objetoEmpresa),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
+			
+		var erro
+			
+			if( e.responseJSON.message == undefined){
+				erro = "erro"
+			} else {erro = e.responseJSON.message}
+			
 			Toastify({
-			text: e.responseJSON.message,
+			text: erro,
 			duration: 2000,
 			position: "center",
 			close: true,
@@ -72,13 +81,18 @@ function cadastrarEmpresa() {
 		console.log(e.responseJSON)
 		}
 	}).done(function(data) {
+		
+		lojistaId = data.idLojista
+		$("#btn-submit").removeAttr("disabled");
+
 		Toastify({
-			text: "Informações da empresa cadastrada com Sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
+				text: "Empresa cadastrada com sucesso!",
+				duration: 2000,
+				position: "center",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+		
 	})
 };
 
@@ -89,7 +103,7 @@ function cadastrarFuncionario(){
 		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"email": $('#email').val(),
 		"senha": $('#senha').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
+		"lojistaId": lojistaId,
 		"nome": $('#nome').val(),
 	};
 
@@ -100,8 +114,15 @@ function cadastrarFuncionario(){
 		data: JSON.stringify(objetoFuncionario),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
+			
+			var erro
+			
+			if( e.responseJSON.message == undefined){
+				erro = "erro"
+			} else {erro = e.responseJSON.error}
+			
 			Toastify({
-				text: e.responseJSON.message,
+				text:  erro,
 				duration: 2000,
 				position: "center",
 				backgroundColor: "red",
@@ -156,6 +177,15 @@ var cargo = []
 var lojistas = []
 
 $(document).ready(function() {
+	
+	
+	$('select').append($('<option>', { 
+			                     value: '',
+			                     text : 'Selecione...',
+			                     id:0,
+			            })) 
+	
+
 
 	$.ajax({
 		url: url_base + '/cargos',
@@ -191,13 +221,7 @@ $(document).ready(function() {
 		$("#lojista").html(html);
 	};
 
-	const novaOpcao = $("<option>"); // Cria um novo elemento option
-	novaOpcao.text("Selecione..."); // Define o texto da opção
-	novaOpcao.val("exemplo");
-
-	$("select").prepend(novaOpcao).val();
-	$("select option[value='exemplo']").attr("selected", "selected");
-
+	
 })
 	
 $("#container-empresa").on("submit", function(e) {

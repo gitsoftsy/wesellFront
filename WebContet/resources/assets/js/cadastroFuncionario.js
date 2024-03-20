@@ -47,7 +47,7 @@ function cadastrar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-				text: e.responseJSON.message,
+				text: e.responseJSON.message + "ou" + e.responseJSON[0].mensagem,
 				duration: 2000,
 				position: "center",
 				backgroundColor: "red",
@@ -118,8 +118,8 @@ function editar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
+				text:  e.responseJSON.message + " ou " + e.responseJSON[0].mensagem,
+				duration: 10000,
 				position: "center",
 				backgroundColor: "red",
 				close: true,

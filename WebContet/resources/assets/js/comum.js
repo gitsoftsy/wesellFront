@@ -9,3 +9,7 @@ window.addEventListener("load", function() {
     loader.parentElement.removeChild(loader);
     $(".bg-loading").addClass("none");
 });
+
+function removeObjeto(){
+	localStorage.clear();
+}

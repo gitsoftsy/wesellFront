@@ -95,7 +95,7 @@ String contextPath = request.getContextPath();
 				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
 				<span>Colaboradores</span>
 				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
+				<span>Funcionários Lojista</span>
 				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
 				<span>Produtos</span>
 				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
@@ -172,12 +172,12 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div id="escondeSenha" class="col-md-6">
 						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:<span class="red">*</span></label> <input
-							type="text" id="senha" required autocomplete="off" name="senha"
+							type="password" id="senha" required autocomplete="off" name="senha"
 							class="form-control inputForm" maxlength="255"  />
 					</div>
 					<div id="escondeSenha" class="col-md-6">
 						<label id="confirmarSenhaLabel" for="confirmarSenha" class="form-label">Confirmar Senha:<span class="red">*</span></label> <input
-							type="text" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
+							type="password" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					</div>

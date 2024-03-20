@@ -78,7 +78,7 @@ String contextPath = request.getContextPath();
 			<hr />
 			<nav class="nav-sidebar">
 			<a href="usuarioLojista" class="mb-1">
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>Usuário</span>
+				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span id="usuarioNome">Usuário</span>
 			</a>
 			</nav>
 			<hr />
@@ -90,7 +90,7 @@ String contextPath = request.getContextPath();
 				<span>Funcionários</span>
 				</a> <a href="listarProdutoLojista" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
 				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
+				</a> <a href="loginFuncionario" onclick="removeObjeto()" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
 				<span>Sair</span>
 				</a>
 				
@@ -222,6 +222,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
 	<script
 		src="<%=contextPath%>/resources//assets/js/cadastroProdutoLojista.js"></script>
 </body>

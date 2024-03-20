@@ -31,6 +31,10 @@ function ativaSenhas() {
 
 }
 
+function removeObjeto(){
+	localStorage.clear();
+}
+
 var user = localStorage.getItem("usuario")
 var usuario = JSON.parse(user);
 

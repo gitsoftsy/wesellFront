@@ -86,7 +86,7 @@ String contextPath = request.getContextPath();
 				<span>Funcionários</span>
 				</a> <a href="listarProdutoLojista" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
 				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
+				</a> <a href="loginFuncionario" onclick="removeObjeto()" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
 				<span>Sair</span>
 				</a>
 				
@@ -164,6 +164,7 @@ String contextPath = request.getContextPath();
 	<script
 		src="<%=contextPath%>/resources//assets/js/listarProdutoLojista.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>

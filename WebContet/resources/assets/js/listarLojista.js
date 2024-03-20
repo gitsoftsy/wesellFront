@@ -35,6 +35,10 @@ $(document).ready(function () {
     function renderizarLojistas(funcionarios) {
       var html = lojistas.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+        
+  
+
+        
         return (
           "<tr>" +
           "<td>" +

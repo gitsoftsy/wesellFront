@@ -92,7 +92,7 @@ String contextPath = request.getContextPath();
 				</a> <a href="listarColaboradores" class="mb-1"> <i
 					class="fa-regular fa-handshake"></i> <span>Colaboradores</span>
 				</a> <a href="listarFuncionarios" class="mb-1"> <i
-					class="fa-solid fa-user-group"></i> <span>Funcionários</span>
+					class="fa-solid fa-user-group"></i> <span>Funcionários Lojista</span>
 				</a> <a href="listarProduto" class="mb-1"> <i
 					class="fa-solid fa-barcode"></i> <span>Produtos</span>
 				</a> <a href="logoff" id="sair"> <i

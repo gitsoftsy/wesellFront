@@ -87,6 +87,9 @@ function editar() {
 }
 
 $(document).ready(function() {
+	
+	$("#cnpj").attr("disabled", "disabled")
+		
 		
 		$.ajax({
 			url: url_base + "/lojistas/" + usuario.lojistaId,

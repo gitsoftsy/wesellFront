@@ -83,9 +83,8 @@ String contextPath = request.getContextPath();
 			</p>
 			<hr />
 			<nav class="nav-sidebar">
-
 				
-			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
+			    <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
 				<span>Cargos</span> 
 			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
 				<span>Categorias</span>
@@ -96,7 +95,7 @@ String contextPath = request.getContextPath();
 				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
 				<span>Colaboradores</span>
 				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
+				<span>Funcionários Lojista</span>
 				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
 				<span>Produtos</span>
 				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
@@ -154,7 +153,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label> <input
 							type="text" id="cep" required autocomplete="off" name="cep"
-							class="form-control inputForm" maxlength="8" />
+							class="form-control inputForm" maxlength="8" data-mask="00000-000"/>
 					</div>
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span class="red">*</span></label> <input

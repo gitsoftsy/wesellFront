@@ -69,61 +69,23 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<!--	<header>
-		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare animate__animated animate__bounceIn"
-				src="<%=contextPath%>/resources/assets/img/logo.svg"
-				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-			<hr />
-			<p>
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
-			</p>
-			<hr />
-			<nav class="nav-sidebar">
-
-				
-			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
-				<span>Cargos</span> 
-			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
-				<span>Categorias</span>
-				</a> <a href="listarSubCategoria" class="mb-1"> <i class="fa-solid fa-paste"></i>
-				<span>Sub-Categoria</span>
-				</a> <a href="listarLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Lojistas</span>
-				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
-				<span>Colaboradores</span>
-				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
-				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
-				</a>
-				
-			</nav>
-		</section>
-	</header>   -->
-
-
-	
 	
 		<div class="card-body title">
 					<img class="img-titulo" src="<%=contextPath%>/resources/assets/img/logo.svg">
 		</div>
-	<main class="container-res">
-		<section class="mb-5">
-			<div class="card">
-			
-			</div>
-		</section>
-		<section class="pt-4">
 		
-		<h1 class="text-center">Vamos cadastrar sua Loja?</h1>
+		
+		<div class="fundoBranco">
+		<h3 class=" text-center tituloPrincipal">Vamos começar a cadastrar sua Loja</h3>
 		<div class="container-i-form">
-			<i id="primeiraSecao" class="fa-solid fa-shop"></i>
-			<i id="segundaSecao"  class="fa-solid fa-user-group"></i>
+			<button id="primeiraSecao" class=" shadow p-2 mb-2 btn btn-light d-flex align-items-center gap-2"><i  class="fa-solid fa-shop"></i>Dados da Empresa</button>
+			<button id="segundaSecao"  class=" shadow p-2 mb-2 btn btn-light d-flex align-items-center gap-2"><i  class="fa-solid fa-user-group"></i>Dados do Funcionario </button>
 		</div>
+		</div>
+		
+	<main class="container-res">
+	
+		<section class="pt-4">
 		
 			<form id="container-empresa"
 				class="card form p-5 col-10 mb-5 mt-5 mx-auto animate__animated ">
@@ -167,7 +129,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
 						<input type="text" id="cep" required autocomplete="off" name="cep"
-							class="form-control inputForm" maxlength="8" />
+							class="form-control inputForm" maxlength="8" data-mask="00000-000"/>
 					</div>
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
@@ -224,12 +186,9 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button id="proximo"
-							class=" btn confirm btn-primary btn-register">Próximo</button>
+						 class=" btn confirm btn-primary btn-register">Próximo</button>
 					</div>
 				</div>
-				
-			
-				
 				
 			</form>
 			
@@ -241,18 +200,12 @@ String contextPath = request.getContextPath();
 				<h4 class="text-start mb-5 mt-4">Informe os dados do Responsável pela Empresa</h4>
 				
 					<div class="row mb-2">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<label for="nome" class="form-label">Nome:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="nome" name="nome"
 							class="form-control inputForm" maxlength="255" />
 					</div>
-					<div class="col-md-6">
-						<label for="lojista" class="form-label">Lojista:<span class="red">*</span></label> <select
-							id="lojista" required name="lojista"
-							class="form-select inputForm" >
-							<option></option>
-							</select>
-					</div>
+					
 				</div>
 
 				<div class="row mb-2">
@@ -289,12 +242,12 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div id="escondeSenha" class="col-md-6">
 						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:<span class="red">*</span></label> <input
-							type="text" id="senha" required autocomplete="off" name="senha"
+							type="password" id="senha" required autocomplete="off" name="senha"
 							class="form-control inputForm" maxlength="255"  />
 					</div>
 					<div id="escondeSenha" class="col-md-6">
 						<label id="confirmarSenhaLabel" for="confirmarSenha" class="form-label">Confirmar Senha:<span class="red">*</span></label> <input
-							type="text" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
+							type="password" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
 							class="form-control inputForm" maxlength="255" />
 					</div>
 					</div>
@@ -310,7 +263,7 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button type="submit" id="btn-submit"
-							class="btn confirm btn-primary btn-register">Cadastrar</button>
+						disabled class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
 
