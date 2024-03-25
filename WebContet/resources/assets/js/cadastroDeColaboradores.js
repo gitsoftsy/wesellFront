@@ -18,14 +18,12 @@ botaoAtiva.addEventListener('click', () => {
 function ativaSenhas() {
 
 		$("#senha, #confirmarSenha").removeAttr("disabled")
-		$("#senha, #confirmarSenha").attr("type", "text")
+		$("#senha, #confirmarSenha").attr("type", "password")
 		$("#labelSenha, #confirmarSenhaLabel").removeClass("none")
 		$("#labelSenha").text("Nova Senha:")
 		$("#senha").val("")
 		$("#confirmarSenha").val("")
-
-
-	
+		
 	}
 
 function cadastrar() {
@@ -41,7 +39,7 @@ function cadastrar() {
 	};
 
 	$.ajax({
-
+		
 		url: url_base + '/colaboradores',
 		type: "post",
 		data: JSON.stringify(objeto),
@@ -51,6 +49,7 @@ function cadastrar() {
 			text: e.responseJSON.message,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
@@ -91,16 +90,16 @@ function editar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-			text: "erro",
+			text: e.responseJSON.message,
 			duration: 2000,
 			position: "center",
 			close: true,
+			backgroundColor: "red",
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
 		}
-	})
-		.done(function(data) {
+	}).done(function(data) {
 			Toastify({
 				text: "Editado com sucesso!",
 				duration: 2000,
@@ -112,24 +111,13 @@ function editar() {
 				window.location.href = 'listarColaboradores';
 			}, 1000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
 }
 
 $(document).ready(function() {
 
-
-
 	if (idColaboradores == undefined) {
 		
-
-
-
 	} else {
-		
-		
 		
 		$("#tituloPagina, #tituloForm").text("Editar Colaborador")
 		$("#btn-submit").text("Editar")

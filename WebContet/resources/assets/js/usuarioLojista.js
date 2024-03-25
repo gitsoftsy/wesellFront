@@ -69,18 +69,14 @@ function editar() {
 			}).showToast();
 			console.log(e.responseJSON)
 		}
-	})
-		.done(function() {
+	}).done(function(data) {
 
 			setTimeout(function() {
 				window.location.href = 'usuarioLojista';
 			}, 1000);
 			
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
+	
 }
 
 function editarTelefone() {

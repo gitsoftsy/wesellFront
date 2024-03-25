@@ -20,7 +20,7 @@ botaoAtiva.addEventListener('click', () => {
 function ativaSenhas() {
 
 	$("#senha, #confirmarSenha").removeAttr("disabled")
-	$("#senha, #confirmarSenha").attr("type", "text")
+	$("#senha, #confirmarSenha").attr("type", "password")
 	$("#labelSenha, #confirmarSenhaLabel").removeClass("none")
 	$("#labelSenha").text("Nova Senha:")
 	$("#senha").val("")
@@ -30,6 +30,8 @@ function ativaSenhas() {
 
 var user = localStorage.getItem("usuario")
 var usuario = JSON.parse(user);
+
+$("#usuarioNome").text(usuario.nome)
 
 function cadastrar() {
 
@@ -121,7 +123,7 @@ function editar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-				text: e.responseJSON.message,
+				text: e.responseJSON[0].mensagem,
 				duration: 2000,
 				position: "center",
 				backgroundColor: "red",

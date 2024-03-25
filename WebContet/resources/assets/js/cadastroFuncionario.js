@@ -20,7 +20,7 @@ botaoAtiva.addEventListener('click', () => {
 function ativaSenhas() {
 
 	$("#senha, #confirmarSenha").removeAttr("disabled")
-	$("#senha, #confirmarSenha").attr("type", "text")
+	$("#senha, #confirmarSenha").attr("type", "password")
 	$("#labelSenha, #confirmarSenhaLabel").removeClass("none")
 	$("#labelSenha").text("Nova Senha:")
 	$("#senha").val("")
@@ -98,8 +98,15 @@ function cadastrar() {
 };
 
 function editar() {
-
-	var objetoEdit = {
+	
+		var objetoFinal
+	
+	
+  const valorInput = $("#senha").val();
+  
+  if (valorInput) {
+	  alert("com senha")
+	  var objetoComSenha = {
 
 		"idFuncionario": idFuncionarios,
 		"cargoId": $("#cargo option:selected").attr("id"),
@@ -110,15 +117,40 @@ function editar() {
 		"nome": $('#nome').val(),
 
 	}
+	  
+ 
+    objetoFinal = objetoComSenha
+    
+  } else {
+	  	alert("sem senha")
+	var objetoSemSenha = {
+
+		"idFuncionario": idFuncionarios,
+		"cargoId": $("#cargo option:selected").attr("id"),
+		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"email": $('#email').val(),
+		"lojistaId": $("#lojista option:selected").attr("id"),
+		"nome": $('#nome').val(),
+
+	}
+	 
+    
+    objetoFinal = objetoSemSenha
+    
+  }
+
+
+
+
 
 	$.ajax({
 		url: url_base + "/funcionarios",
 		type: "PUT",
-		data: JSON.stringify(objetoEdit),
+		data: JSON.stringify(objetoFinal),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-				text:  e.responseJSON.message + " ou " + e.responseJSON[0].mensagem,
+				text:   e.responseJSON[0].mensagem,
 				duration: 10000,
 				position: "center",
 				backgroundColor: "red",
@@ -141,9 +173,7 @@ function editar() {
 				window.location.href = 'listarFuncionarios';
 			}, 1000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+		
 
 }
 
@@ -258,9 +288,7 @@ $(document).ready(function() {
 				$('#cargo').find(`option[id=${data.cargo.idCargo}]`).attr("selected", "selected"),
 					$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")),
 					$('#email').val(data.email),
-					$('#senha').val(data.senha),
-					$("#confirmarSenha").val(data.senha)
-				$('#lojista').find(`option[id=${data.lojista.idLojista}]`).attr("selected", "selected"),
+					$('#lojista').find(`option[id=${data.lojista.idLojista}]`).attr("selected", "selected"),
 					$('#nome').val(data.nome),
 					edição = "sim"
 			})

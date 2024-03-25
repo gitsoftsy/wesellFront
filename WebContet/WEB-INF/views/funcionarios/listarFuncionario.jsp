@@ -132,6 +132,7 @@ String contextPath = request.getContextPath();
 						<th scope="col" width="10%">Ativo</th>
 						<th scope="col">Nome</th>
 						<th scope="col">Cargo</th>
+						<th scope="col">Loja</th>
 						<th scope="col">CPF</th>
 						<th scope="col" width="15%">Ações</th>
 					</tr>

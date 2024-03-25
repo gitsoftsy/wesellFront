@@ -131,9 +131,9 @@ String contextPath = request.getContextPath();
 				<thead>
 					<tr>
 						<th scope="col" >Ativo</th>
-						<th scope="col" >CNPJ</th>
-						<th scope="col" >Nome Fantasia</th>
 						<th scope="col" >Razão Social</th>
+						<th scope="col" >Nome Fantasia</th>
+						<th scope="col" >CNPJ</th>
 						<th scope="col" >Inscrição Estadual</th>
 						<th scope="col">Endereço</th>
 						<th scope="col" >Número</th>

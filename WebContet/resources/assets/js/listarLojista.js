@@ -36,7 +36,11 @@ $(document).ready(function () {
       var html = lojistas.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         
-  
+        var inscricao
+        
+  		if(item.inscrEstadual.length == 0){
+			  inscricao = "Vazio"
+		  } else{inscricao = item.inscrEstadual}
 
         
         return (
@@ -51,16 +55,16 @@ $(document).ready(function () {
           "</button>" +
           "</td>" +
           "<td>" +
-          item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5") +
+          item.razaoSocial +
           "</td>" +
           "<td>" +
           item.nomeFantasia +
           "</td>" +
           "<td>" +
-          item.razaoSocial +
+          item.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5") +
           "</td>" +
           "<td>" +
-          item.inscrEstadual +
+          inscricao +
           "</td>" +
            "<td>" +
           item.endereco +

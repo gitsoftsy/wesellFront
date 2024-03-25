@@ -39,6 +39,7 @@ function cadastrar() {
 			duration: 2000,
 			position: "center",
 			close: true,
+			backgroundColor: "red",
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
@@ -72,8 +73,18 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
-	})
-		.done(function(data) {
+		error: function(e) {
+			Toastify({
+			text: e.responseJSON.message,
+			duration: 2000,
+			position: "center",
+			close: true,
+			backgroundColor: "red",
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+		}
+	}).done(function(data) {
 			Toastify({
 				text: "Editado com sucesso!",
 				duration: 2000,
@@ -85,9 +96,7 @@ function editar() {
 				window.location.href = 'listarCargos';
 			}, 1000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+		
 
 }
 

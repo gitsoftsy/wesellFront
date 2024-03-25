@@ -29,12 +29,27 @@ $("#cep").blur(function() {
 		url: 'https://viacep.com.br/ws/' + $('#cep').val() + '/json/',
 		type: "get",
 		async: false,
+		
 	})
 		.done(function(data) {
+			if(data.erro ==   true){
+				
+			Toastify({
+				text:  "CEP inválido, Por favor Verifique.",
+				duration: 2000,
+				position: "center",
+				backgroundColor: "red",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+			console.log(e.responseJSON)
+		
+			} else {
 			$('#endereco').val(data.logradouro);
 			$('#bairro').val(data.bairro);
 			$('#cidade').val(data.localidade);
 			$('#estado').val(data.uf);
+		}
 		});
 });
 
@@ -53,7 +68,7 @@ function cadastrarEmpresa() {
 		"bairro": $('#bairro').val(),
 		"cidade": $('#cidade').val(),
 		"estado": $('#estado').val(),
-		"cep": $('#cep').val(),
+		"cep": $('#cep').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"site": $('#site').val(),
 	};
 
@@ -65,6 +80,7 @@ function cadastrarEmpresa() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			
+				$("#btn-submit").removeAttr("disabled");
 		var erro
 			
 			if( e.responseJSON.message == undefined){
@@ -75,6 +91,7 @@ function cadastrarEmpresa() {
 			text: erro,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
@@ -177,15 +194,6 @@ var cargo = []
 var lojistas = []
 
 $(document).ready(function() {
-	
-	
-	$('select').append($('<option>', { 
-			                     value: '',
-			                     text : 'Selecione...',
-			                     id:0,
-			            })) 
-	
-
 
 	$.ajax({
 		url: url_base + '/cargos',
@@ -193,33 +201,26 @@ $(document).ready(function() {
 		async: false,
 	}).done(function(data) {
 		cargo = data;
-		renderizarCargos(data)
+		
+	$('#cargo').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...",
+			disabled: true,
+    			
+		 }));		
+            $.each(data, function(index, item) {
+				
+               		 $('#cargo').append($('<option>', { 
+                     value: item.idCargo,
+                     id: item.idCargo,
+                     text : item.cargo ,
+                     name : item.cargo 
+                 }));
+           })
 	})
-	function renderizarCargos(cargo) {
-		var html = cargo.map(function(item) {
-			return (
-				`<option id="${item.idCargo}">${item.cargo}</option>`
-			)
-		});
-		$("#cargo").html(html);
-	};
+	
 
-	$.ajax({
-		url: url_base + '/lojistas',
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		lojistas = data;
-		renderizarLojistas(data)
-	})
-	function renderizarLojistas(lojistas) {
-		var html = lojistas.map(function(item) {
-			return (
-				`<option id="${item.idLojista}">${item.nomeFantasia}</option>`
-			)
-		});
-		$("#lojista").html(html);
-	};
+
 
 	
 })
@@ -259,6 +260,6 @@ $("#container-funcionario").on("submit", function(e){
 	requerimentoSenha()
 })
 	
-	
+
 
 

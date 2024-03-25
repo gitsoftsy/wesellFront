@@ -37,16 +37,6 @@ $(document).ready(function () {
       var html = funcionarios.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         
-                   var cargo = []
-        
-  $.ajax({
-    url: url_base + "/cargos/" + item.cargoId,
-    type: "GET",
-    async: false,
-  }).done(function(data){
-	  
-	cargo = data.cargo
-  })
         
         return (
           "<tr>" +
@@ -64,6 +54,9 @@ $(document).ready(function () {
           "</td>" +
           "<td>" +
           item.cargo.cargo +
+          "</td>" +
+           "<td>" +
+          item.lojista.nomeFantasia+
           "</td>" +
            "<td>" +
           item.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") +

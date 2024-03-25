@@ -35,6 +35,7 @@ function cadastrar() {
 			text: e.responseJSON.error,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
@@ -74,13 +75,13 @@ function editar() {
 			text: e.responseJSON.error,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
 		}
-	})
-		.done(function(data) {
+	}).done(function(data) {
 			Toastify({
 				text: "Editado com sucesso!",
 				duration: 2000,
@@ -92,10 +93,6 @@ function editar() {
 				window.location.href = 'listarCategoria';
 			}, 2000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
 }
 
 

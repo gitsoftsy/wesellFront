@@ -15,9 +15,12 @@ botaoAtiva.addEventListener('click', () => {
 	elemento.classList.remove('animar-sair');
 });
 
+var ValorConvertidoPreco
+
 document.getElementById('precoDeVenda').addEventListener('input', function(e) {
     let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
     valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
+   ValorConvertidoPreco = valor
     valor = valor.replace('.', ','); // Troca ponto por vírgula
     
     valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
@@ -25,9 +28,12 @@ document.getElementById('precoDeVenda').addEventListener('input', function(e) {
     e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
 });
 
+var ValorConvertidoComissao
+
 document.getElementById('comissao').addEventListener('input', function(e) {
     let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
     valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
+    ValorConvertidoComissao = valor
     valor = valor.replace('.', ','); // Troca ponto por vírgula
     
     valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
@@ -169,8 +175,8 @@ function cadastrar() {
 	var objeto = {
 		"nomeProduto": $('#nomeProduto').val(),
 		"descrProduto": $('#descricao').val(),
-		"preco": $('#precoDeVenda').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"comissao": $('#comissao').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"preco": ValorConvertidoPreco,
+		"comissao": ValorConvertidoComissao,
 		"categoriaId": $("#categoria option:selected").attr("value"),
 		"subcategoriaId": novoValor,
 		"lojistaId": usuario.lojistaId,
@@ -234,10 +240,10 @@ function editar() {
 		"idProduto": idProduto,
 		"nomeProduto": $('#nomeProduto').val(),
 		"descrProduto": $('#descricao').val(),
-		"preco": $('#precoDeVenda').val(),
-		"comissao": $('#comissao').val(),
-		"categoriaId": $("#categoria option:selected").attr("id"),
-		"subcategoriaId": $('#subCategoria option:selected').attr("id"),
+		"preco": ValorConvertidoPreco,
+		"comissao": ValorConvertidoComissao,
+		"categoriaId": $("#categoria option:selected").attr("value"),
+		"subcategoriaId": $('#subCategoria option:selected').attr("value"),
 		"lojistaId": usuario.lojistaId,
 	}
 
@@ -246,6 +252,16 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		error: function(e) {
+			Toastify({
+			text:  e.responseJSON.message,
+			duration: 2000,
+			position: "center",
+			close: true,
+			className: "Toastify__toast--custom"
+		}).showToast();
+		console.log(e.responseJSON)
+		}
 	})
 		.done(function(data) {
 			Toastify({
@@ -259,9 +275,7 @@ function editar() {
 				window.location.href = 'listarProdutoLojista';
 			}, 1000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
+		
 
 }
 

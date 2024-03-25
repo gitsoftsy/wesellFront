@@ -15,8 +15,6 @@ botaoAtiva.addEventListener('click', () => {
 	elemento.classList.remove('animar-sair');
 });
 
-
-
 const button = document.querySelector("#btn-submit");
 
 function mostraModalFeedback(tipo, mensagem) {
@@ -30,9 +28,6 @@ function mostraModalFeedback(tipo, mensagem) {
 		$("#openModalBtn").click()
 	}
 }
-
-
-
 
 function cadastrar() {
 
@@ -48,15 +43,18 @@ function cadastrar() {
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
+			
+			console.log(e.responseJSON)
+			
 			Toastify({
 			text: e.responseJSON.error,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
-		console.log(e.responseJSON)
-
+		
 		}
 	}).done(function(data) {
 		Toastify({
@@ -88,10 +86,12 @@ function editar() {
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
+			
 			Toastify({
 			text: e.responseJSON.error,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
@@ -111,10 +111,6 @@ function editar() {
 				window.location.href = 'listarSubCategoria';
 			}, 1000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
 }
 
 var categorias = []

@@ -21,12 +21,27 @@ $("#cep").blur(function() {
 		url: 'https://viacep.com.br/ws/' + $('#cep').val() + '/json/',
 		type: "get",
 		async: false,
+		
 	})
 		.done(function(data) {
+			if(data.erro ==   true){
+				
+			Toastify({
+				text:  "CEP inválido, Por favor Verifique.",
+				duration: 2000,
+				position: "center",
+				backgroundColor: "red",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+			console.log(e.responseJSON)
+		
+			} else {
 			$('#endereco').val(data.logradouro);
 			$('#bairro').val(data.bairro);
 			$('#cidade').val(data.localidade);
 			$('#estado').val(data.uf);
+		}
 		});
 });
 
@@ -55,9 +70,10 @@ function cadastrar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-			text:  e.responseJSON.error,
+			text:  e.responseJSON.message,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
@@ -108,14 +124,14 @@ function editar() {
 			text: e.responseJSON.error,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
 
 		}
-	})
-		.done(function(data) {
+	}).done(function(data) {
 			Toastify({
 				text: "Editado com sucesso!",
 				duration: 2000,
@@ -127,10 +143,6 @@ function editar() {
 				window.location.href = 'listarLojista';
 			}, 1000);
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-		});
-
 }
 
 $(document).ready(function() {

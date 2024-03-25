@@ -52,7 +52,7 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/areaLojista.css" />
 
 </head>
 
@@ -118,6 +118,7 @@ String contextPath = request.getContextPath();
 
 			<table
 				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
+				<button id="exportar-excel" class="btn btn-primary">Exportar</button>
 				<caption>Produtos cadastrados</caption>
 				<thead>
 					<tr>
@@ -167,5 +168,7 @@ String contextPath = request.getContextPath();
 	<script src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script
+		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 </body>
 </html>

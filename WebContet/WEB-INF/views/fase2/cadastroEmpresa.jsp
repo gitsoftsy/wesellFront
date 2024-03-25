@@ -53,7 +53,7 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style-fase2.css" />
+	href="<%=contextPath%>/resources/assets/css/cadastroEmpresa.css" />
 
 <!-- Animation-css -->
 <link rel="stylesheet"

@@ -38,36 +38,6 @@ $(document).ready(function () {
 	
       var html = produto.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
-  
-  
-    var valor = item.preco
-    
-
- function formatarNumero(numero) {
-  let numeroFormatado = '';
-  if (numero >= 1 && numero <= 9) {
-    numeroFormatado = numero.toString();
-  } else if (numero >= 10 && numero <= 99) {
-    numeroFormatado = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  } else if (numero >= 100 && numero <= 999) {
-    numeroFormatado = numero.toLocaleString('pt-BR', { minimumIntegerDigits: 3 });
-  } else if (numero >= 1000 && numero <= 999999) {
-    numeroFormatado = numero.toLocaleString('pt-BR');
-  } else if (numero >= 1000000) {
-    numeroFormatado = numero.toLocaleString('pt-BR');
-  } else {
-    numeroFormatado = 'Número inválido';
-  }
-
-  return numeroFormatado;
-}
-
- 
-    
-   
-    
-   
-
         
         return (
           "<tr>" +
@@ -94,11 +64,11 @@ $(document).ready(function () {
           "</td>" +
            "<td>" +
            "R$ "+
-           formatarNumero(valor) +
+           item.preco.toLocaleString('pt-br', {minimumFractionDigits: 2})+
           "</td>" +
            "<td>" +
            "R$ "+
-          item.comissao +
+          item.comissao.toLocaleString('pt-br', {minimumFractionDigits: 2}) +
           "</td>" +
            "<td>" +
           item.lojista.nomeFantasia +
