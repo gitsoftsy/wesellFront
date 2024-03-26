@@ -13,26 +13,27 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.remove('animar-sair');
   });
 
-
-
 var categorias = []
 
 $(document).ready(function () {
 	
-
   $.ajax({
     url: url_base + "/categorias",
     type: "GET",
     async: false,
-  })
-    .done(function (data) {
+  }).done(function (data) {
+	  
+	  $('#exportar-excel').click(function() {	
+	var planilha = XLSX.utils.json_to_sheet(data);
+	var livro = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+	XLSX.writeFile(livro, "categorias.xlsx");
+	});
+	
       categorias = data;
       renderizarCategorias(data);
     })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-    });
-
+   
     function renderizarCategorias(categorias) {
       var html = categorias.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";

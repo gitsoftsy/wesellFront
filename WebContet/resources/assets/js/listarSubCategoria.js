@@ -24,20 +24,31 @@ $(document).ready(function () {
     url: url_base + "/subcategorias",
     type: "GET",
     async: false,
-  })
-    .done(function (data) {
+    error: function(e) {
+			Toastify({
+				text: e.responseJSON.message,
+				duration: 3000,
+				backgroundColor:"red",
+				position: "center",
+				type: "erro",
+			}).showToast();
+		}
+  }).done(function (data) {
+		
+		$('#exportar-excel').click(function() {	
+	var planilha = XLSX.utils.json_to_sheet(data);
+	var livro = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+	XLSX.writeFile(livro, "subCategorias.xlsx");
+	});
+		
      subCategoria = data;
       renderizarSubCategorias(data);
     })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-    });
-
+   
     function renderizarSubCategorias(subCategoria) {
       var html = subCategoria.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
-        
-        
         
         return (
           "<tr>" +

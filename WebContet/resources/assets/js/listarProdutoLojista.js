@@ -18,16 +18,6 @@ var usuario = JSON.parse(user);
 
 $("#usuarioNome").text(usuario.nome)
 
-$('#exportar-excel').click(function() {
- 
-	var planilha = XLSX.utils.json_to_sheet(dados);
- 
-	var livro = XLSX.utils.book_new();
-	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
- 
-	XLSX.writeFile(livro, "licenciamentoSanitario.xlsx");
-});
-
 var produto = []
 var imge = []
 
@@ -40,6 +30,13 @@ $(document).ready(function () {
     async: false,
   })
     .done(function (data) {
+		
+	$('#exportar-excel').click(function() {	
+	var planilha = XLSX.utils.json_to_sheet(data);
+	var livro = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+	XLSX.writeFile(livro, "produtosLojista.xlsx");
+	});
       produto = data;
       renderizarProduto(data);
     })

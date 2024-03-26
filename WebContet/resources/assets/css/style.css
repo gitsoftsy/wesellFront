@@ -11,7 +11,62 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+.abracaMenu .menu {
+    width: 100%;
+  }
+  .abracaMenu .menu .item {
+    position: relative;
+    cursor: pointer;
+  }
+  .tabela-acessar-escolas th {
+      cursor: pointer;
+  }
+   
+  .tabela-acessar-escolas .th-sem-filtro {
+      cursor: default;
+  }
+  .abracaMenu .menu .item a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    padding: 14px 15px;
+    transition: all 0.4s ease-in-out;
+  }
+  .abracaMenu .menu .item a:hover {
+    background-color: rgb(4, 45, 89);
+  }
+   
+  .abracaMenu .menu .item i {
+    margin-right: 12px;
+  }
+  .abracaMenu .menu .item a .dropdown {
+    position: absolute;
+    right: 0;
+    margin: 5px 25px;
+    transition: 0.3s ease;
+  }
+  .abracaMenu .menu .item .sub-menu {
+    background-color: #04274d;
+    display: none;
+        overflow: hidden;
+      height: 33vh;
+  }
+   
+  .abracaMenu .menu .item .sub-menu a {
+    padding-left: 20px;
+  }
 
+  .img-menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  .logoSumare {
+    width: 90%;
+  }
 
 /* modal imagens */
 
@@ -205,6 +260,26 @@ a{
 
 .icone-pesquisa{
 	position: relative;
+}
+
+.botaoExcel{
+	background-color:#107c42; 
+	color:white;
+}
+
+.botaoExcel:hover{
+	background-color:#107c42; 
+	color:white;
+}
+
+.botaoCadastro{
+	background-color:#0095ff; 
+	color:white;
+}
+
+.botaoCadastro:hover{
+	background-color:#0095ff; 
+	color:white;
 }
 
 .btn{

@@ -63,6 +63,9 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
+
+	<header id="menu" ></header>
+
 	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
@@ -71,41 +74,8 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header>
-		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare animate__animated animate__bounceIn"
-				src="<%=contextPath%>/resources/assets/img/logo.svg"
-				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-			<hr />
-			<p>
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
-			</p>
-			<hr />
-			<nav class="nav-sidebar">
-
-				
-			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
-				<span>Cargos</span> 
-			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
-				<span>Categorias</span>
-				</a> <a href="listarSubCategoria" class="mb-1"> <i class="fa-solid fa-paste"></i>
-				<span>Sub-Categoria</span>
-				</a> <a href="listarLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Lojistas</span>
-				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
-				<span>Colaboradores</span>
-				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários Lojista</span>
-				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
-				</a>
-				
-			</nav>
-		</section>
-	</header>
+	
+		<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
 	
 	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">

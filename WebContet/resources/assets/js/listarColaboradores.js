@@ -13,8 +13,6 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.remove('animar-sair');
   });
 
-
-
 var colaboradores = []
 
 $(document).ready(function () {
@@ -24,15 +22,30 @@ $(document).ready(function () {
     url: url_base + "/colaboradores",
     type: "GET",
     async: false,
+    error: function(e) {
+			Toastify({
+				text: e.responseJSON.message,
+				duration: 3000,
+				backgroundColor:"red",
+				position: "center",
+				type: "erro",
+			}).showToast();
+
+		}
   })
     .done(function (data) {
+		
+		$('#exportar-excel').click(function() {	
+	var planilha = XLSX.utils.json_to_sheet(data);
+	var livro = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+	XLSX.writeFile(livro, "Colaboradores.xlsx");
+	});
+		
       colaboradores = data;
       renderizarColaboradores(data);
     })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-    });
-
+ 
     function renderizarColaboradores(funcionarios) {
       var html = colaboradores.map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";

@@ -205,7 +205,7 @@ public class FuncionariosController {
 		
 		// fase 2 
 		
-		// lojista 
+		// cadastro Empresa
 		
 		@RequestMapping(value = { "cadastroEmpresa" }, method = RequestMethod.GET)
 		public String cadastroEmpresa(HttpSession session, Model model) throws Exception {
@@ -221,6 +221,17 @@ public class FuncionariosController {
 			
 			return "fase2/cadastroSucesso";
 		}
+		
+		// influencer Cadastro
+		
+		@RequestMapping(value = { "cadastroInfluencer" }, method = RequestMethod.GET)
+		public String cadastroInfluencer(HttpSession session, Model model) throws Exception {
+			
+			
+			return "influencer/cadastroInfluencer";
+		}
+		
+		
 		
 	
 }

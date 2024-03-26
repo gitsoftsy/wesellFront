@@ -118,7 +118,7 @@ String contextPath = request.getContextPath();
 
 			<table
 				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
-				<button id="exportar-excel" class="btn btn-primary">Exportar</button>
+				
 				<caption>Produtos cadastrados</caption>
 				<thead>
 					<tr>
@@ -144,7 +144,7 @@ String contextPath = request.getContextPath();
     <li id="next" class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
 </nav>
-
+<button id="exportar-excel" class="btn btn-primary">Exportar</button>
 		</section>
 	</main>
 

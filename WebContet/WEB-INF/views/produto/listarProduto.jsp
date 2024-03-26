@@ -57,6 +57,9 @@ String contextPath = request.getContextPath();
 </head>
 
 <body>
+
+	<header id="menu" > </header>
+
 	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
@@ -65,56 +68,25 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header>
-		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
-				src="<%=contextPath%>/resources/assets/img/logo.svg"
-				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-			<hr />
-			<p>
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span>${funcionario.nome}</span>
-			</p>
-			<hr />
-			<nav class="nav-sidebar">
-
-				
-			         <a href="listarCargos" class="mb-1"><i class="fa-regular fa-address-card"></i> 
-				<span>Cargos</span> 
-			    </a> <a href="listarCategoria" class="mb-1"> <i class="fa-solid fa-clipboard"></i> 
-				<span>Categorias</span>
-				</a> <a href="listarSubCategoria" class="mb-1"> <i class="fa-solid fa-paste"></i>
-				<span>Sub-Categoria</span>
-				</a> <a href="listarLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Lojistas</span>
-				</a> <a href="listarColaboradores" class="mb-1"> <i class="fa-regular fa-handshake"></i>
-				<span>Colaboradores</span>
-				</a> <a href="listarFuncionarios" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários Lojista</span>
-				</a> <a href="listarProduto" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="logoff" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
-				</a>
-				
-			</nav>
-		</section>
-	</header>
 	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
+	<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+	
+	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left "></i></button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-barcode"></i>  <span>Lista de
-						Produtos</span>
-				</div>
+					<i class="fa-solid fa-barcode"></i> <span>Lista de
+						Produtos </span>
+				</div> 
 			</div>
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
-			<div class="mt-3 mb-2" style="display: flex; flex-flow:column;align-items:center; gap:20px">
-			<a href="cadastroDeProduto"
-					class="btn btn-primary btn-lg px-3 py-1">Novo Produto</a>
+			<div class="mt-3 mb-2" style="display: flex; flex-flow:column;align-items:left; gap:20px">
+				<div class="d-flex gap-4">
+					<button id="exportar-excel" class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center"><i class="fa-solid fa-file-export"></i>Exportar</button>
+					<a href="cadastroDeProduto" class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i class="fa-regular fa-pen-to-square"></i>Novo Produto</a>
+				</div>
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar Produto" /> <span
@@ -173,5 +145,7 @@ String contextPath = request.getContextPath();
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	<script
+		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 </body>
 </html>

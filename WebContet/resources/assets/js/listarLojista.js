@@ -13,24 +13,36 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.remove('animar-sair');
   });
 
-
 var lojistas = []
 
 $(document).ready(function () {
 	
-
   $.ajax({
     url: url_base + "/lojistas",
     type: "GET",
     async: false,
-  })
-    .done(function (data) {
+    error: function(e) {
+		
+			Toastify({
+				text: e.responseJSON.message,
+				duration: 3000,
+				backgroundColor:"red",
+				position: "center",
+				type: "erro",
+			}).showToast();
+		}
+  }).done(function (data) {
+	  
+	  $('#exportar-excel').click(function() {	
+	var planilha = XLSX.utils.json_to_sheet(data);
+	var livro = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+	XLSX.writeFile(livro, "Lojistas.xlsx");
+	});
+	  
       lojistas = data;
       renderizarLojistas(data);
     })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-    });
 
     function renderizarLojistas(funcionarios) {
       var html = lojistas.map(function (item) {
