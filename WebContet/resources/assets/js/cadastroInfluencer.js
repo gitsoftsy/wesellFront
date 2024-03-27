@@ -1,3 +1,8 @@
+$("document").ready(function(){
+	$("#cpfBotao").addClass("btn-primary").removeClass("btn-secondary")
+
+})
+
 $("#cpfBotao").click(function(){
 
 $("#container-cnpj").addClass("d-none")

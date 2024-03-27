@@ -11,6 +11,35 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+.divideCapsula:last-child{
+	 margin-right: 0%;
+	}
+.divideCapsula{
+	width: 47.5%;
+    display: inline-block;
+    margin-right: 4%;
+
+}
+
+
+#formInfluencer{
+	background: #fff;
+    margin-top: -50px;
+    padding-top: 50px;
+    box-shadow: 0px 0px 30px -20px #000;
+}
+
+.h1Inf{
+	font-size: 2rem
+}
+
+
+.logoInf {
+	width: 25%;
+	margin-bottom:25px 
+}
+
+
 /* footer */
 
 footer{

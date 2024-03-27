@@ -70,16 +70,20 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	
-	    <main class="d-flex ">
+<main class="d-flex align-items-center">
 
 <section class="w-50 d-flex flex-column mt-5">
-
-    <h2 class="">TESTE</h2>
-    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam molestias ducimus autem, voluptatibus natus repellat! Pariatur repellendus quo recusandae unde nulla laboriosam incidunt fugiat praesentium, cum, animi nam atque perspiciatis.</h1>
-    <h2>Vamos te ajudar desde os primeiros passos. <br>
-    Cadastre-se gratís.</h2>
-
-    <img src="#" alt="logo">
+	<div style='margin-left: 5%;' class='container'>
+		<div class='row'>
+			<div class='col-md-12'>
+				<img class='logoInf' width="25%" src="resources/assets/img/logo.svg" alt="logo">
+	    		<h1 class='h1Inf'>Nunca foi tão fácil transformar o que você sabe em um negócio digital.</h1>
+				<p>Vamos te ajudar desde os primeiros passos.<br> Cadastre-se grátis.</p>
+			</div>
+		</div>
+	</div>
+	 
+    
 </section>
 
 <section class="w-50 mt-5">
@@ -87,14 +91,29 @@ String contextPath = request.getContextPath();
     <form id="formInfluencer" class="d-flex flex-column align-items-center">
 
         <div class="col-md-8 mb-4">
-            <label for="nome" class="form-label">Nome:<span class="red">*</span></label> <input required
-            autocomplete="off" type="text" id="nome" name="nome"
-            class="form-control inputForm" maxlength="255" />
+        	<div class='divideCapsula'>
+        		<label for="nome" class="form-label">Nome:<span class="red">*</span></label> 
+        		<input required
+           		 autocomplete="off" type="text" id="nome" name="nome"
+           		 class="form-control inputForm" maxlength="255" />
+        	</div>
+        	
+        	<div class='divideCapsula'>
+        		 <label for="nome" class="form-label">Sobrenome:<span class="red">*</span></label>
+        		 <input required
+           		 autocomplete="off" type="text" id="sobrenome" name="nome"
+          		  class="form-control inputForm" maxlength="255" />
+        	</div>
+            
+            
+            
         </div>
+        
+      
 
         <div class="col-md-8 mb-4">
             <label for="data" class="form-label">Data de Nascimento:<span class="red">*</span></label> <input required
-            autocomplete="off" type="date" id="dataNascimento" name="data"
+            autocomplete="off"  max='3000-01-01' type="date" id="dataNascimento" name="data"
             class="form-control inputForm" />
         </div>
 
