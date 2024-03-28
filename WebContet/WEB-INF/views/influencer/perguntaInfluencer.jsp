@@ -70,9 +70,24 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	
-<main class="d-flex align-items-center h-100 w-100 ">
+<main class="d-flex align-items-center h-100 ">
 
-<section class="pt-5 bg-light w-100 bg-gradient segundaSection h-100  main">
+
+<section class=" flex-column mt-5 pb-5 primeiraSection">
+	<div style='margin-left: 5%;' class='container'>
+		<div class='row'>
+			<div class='col-md-12'>
+				<img class='logoInf' width="25%" src="resources/assets/img/logo.svg" alt="logo">
+	    		<h1 class='h1Inf'>Nunca foi tão fácil transformar o que você sabe em um negócio digital.</h1>
+				<p>Vamos te ajudar desde os primeiros passos.<br> Cadastre-se grátis.</p>
+			</div>
+		</div>
+	</div>
+	 
+    
+</section>
+
+<section class="pt-5 bg-light  bg-gradient segundaSection h-100  main">
 
     <form id="formInfor" class="d-flex flex-column align-items-center h-100 ">
 
@@ -102,15 +117,13 @@ String contextPath = request.getContextPath();
          <div class="col-md-8 mb-4 d-flex flex-column container text-center">
 
 						<label for="seguidores" class="form-label">Quantos seguidores você possui nesta rede?<span class="red">*</span></label> 
-						<select type="text" id="seguidores" required autocomplete="off" name="seguidores"
+						<select type="number" id="seguidores" required autocomplete="off" name="seguidores"
 							class="form-select inputForm" >
 							
-							<option>1.000 Seguidores</option>
-							<option>10.000 Seguidores</option>
-							<option>+ de 10.000 Seguidores</option>
-							<option>100.000 Seguidores</option>
-							<option>+ de 100.000 Seguidores</option>
-							<option>1.000.000 Seguidores/option>
+							<option>1.000</option>
+							<option>10.000</option>
+							<option>100.000</option>
+							<option>1.000.000</option>
 							
 							</select>
 						

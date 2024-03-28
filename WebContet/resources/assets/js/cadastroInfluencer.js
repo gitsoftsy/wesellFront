@@ -294,6 +294,8 @@ dataNascimento.addEventListener("blur", function(){
 		}
 	}).done(function(data) {
 		
+		localStorage.setItem("idVendedor", JSON.stringify(data))
+		
 		Toastify({
 				text:  "Cadastrado com Sucesso!",
 				duration: 2000,

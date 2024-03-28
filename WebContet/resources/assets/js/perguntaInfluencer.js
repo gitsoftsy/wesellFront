@@ -41,26 +41,33 @@ $(document).ready(function() {
 	
 	
 	});
-
-
-$("#enviarFormInfor").click(function(){
 	
+	var id = localStorage.getItem("idVendedor")
+	var vendedor = JSON.parse(id);
+	
+
+
+$("#enviarFormInfor").click(function(e){
+	  e.preventDefault();
+	  
+	var valor =  $("#seguidores option:selected").val()
+	var numero
 	
 	var objetoInfor = {
 		
 		
-    "vendedorId": 3,
+    "vendedorId": vendedor.idVendedor,
     "redesSociaisId": $("#rede option:selected").attr("id"),
     "perfil": $("#usuario").val(),
-    "urlPerfil": "instagram.com/" + $("#usuario").val(),
-    "qtdSeguidores": $("#seguidores option:selected").val()
+    "urlPerfil": $("#usuario").val(),
+    "qtdSeguidores": numero = Number(valor),
 
 		
 	}
 	
 	$.ajax({
 
-		url: url_base + "/vendedor",
+		url: url_base + "/vendedorRedesSociais",
 		type: "post",
 		data: JSON.stringify(objetoInfor),
 		contentType: "application/json; charset=utf-8",
@@ -80,7 +87,7 @@ $("#enviarFormInfor").click(function(){
 		
 		Toastify({
 				text:  "Cadastrado com Sucesso!",
-				duration: 2000,
+				duration: 5000,
 				position: "center",
 				close: true,
 				className: "Toastify__toast--custom"
@@ -88,7 +95,7 @@ $("#enviarFormInfor").click(function(){
 		
 		setTimeout(function() {
 				window.location.href = 'perguntaInfluencer';
-			}, 3000);
+			}, 4000);
 		
 		
 		})
