@@ -185,8 +185,10 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
-						<button id="proximo"
-						 class=" btn confirm btn-primary btn-register">Próximo</button>
+						<button id="cadastrar"
+						 class=" btn confirm btn-primary btn-register">Cadastrar</button>
+						 <span id="prosseguir"
+						 class=" btn confirm btn-success btn-register d-none">Prosseguir</span>
 					</div>
 				</div>
 				
@@ -234,7 +236,7 @@ String contextPath = request.getContextPath();
 						<label for="cargo" class="form-label">Cargo:<span class="red">*</span></label> <select
 							id="cargo" required autocomplete="off"
 							class="form-select inputForm">
-							<option></option>
+							
 						</select>
 					</div>
 				</div>

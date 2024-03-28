@@ -7,120 +7,105 @@
 body {
 	min-height: 100vh;
 	width: 100%;
-	background-color: #f8f8f8;
+	background-color: #ededed;
 	font-family: "Montserrat", sans-serif;
 }
 
-.abracaMenu .menu {
-    width: 100%;
-  }
-  .abracaMenu .menu .item {
-    position: relative;
-    cursor: pointer;
-  }
-  .tabela-acessar-escolas th {
-      cursor: pointer;
-  }
-   
-  .tabela-acessar-escolas .th-sem-filtro {
-      cursor: default;
-  }
-  .abracaMenu .menu .item a {
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    display: block;
-    padding: 14px 15px;
-    transition: all 0.4s ease-in-out;
-  }
-  .abracaMenu .menu .item a:hover {
-    background-color: rgb(4, 45, 89);
-  }
-   
-  .abracaMenu .menu .item i {
-    margin-right: 12px;
-  }
-  .abracaMenu .menu .item a .dropdown {
-    position: absolute;
-    right: 0;
-    margin: 5px 25px;
-    transition: 0.3s ease;
-  }
-  .abracaMenu .menu .item .sub-menu {
-    
-    display: none;
-        overflow: hidden;
-      height: 33vh;
-  }
-   
-  .abracaMenu .menu .item .sub-menu a {
-    padding-left: 20px;
-  }
+.divideCapsula:last-child{
+	 margin-right: 0%;
+	}
+.divideCapsula{
+	width: 47.5%;
+    display: inline-block;
+    margin-right: 4%;
 
-  .img-menu {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px;
-  }
-  .logoSumare {
-    width: 90%;
-  }
-
-/* modal imagens */
-
-.carrossel {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%; /* Ajuste conforme necessário */
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content: center;
 }
 
-.imagens img {
-  width: 500px;
-  display: none;
+	.primeiraSection{
+	display: flex;
+	}
+	.segundaSection{
+	width: 50%;
+	}
+
+
+
+#formInfluencer{
+	background: #fff;
+    margin-top: -50px;
+    padding-top: 50px;
+    box-shadow: 0px 0px 30px -20px #000;
 }
 
-.imagem-ativa {
-  display: block !important;
+.h1Inf{
+	font-size: 2rem
 }
 
-.anterior, .proximo {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+
+.logoInf {
+	width: 25%;
+	margin-bottom:25px 
 }
 
-.anterior {
-  left: 0;
-  border-radius: 3px 0 0 3px;
+
+/* footer */
+
+footer{
+	background: #031e3b;
+	width:100% !important;
+	color: white;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	padding:20px;
 }
 
-.proximo {
-  right: 0;
-  border-radius: 0 3px 3px 0;
+/* acima do form */
+
+.fundoBranco{
+	background:white;
+	width:100%;
 }
 
-.anterior:hover, .proximo:hover {
-  background-color: rgba(0,0,0,0.8);
+.tituloPrincipal{
+	font-weight: 300;
 }
+
+.container-data{
+	width:50%
+}
+
+
+/* form */
+
+.container-i-form{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width:100%;
+	padding:10px;
+	gap:30px;
+	border-radius: 50px;
+	
+}
+
+.container-i-form i{
+	font-size: 25px;
+	color: #031e3b;
+	cursor:pointer;
+}
+
+.img-titulo{
+	width:150px;
+}
+
+
+.main{
+	padding-bottom:140px;
+}
+
+
 
 /* load */
 
@@ -260,26 +245,6 @@ a{
 
 .icone-pesquisa{
 	position: relative;
-}
-
-.botaoExcel{
-	background-color:#107c42; 
-	color:white;
-}
-
-.botaoExcel:hover{
-	background-color:#107c42; 
-	color:white;
-}
-
-.botaoCadastro{
-	background-color:#0095ff; 
-	color:white;
-}
-
-.botaoCadastro:hover{
-	background-color:#0095ff; 
-	color:white;
 }
 
 .btn{
@@ -427,7 +392,7 @@ a{
 	left: 0;
 	height: 100%;
 	width: 280px;
-	background-color: #183153;
+	background-color: #031E3B;
 	min-height: 100vh;
 	top: 0;
 	color: #fff;
@@ -439,7 +404,11 @@ a{
 .title {
 	display: flex;
 	align-items: center;
-	color: #183153;
+	flex-direction:column;
+	justify-content: center;
+	background-color:#ededed;
+	padding:20px;
+
 }
 
 .title span {
@@ -545,8 +514,8 @@ td {
 
 @media screen and (max-width: 1439px) {
 	.container-res {
-		margin-left: 17em;
-		margin-right: 3em;
+		margin-left: 10em;
+		margin-right: 10em;
 	}
 	
 	
@@ -644,135 +613,34 @@ td {
 	}
 }
 
+@media screen and (max-width: 736px) {
+	
+.container-nomes{
+flex-direction: column;
+}
+	
+}
+
 @media screen and (max-width: 425px) {
 	
-	
-
-
-	.container-res {
-     margin-left:0; 
-     margin-right: 0; 
+	.primeiraSection{
+	display: none;
 	}
-	
-	.icone-pesquisa{
-	display:none;
-	
-}
-
-	.form-control{
-	
-	min-width: auto !important;
-	
+	.segundaSection{
+	width: 100%;
 	}
-	.mx-auto {
-     margin-right:0; 
-     margin-left: 0; 
-    }
-    
-    .col-8 {
-    flex: 0 0 auto;
-    width: auto;
-    }
-    
-    .btn-register {
-	width: 12em;
-	max-height: 38px;
-	margin: 0 auto;
-	margin-top: 1em;
-	letter-spacing: 1px;
-	font-size: 18px !important;
-}
-    
-    .modalMenu{
-	  position: fixed;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 100%;
-	  z-index: 100;
-	  
-	 
-    }
-    
-    .animar-sair{
-    animation:animar-sair 3s;
-    animation-fill-mode: forwards;
-    }
-    
-    
-    
-    @keyframes animar-sair {
-  0%{
- transform: translateX(0px);
-    }
-100%{
 
- transform: translateX(1000px);
-
-}
-}
-
- .animar-entrar{
-    animation:animar-entrar 2s;
-    animation-fill-mode: forwards;
-    }
-
-   @keyframes animar-entrar {
-  0%{
- transform: translateX(500px);
-    }
-100%{
-
- transform: translateX(0px);
-
-}
-}
-
-
-
-	.botaoAtivaMenu{
-	display:block;
-	position: fixed;
-	z-index:99;
-	right: -31px;
-    top:240px;
-	border:none;
-	border-radius:100%;
-	font-size: 30px;
-	background-color: #2d2d2d;
-	color:white;
-	
-	
+	.container-nomes{
+	flex-direction: column;
 	}
-	
-	.mover-left{
-	animation: left 3s ease-in-out infinite
-	}
-	
-	  @keyframes left {
-  0%{
- transform: translateX(20px);
-    }
-100%{
 
- transform: translateX(0px);
-
-}
+.container-data{
+	width:100%
 }
 	
-
-	
-	.botaoDesativaMenu{
-	display:inline;
-	position:relative;
-	top:10px;
-	border:none;
-	font-size: 22px;
-	
+	.container{
+	width:80%;
 	}
-	
-	
-	
 	
 	
 }

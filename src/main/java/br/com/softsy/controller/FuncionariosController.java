@@ -232,6 +232,15 @@ public class FuncionariosController {
 		}
 		
 		
+		// pergunta Influencer
+		
+		@RequestMapping(value = { "perguntaInfluencer" }, method = RequestMethod.GET)
+		public String perguntaInfluencer(HttpSession session, Model model) throws Exception {
+			
+			
+			return "influencer/perguntaInfluencer";
+		}
+		
 		
 	
 }

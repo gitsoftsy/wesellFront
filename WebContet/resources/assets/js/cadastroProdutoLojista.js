@@ -285,42 +285,50 @@ var lojista = []
 
 $(document).ready(function() {
 
-	
-
 	$.ajax({
 		url: url_base + '/categorias',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		categoria = data;
-		renderizarCategoria(data)
+		
+		$('#categoria').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#categoria').append($('<option>', { 
+                     value: item.idCategoria,
+                     id: item.idCategoria,
+                     text : item.categoria ,
+                     name : item.categoria
+                 }));
+           })
+	
 	})
-	function renderizarCategoria(categoria) {
-		var html = categoria.map(function(item) {
-			return (
-				`<option value="${item.idCategoria}">${item.categoria}</option>`
-
-			)
-		});
-		$("#categoria").html(html);
-	};
 
 	$.ajax({
 		url: url_base + '/subcategorias',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		subcategoria = data;
-		renderizarSubCategoria(data)
+		
+		$('#subCategoria').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#subCategoria').append($('<option>', { 
+                     value: item.id,
+                     id: item.id,
+                     text : item.nome ,
+                     name : item.nome
+                 }));
+           })
 	})
-	function renderizarSubCategoria(subcategoria) {
-		var html = subcategoria.map(function(item) {
-			return (
-				`<option value="${item.id}">${item.nome}</option>`
-			)
-		});
-		$("#subCategoria").html(html);
-	};
 
 	$.ajax({
 		url: url_base + '/lojistas',
@@ -338,14 +346,6 @@ $(document).ready(function() {
 		});
 		$("#lojista").html(html);
 	};
-
-	const novaOpcao = $("<option>"); // Cria um novo elemento option
-	novaOpcao.text("Selecione..."); // Define o texto da opção
-	novaOpcao.val("exemplo");
-	novaOpcao.attr("id","0")
-
-	$("select").prepend(novaOpcao).val();
-	$("select option[value='exemplo']").attr("selected", "selected");
 
 	if (idProduto == undefined) {
 

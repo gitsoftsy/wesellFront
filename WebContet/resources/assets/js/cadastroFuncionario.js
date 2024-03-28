@@ -47,7 +47,7 @@ function cadastrar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-				text: e.responseJSON.message + "ou" + e.responseJSON[0].mensagem,
+				text: e.responseJSON[0].mensagem,
 				duration: 2000,
 				position: "center",
 				backgroundColor: "red",
@@ -227,43 +227,47 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		cargo = data;
-		renderizarCargos(data)
+	
+	$('#cargo').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#cargo').append($('<option>', { 
+                     value: item.idCargo,
+                     id: item.idCargo,
+                     text : item.cargo ,
+                     name : item.cargo 
+                 }));
+           })
+	
 	})
-	function renderizarCargos(cargo) {
-		var html = cargo.map(function(item) {
-			return (
-				`<option id="${item.idCargo}">${item.cargo}</option>`
-			)
-		});
-		$("#cargo").html(html);
-	};
 
 	$.ajax({
 		url: url_base + '/lojistas',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		lojistas = data;
-		renderizarLojistas(data)
+		
+		$('#lojista').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#lojista').append($('<option>', { 
+                     value: item.idLojista,
+                     id: item.idLojista,
+                     text : item.nomeFantasia ,
+                     name : item.nomeFantasia
+                 }));
+           })
+		
 	})
-	function renderizarLojistas(lojistas) {
-		var html = lojistas.map(function(item) {
-			return (
-				`<option id="${item.idLojista}">${item.nomeFantasia}</option>`
-			)
-		});
-		$("#lojista").html(html);
-	};
-
-	const novaOpcao = $("<option>"); // Cria um novo elemento option
-	novaOpcao.text("Selecione..."); // Define o texto da opção
-	novaOpcao.val("exemplo");
-
-	$("select").prepend(novaOpcao).val();
-	$("select option[value='exemplo']").attr("selected", "selected");
-
-
+	
 	if (idFuncionarios == undefined) {
 
 	} else {

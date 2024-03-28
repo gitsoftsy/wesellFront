@@ -154,13 +154,13 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="categoria" class="form-label">Categoria:<span class="red">*</span></label> 
 						<select id="categoria" required class="form-select inputForm">
-							<option selected></option>
+							
 						</select>
 					</div>
 					<div class="col-md-6">
 						<label for="subCategoria" class="form-label">Sub-Categoria:</label>
 						<select  id="subCategoria" name="subCategoria" class="form-select inputForm">
-							<option></option>
+						
 						</select>
 					</div>
 

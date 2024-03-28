@@ -53,7 +53,7 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/cadastroEmpresa.css" />
+	href="<%=contextPath%>/resources/assets/css/cadastroInfluencer.css" />
 
 <!-- Animation-css -->
 <link rel="stylesheet"
@@ -70,9 +70,9 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	
-<main class="d-flex align-items-center">
+<main class="d-flex align-items-center  h-100">
 
-<section class="w-50 d-flex flex-column mt-5">
+<section class="w-50 flex-column mt-5 pb-5 primeiraSection">
 	<div style='margin-left: 5%;' class='container'>
 		<div class='row'>
 			<div class='col-md-12'>
@@ -86,35 +86,46 @@ String contextPath = request.getContextPath();
     
 </section>
 
-<section class="w-50 mt-5">
+<section class="pt-5 bg-light bg-gradient segundaSection h-100">
 
     <form id="formInfluencer" class="d-flex flex-column align-items-center">
 
-        <div class="col-md-8 mb-4">
-        	<div class='divideCapsula'>
+        <div class="col-md-8 mb-4 d-flex gap-2 container-nomes ">
+
+			<div class="d-flex flex-column mb-4">
         		<label for="nome" class="form-label">Nome:<span class="red">*</span></label> 
         		<input required
            		 autocomplete="off" type="text" id="nome" name="nome"
            		 class="form-control inputForm" maxlength="255" />
         	</div>
         	
-        	<div class='divideCapsula'>
+        	<div class="d-flex flex-column">
         		 <label for="nome" class="form-label">Sobrenome:<span class="red">*</span></label>
         		 <input required
            		 autocomplete="off" type="text" id="sobrenome" name="nome"
           		  class="form-control inputForm" maxlength="255" />
-        	</div>
-            
-            
+            </div>
             
         </div>
         
       
 
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 mb-4 d-flex gap-2 container-nomes">
+        
+         <div class="d-flex flex-column container-data mb-4">
             <label for="data" class="form-label">Data de Nascimento:<span class="red">*</span></label> <input required
             autocomplete="off"  max='3000-01-01' type="date" id="dataNascimento" name="data"
             class="form-control inputForm" />
+         </div>   
+            
+          <div class="d-flex flex-column">
+        		 <label for="numero" class="form-label">Número de Contato:<span class="red">*</span></label>
+        		 <input required
+           		 autocomplete="off" type="text" id="numero" name="numero"
+          		  class="form-control inputForm" maxlength="11" placeholder="(00)00000-0000"
+          		  data-mask="(00)00000-0000"/>
+          </div>
+            
         </div>
 
         <div class="col-md-8 mb-4">
@@ -144,15 +155,15 @@ String contextPath = request.getContextPath();
         </div>
 
         <div id="container-cpf" class="col-md-8 mb-4">
-            <input required autocomplete="off" type="text" id="cpf" name="cpf"
+            <input  autocomplete="off" type="text" id="cpf" name="cpf"
             class="form-control inputForm" maxlength="255" placeholder="000.000.000-00" 
             data-mask="000.000.000-00"/>
         </div>
 
         <div id="container-cnpj" class="col-md-8 mb-4 d-none">
-            <input required autocomplete="off" type="text" id="cnpj" name="cnpj"
+            <input  autocomplete="off" type="text" id="cnpj" name="cnpj"
             class="form-control inputForm" maxlength="255" placeholder="00.000.000/0000-00" 
-            data-mask="00.000.000/0000-00"/>
+            data-mask="00.000.000/0000-00" />
         </div>
 
         <div class="col-md-8 mb-4">
@@ -162,44 +173,6 @@ String contextPath = request.getContextPath();
 
     </form>
     
-    <form id="formInfor" class="d-flex flex-column align-items-center d-none">
-
-        <div class="col-md-8 mb-4">
-            <label for="redeSocial" class="form-label">Qual a sua rede social principa?<span class="red">*</span></label> <select
-                id="redeSocial" required autocomplete="off"
-                class="form-select selectForm">
-                <option value="">Selecione...</option>
-                <option value="">Instagram</option>
-                <option value="">Facebook</option>
-                <option value="">YouTube</option>
-                <option value="">TikTok</option>
-                <option value="">Twitter</option>
-            </select>
-        </div>
-
-        <div class="col-md-8 mb-4 ">
-            <label for="redeSocial" class="form-label">Qual seu nome de usuário nesta rede?<span class="red">*</span></label> 
-            <input required autocomplete="off" type="text" id="usuario" name="usuario"
-            class="form-control inputForm" maxlength="255" placeholder="usuário123">
-        </div>
-
-        <div class="col-md-8 mb-4">
-            <label for="seguidores" class="form-label">Quantos seguidores você possui nesta rede?<span class="red">*</span></label> <select
-                id="redeSocial" required autocomplete="off"
-                class="form-select selectForm">
-                <option value="">Selecione...</option>
-                <option value="">1.000 seguidores</option>
-                <option value="">10.000 seguidores</option>
-                <option value="">+ de 10.000 seguidores</option>
-                <option value="">1.000.000 seguidores</option>
-            </select>
-        </div>
-
-        <div class="col-md-8 mb-4">
-            <button id="enviarFormInfor" class="btn btn-success btn-lg btn-block w-100">Enviar</button>
-         </div>
-
-    </form>
 </section>
 
 </main>
@@ -209,7 +182,7 @@ String contextPath = request.getContextPath();
 	
 	
 	
-		<footer>Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer>
+		<footer >Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>

@@ -1,7 +1,8 @@
 const elemento = document.querySelector('#modalMenu');
 var primeiro = document.getElementById("primeiraSecao")
 var segunda = document.getElementById("segundaSecao")
-var proximo = document.getElementById("proximo")
+var cadastrar = document.getElementById("cadastrar")
+var prosseguir = document.getElementById("prosseguir")
 
 primeiro.addEventListener("click", function(){
 	
@@ -17,7 +18,7 @@ segunda.addEventListener("click", function(){
 		
 })
 
-proximo.addEventListener("click", function(){
+prosseguir.addEventListener("click", function(){
 	
 	$("#container-empresa").addClass("none")
 	$("#container-funcionario").removeClass("none")
@@ -79,8 +80,6 @@ function cadastrarEmpresa() {
 		data: JSON.stringify(objetoEmpresa),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
-			
-				$("#btn-submit").removeAttr("disabled");
 		var erro
 			
 			if( e.responseJSON.message == undefined){
@@ -100,7 +99,10 @@ function cadastrarEmpresa() {
 	}).done(function(data) {
 		
 		lojistaId = data.idLojista
+		$("#prosseguir").removeClass("d-none");
+		$("#cadastrar").addClass("d-none");
 		$("#btn-submit").removeAttr("disabled");
+		
 
 		Toastify({
 				text: "Empresa cadastrada com sucesso!",
@@ -204,9 +206,7 @@ $(document).ready(function() {
 		
 	$('#cargo').append($('<option>', { 
 			 value: "",
-			 text : "Selecione...",
-			disabled: true,
-    			
+			 text : "Selecione...",	
 		 }));		
             $.each(data, function(index, item) {
 				

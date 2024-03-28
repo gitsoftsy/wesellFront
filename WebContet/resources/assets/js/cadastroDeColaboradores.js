@@ -144,8 +144,8 @@ $(document).ready(function() {
 					$('#usuario').val(data.usuario),
 					$('#senha').val(data.senha),
 					$("#confirmarSenha").val(data.senha)
-					if(data.administrador === "S"){
-						$('#administrador').prop("checked", true)
+					if(data.administrador === "N"){
+						$('#administrador').prop('checked', true)
 					} else {$('#administrador').attr("data-off", "true");
 					}
 					$('#email').val(data.email),

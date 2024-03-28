@@ -140,14 +140,7 @@ String contextPath = request.getContextPath();
     <li id="next" class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
 </nav>
-		<!-- <div id="pagination" class="mx-auto">
-				<button id="prev" class="btn btn-sm">
-					<i class="fa-solid fa-angle-left fa-xl"></i>
-				</button>
-				<button id="next" class="btn btn-sm">
-					<i class="fa-solid fa-angle-right fa-xl"></i>
-				</button>
-			</div>  -->	 
+
 		</section>
 	</main>
 

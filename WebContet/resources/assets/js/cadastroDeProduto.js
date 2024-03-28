@@ -150,12 +150,11 @@ $("#subCategoria").change(function() {
 
    novoValor = valorSelecionado == "exemplo" ? "36" :  valorSelecionado;
   
-  console.log(novoValor)
 });
 
 function cadastrar() {
 
-	console.log(imagensBase64)
+	console.log(imagensBase64[0])
 
 	var objeto = {
 		"nomeProduto": $('#nomeProduto').val(),
@@ -196,7 +195,17 @@ function cadastrar() {
 			type: 'POST',
 			data: JSON.stringify(imagens),
 			contentType: "application/json; charset=utf-8",
-		
+			error: function(e) {
+				console.log(e.responseJSON)
+			Toastify({
+				text: e.responseJSON.message,
+				duration: 3000,
+				backgroundColor:"red",
+				position: "center",
+				type: "erro",
+			}).showToast();
+			
+			}
 		}).done(function(data) {
 
 
@@ -271,60 +280,69 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		categoria = data;
-		renderizarCategoria(data)
+		
+		$('#categoria').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#categoria').append($('<option>', { 
+                     value: item.idCategoria,
+                     id: item.idCategoria,
+                     text : item.categoria ,
+                     name : item.categoria
+                 }));
+           })
+		
 	})
-	function renderizarCategoria(categoria) {
-		var html = categoria.map(function(item) {
-			return (
-				`<option value="${item.idCategoria}">${item.categoria}</option>`
-
-			)
-		});
-		$("#categoria").html(html);
-	};
 
 	$.ajax({
 		url: url_base + '/subcategorias',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		subcategoria = data;
-		renderizarSubCategoria(data)
+	
+	$('#subCategoria').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#subCategoria').append($('<option>', { 
+                     value: item.id,
+                     id: item.id,
+                     text : item.nome,
+                     name : item.nome
+                 }));
+           })
+	
 	})
-	function renderizarSubCategoria(subcategoria) {
-		var html = subcategoria.map(function(item) {
-			return (
-				`<option value="${item.id}">${item.nome}</option>`
-			)
-		});
-		$("#subCategoria").html(html);
-	};
 
 	$.ajax({
 		url: url_base + '/lojistas',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		lojista = data;
-		renderizarLojista(data)
+		
+	$('#lojista').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#lojista').append($('<option>', { 
+                     value: item.idLojista,
+                     id: item.idLojista,
+                     text : item.nomeFantasia,
+                     name : item.nomeFantasia
+                 }));
+           })
+		
 	})
-	function renderizarLojista(lojista) {
-		var html = lojista.map(function(item) {
-			return (
-				`<option value="${item.idLojista}">${item.nomeFantasia}</option>`
-			)
-		});
-		$("#lojista").html(html);
-	};
-
-	const novaOpcao = $("<option>"); // Cria um novo elemento option
-	novaOpcao.text("Selecione..."); // Define o texto da opção
-	novaOpcao.val("exemplo");
-	novaOpcao.attr("id","0")
-
-	$("select").prepend(novaOpcao).val();
-	$("select option[value='exemplo']").attr("selected", "selected");
 
 	if (idProduto == undefined) {
 

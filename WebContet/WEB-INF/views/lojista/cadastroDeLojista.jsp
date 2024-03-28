@@ -110,7 +110,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="cnpj" class="form-label">CNPJ:<span class="red">*</span></label> <input required
 							autocomplete="off" type="text" id="cnpj" name="cnpj"
-							class="form-control inputForm" maxlength="14" data-mask="00.000.000/0000-00." />
+							class="form-control inputForm" maxlength="14" data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
 						<label for="inscricaoEstadual" class="form-label">Inscrição

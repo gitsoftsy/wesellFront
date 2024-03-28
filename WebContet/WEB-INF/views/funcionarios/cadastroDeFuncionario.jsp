@@ -103,7 +103,6 @@ String contextPath = request.getContextPath();
 						<label for="lojista" class="form-label">Lojista:<span class="red">*</span></label> <select
 							id="lojista" required name="lojista"
 							class="form-select inputForm" >
-							<option></option>
 							</select>
 					</div>
 				</div>
@@ -134,7 +133,6 @@ String contextPath = request.getContextPath();
 						<label for="cargo" class="form-label">Cargo:<span class="red">*</span></label> <select
 							id="cargo" required autocomplete="off"
 							class="form-select inputForm">
-							<option></option>
 						</select>
 					</div>
 				</div>

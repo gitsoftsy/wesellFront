@@ -122,26 +122,23 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		categorias = data;
-		renderizarCategorias(data)
-	})
-	function renderizarCategorias(categorias) {
-		var html = categorias.map(function(item) {
-			return (
-				`<option id="${item.idCategoria}">${item.categoria}</option>`
-			)
-		});
-		$("#categoria").html(html);
-	};
 	
-	const novaOpcao = $("<option>"); // Cria um novo elemento option
-	novaOpcao.text("Selecione..."); // Define o texto da opção
-	novaOpcao.val("exemplo");
-
-	$("select").prepend(novaOpcao).val();
-	$("select option[value='exemplo']").attr("selected", "selected");
-
-
+	$('#categoria').append($('<option>', { 
+			 value: "",
+			 text : "Selecione...", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#categoria').append($('<option>', { 
+                     value: item.idCategoria,
+                     id: item.idCategoria,
+                     text : item.categoria ,
+                     name : item.categoria
+                 }));
+           })
+	
+	})
 
 	if (idSubCategoria == undefined) {
 

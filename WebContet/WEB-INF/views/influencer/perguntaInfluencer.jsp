@@ -53,19 +53,14 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/cadastroInfluencer.css" />
 
 <!-- Animation-css -->
-	<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
-
-	<header id="menu" ></header>
-
 	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
@@ -75,49 +70,72 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	
-	<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
-	<main class="py-4 container-res">
-		<section class="mb-5">
-			<div class="card">
-				<div class="card-body title">
-					<i class="fa-solid fa-paste"></i> <span id="tituloPagina">Cadastro
-						de Sub-Categoria</span>
-				</div>
-			</div>
-		</section>
-		<section class="pt-4">
-			<form id="form-funcionario" 
-				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
-				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Sub-Categoria</h1>
-				<input type="text" id="usuarioCadastro" hidden
-					value="${funcionario.idUsuario}" />
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="categoria" class="form-label">Categoria:<span class="red">*</span></label> 
-						<select type="text" id="categoria" required autocomplete="off" name="categoria"
-							class="form-select inputForm" >
-							</select>
-					</div>
-					<div class="col-md-6">
-						<label for="descricaoSubCategoria" class="form-label"> Sub-Categoria:<span class="red">*</span></label> <input
-							type="text" id="descricaoSubCategoria" required autocomplete="off" name="descricaoSubCategoria"
-							class="form-control inputForm" maxlength="255" />
-					</div>
-				</div>
-				
+<main class="d-flex align-items-center h-100 w-100 ">
 
-				<div class="row mb-2">
-					<div class="col-md-12 text-center">
-						<button type="submit" id="btn-submit"
-							class="btn confirm btn-primary btn-register">Cadastrar</button>
-					</div>
-				</div>
-				
-			</form>
-		</section>
-	</main>
+<section class="pt-5 bg-light w-100 bg-gradient segundaSection h-100  main">
+
+    <form id="formInfor" class="d-flex flex-column align-items-center h-100 ">
+
+        <div class="col-md-8 mb-4 d-flex flex-column container text-center">
+
+						<label for="rede" class="form-label">Qual a sua rede social principal?<span class="red">*</span></label> 
+						<select type="text" id="rede" required autocomplete="off" name="rede"
+							class="form-select inputForm" >
+							
+							
+            
+							</select>
+						
+        </div>
+        
+         <div class="col-md-8 mb-4 d-flex gap-2 flex-column container text-center">
+
+		
+        		<label for="usuario" class="form-label">Qual seu nome de usuário nesta rede?<span class="red">*</span></label> 
+        		<input required
+           		 autocomplete="off" type="text" id="usuario" name="usuario"
+           		 class="form-control inputForm" maxlength="255" placeholder="Usuário123" />
+
+        	
+        </div>
+        
+         <div class="col-md-8 mb-4 d-flex flex-column container text-center">
+
+						<label for="seguidores" class="form-label">Quantos seguidores você possui nesta rede?<span class="red">*</span></label> 
+						<select type="text" id="seguidores" required autocomplete="off" name="seguidores"
+							class="form-select inputForm" >
+							
+							<option>1.000 Seguidores</option>
+							<option>10.000 Seguidores</option>
+							<option>+ de 10.000 Seguidores</option>
+							<option>100.000 Seguidores</option>
+							<option>+ de 100.000 Seguidores</option>
+							<option>1.000.000 Seguidores/option>
+							
+							</select>
+						
+        </div>
+        
+      
+
+      
+        <div class="col-md-8 mb-4">
+           <button id="enviarFormInfor" class="btn btn-success btn-lg btn-block w-100">Cadastre-se</button>
+        </div>
+
+
+    </form>
+    
+</section>
+
+</main>
+	
+	
+	
+	
+	
+	
+		<footer >Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
@@ -137,6 +155,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/cadastroDeSubCategoria.js"></script>
+		src="<%=contextPath%>/resources//assets/js/perguntaInfluencer.js"></script>
 </body>
 </html>
