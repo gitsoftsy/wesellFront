@@ -70,14 +70,15 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	
-<main class="d-flex align-items-center  h-100">
+<main class="d-flex align-items-center h-100 ">
 
-<section class="w-50 flex-column mt-5 pb-5 primeiraSection">
-	<div style='margin-left: 5%;' class='container'>
+
+<section class=" flex-column mt-5 pb-5 primeiraSection">
+	<div style='margin-left: 5%;' class='container '>
 		<div class='row'>
-			<div class='col-md-12'>
+			<div class='col-md-12 '>
 				<img class='logoInf' width="25%" src="resources/assets/img/logo.svg" alt="logo">
-	    		<h1 class='h1Inf'>Nunca foi tão fácil transformar o que você sabe em um negócio digital.</h1>
+	    		<h1 class='h1Inf quebra-texto'>Nunca foi tão fácil transformar o que você sabe em um negócio digital.</h1>
 				<p>Vamos te ajudar desde os primeiros passos.<br> Cadastre-se grátis.</p>
 			</div>
 		</div>
@@ -86,55 +87,17 @@ String contextPath = request.getContextPath();
     
 </section>
 
-<section class="pt-5 bg-light bg-gradient segundaSection h-100">
+<section class="pt-5 bg-light d-flex flex-column justify-content-center  bg-gradient segundaSection h-100 espaço-login">
 
-    <form id="formInfluencer" class="d-flex flex-column align-items-center">
+    <form id="formInfor" class="d-flex flex-column justify-content-center align-items-center h-100 ">
     
-    <div class="col-md-8 mb-4 text-center logoMobile">
+    	<div class="col-md-8 mb-4 text-center logoMobile">
      		<img class='logoInf' width="50%" src="resources/assets/img/logo.svg" alt="logo">
      	</div>
     
      <div class="col-md-8 mb-4">
-     <h2 class="text-center">Cadastro</h2>
+     <h2 class="text-center">Login</h2>
      </div>
-
-        <div class="col-md-8 mb-4 d-flex gap-2 container-nomes ">
-
-			<div class="d-flex flex-column mb-4">
-        		<label for="nome" class="form-label">Nome:<span class="red">*</span></label> 
-        		<input required
-           		 autocomplete="off" type="text" id="nome" name="nome"
-           		 class="form-control inputForm" maxlength="255" />
-        	</div>
-        	
-        	<div class="d-flex flex-column">
-        		 <label for="nome" class="form-label">Sobrenome:<span class="red">*</span></label>
-        		 <input required
-           		 autocomplete="off" type="text" id="sobrenome" name="nome"
-          		  class="form-control inputForm" maxlength="255" />
-            </div>
-            
-        </div>
-        
-      
-
-        <div class="col-md-8 mb-4 d-flex gap-2 container-nomes">
-        
-         <div class="d-flex flex-column container-data mb-4">
-            <label for="data" class="form-label">Data de Nascimento:<span class="red">*</span></label> <input required
-            autocomplete="off"  max='3000-01-01' type="date" id="dataNascimento" name="data"
-            class="form-control inputForm" />
-         </div>   
-            
-          <div class="d-flex flex-column">
-        		 <label for="numero" class="form-label">Número de Contato:<span class="red">*</span></label>
-        		 <input required
-           		 autocomplete="off" type="text" id="numero" name="numero"
-          		  class="form-control inputForm" maxlength="11" placeholder="(00)00000-0000"
-          		  data-mask="(00)00000-0000"/>
-          </div>
-            
-        </div>
 
         <div class="col-md-8 mb-4">
             <label for="email" class="form-label">E-mail:<span class="red">*</span></label> <input required
@@ -147,42 +110,14 @@ String contextPath = request.getContextPath();
             autocomplete="off" type="password" id="senha" name="senha"
             class="form-control inputForm" maxlength="255" />
         </div>
-
-        <div class="col-md-8 mb-4">
-            <input required autocomplete="off" type="checkbox" id="checkbox" name="checkbox"
-            class=" checkbox" maxlength="255" />
-            <label for="senha" class="form-label">Concordo com Os <a href="#">termos</a> de Uso.</label>
-        </div>
-
-        <div class="col-md-8 mb-4">
-            <label class="form-label">Quero me cadastrar com:</label> 
-            <div class="d-flex gap-1">
-            <span id="cpfBotao" class="btn btn-lg w-50 btn-secondary ">CPF</span>
-            <span id="cnpjBotao" class="btn btn-lg w-50 btn-secondary ">CNPJ</span>
-            </div>
-        </div>
-
-        <div id="container-cpf" class="col-md-8 mb-4">
-            <input  autocomplete="off" type="text" id="cpf" name="cpf"
-            class="form-control inputForm" maxlength="255" placeholder="000.000.000-00" 
-            data-mask="000.000.000-00"/>
-        </div>
-
-        <div id="container-cnpj" class="col-md-8 mb-4 d-none">
-            <input  autocomplete="off" type="text" id="cnpj" name="cnpj"
-            class="form-control inputForm" maxlength="255" placeholder="00.000.000/0000-00" 
-            data-mask="00.000.000/0000-00" />
-        </div>
-
-        <div class="col-md-8 mb-4">
-           <button id="enviarFormInfluencer" class="btn btn-success btn-lg btn-block w-100">Cadastre-se</button>
-        </div>
         
+        <div class="col-md-8 mb-4">
+           <button id="enviarFormInfor" class="btn btn-success btn-lg btn-block w-100">Entrar</button>
+        </div>
         
          <div class="col-md-8 mb-4 text-center">
-         <p>Caso já tenha cadastro click <a href="loginInfluencer">Aqui!<a></p>
+         <p>Caso ainda não tenha cadastro click <a href="cadastroInfluencer">Aqui!<a></p>
          </div>
-
 
     </form>
     
@@ -215,6 +150,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/cadastroInfluencer.js"></script>
+		src="<%=contextPath%>/resources//assets/js/perguntaInfluencer.js"></script>
 </body>
 </html>

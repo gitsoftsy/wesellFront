@@ -89,12 +89,13 @@ $("#enviarFormInfor").click(function(e){
 				text:  "Cadastrado com Sucesso!",
 				duration: 5000,
 				position: "center",
+				backgroundColor: "green",
 				close: true,
 				className: "Toastify__toast--custom"
 			}).showToast();
 		
 		setTimeout(function() {
-				window.location.href = 'perguntaInfluencer';
+				window.location.href = 'meusProdutos';
 			}, 4000);
 		
 		

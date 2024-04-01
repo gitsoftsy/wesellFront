@@ -243,6 +243,7 @@ dataNascimento.addEventListener("blur", function(){
     
  $("#enviarFormInfluencer").click(function(e){
 	  e.preventDefault();
+	  
 	  var objeto = ''
   
   		if($("#cnpjBotao").hasClass("btn-primary")){
@@ -300,6 +301,7 @@ dataNascimento.addEventListener("blur", function(){
 				text:  "Cadastrado com Sucesso!",
 				duration: 2000,
 				position: "center",
+				backgroundColor: "green",
 				close: true,
 				className: "Toastify__toast--custom"
 			}).showToast();

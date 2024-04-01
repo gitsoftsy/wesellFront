@@ -1,0 +1,46 @@
+body{
+	background-color: #ededed;
+}
+
+.icone-menu{
+	font-size: 25px;
+}
+
+.logo-menu{
+	width:150px
+}
+
+.menu{
+	position: fixed;
+
+
+}
+
+.menu-alto{
+	background-color: white;
+		z-index:10;
+}
+
+.menu-baixo{
+	max-width: 250px;
+	background-color: white;
+}
+
+.main{
+	margin-left: 20%;
+	padding-top: 6%;
+	padding-right: 1%;
+	width:80%
+
+}
+
+footer{
+	background: #031e3b;
+	width:100% !important;
+	color: white;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	padding:20px;
+}

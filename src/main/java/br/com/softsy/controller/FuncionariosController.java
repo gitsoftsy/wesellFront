@@ -231,6 +231,15 @@ public class FuncionariosController {
 			return "influencer/cadastroInfluencer";
 		}
 		
+		// login Influencer
+		
+				@RequestMapping(value = { "loginInfluencer" }, method = RequestMethod.GET)
+				public String loginInfluencer(HttpSession session, Model model) throws Exception {
+					
+					
+					return "influencer/loginInfluencer";
+				}
+		
 		
 		// pergunta Influencer
 		
@@ -240,6 +249,17 @@ public class FuncionariosController {
 			
 			return "influencer/perguntaInfluencer";
 		}
+		
+		// meus produtos
+		
+				@RequestMapping(value = { "meusProdutos" }, method = RequestMethod.GET)
+				public String meusProdutos(HttpSession session, Model model) throws Exception {
+					
+					
+					return "influencer/meusProdutos";
+				}
+		
+		
 		
 		
 	

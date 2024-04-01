@@ -23,9 +23,14 @@ body {
 
 	.primeiraSection{
 	display: flex;
+	width:50%
 	}
 	.segundaSection{
 	width: 50%;
+	}
+	
+	.logoMobile{
+	display: none;
 	}
 
 
@@ -46,6 +51,8 @@ body {
 	width: 25%;
 	margin-bottom:25px 
 }
+
+
 
 
 /* footer */
@@ -105,7 +112,9 @@ footer{
 	padding-bottom:140px;
 }
 
-
+.espaço-login{
+	padding-bottom:110px;
+}
 
 /* load */
 
@@ -628,6 +637,10 @@ flex-direction: column;
 	}
 	.segundaSection{
 	width: 100%; 
+	}
+	
+	.logoMobile{
+	display: block;
 	}
 
 	.container-nomes{
