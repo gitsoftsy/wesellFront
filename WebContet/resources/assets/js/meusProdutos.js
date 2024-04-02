@@ -21,3 +21,26 @@
             }
         });
     });
+    
+    
+     $("#filtroLoja").change(function () { 
+			escondeLoja($("#filtroLoja").val())
+		  
+	 });
+    
+    
+    function escondeLoja(loja){
+		if(loja == 'Filtre por Loja'){
+			$(".loja").fadeIn();
+		}
+		else{
+			$(".loja").fadeOut();
+			$("."+loja).fadeIn();	
+		}	
+		
+		
+		
+	};
+    
+    
+    

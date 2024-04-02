@@ -128,9 +128,12 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<div class='col-md-3'>
-				<select class='filtros'>
+				<select id='filtroLoja' class='filtros'>
 					<option>Filtre por Loja</option>
-					<option>Loja</option>
+					<option value='americanas'>Americanas</option>
+					<option value='kabum'>Kabum</option>
+					<option value='combatbrothers'>CombatBrothers</option>
+					<option value='mercadoLivre'>Mercado Livre</option>
 				</select>
 			</div>
 
@@ -158,7 +161,7 @@ String contextPath = request.getContextPath();
 
 			<div class="card-group container gap-3 w-100">
 				<div class="row"></div>
-				<div class="card col-sm w-25">
+				<div class="card kabum loja col-sm w-25">
 					<div class='nomeLoja'>KABUM</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -176,7 +179,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card col-sm w-25">
+				<div class="card americanas loja col-sm w-25">
 					<div class='nomeLoja'>Americanas</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -194,7 +197,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card col-sm w-25">
+				<div class="card col-sm combatbrothers loja w-25">
 					<div class='nomeLoja'>CombatBrothers</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -212,13 +215,30 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card col-sm w-25">
+				<div class="card col-sm mercadoLivre loja w-25">
 					<div class='nomeLoja'>Mercado Livre</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
 						alt="Lubrificante">
 					<div class="card-body">
 						<h5 class="card-title"> Lubrificante Automotivo</h5>
+						<p class="card-text">
+							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
+							Produto: R$32.94
+						</p>
+						<div class="d-flex gap-2">
+							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
+						</div>
+					</div>
+				</div>
+				<div class="card kabum loja col-sm w-25">
+					<div class='nomeLoja'>KABUM</div>
+					<img class="card-img-top"
+						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
+						alt="Lubrificante">
+					<div class="card-body">
+						<h5 class="card-title">Lubrificante Automotivo 2</h5>
 						<p class="card-text">
 							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
 							Produto: R$32.94
