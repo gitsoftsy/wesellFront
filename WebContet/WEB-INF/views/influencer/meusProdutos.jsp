@@ -70,9 +70,9 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 	
-	<header class="d-flex flex-column menu w-100 h-100 ">
+	<header class="d-flex flex-column menu w-100  ">
 	
-	<div class="d-flex justify-content-between align-items-center shadow menu-alto">
+	<div class="d-flex justify-content-between align-items-center shadowNovo menu-alto">
 	
 		<img alt="logo" src="<%=contextPath%>/resources/assets/img/logo.svg" class="logo-menu">
 		<div class="p-4 d-flex gap-3">
@@ -84,7 +84,7 @@ String contextPath = request.getContextPath();
 	
 	</div>
 	
-	<div class="p-3 d-flex flex-column justify-content-between align-items-start shadow h-100 menu-baixo ">
+	<div class="p-3 d-flex flex-column justify-content-between align-items-start shadowNovo h-100 menu-baixo ">
 	
 		<div class="d-flex flex-column gap-3">
 		
@@ -102,48 +102,100 @@ String contextPath = request.getContextPath();
 	
 <main class="main">
 
-	<div class="input-group">
-		<input id="inputBusca" type="text" class="form-control inputForm"
-		placeholder="Buscar Produtos" /> <span
-		class="input-group-text icone-pesquisa"><i
-		class="fas fa-search"></i></span>
+	<h1 style='    font-weight: 300;' class="mt-2">Meus Produtos</h1>
+	<div style='margin-bottom: 35px;' class='row'>
+		<div class='col-md-3'>
+			<div class="input-group">
+				<input id="inputBusca" type="text" class="form-control inputForm"
+				placeholder="Buscar Produtos" /> <span
+				class="input-group-text icone-pesquisa"><i
+				class="fas fa-search"></i></span>
+			</div>
+		</div>
+	
+		<div class='col-md-3'>
+			<select class='filtros'>
+				<option>Filtre por Loja</option>
+				<option>Loja</option>
+			</select>
+		</div>
+		
+		<div class='col-md-3'>
+			<select  class='filtros'>
+				<option>Categoria</option>
+			</select>
+		</div>
+		
+		<div class='col-md-3'>
+			<select  class='filtros'>
+				<option>SubCategoria</option>
+			</select>
+		</div>
 	</div>
 	
-	<h1 class="text-center mt-2">Produtos</h1>
+	
+	
+
+	
+	
+	
 	
 	<div class="mb-3">
 	
 	<div class="card-group d-flex gap-3">
-  <div class="card">
-    <img class="card-img-top" src="<%=contextPath%>/resources/assets/img/bolaDeBasquete.jpg" alt="bola de basquete">
-    <div class="card-body">
-      <h5 class="card-title">Bola de Basquete "Wilson"</h5>
-      <p class="card-text">Loja: Solmar<br>
-      Comissão: R$20.00 <br>
-      Valor do Produto: R$120.00</p>
-     <button type="button" class="btn btn-outline-danger">Desativar</button>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="<%=contextPath%>/resources/assets/img/pcGamer.jpg" alt="pc gamer">
-    <div class="card-body">
-        <h5 class="card-title">Pc Gamer</h5>
-      <p class="card-text">Loja: Loucos por Games<br>
-      Comissão: R$250.00 <br>
-      Valor do Produto: R$3.156,90</p>
-     <button type="button" class="btn btn-outline-danger">Desativar</button>
-    </div>
-  </div>
-  <div class="card">
+  
+ <div class="card">
+  	<div class='nomeLoja'>KABUM</div>
     <img class="card-img-top" src="<%=contextPath%>/resources/assets/img/oleo.jpg" alt="Lubrificante">
     <div class="card-body">
        <h5 class="card-title">Óleo Lubrificante Automotivo</h5>
-      <p class="card-text">Loja: Telefrango<br>
-      Comissão: R$03.99 <br>
+      <p class="card-text">
+      Comissão de até: <span class='spanPreco'>R$03.99 </span>
       Valor do Produto: R$32.94</p>
+     <button type="button" class="btn btn-success">Link de Divulgação</button>
      <button type="button" class="btn btn-outline-danger">Desativar</button>
     </div>
   </div>
+  
+  <div class="card">
+  	<div class='nomeLoja'>Americanas</div>
+    <img class="card-img-top" src="<%=contextPath%>/resources/assets/img/oleo.jpg" alt="Lubrificante">
+    <div class="card-body">
+       <h5 class="card-title">Óleo Lubrificante Automotivo</h5>
+      <p class="card-text">
+      Comissão de até: <span class='spanPreco'>R$03.99 </span>
+      Valor do Produto: R$32.94</p>
+     <button type="button" class="btn btn-success">Link de Divulgação</button>
+     <button type="button" class="btn btn-outline-danger">Desativar</button>
+    </div>
+  </div>
+  
+  <div class="card">
+  	<div class='nomeLoja'>CombatBrothers</div>
+    <img class="card-img-top" src="<%=contextPath%>/resources/assets/img/oleo.jpg" alt="Lubrificante">
+    <div class="card-body">
+       <h5 class="card-title">Bola de Basquete Wilson</h5>
+      <p class="card-text">
+      Comissão de até: <span class='spanPreco'>R$03.99 </span>
+      Valor do Produto: R$32.94</p>
+     <button type="button" class="btn btn-success">Link de Divulgação</button>
+     <button type="button" class="btn btn-outline-danger">Desativar</button>
+    </div>
+  </div>
+  
+  <div class="card">
+  	<div class='nomeLoja'>Mercado Livre</div>
+    <img class="card-img-top" src="<%=contextPath%>/resources/assets/img/oleo.jpg" alt="Lubrificante">
+    <div class="card-body">
+       <h5 class="card-title">Óleo Lubrificante Automotivo</h5>
+      <p class="card-text">
+      Comissão de até: <span class='spanPreco'>R$03.99 </span>
+      Valor do Produto: R$32.94</p>
+     <button type="button" class="btn btn-success">Link de Divulgação</button>
+     <button type="button" class="btn btn-outline-danger">Desativar</button>
+    </div>
+  </div>
+  
 </div>
 
 	</div>

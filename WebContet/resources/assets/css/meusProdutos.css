@@ -9,21 +9,91 @@ body{
 .logo-menu{
 	width:150px
 }
+.card-title{
+	
+	
+
+margin-bottom: var(--bs-card-title-spacer-y);
+    color: var(--bs-card-title-color);
+    min-height: 46px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #efefef;
+    padding: 8px;
+    text-align: center;
+    align-items: center;
+    display: grid;
+    border-radius: 5px;
+}
+.card{
+	border-radius: 10px !important;
+}
+
+.nomeLoja{
+	text-align: center;
+    background: #cfcfcf;
+    padding: 5px;
+    border-radius: 10px 10px 0 0;
+    font-weight: 400;
+    color: #686868;
+}
+
+.card-text{
+	    font-weight: 300;
+}
+
+.spanPreco{
+	color: #009d43 !important;
+    font-size: 39px;
+    font-weight: 300;
+    display: block;
+}
+
+.card-img, .card-img-top {
+    border-top-left-radius: var(--bs-card-inner-border-radius);
+    border-top-right-radius: var(--bs-card-inner-border-radius);
+    padding: 45px;
+}
+
+.filtros{
+width: 100%;
+    padding: 7px 9px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    margin-top: 15px;
+	
+}
 
 .menu{
-	position: fixed;
+	position: absolute;
 
 
+}
+
+.input-group{
+	margin:15px 0
 }
 
 .menu-alto{
 	background-color: white;
-		z-index:10;
+    z-index: 10;
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    
+    padding: 0 20px;
+}
+
+
+.shadowNovo {
+    box-shadow: 0px 0px 10px -6px #000;
 }
 
 .menu-baixo{
 	max-width: 250px;
-	background-color: white;
+    background-color: white;
+    padding-top: 130px !important;
+    position: fixed;
 }
 
 .main{
