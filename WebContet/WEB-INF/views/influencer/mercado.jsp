@@ -116,11 +116,11 @@ String contextPath = request.getContextPath();
 
 	<main class="main">
 
-		<h1 style='font-weight: 300;' class="mt-2 text-center">Meus Produtos</h1>
+		<h1 style='font-weight: 300;' class="mt-2 text-center">Mercado</h1>
 		<div style='margin-bottom: 35px;' class='row'>
 			<div class='col-md-3'>
 				<div class="input-group">
-					<input id="filterInput" type="text" class="form-control inputForm"
+					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar Produtos" /> <span
 						class="input-group-text icone-pesquisa"><i
 						class="fas fa-search"></i></span>
@@ -154,11 +154,11 @@ String contextPath = request.getContextPath();
 
 
 
-		<div class="mb-3 w-100">
+		<div class="mb-3">
 
-			<div class="card-group container gap-3 w-100">
-				<div class="row"></div>
-				<div class="card col-sm w-25">
+			<div class="card-group d-flex gap-3">
+
+				<div class="card">
 					<div class='nomeLoja'>KABUM</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -176,7 +176,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card col-sm w-25">
+				<div class="card">
 					<div class='nomeLoja'>Americanas</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -194,7 +194,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card col-sm w-25">
+				<div class="card">
 					<div class='nomeLoja'>CombatBrothers</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -212,7 +212,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card col-sm w-25">
+				<div class="card">
 					<div class='nomeLoja'>Mercado Livre</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"

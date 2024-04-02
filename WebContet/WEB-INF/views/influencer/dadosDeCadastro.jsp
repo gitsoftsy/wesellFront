@@ -116,128 +116,76 @@ String contextPath = request.getContextPath();
 
 	<main class="main">
 
-		<h1 style='font-weight: 300;' class="mt-2 text-center">Meus Produtos</h1>
-		<div style='margin-bottom: 35px;' class='row'>
-			<div class='col-md-3'>
-				<div class="input-group">
-					<input id="filterInput" type="text" class="form-control inputForm"
-						placeholder="Buscar Produtos" /> <span
-						class="input-group-text icone-pesquisa"><i
-						class="fas fa-search"></i></span>
-				</div>
-			</div>
+		<h1 style='font-weight: 300;' class="mt-2 text-center mt-2">Meus Dados</h1>
+		
+		<form id="formInfluencer" class="d-flex flex-column align-items-center card form p-2 col-10 mx-auto animate__animated ">
+  
 
-			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>Filtre por Loja</option>
-					<option>Loja</option>
-				</select>
-			</div>
+        <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes ">
 
-			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>Categoria</option>
-				</select>
-			</div>
+        		<label for="nome" class="form-label">Nome:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="text" id="nome" name="nome"
+           		 class="form-control inputForm" maxlength="255"  />
+            
+        </div>
+        
+      
 
-			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>SubCategoria</option>
-				</select>
-			</div>
-		</div>
+        <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes">
+        
+            <label for="data" class="form-label">Data de Nascimento:<span class="red">*</span></label> <input required
+            autocomplete="off"  max='3000-01-01' type="date" id="dataNascimento" name="data"
+            class="form-control inputForm" />  
+       
+        </div>
+        
+         <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes">
+         
+          <label for="numero" class="form-label">Número de Contato:<span class="red">*</span></label>
+        		 <input required
+           		 autocomplete="off" type="text" id="numero" name="numero"
+          		  class="form-control inputForm" maxlength="11" placeholder="(00)00000-0000"
+          		  data-mask="(00)00000-0000"/>
+          		  
+          </div>
+
+        <div class="col-md-8 mb-4">
+            <label for="email" class="form-label">E-mail:<span class="red">*</span></label> <input required
+            autocomplete="off" type="email" id="email" name="email"
+            class="form-control inputForm" maxlength="255" />
+        </div>
+
+        <div class="col-md-8 mb-4">
+            <label for="senha" class="form-label">Senha:<span class="red">*</span></label> <input required
+            autocomplete="off" type="password" id="senha" name="senha"
+            class="form-control inputForm" maxlength="255" />
+        </div>
+
+        
+
+        <div id="container-cpf" class="col-md-8 mb-4">
+        	<label for="cpf" class="form-label">CPF:</label>
+            <input  autocomplete="off" type="text" id="cpf" name="cpf"
+            class="form-control inputForm" disabled maxlength="255" placeholder="000.000.000-00" 
+            data-mask="000.000.000-00"/>
+        </div>
+
+        <div id="container-cnpj" class="col-md-8 mb-4 ">
+         	<label for="cnpj" class="form-label">CNPJ:</label>
+            <input  autocomplete="off" type="text" id="cnpj" name="cnpj"
+            class="form-control inputForm" disabled maxlength="255" placeholder="00.000.000/0000-00" 
+            data-mask="00.000.000/0000-00" />
+        </div>
+
+        <div class="col-md-8 mb-4">
+           <button id="enviarFormInfluencer" class="btn btn-success btn-lg btn-block w-100">Salvar</button>
+        </div>
 
 
-
-
-
-
-
-
-		<div class="mb-3 w-100">
-
-			<div class="card-group container gap-3 w-100">
-				<div class="row"></div>
-				<div class="card col-sm w-25">
-					<div class='nomeLoja'>KABUM</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title">Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card col-sm w-25">
-					<div class='nomeLoja'>Americanas</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title"> Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card col-sm w-25">
-					<div class='nomeLoja'>CombatBrothers</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title">Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card col-sm w-25">
-					<div class='nomeLoja'>Mercado Livre</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title"> Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    </form>
+	
 
 	</main>
-
-
-
-
-
 
 	<!--  	<footer >Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer> -->
 	
@@ -260,6 +208,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/meusProdutos.js"></script>
+		src="<%=contextPath%>/resources//assets/js/dadosDeCadastro.js"></script>
 </body>
 </html>

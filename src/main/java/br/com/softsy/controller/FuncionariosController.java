@@ -258,8 +258,24 @@ public class FuncionariosController {
 					
 					return "influencer/meusProdutos";
 				}
+				
+		// mercado
+				
+				@RequestMapping(value = { "mercado" }, method = RequestMethod.GET)
+				public String mercado(HttpSession session, Model model) throws Exception {
+					
+					
+					return "influencer/mercado";
+				}	
 		
-		
+		// mercado
+				
+				@RequestMapping(value = { "dadosDeCadastro" }, method = RequestMethod.GET)
+				public String dadosDeCadastro(HttpSession session, Model model) throws Exception {
+					
+					
+					return "influencer/dadosDeCadastro";
+				}	
 		
 		
 	
