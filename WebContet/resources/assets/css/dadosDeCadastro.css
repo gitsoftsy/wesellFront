@@ -23,11 +23,6 @@ margin-bottom: var(--bs-card-title-spacer-y);
     display: grid;
     border-radius: 5px;
 }
-.card {
-    border-radius: 10px !important;
-    max-width: 25%;
-    min-width: 24%;
-}
 
 .card-group>.card+.card {
     max-width: 24%;

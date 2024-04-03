@@ -53,7 +53,7 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/meusProdutos.css" />
+	href="<%=contextPath%>/resources/assets/css/mercado.css" />
 
 <!-- Animation-css -->
 <link rel="stylesheet"
@@ -120,7 +120,7 @@ String contextPath = request.getContextPath();
 		<div style='margin-bottom: 35px;' class='row'>
 			<div class='col-md-3'>
 				<div class="input-group">
-					<input id="inputBusca" type="text" class="form-control inputForm"
+					<input id="filterInput" type="text" class="form-control inputForm"
 						placeholder="Buscar Produtos" /> <span
 						class="input-group-text icone-pesquisa"><i
 						class="fas fa-search"></i></span>
@@ -128,37 +128,32 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<div class='col-md-3'>
-				<select class='filtros'>
+				<select id='filtroLoja' class='filtros'>
 					<option>Filtre por Loja</option>
-					<option>Loja</option>
+					<option value='americanas'>Americanas</option>
+					<option value='kabum'>Kabum</option>
+					<option value='combatbrothers'>CombatBrothers</option>
+					<option value='mercadoLivre'>Mercado Livre</option>
 				</select>
 			</div>
 
 			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>Categoria</option>
+				<select id="categoria" class='filtros'>
 				</select>
 			</div>
 
 			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>SubCategoria</option>
+				<select id="subCategoria" class='filtros'>
+				
 				</select>
 			</div>
 		</div>
 
+		<div class="mb-3 w-100">
 
-
-
-
-
-
-
-		<div class="mb-3">
-
-			<div class="card-group d-flex gap-3">
-
-				<div class="card">
+			<div class="card-group container gap-3 w-100">
+				<div class="row"></div>
+				<div class="card kabum loja Automotivo Pneu col-sm w-25">
 					<div class='nomeLoja'>KABUM</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -176,7 +171,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card americanas loja col-sm w-25">
 					<div class='nomeLoja'>Americanas</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -194,7 +189,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card col-sm combatbrothers loja w-25">
 					<div class='nomeLoja'>CombatBrothers</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -212,7 +207,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card col-sm mercadoLivre loja w-25">
 					<div class='nomeLoja'>Mercado Livre</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
@@ -229,9 +224,25 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
+				<div class="card kabum loja col-sm w-25">
+					<div class='nomeLoja'>KABUM</div>
+					<img class="card-img-top"
+						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
+						alt="Lubrificante">
+					<div class="card-body">
+						<h5 class="card-title">Lubrificante Automotivo 2</h5>
+						<p class="card-text">
+							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
+							Produto: R$32.94
+						</p>
+						<div class="d-flex gap-2">
+							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
 	</main>
 
 
@@ -260,6 +271,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/meusProdutos.js"></script>
+		src="<%=contextPath%>/resources//assets/js/mercado.js"></script>
 </body>
 </html>

@@ -138,30 +138,22 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>Categoria</option>
+				<select id="categoria" class='filtros'>
 				</select>
 			</div>
 
 			<div class='col-md-3'>
-				<select class='filtros'>
-					<option>SubCategoria</option>
+				<select id="subCategoria" class='filtros'>
+				
 				</select>
 			</div>
 		</div>
-
-
-
-
-
-
-
 
 		<div class="mb-3 w-100">
 
 			<div class="card-group container gap-3 w-100">
 				<div class="row"></div>
-				<div class="card kabum loja col-sm w-25">
+				<div class="card kabum loja Automotivo Pneu col-sm w-25">
 					<div class='nomeLoja'>KABUM</div>
 					<img class="card-img-top"
 						src="<%=contextPath%>/resources/assets/img/oleo.jpg"

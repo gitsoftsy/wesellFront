@@ -53,7 +53,7 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/meusProdutos.css" />
+	href="<%=contextPath%>/resources/assets/css/dadosDeCadastro.css" />
 
 <!-- Animation-css -->
 <link rel="stylesheet"
@@ -118,10 +118,15 @@ String contextPath = request.getContextPath();
 
 		<h1 style='font-weight: 300;' class="mt-2 text-center mt-2">Meus Dados</h1>
 		
-		<form id="formInfluencer" class="d-flex flex-column align-items-center card form p-2 col-10 mx-auto animate__animated ">
+		<div class="d-flex gap-3 justify-content-center mb-2 mt-2">
+			<button id="perfil" class="btn btn-secondary">Perfil</button>
+			<button id="dadosBancario" class="btn btn-secondary">Dados Bancários</button>
+		</div>
+		
+		<form id="formPerfil" class="d-flex flex-column align-items-center card form p-2 col-10 mx-auto animate__animated ">
   
 
-        <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes ">
+        <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes pt-2 ">
 
         		<label for="nome" class="form-label">Nome:<span class="red">*</span></label> 
         		<input required autocomplete="off" type="text" id="nome" name="nome"
@@ -177,6 +182,48 @@ String contextPath = request.getContextPath();
             data-mask="00.000.000/0000-00" />
         </div>
 
+        <div class="col-md-8 mb-4">
+           <button id="enviarFormInfluencer" class="btn btn-success btn-lg btn-block w-100">Salvar</button>
+        </div>
+
+
+    </form>
+    
+    <form id="formBancario" class="d-flex flex-column align-items-center card form p-2 col-10 mx-auto animate__animated d-none">
+  
+		 <div class="col-md-8 mb-4 d-flex flex-column mt-2 ">
+
+        		<label for="banco" class="form-label">Banco:<span class="red">*</span></label> 
+        		
+				<select id="banco" required class="form-select" >
+				</select>
+			
+        </div>
+        
+         <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes pt-2 ">
+
+        		<label for="agencia" class="form-label">Agência:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="agencia" name="agencia"
+           		 class="form-control inputForm" maxlength="255"  />
+            
+        </div>
+        
+          <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes pt-2 ">
+
+        		<label for="conta" class="form-label">Conta:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="conta" name="conta"
+           		 class="form-control inputForm" maxlength="255"  />
+            
+        </div>
+        
+        <div class="col-md-8 mb-4 d-flex flex-column gap-2 container-nomes pt-2 ">
+
+        		<label for="digito" class="form-label">Dígito:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="digito" name="digito"
+           		 class="form-control inputForm" maxlength="255"  />
+            
+        </div>
+        
         <div class="col-md-8 mb-4">
            <button id="enviarFormInfluencer" class="btn btn-success btn-lg btn-block w-100">Salvar</button>
         </div>

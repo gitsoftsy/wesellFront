@@ -4,29 +4,46 @@
         $(this).find(".dropdown").toggleClass("rotate");
       });
     });
-$("#cpfBotao").click(function(){
+    
 
-$("#container-cnpj").addClass("d-none")
-$("#container-cpf").removeClass("d-none")
+var perfil = document.getElementById("perfil")
+var dadosBancario = document.getElementById("dadosBancario")
 
-$("#container-cnpj").prop("required", false)
-$("#container-cpf").prop("required", true)
 
-$("#cpfBotao").addClass("btn-primary").removeClass("btn-secondary")
-$("#cnpjBotao").addClass("btn-secondary").removeClass("btn-primary")
-})
-
-$("#cnpjBotao").click(function(){
+perfil.addEventListener("click", function(){
 	
-
-$("#container-cnpj").removeClass("d-none")
-$("#container-cpf").addClass("d-none")
-
-$("#container-cpf").prop("required", false)
-$("#container-cnpj").prop("required", true)
-
-$("#cnpjBotao").addClass("btn-primary").removeClass("btn-secondary")
-$("#cpfBotao").addClass("btn-secondary").removeClass("btn-primary")
-
+		$("#formBancario").addClass("d-none")
+		$("#formPerfil").removeClass("d-none")
+	
 })
 
+dadosBancario.addEventListener("click", function(){
+
+		$("#formPerfil").addClass("d-none")
+		$("#formBancario").removeClass("d-none")
+		
+})
+
+$.ajax({
+
+		url: url_base + '/bancos',
+		type: "get",
+		contentType: "application/json; charset=utf-8",
+		async: false,
+	}).done(function(data){
+		
+		 $('#banco').append($('<option>', {
+				value: "Selecione um Banco",
+				text : "Selecione um Banco", }));
+		
+		
+		$.each(data, function(index, item) {
+				
+               		 $('#banco').append($('<option>', { 
+                     value: item.nomeBanco,
+                     id: item.idBanco,
+                     text : item.nomeBanco ,
+                     name : item.nomeBanco
+                 }));
+           })
+	})
