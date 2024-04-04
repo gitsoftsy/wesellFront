@@ -268,14 +268,23 @@ public class FuncionariosController {
 					return "influencer/mercado";
 				}	
 		
-		// mercado
+		// dadosDeCadastro
 				
 				@RequestMapping(value = { "dadosDeCadastro" }, method = RequestMethod.GET)
 				public String dadosDeCadastro(HttpSession session, Model model) throws Exception {
 					
 					
 					return "influencer/dadosDeCadastro";
-				}	
+				}
+				
+		// dadosDeCadastro
+				
+				@RequestMapping(value = { "dadosBancarios" }, method = RequestMethod.GET)
+				public String dadosBancarios(HttpSession session, Model model) throws Exception {
+					
+					
+					return "influencer/dadosBancarios";
+				}
 		
 		
 	

@@ -95,7 +95,49 @@
 		}	
 	};
 	
+		const copiarLinkButton = document.querySelectorAll(".linkDivulgacao");
+	const meuLinkInput = document.getElementById("meuLink");
+
+copiarLinkButton.forEach(button => {
+	button.addEventListener("click", function() {
+  const linkText = meuLinkInput.value;
+
+  if (!navigator.clipboard) {
+     Toastify({
+				text: "Seu navegador não suporta a API de Área de Transferência.",
+				duration: 2000,
+				position: "center",
+				backgroundColor: "red",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+    return;
+  }
+
+  navigator.clipboard.writeText(linkText)
+    .then(function() {
+     Toastify({
+				text: "Link copiado para a área de transferência",
+				duration: 2000,
+				position: "center",
+				backgroundColor: "green",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+    })
+    .catch(function() {
+       Toastify({
+				text: "Falha ao copiar o link",
+				duration: 2000,
+				position: "center",
+				backgroundColor: "red",
+				close: true,
+				className: "Toastify__toast--custom"
+			}).showToast();
+    });
+});
 	
+	})
 	
 	
     

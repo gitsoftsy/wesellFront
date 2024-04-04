@@ -70,7 +70,7 @@ String contextPath = request.getContextPath();
 		</div>
 	</div>
 
-	<header class="d-flex flex-column menuPrincipal w-100  ">
+	<header class="d-flex flex-column menuPrincipal   ">
 
 		<div
 			class="d-flex justify-content-between align-items-center shadowNovo menu-alto">
@@ -90,17 +90,17 @@ String contextPath = request.getContextPath();
 		
 		 <nav class="menu">
         <div class="item">
-          <a class="sub-btn d-flex align-items-center"><i class="fa-solid fa-cube icone-menu"></i>Usuário
-            <i class="fas fa-angle-right dropdown"></i
-			></a>
+          <a class="sub-btn d-flex align-items-center" id="usuarioNome"><i class="fa-solid fa-cube icone-menu"></i>Usuário
+            <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
-            <a href="dadosDeCadastro" class="sub-item d-flex align-items-center"><i class="fa-solid fa-id-card icone-menu"></i>Meus dados</a>
+            <a href="dadosDeCadastro" class="sub-item d-flex align-items-center"><i class="fa-solid fa-id-card icone-menu"></i>Dados Pessoais</a>
+             <a href="dadosBancarios" class="sub-item d-flex align-items-center"><i class="fa-solid fa-money-check icone-menu"></i>Dados Bancários</a>
 			<a href="meusProdutos" class="sub-item"><i class="fa-brands fa-dropbox icone-menu"></i>Meus Produtos</a>
           </div>
         </div> 
       	<div class="item">
           <a class="sub-btn d-flex align-items-center"><i class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação
-            <i class="fas fa-angle-right dropdown"></i></a>
+           <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
              <a href="mercado" class="sub-item d-flex align-items-center"><i class="fa-solid fa-hand-holding-dollar icone-menu"></i>Mercado</a>
           </div>
@@ -165,7 +165,8 @@ String contextPath = request.getContextPath();
 							Produto: R$32.94
 						</p>
 						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+						<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
+							<input disabled id="meuLink" class="d-none" value="https://www.example.com">
 							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
 						</div>
 					</div>
@@ -183,7 +184,7 @@ String contextPath = request.getContextPath();
 							Produto: R$32.94
 						</p>
 						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
 							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
 						</div>
 					</div>
@@ -201,7 +202,7 @@ String contextPath = request.getContextPath();
 							Produto: R$32.94
 						</p>
 						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
 							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
 						</div>
 					</div>
@@ -219,7 +220,7 @@ String contextPath = request.getContextPath();
 							Produto: R$32.94
 						</p>
 						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
 							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
 						</div>
 					</div>
@@ -236,7 +237,7 @@ String contextPath = request.getContextPath();
 							Produto: R$32.94
 						</p>
 						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard">Link de Divulgação</button>
+							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
 							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
 						</div>
 					</div>

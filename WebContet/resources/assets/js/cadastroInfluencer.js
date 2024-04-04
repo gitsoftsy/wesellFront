@@ -307,7 +307,7 @@ dataNascimento.addEventListener("blur", function(){
 			}).showToast();
 		
 		setTimeout(function() {
-				window.location.href = 'perguntaInfluencer';
+				window.location.href = 'meusProdutos';
 			}, 3000);
 		
 		

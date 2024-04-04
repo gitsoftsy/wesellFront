@@ -6,24 +6,6 @@
     });
     
 
-var perfil = document.getElementById("perfil")
-var dadosBancario = document.getElementById("dadosBancario")
-
-
-perfil.addEventListener("click", function(){
-	
-		$("#formBancario").addClass("d-none")
-		$("#formPerfil").removeClass("d-none")
-	
-})
-
-dadosBancario.addEventListener("click", function(){
-
-		$("#formPerfil").addClass("d-none")
-		$("#formBancario").removeClass("d-none")
-		
-})
-
 $.ajax({
 
 		url: url_base + '/bancos',

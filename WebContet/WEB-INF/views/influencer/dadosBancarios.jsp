@@ -115,75 +115,58 @@ String contextPath = request.getContextPath();
 
 	<main class="main">
 
-		<h1 style='font-weight: 300;' class="mt-2 text-center mt-5">Dados Pessoais</h1>
-		
-		<form id="formPerfil" class="d-flex flex-column align-items-center card form p-2 mb-3 col-8 mx-auto animate__animated ">
+		<h1 style='font-weight: 300;' class="mt-2 text-center mt-5">Dados Bancários</h1>
+    
+    <form id="formBancario" class="d-flex flex-column align-items-center card form p-2 col-8 mx-auto animate__animated">
   
-        <div class="col-md-10 mb-4 d-flex flex-column gap-2 container-nomes pt-2 ">
+		 <div class="col-md-10 mb-4 d-flex flex-column mt-2 ">
 
-        		<label for="nome" class="form-label">Nome:<span class="red">*</span></label> 
-        		<input required autocomplete="off" type="text" id="nome" name="nome"
-           		 class="form-control inputForm" maxlength="255"  />
+        		<label for="banco" class="form-label">Banco:<span class="red">*</span></label> 
+        		
+				<select id="banco" required class="form-select" >
+				</select>
+			
+        </div>
+        
+         <div class="col-md-10 mb-4 d-flex gap-2 container-nomes pt-2 ">
+         
+  			<div class="d-flex flex-column col-md-6">
+        		<label for="agencia" class="form-label">Agência:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="agencia" name="agencia"
+           		 class="form-control inputForm" maxlength="4"  />
+           	</div>
+           		 
+           	<div class="d-flex flex-column col-md-6">
+           		 	<label for="digitoAgencia" class="form-label">Dígito:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="digitoAgencia" name="digitoAgencia"
+           		 class="form-control inputForm" maxlength="3"  />
+           	</div>
             
         </div>
-
-        <div class="col-md-10 mb-4 d-flex gap-2 container-nomes">
         
-        <div class="d-flex flex-column col-md-6">
-            <label for="data" class="form-label">Data de Nascimento:<span class="red">*</span></label> <input required
-            autocomplete="off"  max='3000-01-01' type="date" id="dataNascimento" name="data"
-            class="form-control inputForm" />  
-            </div>
-            <div class="d-flex flex-column col-md-6">
-             <label for="numero" class="form-label">Número de Contato:<span class="red">*</span></label>
-        		 <input required
-           		 autocomplete="off" type="text" id="numero" name="numero"
-          		  class="form-control inputForm" maxlength="11" placeholder="(00)00000-0000"
-          		  data-mask="(00)00000-0000"/>
-       		</div>
-        </div>
-        
-
-        <div class="col-md-10 mb-4 d-flex gap-2 container-nomes">
-        
-          <div class="d-flex flex-column col-md-6">
-            <label for="email" class="form-label">E-mail:<span class="red">*</span></label> <input required
-            autocomplete="off" type="email" id="email" name="email"
-            class="form-control inputForm" maxlength="255" />
-            </div>
-              <div class="d-flex flex-column col-md-6">
-                <label for="senha" class="form-label">Senha:<span class="red">*</span></label> <input required
-            autocomplete="off" type="password" id="senha" name="senha"
-            class="form-control inputForm" maxlength="255" />
-            </div>
-        </div>
-
-
-        <div id="container-cpf" class="col-md-10 mb-4 d-flex gap-2 container-nomes">
-        
-          <div class="d-flex flex-column col-md-6">
-        	<label for="cpf" class="form-label">CPF:</label>
-            <input  autocomplete="off" type="text" id="cpf" name="cpf"
-            class="form-control inputForm" disabled maxlength="255" placeholder="000.000.000-00" 
-            data-mask="000.000.000-00"/>
-            </div>
-            
-              <div class="d-flex flex-column col-md-6">
-            	<label for="cnpj" class="form-label">CNPJ:</label>
-            <input  autocomplete="off" type="text" id="cnpj" name="cnpj"
-            class="form-control inputForm" disabled maxlength="255" placeholder="00.000.000/0000-00" 
-            data-mask="00.000.000/0000-00" />
-            </div>
+          <div class="col-md-10 mb-4 d-flex  gap-2 container-nomes pt-2 ">
+          
+			<div class="d-flex flex-column col-md-6">
+        		<label for="conta" class="form-label">Conta:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="conta" name="conta"
+           		 class="form-control inputForm" maxlength="4"  />
+           	</div>
+           	
+           		<div class="d-flex flex-column col-md-6">
+           		 	<label for="digitoConta" class="form-label">Dígito:<span class="red">*</span></label> 
+        		<input required autocomplete="off" type="number" id="digitoConta" name="digitoConta"
+           		 class="form-control inputForm" maxlength="3"  />
+           		 </div>
             
         </div>
-
-       
-
+        
         <div class="col-md-6 mb-4">
            <button id="enviarFormInfluencer" class="btn btn-success btn-lg btn-block w-100">Salvar</button>
         </div>
 
+
     </form>
+	
 
 	</main>
 

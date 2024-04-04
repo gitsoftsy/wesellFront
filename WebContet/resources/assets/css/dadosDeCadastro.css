@@ -4,10 +4,12 @@ body{
 
 .icone-menu{
 	font-size: 25px;
+	color: black;
 }
 
 .logo-menu{
-	width:150px
+	width:200px;
+	
 }
 
 .card-title{
@@ -65,6 +67,7 @@ margin-top: 15px;
 
 .menuPrincipal{
 	position: absolute;
+	width:400px
 }
 
 .colorPreto{
@@ -81,8 +84,8 @@ margin-top: 15px;
     z-index: 9999;
     position: fixed;
     width: 100%;
-    
-    padding: 0 20px;
+    padding-top:10px;
+    padding: 10px 20px 10px 10px;
 }
 
 .shadowNovo {
@@ -92,7 +95,7 @@ margin-top: 15px;
 .menu-baixo{
 	width: 200px;
     background-color: white;
-    padding-top: 90px !important;
+    padding-top: 110px !important;
     padding-bottom: 10px;
     position: fixed;
   	
@@ -135,9 +138,15 @@ footer{
     display: block;
     padding: 14px 15px;
     transition: all 0.4s ease-in-out;
+    border-bottom: #c9c9c9 solid 2px
+  }
+  
+  .ativaSub{
+  
+  border: none !important;
   }
   .abracaMenu .menu .item a:hover {
-    background-color:#cfcfcf ;
+    background-color:#f0f0f0 ;
   }
    
   .abracaMenu .menu .item i {
@@ -159,59 +168,7 @@ footer{
     padding-left: 20px;
   }
 
-/* modal imagens */
 
-.carrossel {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%; /* Ajuste conforme necessário */
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content: center;
-}
-
-.imagens img {
-  width: 500px;
-  display: none;
-}
-
-.imagem-ativa {
-  display: block !important;
-}
-
-.anterior, .proximo {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-.anterior {
-  left: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.proximo {
-  right: 0;
-  border-radius: 0 3px 3px 0;
-}
-
-.anterior:hover, .proximo:hover {
-  background-color: rgba(0,0,0,0.8);
-}
 
 /* load */
 
@@ -325,89 +282,13 @@ a{
 	cursor:pointer;
 }
 
-.modal{
-	margin-top: 10%;
-}
 
-.Toastify__toast--custom {
-  background: rgb(41, 165, 51); /* Cor verde mais atrativa */
-  color: #fff;
-  border-radius: 12px; /* Borda arredondada */
-  font-size: 16px; /* Tamanho da fonte */
-  padding: 20px; /* Espaçamento interno */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Sombra */
-}
-
-.modal-cand {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-content-cand {
-	position: absolute;
-	width: auto;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: #fff;
-	padding: 30px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.modal-content-cand h5 {
-	margin: 2em 0.5em;
-}
-
-.modal-content-cand button {
-	margin-top: 2em;
-	margin-right: 0.5em;
-	border-radius: 0;
-	padding: 0.6em 0.8em;
-	background-color: #0B1126;
-	box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
-	transition: box-shadow 0.3s;
-}
-
-.modal-content-cand button:hover {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.tableVertical {
-	margin-top: 2.5em;
-	min-width: 700px;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-.tableVertical th {
-	padding: 10px;
-	text-align: left;
-	width: 220px;
-}
-
-.tableVertical td {
-	padding: 10px;
-}
-
-.close {
-	font-size: 28px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 10px 15px;
-	cursor: pointer;
-}
 
 .abracaMenu {
 	position: fixed;
 	left: 0;
 	height: 100%;
-	width: 200px;
+	width: 230px;
 	background-color: white;
 	min-height: 100vh;
 	top: 0;
