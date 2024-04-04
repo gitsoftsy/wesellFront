@@ -89,7 +89,7 @@ String contextPath = request.getContextPath();
 		
 		 <nav class="menu">
         <div class="item">
-          <a class="sub-btn d-flex align-items-center ativaSub "><i class="fa-solid fa-cube icone-menu"></i>Usuário
+          <a class="sub-btn d-flex align-items-center  "><i class="fa-solid fa-cube icone-menu"></i>Usuário
             <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
             <a href="dadosDeCadastro" class="sub-item d-flex align-items-center">Dados Pessoais</a>
@@ -98,7 +98,7 @@ String contextPath = request.getContextPath();
           </div>
         </div> 
       	<div class="item">
-          <a class="sub-btn d-flex align-items-center ativaSub"><i class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação
+          <a class="sub-btn d-flex align-items-center "><i class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação
            <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
              <a href="mercado" class="sub-item d-flex align-items-center">Mercado</a>
@@ -106,12 +106,13 @@ String contextPath = request.getContextPath();
         </div>
       </nav>
       
-      <a href="#" class="d-flex align-items-center gap-3 text-decoration-none colorPreto">
+      <a href="loginInfluencer" class="d-flex align-items-center gap-3 text-decoration-none colorPreto">
       <i class="fa-solid fa-arrow-left icone-menu"></i> Sair </a>
       
 		</div>			
 
 	</header>
+	
 
 	<main class="main">
 

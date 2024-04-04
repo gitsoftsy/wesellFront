@@ -5,10 +5,10 @@
       });
     });
     
-    var user = localStorage.getItem("usuarioVendedor")
-	var vendedor = JSON.parse(user);
+  //  var user = localStorage.getItem("usuarioVendedor")
+	//var vendedor = JSON.parse(user);
 	
-	$("#usuarioNome").text(vendedor.nome)
+	//$("#usuarioNome").text(vendedor.nome)
     
       const filterInput = document.getElementById('filterInput');
     const cards = document.querySelectorAll('.card');

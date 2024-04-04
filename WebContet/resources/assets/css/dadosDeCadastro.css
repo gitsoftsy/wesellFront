@@ -138,7 +138,7 @@ footer{
     display: block;
     padding: 14px 15px;
     transition: all 0.4s ease-in-out;
-    border-bottom: #c9c9c9 solid 2px
+    border-bottom: #ccc solid 1px
   }
   
   .ativaSub{

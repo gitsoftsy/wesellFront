@@ -53,7 +53,7 @@ String contextPath = request.getContextPath();
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/cadastroInfluencer.css" />
+	href="<%=contextPath%>/resources/assets/css/loginInfluencer.css" />
 
 <!-- Animation-css -->
 <link rel="stylesheet"
@@ -77,7 +77,7 @@ String contextPath = request.getContextPath();
 	<div style='margin-left: 5%;' class='container '>
 		<div class='row'>
 			<div class='col-md-12 '>
-				<img class='logoInf' width="50%" src="resources/assets/img/wesell_vertical_azul.png" alt="logo">
+				<img class='logoInf' width="100" src="resources/assets/img/wesell_vertical_azul.png" alt="logo">
 	    		<h1 class='h1Inf quebra-texto'>Nunca foi tão fácil transformar o que você sabe em um negócio digital.</h1>
 				<p>Vamos te ajudar desde os primeiros passos.<br> Cadastre-se grátis.</p>
 			</div>
@@ -87,7 +87,7 @@ String contextPath = request.getContextPath();
     
 </section>
 
-<section class="pt-5 bg-light d-flex flex-column justify-content-center  bg-gradient segundaSection h-100 espaço-login">
+<section class="pt-5 bg-light d-flex flex-column justify-content-center  bg-gradient segundaSection h-100">
 
     <form id="formInfor" class="d-flex flex-column justify-content-center align-items-center h-100 ">
     
@@ -150,6 +150,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/LoginInfluencer.js"></script>
+		src="<%=contextPath%>/resources//assets/js/loginInfluencer.js"></script>
 </body>
 </html>

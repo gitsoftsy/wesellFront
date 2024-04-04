@@ -76,7 +76,7 @@ String contextPath = request.getContextPath();
 	<div style='margin-left: 5%;' class='container'>
 		<div class='row'>
 			<div class='col-md-12'>
-				<img class='logoInf' width="25%" src="resources/assets/img/logo.svg" alt="logo">
+				<img class='logoInf' width="100" src="resources/assets/img/wesell_vertical_azul.png" alt="logo">
 	    		<h1 class='h1Inf'>Nunca foi tão fácil transformar o que você sabe em um negócio digital.</h1>
 				<p>Vamos te ajudar desde os primeiros passos.<br> Cadastre-se grátis.</p>
 			</div>

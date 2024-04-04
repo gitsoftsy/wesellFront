@@ -75,12 +75,11 @@ String contextPath = request.getContextPath();
 		<div
 			class="d-flex justify-content-between align-items-center shadowNovo menu-alto">
 
-			<img alt="logo" src="<%=contextPath%>/resources/assets/img/logo.svg"
+			<img alt="logo" src="<%=contextPath%>/resources/assets/img/wesell_horizontal_azul.png"
 				class="logo-menu">
 			<div class="p-4 d-flex gap-3">
 
-				<a href="#"><i class="fa-solid fa-bell icone-menu"></i></a> <a
-					href="dadosDeCadastro"><i class="fa-solid fa-user icone-menu"></i></a>
+				<a href="#"><i class="fa-solid fa-bell icone-menu icone-menu"></i></a>
 
 			</div>
 
@@ -90,30 +89,30 @@ String contextPath = request.getContextPath();
 		
 		 <nav class="menu">
         <div class="item">
-          <a class="sub-btn d-flex align-items-center" id="usuarioNome"><i class="fa-solid fa-cube icone-menu"></i>Usuário
+          <a class="sub-btn d-flex align-items-center ativaSub "><i class="fa-solid fa-cube icone-menu"></i>Usuário
             <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
-            <a href="dadosDeCadastro" class="sub-item d-flex align-items-center"><i class="fa-solid fa-id-card icone-menu"></i>Dados Pessoais</a>
-             <a href="dadosBancarios" class="sub-item d-flex align-items-center"><i class="fa-solid fa-money-check icone-menu"></i>Dados Bancários</a>
-			<a href="meusProdutos" class="sub-item"><i class="fa-brands fa-dropbox icone-menu"></i>Meus Produtos</a>
+            <a href="dadosDeCadastro" class="sub-item d-flex align-items-center">Dados Pessoais</a>
+             <a href="dadosBancarios" class="sub-item d-flex align-items-center">Dados Bancários</a>
+			<a href="meusProdutos" class="sub-item">Meus Produtos</a>
           </div>
         </div> 
       	<div class="item">
-          <a class="sub-btn d-flex align-items-center"><i class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação
+          <a class="sub-btn d-flex align-items-center ativaSub"><i class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação
            <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
-             <a href="mercado" class="sub-item d-flex align-items-center"><i class="fa-solid fa-hand-holding-dollar icone-menu"></i>Mercado</a>
+             <a href="mercado" class="sub-item d-flex align-items-center">Mercado</a>
           </div>
         </div>
       </nav>
       
-      <a href="#" class="d-flex align-items-center gap-3 text-decoration-none colorPreto">
+      <a href="loginInfluencer" class="d-flex align-items-center gap-3 text-decoration-none colorPreto">
       <i class="fa-solid fa-arrow-left icone-menu"></i> Sair </a>
       
 		</div>			
 
 	</header>
-
+	
 	<main class="main">
 
 		<h1 style='font-weight: 300;' class="mt-2 text-center">Meus Produtos</h1>
@@ -172,76 +171,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="card americanas loja col-sm w-25">
-					<div class='nomeLoja'>Americanas</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title"> Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card col-sm combatbrothers loja w-25">
-					<div class='nomeLoja'>CombatBrothers</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title">Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card col-sm mercadoLivre loja w-25">
-					<div class='nomeLoja'>Mercado Livre</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title"> Lubrificante Automotivo</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
-				<div class="card kabum loja col-sm w-25">
-					<div class='nomeLoja'>KABUM</div>
-					<img class="card-img-top"
-						src="<%=contextPath%>/resources/assets/img/oleo.jpg"
-						alt="Lubrificante">
-					<div class="card-body">
-						<h5 class="card-title">Lubrificante Automotivo 2</h5>
-						<p class="card-text">
-							Comissão de até: <span class='spanPreco'>R$03.99 </span> Valor do
-							Produto: R$32.94
-						</p>
-						<div class="d-flex gap-2">
-							<button type="button" class="btn btn-success botaoCard linkDivulgacao">Link de Divulgação</button>
-							<button type="button" class="btn btn-outline-danger botaoCard">Desativar</button>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 

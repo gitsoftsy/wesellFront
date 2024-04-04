@@ -4,7 +4,7 @@
 
 
 
-$("#form-login").submit(function(e) {
+$("#formInfor").submit(function(e) {
 	e.preventDefault();
 	
 	var objeto = {
