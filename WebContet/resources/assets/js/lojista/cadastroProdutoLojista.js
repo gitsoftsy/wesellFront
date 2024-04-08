@@ -394,19 +394,16 @@ $(document).ready(function() {
 			});
 			
 			$.ajax({
-			url: url_base + "/imagens/produto/" + idProduto,
+			url: url_base + "/imagens/" + 17,
 			type: 'GET',
 			async: false,
 		}).done(function(data){
 			
-			imagem = data[0].imagem
+			imagem = data.imagem
+			console.log(data.imagem)
 			
 			$("#img0").attr("src", imagem)
-			
-			
-			
-			
-		})
+			})
 	}
 
 });

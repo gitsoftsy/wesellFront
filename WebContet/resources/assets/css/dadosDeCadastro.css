@@ -135,8 +135,9 @@ footer{
     color: black;
     font-size: 16px;
     text-decoration: none;
-    display: block;
-    padding: 14px 15px;
+    display:flex;
+    align-items:center;
+    padding: 10px 0px ;
     transition: all 0.4s ease-in-out;
     border-bottom: #ccc solid 1px
   }

@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex" />
 
-<title>Centro Universitário Sumaré</title>
+<title>Wesell</title>
 <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -123,7 +123,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-    <script src="<%=contextPath%>/resources/assets/js/loginFuncionario.js"></script>
+    <script src="<%=contextPath%>/resources/assets/js/login/loginFuncionario.js"></script>
   
   
    

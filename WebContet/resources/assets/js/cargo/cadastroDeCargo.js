@@ -1,42 +1,34 @@
-const botaoDesativa = document.querySelector('#teste');
-const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
 var edição = ""
-const idCategoria = params.get("id");
+const idCargo = params.get("id");
 
-botaoDesativa.addEventListener('click', () => {
-	elemento.classList.add('animar-sair');
-	elemento.classList.remove('animar-entrar');
 
+window.addEventListener("load", function() {
+    const loader = document.querySelector(".bg-loading");
+    loader.parentElement.removeChild(loader);
+    $(".bg-loading").addClass("none");
 });
-
-botaoAtiva.addEventListener('click', () => {
-	elemento.classList.add('animar-entrar');
-	elemento.classList.remove('animar-sair');
-});
-
-
 
 
 function cadastrar() {
 
 	var objeto = {
-		"categoria": $('#descricaoCategoria').val(),
+		"cargo": $('#cargo').val(),
 	};
 
 	$.ajax({
 
-		url: url_base + '/categorias',
+		url: url_base + '/cargos',
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-			text: e.responseJSON.error,
+			text: e.responseJSON.message,
 			duration: 2000,
 			position: "center",
-			backgroundColor: "red",
 			close: true,
+			backgroundColor: "red",
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
@@ -51,8 +43,8 @@ function cadastrar() {
 			className: "Toastify__toast--custom"
 		}).showToast();
 		setTimeout(function() {
-			window.location.href = 'listarCategoria';
-		}, 2000);
+			window.location.href = 'listarCargos';
+		}, 1000);
 	})
 }
 
@@ -60,23 +52,23 @@ function editar() {
 
 	var objetoEdit = {
 
-		"idCategoria": idCategoria,
-		"categoria": $('#descricaoCategoria').val(),
+		"idCargo": idCargo,
+		"cargo": $('#cargo').val(),
 
 	}
 
 	$.ajax({
-		url: url_base + "/categorias",
+		url: url_base + "/cargos",
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-			text: e.responseJSON.error,
+			text: e.responseJSON.message,
 			duration: 2000,
 			position: "center",
-			backgroundColor: "red",
 			close: true,
+			backgroundColor: "red",
 			className: "Toastify__toast--custom"
 		}).showToast();
 		console.log(e.responseJSON)
@@ -90,34 +82,30 @@ function editar() {
 				className: "Toastify__toast--custom"
 			}).showToast();
 			setTimeout(function() {
-				window.location.href = 'listarCategoria';
-			}, 2000);
+				window.location.href = 'listarCargos';
+			}, 1000);
 		})
+		
+
 }
 
-
-
-
-
 $(document).ready(function() {
-
 	
 
-
-	if (idCategoria == undefined) {
+	if (idCargo == undefined) {
 
 	} else {
 		
-		$("#tituloPagina, #tituloForm").text("Editar Categoria")
+		$("#tituloPagina, #tituloForm").text("Editar Cargo")
 		$("#btn-submit").text("Editar")
 		
 		$.ajax({
-			url: url_base + "/categorias/" + idCategoria,
+			url: url_base + "/cargos/" + idCargo,
 			type: "GET",
 			async: false,
 		})
 			.done(function(data) {
-				$('#descricaoCategoria').val(data.categoria);
+				$('#cargo').val(data.cargo);
 				edição = "sim"
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
@@ -130,8 +118,8 @@ $(document).ready(function() {
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
 	if (edição == "sim") {
-
-		editar()
+		
+        editar()
 	} else {
 		cadastrar()
 	}

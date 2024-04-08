@@ -14,7 +14,7 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
-<title>Centro Universitário Sumaré</title>
+<title>Wesell</title>
 
 <!-- Bootstrap -->
 <link
@@ -89,7 +89,7 @@ String contextPath = request.getContextPath();
 		
 		 <nav class="menu">
         <div class="item">
-          <a class="sub-btn d-flex align-items-center "><i class="fa-solid fa-cube icone-menu"></i>Usuário
+          <a  class="sub-btn d-flex  "><i class="fa-solid fa-cube icone-menu"></i><div id="usuarioNome"></div>
             <i class="fas fa-angle-right dropdown"></i> </a>
           <div class="sub-menu">
             <a href="dadosDeCadastro" class="sub-item d-flex align-items-center">Dados Pessoais</a>
@@ -209,6 +209,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/dadosDeCadastro.js"></script>
+		src="<%=contextPath%>/resources//assets/js/influencer/dadosDeCadastro.js"></script>
 </body>
 </html>

@@ -82,8 +82,12 @@ function cadastrarEmpresa() {
 		error: function(e) {
 		var erro
 			
-			if( e.responseJSON.message == undefined){
-				erro = "erro"
+			if( e.responseJSON.erro == undefined){
+				
+				if(e.responseJSON[0].mensagem == undefined){
+					erro = "erro"
+				}else {erro = e.responseJSON[0].mensagem}
+				
 			} else {erro = e.responseJSON.message}
 			
 			Toastify({

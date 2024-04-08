@@ -14,7 +14,7 @@ String contextPath = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 
-<title>Centro Universitário Sumaré</title>
+<title>Wesell</title>
 
 <!-- Bootstrap -->
 <link
@@ -214,7 +214,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources//assets/js/lojaLojista.js"></script>
+		src="<%=contextPath%>/resources//assets/js/lojista/lojaLojista.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
 	<script

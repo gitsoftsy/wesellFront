@@ -115,6 +115,24 @@ public class FuncionariosController {
 		return "lojista/cadastroProdutoLojista";
 	}
 	
+	// cadastro Empresa
+	
+	@RequestMapping(value = { "cadastroEmpresa" }, method = RequestMethod.GET)
+	public String cadastroEmpresa(HttpSession session, Model model) throws Exception {
+		
+		return "lojista/cadastroEmpresa";
+	}
+	
+	// cadastrado com sucesso
+	
+	@RequestMapping(value = { "cadastroSucesso" }, method = RequestMethod.GET)
+	public String cadastroSucesso(HttpSession session, Model model) throws Exception {
+		
+		
+		return "lojista/cadastroSucesso";
+	}
+	
+	
 	//categorias ------------------------------------------------------------------------------- //
 	
 	@RequestMapping(value = { "cadastroDeCategoria" }, method = RequestMethod.GET)
@@ -203,27 +221,8 @@ public class FuncionariosController {
 			return "colaboradores/listarColaboradores";
 		}
 		
-		// fase 2 
-		
-		// cadastro Empresa
-		
-		@RequestMapping(value = { "cadastroEmpresa" }, method = RequestMethod.GET)
-		public String cadastroEmpresa(HttpSession session, Model model) throws Exception {
-			
-			return "fase2/cadastroEmpresa";
-		}
-		
-		// cadastrado com sucesso
-		
-		@RequestMapping(value = { "cadastroSucesso" }, method = RequestMethod.GET)
-		public String cadastroSucesso(HttpSession session, Model model) throws Exception {
-			
-			
-			return "fase2/cadastroSucesso";
-		}
-		
 		// influencer Cadastro
-		
+			
 		@RequestMapping(value = { "cadastroInfluencer" }, method = RequestMethod.GET)
 		public String cadastroInfluencer(HttpSession session, Model model) throws Exception {
 			

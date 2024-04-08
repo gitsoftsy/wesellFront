@@ -21,17 +21,16 @@ $("#formInfor").submit(function(e) {
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
 			error: function(e) {
-				
 			Toastify({
-			text:  e.responseJSON.message,
+			text: e.responseJSON,
 			duration: 2000,
 			position: "center",
+			backgroundColor: "red",
 			close: true,
 			className: "Toastify__toast--custom"
 		}).showToast();
-		
 		console.log(e.responseJSON)
-		
+
 		}
 		})
 		.done(function(data){
