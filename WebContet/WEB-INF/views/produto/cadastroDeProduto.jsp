@@ -63,6 +63,7 @@ String contextPath = request.getContextPath();
 <body>
 
 	<header id="menu" > </header>
+	
 
 	<div class="bg-loading">
 		<div class="spinner">
@@ -161,15 +162,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 					<button class="btn btn-primary btn-register none" id="abrirModalImg" >Ver imagens</button>
 					</div>
-					<div id="carrossel" class="carrossel none">
-			        <div class="imagens">
-			          <img id="img0" src="" alt="Imagem 1" class="imagem-ativa">
-			          <img id="img1" src="" alt="Imagem 2">
-			          <img id="img2" src="" alt="Imagem 3">
-			        </div>
-			        <button class="anterior" onclick="mudarImagem(-1)">❮</button>
-			        <button class="proximo" onclick="mudarImagem(1)">❯</button>
-			      </div>
+				
 				</div>
 
 				<div class="row mb-2">
@@ -180,7 +173,16 @@ String contextPath = request.getContextPath();
 				</div>
 			</form>
 			
-			
+				<div id="carrossel" class="carrossel none">
+			        <div class="imagens">
+			          <img id="img0" src="" alt="Imagem 1" class="imagem-ativa">
+			          <img id="img1" src="" alt="Imagem 2">
+			          <img id="img2" src="" alt="Imagem 3">
+			        </div>
+			        <button class="anterior btn" onclick="mudarImagem(-1)">❮</button>
+			        <button class="proximo btn" onclick="mudarImagem(1)">❯</button>
+			        <button class="btn btn-info sairModal" onclick="sairModal()">Sair</button>
+			      </div>
 			
 		</section>
 	</main>
@@ -203,6 +205,6 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
-		src="<%=contextPath%>/resources//assets/js/produto/cadastroDeProduto.js"></script>
+		src="<%=contextPath%>/resources/assets/js/produto/cadastroDeProduto.js"></script>
 </body>
 </html>

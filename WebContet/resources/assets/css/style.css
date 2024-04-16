@@ -76,7 +76,7 @@ body {
   bottom: 0;
   width: 100%; /* Ajuste conforme necessário */
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,8 @@ body {
 }
 
 .imagens img {
-  width: 500px;
+  width: 900px;
+  height:500px;
   display: none;
 }
 
@@ -118,8 +119,17 @@ body {
   border-radius: 0 3px 3px 0;
 }
 
-.anterior:hover, .proximo:hover {
-  background-color: rgba(0,0,0,0.8);
+.sairModal{
+	position: fixed;
+	bottom:20px;
+	right: 20px;
+	color: white;
+	width: 100px;
+	
+}
+
+.sairModal:hover{
+	color: white;
 }
 
 /* load */

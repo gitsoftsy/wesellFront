@@ -144,7 +144,7 @@ String contextPath = request.getContextPath();
     <li id="next" class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
 </nav>
-<button id="exportar-excel" class="btn btn-primary">Exportar</button>
+
 		</section>
 	</main>
 

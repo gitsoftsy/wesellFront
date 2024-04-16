@@ -41,23 +41,6 @@ document.getElementById('comissao').addEventListener('input', function(e) {
     e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
 });
 
-
-
-
-const button = document.querySelector("#btn-submit");
-
-function mostraModalFeedback(tipo, mensagem) {
-	if (tipo == "erro") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-xmark modal-erro'></i>")
-		$("#openModalBtn").click()
-	} else if (tipo == "sucesso") {
-		$('#exampleModalLabel').text(mensagem)
-		$('#icone-modal').replaceWith("<i id='icone-modal' class='fa-solid fa-check circulo-border'></i>")
-		$("#openModalBtn").click()
-	}
-}
-
 	// Modal imagens
 		
 		let indiceAtual = 0;
@@ -79,20 +62,18 @@ function mostraModalFeedback(tipo, mensagem) {
 	botao.addEventListener("click", function(e){
 		  e.preventDefault(e)
 		  
-			$("#carrossel").removeClass("none")	
+			$("#carrossel").removeClass("none")			
 			
-			var carrossel = document.getElementById("carrossel")
-			var imagem = document.getElementsByClassName("imagem-ativa")
-			setTimeout(function(){
-			document.addEventListener("click", function(event){
-				e.preventDefault(e)
-				
-				if(carrossel.contains(event.target)){
-					
-				} else { $("#carrossel").addClass("none") }
-				});	
-			}, 1000)
 	})
+	
+	function sairModal(){
+		
+		$("#carrossel").addClass("none")	
+		
+	}
+	
+	
+			
 			
 var imagensBase64 = []
 // Funcao converter imagem para base64
@@ -110,29 +91,16 @@ function converterImagem() {
  
             reader.onload = function (arquivoCarregado) {
                 const input = document.getElementById("imagem-produto");
- 
-                const tamanhoMaximo = 500 * 500; // 1MB
- 
-                if (input.files[index].size > tamanhoMaximo) {
-                    Toastify({
-                        text: "A imagem é muito grande. O tamanho máximo é de 500 X 500.",
-                        duration: 3000,
-                        position: "center",
-                        backgroundColor:"red",
-                        close: true,
-                        className: "Toastify__toast--custom"
-                    }).showToast();
-                    input.value = "";
-                } else {
+              
                     var imagemBase64 = arquivoCarregado.target.result;
                     imagensBase64.push(imagemBase64);
-                    console.log(imagemBase64);
+                    console.log(imagensBase64);
  
                     // Verificar se ainda há mais arquivos para ler
                     if (index < receberArquivos.length - 1) {
                         lerArquivo(index + 1);
                     }
-                }
+                
             };
  
             reader.readAsDataURL(receberArquivos[index]);
@@ -154,7 +122,7 @@ $("#subCategoria").change(function() {
 
 function cadastrar() {
 
-	console.log(imagensBase64[0])
+	console.log(imagensBase64[0,1,2,3,4,5])
 
 	var objeto = {
 		"nomeProduto": $('#nomeProduto').val(),
@@ -391,6 +359,7 @@ $(document).ready(function() {
 		}).done(function(data){
 			
 			imagem = data[0].imagem
+			
 			
 			$("#img0").attr("src", imagem)
 			

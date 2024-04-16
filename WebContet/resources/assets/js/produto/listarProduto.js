@@ -238,7 +238,7 @@ $(document).ready(function () {
 
 function editar(user) {
   var idProduto = user.getAttribute("data-value");
-  window.location.href = "cadastroProdutoLojista?id=" + idProduto;
+  window.location.href = "cadastroDeProduto?id=" + idProduto;
 }
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
