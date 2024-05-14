@@ -27,6 +27,12 @@ public class IndexController {
 
 		return "login/loginFuncionario";
 	}
+	
+	@RequestMapping(value = { "loginColaborador" }, method = RequestMethod.GET)
+	public String loginColaborador(HttpSession session, Model model) throws Exception {
+
+		return "login/loginFuncionario";
+	}
 
 	@RequestMapping(value = { "loginParceiro" }, method = RequestMethod.GET)
 	public String loginParceiro(HttpSession session, Model model) throws Exception {

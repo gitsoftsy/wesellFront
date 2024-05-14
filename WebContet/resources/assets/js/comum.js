@@ -1,4 +1,4 @@
-var url_base = "http://localhost:8080/wesell";
+var url_base = "http://localhost:8080";
 
 const queryString = window.location.search;
 
@@ -8,7 +8,7 @@ function removeObjeto(){
 	localStorage.clear();
 }
 
-const path_base="http://localhost:8080/wesell-front/resources/menu";
+const path_base="http://localhost:8090/wesell-front/resources/menu";
  
 window.addEventListener("load", function() {
 	$("#menu").load(path_base+"/menu.html" );
