@@ -1,4 +1,4 @@
-var url_base = "http://localhost:8080";
+var url_base = "https://api-relatorios.sumare.edu.br/api-wesell";
 
 const queryString = window.location.search;
 
