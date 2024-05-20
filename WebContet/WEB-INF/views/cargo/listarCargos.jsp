@@ -54,12 +54,16 @@ String contextPath = request.getContextPath();
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 </head>
 
 <body>
 
-	<header id="menu" > </header>
-	
+	<header id="menu"> </header>
+
 	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
@@ -68,9 +72,11 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	
-	<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-	
+
+	<button id="teste" type="button" class="btn botaoDesativaMenu ">
+		<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+	</button>
+
 	<button type="button" class="btn botaoAtivaMenu ">
 		<i class="fa-solid fa-arrow-left mover-left"></i>
 	</button>
@@ -87,8 +93,13 @@ String contextPath = request.getContextPath();
 			<div class="mt-3 mb-2"
 				style="display: flex; flex-flow: column; align-items: left; gap: 20px">
 				<div class="d-flex gap-4">
-					<button id="exportar-excel" class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center"><i class="fa-solid fa-file-export"></i>Exportar</button>
-					<a href="cadastroDeCargo" class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i class="fa-regular fa-pen-to-square"></i>Novo Cargo</a>
+					<button id="exportar-excel"
+						class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center">
+						<i class="fa-solid fa-file-export"></i>Exportar
+					</button>
+					<a href="cadastroDeCargo"
+						class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i
+						class="fa-regular fa-pen-to-square"></i>Novo Cargo</a>
 				</div>
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
@@ -120,7 +131,7 @@ String contextPath = request.getContextPath();
 					<li id="next" class="page-item"><a class="page-link" href="#">Next</a></li>
 				</ul>
 			</nav>
-			
+
 		</section>
 	</main>
 
@@ -138,7 +149,8 @@ String contextPath = request.getContextPath();
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script src="<%=contextPath%>/resources//assets/js/cargo/listarCargos.js"></script>
+	<script
+		src="<%=contextPath%>/resources//assets/js/cargo/listarCargos.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

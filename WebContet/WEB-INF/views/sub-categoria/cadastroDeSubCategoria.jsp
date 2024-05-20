@@ -55,6 +55,10 @@ String contextPath = request.getContextPath();
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
 
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- Animation-css -->
 	<link
     rel="stylesheet"

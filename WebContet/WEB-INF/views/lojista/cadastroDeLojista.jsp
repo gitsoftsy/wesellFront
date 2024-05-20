@@ -54,17 +54,19 @@ String contextPath = request.getContextPath();
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
-	
+
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- Animation-css -->
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
 
-	<header id="menu" > </header>
+	<header id="menu"> </header>
 
 	<div class="bg-loading">
 		<div class="spinner">
@@ -74,33 +76,41 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	
-	<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-	
-	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
+
+	<button id="teste" type="button" class="btn botaoDesativaMenu ">
+		<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+	</button>
+
+	<button type="button" class="btn botaoAtivaMenu ">
+		<i class="fa-solid fa-arrow-left mover-left"></i>
+	</button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-shop"></i>  <span id="tituloPagina">Cadastro
+					<i class="fa-solid fa-shop"></i> <span id="tituloPagina">Cadastro
 						de Lojista</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
-			<form id="form-funcionario" class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
+			<form id="form-funcionario"
+				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
 				<h1 id="tituloForm" class="text-center mb-5">Cadastrar Lojista</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="nomeFantasia" class="form-label">Nome Fantasia:<span class="red">*</span></label> <input required
-							autocomplete="off" type="text" id="nomeFantasia" name="nomeFantasia"
-							class="form-control inputForm" maxlength="255"  />
+						<label for="nomeFantasia" class="form-label">Nome
+							Fantasia:<span class="red">*</span>
+						</label> <input required autocomplete="off" type="text" id="nomeFantasia"
+							name="nomeFantasia" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="razaoSocial" class="form-label">Razão Social:<span class="red">*</span></label> <input type="text" id="razaoSocial"
+						<label for="razaoSocial" class="form-label">Razão Social:<span
+							class="red">*</span></label> <input type="text" id="razaoSocial"
 							autocomplete="off" name="razaoSocial" required
 							class="form-control inputForm" maxlength="255" />
 					</div>
@@ -108,9 +118,10 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cnpj" class="form-label">CNPJ:<span class="red">*</span></label> <input required
-							autocomplete="off" type="text" id="cnpj" name="cnpj"
-							class="form-control inputForm" maxlength="14" data-mask="00.000.000/0000-00" />
+						<label for="cnpj" class="form-label">CNPJ:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="cnpj" name="cnpj" class="form-control inputForm"
+							maxlength="14" data-mask="00.000.000/0000-00" />
 					</div>
 					<div class="col-md-6">
 						<label for="inscricaoEstadual" class="form-label">Inscrição
@@ -122,27 +133,31 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:<span class="red">*</span></label> <input
-							type="text" id="cep" required autocomplete="off" name="cep"
-							class="form-control inputForm" maxlength="8" data-mask="00000-000"/>
+						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
+						<input type="text" id="cep" required autocomplete="off" name="cep"
+							class="form-control inputForm" maxlength="8"
+							data-mask="00000-000" />
 					</div>
 					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:<span class="red">*</span></label> <input
-							type="text" id="endereco" required autocomplete="off"
-							name="endereco" class="form-control inputForm" maxlength="255" />
+						<label for="endereco" class="form-label">Endereço:<span
+							class="red">*</span></label> <input type="text" id="endereco" required
+							autocomplete="off" name="endereco" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="numero" class="form-label">N°:<span class="red">*</span></label> <input
-							required autocomplete="off" type="text" id="numero" name="numero"
+						<label for="numero" class="form-label">N°:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="numero" name="numero"
 							class="form-control inputForm" maxlength="10" />
 					</div>
 					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:<span class="red">*</span></label> <input
-							type="text" id="bairro" required autocomplete="off" name="bairro"
-							class="form-control inputForm" maxlength="255" />
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label> <input type="text" id="bairro" required
+							autocomplete="off" name="bairro" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 				</div>
 
@@ -153,22 +168,25 @@ String contextPath = request.getContextPath();
 							name="complemento" class="form-control inputForm" maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="estado" class="form-label">Estado:<span class="red">*</span></label> <input
-							type="text" id="estado" required autocomplete="off" name="estado"
-							class="form-control inputForm" maxlength="2" />
+						<label for="estado" class="form-label">Estado:<span
+							class="red">*</span></label> <input type="text" id="estado" required
+							autocomplete="off" name="estado" class="form-control inputForm"
+							maxlength="2" />
 					</div>
 				</div>
 
 				<div class="row mb-2">
-				<div class="col-md-6">
-						<label for="cidade" class="form-label">Cidade:<span class="red">*</span></label> <input
-							type="text" id="cidade" required autocomplete="off" name="text"
-							class="form-control inputForm" maxlength="255" />
+					<div class="col-md-6">
+						<label for="cidade" class="form-label">Cidade:<span
+							class="red">*</span></label> <input type="text" id="cidade" required
+							autocomplete="off" name="text" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="site" class="form-label">Site:<span class="red">*</span></label> <input
-							type="text" id="site" required autocomplete="off" name="site"
-							class="form-control inputForm" maxlength="255" />
+						<label for="site" class="form-label">Site:<span
+							class="red">*</span></label> <input type="text" id="site" required
+							autocomplete="off" name="site" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 				</div>
 
@@ -179,7 +197,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-					<!-- Button modal de cadastro  -->
+				<!-- Button modal de cadastro  -->
 				<button type="button" style="display: none;" class="btn btn-primary"
 					id="openModalBtn" data-bs-toggle="modal"
 					data-bs-target="#exampleModal">Launch demo modal</button>

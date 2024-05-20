@@ -12,34 +12,14 @@ import br.com.softsy.model.UsuarioInternoVO;
 import br.com.softsy.model.UsuarioParceiroVO;
 
 @Controller
+
 public class IndexController {
-
-// Página index do EAD
-
 	@RequestMapping(value = { "", "/", "index", "home" }, method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) throws Exception {
 
-		return "login/login";
-	}
-
-	@RequestMapping(value = { "loginFuncionario" }, method = RequestMethod.GET)
-	public String loginFuncionario(HttpSession session, Model model) throws Exception {
-
-		return "login/loginFuncionario";
+		return "lojista/usuarioLojista";
 	}
 	
-	@RequestMapping(value = { "loginColaborador" }, method = RequestMethod.GET)
-	public String loginColaborador(HttpSession session, Model model) throws Exception {
-
-		return "login/loginFuncionario";
-	}
-
-	@RequestMapping(value = { "loginParceiro" }, method = RequestMethod.GET)
-	public String loginParceiro(HttpSession session, Model model) throws Exception {
-
-		return "login/loginParceiro";
-	}
-
 	@RequestMapping(value = { "/sessaoFuncionario" }, method = RequestMethod.POST)
 	public String sessaoFuncionario(HttpSession session, Model model,
 			@RequestBody UsuarioInternoVO usuario) {
@@ -70,5 +50,4 @@ public class IndexController {
 		session.removeAttribute("loginParc");
 		return "redirect:/home";
 	}
-	
 }

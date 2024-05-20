@@ -58,6 +58,10 @@ String contextPath = request.getContextPath();
 <!-- Animation-css -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -75,7 +79,8 @@ String contextPath = request.getContextPath();
 		<div
 			class="d-flex justify-content-between align-items-center shadowNovo menu-alto">
 
-			<img alt="logo" src="<%=contextPath%>/resources/assets/img/wesell_horizontal_azul.png"
+			<img alt="logo"
+				src="<%=contextPath%>/resources/assets/img/wesell_horizontal_azul.png"
 				class="logo-menu">
 			<div class="p-4 d-flex gap-3">
 
@@ -84,95 +89,109 @@ String contextPath = request.getContextPath();
 			</div>
 
 		</div>
-		
-		<div class="abracaMenu modalMenu d-flex flex-column justify-content-between menu-baixo shadowNovo h-100">
-		
-		 <nav class="menu">
-        <div class="item">
-          <a class="sub-btn d-flex align-items-center  "><i class="fa-solid fa-cube icone-menu"></i>Usuário
-            <i class="fas fa-angle-right dropdown"></i> </a>
-          <div class="sub-menu">
-            <a href="dadosDeCadastro" class="sub-item d-flex align-items-center">Dados Pessoais</a>
-             <a href="dadosBancarios" class="sub-item d-flex align-items-center">Dados Bancários</a>
-			<a href="meusProdutos" class="sub-item">Meus Produtos</a>
-          </div>
-        </div> 
-      	<div class="item">
-          <a class="sub-btn d-flex align-items-center "><i class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação
-           <i class="fas fa-angle-right dropdown"></i> </a>
-          <div class="sub-menu">
-             <a href="mercado" class="sub-item d-flex align-items-center">Mercado</a>
-          </div>
-        </div>
-      </nav>
-      
-      <a href="loginInfluencer" class="d-flex align-items-center gap-3 text-decoration-none colorPreto">
-      <i class="fa-solid fa-arrow-left icone-menu"></i> Sair </a>
-      
-		</div>			
+
+		<div
+			class="abracaMenu modalMenu d-flex flex-column justify-content-between menu-baixo shadowNovo h-100">
+
+			<nav class="menu">
+				<div class="item">
+					<a class="sub-btn d-flex align-items-center  "><i
+						class="fa-solid fa-cube icone-menu"></i>Usuário <i
+						class="fas fa-angle-right dropdown"></i> </a>
+					<div class="sub-menu">
+						<a href="dadosDeCadastro"
+							class="sub-item d-flex align-items-center">Dados Pessoais</a> <a
+							href="dadosBancarios" class="sub-item d-flex align-items-center">Dados
+							Bancários</a> <a href="meusProdutos" class="sub-item">Meus
+							Produtos</a>
+					</div>
+				</div>
+				<div class="item">
+					<a class="sub-btn d-flex align-items-center "><i
+						class="fa-solid fa-cubes-stacked icone-menu"></i> Afiliação <i
+						class="fas fa-angle-right dropdown"></i> </a>
+					<div class="sub-menu">
+						<a href="mercado" class="sub-item d-flex align-items-center">Mercado</a>
+					</div>
+				</div>
+			</nav>
+
+			<a href="loginInfluencer"
+				class="d-flex align-items-center gap-3 text-decoration-none colorPreto">
+				<i class="fa-solid fa-arrow-left icone-menu"></i> Sair
+			</a>
+
+		</div>
 
 	</header>
-	
+
 
 	<main class="main">
 
-		<h1 style='font-weight: 300;' class="mt-2 text-center mt-5">Dados Bancários</h1>
-    
-    <form id="formBancario" class="d-flex flex-column align-items-center card form p-2 col-8 mx-auto animate__animated">
-  
-		 <div class="col-md-10 mb-4 d-flex flex-column mt-2 ">
+		<h1 style='font-weight: 300;' class="mt-2 text-center mt-5">Dados
+			Bancários</h1>
 
-        		<label for="banco" class="form-label">Banco:<span class="red">*</span></label> 
-        		
-				<select id="banco" required class="form-select" >
+		<form id="formBancario"
+			class="d-flex flex-column align-items-center card form p-2 col-8 mx-auto animate__animated">
+
+			<div class="col-md-10 mb-4 d-flex flex-column mt-2 ">
+
+				<label for="banco" class="form-label">Banco:<span
+					class="red">*</span></label> <select id="banco" required
+					class="form-select">
 				</select>
-			
-        </div>
-        
-         <div class="col-md-10 mb-4 d-flex gap-2 container-nomes pt-2 ">
-         
-  			<div class="d-flex flex-column col-md-6">
-        		<label for="agencia" class="form-label">Agência:<span class="red">*</span></label> 
-        		<input required autocomplete="off" type="number" id="agencia" name="agencia"
-           		 class="form-control inputForm" maxlength="4"  />
-           	</div>
-           		 
-           	<div class="d-flex flex-column col-md-6">
-           		 	<label for="digitoAgencia" class="form-label">Dígito:<span class="red">*</span></label> 
-        		<input required autocomplete="off" type="number" id="digitoAgencia" name="digitoAgencia"
-           		 class="form-control inputForm" maxlength="3"  />
-           	</div>
-            
-        </div>
-        
-          <div class="col-md-10 mb-4 d-flex  gap-2 container-nomes pt-2 ">
-          
-			<div class="d-flex flex-column col-md-6">
-        		<label for="conta" class="form-label">Conta:<span class="red">*</span></label> 
-        		<input required autocomplete="off" type="number" id="conta" name="conta"
-           		 class="form-control inputForm" maxlength="4"  />
-           	</div>
-           	
-           		<div class="d-flex flex-column col-md-6">
-           		 	<label for="digitoConta" class="form-label">Dígito:<span class="red">*</span></label> 
-        		<input required autocomplete="off" type="number" id="digitoConta" name="digitoConta"
-           		 class="form-control inputForm" maxlength="3"  />
-           		 </div>
-            
-        </div>
-        
-        <div class="col-md-6 mb-4">
-           <button id="enviarFormInfluencer" class="btn btn-success btn-lg btn-block w-100">Salvar</button>
-        </div>
+
+			</div>
+
+			<div class="col-md-10 mb-4 d-flex gap-2 container-nomes pt-2 ">
+
+				<div class="d-flex flex-column col-md-6">
+					<label for="agencia" class="form-label">Agência:<span
+						class="red">*</span></label> <input required autocomplete="off"
+						type="number" id="agencia" name="agencia"
+						class="form-control inputForm" maxlength="4" />
+				</div>
+
+				<div class="d-flex flex-column col-md-6">
+					<label for="digitoAgencia" class="form-label">Dígito:<span
+						class="red">*</span></label> <input required autocomplete="off"
+						type="number" id="digitoAgencia" name="digitoAgencia"
+						class="form-control inputForm" maxlength="3" />
+				</div>
+
+			</div>
+
+			<div class="col-md-10 mb-4 d-flex  gap-2 container-nomes pt-2 ">
+
+				<div class="d-flex flex-column col-md-6">
+					<label for="conta" class="form-label">Conta:<span
+						class="red">*</span></label> <input required autocomplete="off"
+						type="number" id="conta" name="conta"
+						class="form-control inputForm" maxlength="4" />
+				</div>
+
+				<div class="d-flex flex-column col-md-6">
+					<label for="digitoConta" class="form-label">Dígito:<span
+						class="red">*</span></label> <input required autocomplete="off"
+						type="number" id="digitoConta" name="digitoConta"
+						class="form-control inputForm" maxlength="3" />
+				</div>
+
+			</div>
+
+			<div class="col-md-6 mb-4">
+				<button id="enviarFormInfluencer"
+					class="btn btn-success btn-lg btn-block w-100">Salvar</button>
+			</div>
 
 
-    </form>
-	
+		</form>
+
 
 	</main>
 
 	<!--  	<footer >Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer> -->
-	
+
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>

@@ -58,6 +58,10 @@ String contextPath = request.getContextPath();
 <!-- Animation-css -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -69,27 +73,35 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	
-		<div class="card-body title">
-					<img class="img-titulo" src="<%=contextPath%>/resources/assets/img/logo.svg">
-		</div>
-		
-		
-		<div class="fundoBranco">
-		<h3 class=" text-center tituloPrincipal">Vamos começar a cadastrar sua Loja</h3>
+
+	<div class="card-body title">
+		<img class="img-titulo"
+			src="<%=contextPath%>/resources/assets/img/logo.svg">
+	</div>
+
+
+	<div class="fundoBranco">
+		<h3 class=" text-center tituloPrincipal">Vamos começar a
+			cadastrar sua Loja</h3>
 		<div class="container-i-form">
-			<button id="primeiraSecao" class=" shadow p-2 mb-2 btn btn-light d-flex align-items-center gap-2"><i  class="fa-solid fa-shop"></i>Dados da Empresa</button>
-			<button id="segundaSecao"  class=" shadow p-2 mb-2 btn btn-light d-flex align-items-center gap-2"><i  class="fa-solid fa-user-group"></i>Dados do Funcionario </button>
+			<button id="primeiraSecao"
+				class=" shadow p-2 mb-2 btn btn-light d-flex align-items-center gap-2">
+				<i class="fa-solid fa-shop"></i>Dados da Empresa
+			</button>
+			<button id="segundaSecao"
+				class=" shadow p-2 mb-2 btn btn-light d-flex align-items-center gap-2">
+				<i class="fa-solid fa-user-group"></i>Dados do Funcionario
+			</button>
 		</div>
-		</div>
-		
+	</div>
+
 	<main class="container-res">
-	
+
 		<section class="pt-4">
-		
+
 			<form id="container-empresa"
 				class="card form p-5 col-10 mb-5 mt-5 mx-auto animate__animated ">
-				
+
 				<h4 class="text-start mb-5 mt-4">Informe os Dados da Empresa</h4>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
@@ -129,7 +141,8 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
 						<input type="text" id="cep" required autocomplete="off" name="cep"
-							class="form-control inputForm" maxlength="8" data-mask="00000-000"/>
+							class="form-control inputForm" maxlength="8"
+							data-mask="00000-000" />
 					</div>
 					<div class="col-md-6">
 						<label for="endereco" class="form-label">Endereço:<span
@@ -186,39 +199,42 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button id="cadastrar"
-						 class=" btn confirm btn-primary btn-register">Cadastrar</button>
-						 <span id="prosseguir"
-						 class=" btn confirm btn-success btn-register d-none">Prosseguir</span>
+							class=" btn confirm btn-primary btn-register">Cadastrar</button>
+						<span id="prosseguir"
+							class=" btn confirm btn-success btn-register d-none">Prosseguir</span>
 					</div>
 				</div>
-				
+
 			</form>
-			
+
 			<form id="container-funcionario"
 				class="card form p-5 col-10 mb-5 mt-5 mx-auto animate__animated none">
-				
-			
-				
-				<h4 class="text-start mb-5 mt-4">Informe os dados do Responsável pela Empresa</h4>
-				
-					<div class="row mb-2">
+
+
+
+				<h4 class="text-start mb-5 mt-4">Informe os dados do
+					Responsável pela Empresa</h4>
+
+				<div class="row mb-2">
 					<div class="col-md-12">
-						<label for="nome" class="form-label">Nome:<span class="red">*</span></label> <input required
-							autocomplete="off" type="text" id="nome" name="nome"
-							class="form-control inputForm" maxlength="255" />
+						<label for="nome" class="form-label">Nome:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="nome" name="nome" class="form-control inputForm"
+							maxlength="255" />
 					</div>
-					
+
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="email" class="form-label">Email:<span class="red">*</span></label> <input
-							type="email" id="email" required autocomplete="off" name="email"
-							class="form-control inputForm" maxlength="255" />
+						<label for="email" class="form-label">Email:<span
+							class="red">*</span></label> <input type="email" id="email" required
+							autocomplete="off" name="email" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 					<div class="col-md-6">
-						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label> <input
-							type="text" id="cpf" required autocomplete="off" name="cpf"
+						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label>
+						<input type="text" id="cpf" required autocomplete="off" name="cpf"
 							class="form-control inputForm" data-mask="000.000.000-00"
 							maxlength="11" />
 					</div>
@@ -227,52 +243,58 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="telefone" class="form-label">Telefone:<span class="red">*</span></label> <input
-							type="text" id="telefone" required autocomplete="off" name="telefone"
-							class="form-control inputForm" data-mask="(00)00000-0000"
-							maxlength="11" />
+						<label for="telefone" class="form-label">Telefone:<span
+							class="red">*</span></label> <input type="text" id="telefone" required
+							autocomplete="off" name="telefone" class="form-control inputForm"
+							data-mask="(00)00000-0000" maxlength="11" />
 					</div>
 					<div class="col-md-6">
-						<label for="cargo" class="form-label">Cargo:<span class="red">*</span></label> <select
-							id="cargo" required autocomplete="off"
-							class="form-select inputForm">
-							
+						<label for="cargo" class="form-label">Cargo:<span
+							class="red">*</span></label> <select id="cargo" required
+							autocomplete="off" class="form-select inputForm">
+
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="row mb-2">
 					<div id="escondeSenha" class="col-md-6">
-						<label id="labelSenha" for="senha" class="form-label animate__animated">Senha:<span class="red">*</span></label> <input
-							type="password" id="senha" required autocomplete="off" name="senha"
-							class="form-control inputForm" maxlength="255"  />
+						<label id="labelSenha" for="senha"
+							class="form-label animate__animated">Senha:<span
+							class="red">*</span></label> <input type="password" id="senha" required
+							autocomplete="off" name="senha" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 					<div id="escondeSenha" class="col-md-6">
-						<label id="confirmarSenhaLabel" for="confirmarSenha" class="form-label">Confirmar Senha:<span class="red">*</span></label> <input
-							type="password" id="confirmarSenha" required autocomplete="off" name="confirmarSenha"
+						<label id="confirmarSenhaLabel" for="confirmarSenha"
+							class="form-label">Confirmar Senha:<span class="red">*</span></label>
+						<input type="password" id="confirmarSenha" required
+							autocomplete="off" name="confirmarSenha"
 							class="form-control inputForm" maxlength="255" />
 					</div>
-					</div>
-					
-				<div class="row mb-2 none" id="alteraSen" >
+				</div>
+
+				<div class="row mb-2 none" id="alteraSen">
 					<div class="col-md">
 						<div class="form-control border-0 p-0">
-							<button onclick="ativaSenhas()" type="button" class="btn btn-primary">Alterar Senha</button>
+							<button onclick="ativaSenhas()" type="button"
+								class="btn btn-primary">Alterar Senha</button>
 						</div>
 					</div>
-					</div>
+				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
-						<button type="submit" id="btn-submit"
-						disabled class="btn confirm btn-primary btn-register">Cadastrar</button>
+						<button type="submit" id="btn-submit" disabled
+							class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
 
 			</form>
 		</section>
 	</main>
-		<footer>Copyright @ 2000-2024 - Todos os direitos reservados - Desenvolvido pela Softsy</footer>
+	<footer>Copyright @ 2000-2024 - Todos os direitos reservados -
+		Desenvolvido pela Softsy</footer>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>

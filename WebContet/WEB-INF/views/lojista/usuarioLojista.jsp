@@ -48,6 +48,10 @@ String contextPath = request.getContextPath();
 	href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 	rel="stylesheet" />
 
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
@@ -65,34 +69,7 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header>
-		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
-				src="<%=contextPath%>/resources/assets/img/logo.svg"
-				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-			<hr />
-			<nav class="nav-sidebar">
-			<a href="usuarioLojista" class="mb-1">
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span id="usuarioNome">Usuário</span>
-			</a>
-			</nav>
-			<hr />
-			<nav class="nav-sidebar">
-
-				<a href="lojaLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Minha Loja</span>
-				</a> <a href="listarFuncionarioLojista" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
-				</a> <a href="listarProdutoLojista" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="loginFuncionario" onclick="removeObjeto()" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
-				</a>
-				
-			</nav>
-		</section>
-	</header>
+	<header id="menuLojista"></header>
 	
 	<button type="button" class="btn botaoAtivaMenu "><i class="fa-solid fa-arrow-left mover-left"></i></button>
 	<main class="py-4 container-res">

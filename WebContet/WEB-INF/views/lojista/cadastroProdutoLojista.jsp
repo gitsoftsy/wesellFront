@@ -55,6 +55,10 @@ String contextPath = request.getContextPath();
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/areaLojista.css" />
 
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- Animation-css -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -69,34 +73,7 @@ String contextPath = request.getContextPath();
 			<div class="rect4"></div>
 		</div>
 	</div>
-	<header>
-		<section id="modalMenu" class="abracaMenu modalMenu">
-			<img class="logoSumare"
-				src="<%=contextPath%>/resources/assets/img/logo.svg"
-				alt="Logo Sumare" />
-			<button id="teste" type="button" class="btn botaoDesativaMenu "><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-			<hr />
-			<nav class="nav-sidebar">
-			<a href="usuarioLojista" class="mb-1">
-				<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span id="usuarioNome">Usuário</span>
-			</a>
-			</nav>
-			<hr />
-			<nav class="nav-sidebar">
-
-				<a href="lojaLojista" class="mb-1"> <i class="fa-solid fa-shop"></i> 
-				<span>Minha Loja</span>
-				</a> <a href="listarFuncionarioLojista" class="mb-1"> <i class="fa-solid fa-user-group"></i> 
-				<span>Funcionários</span>
-				</a> <a href="listarProdutoLojista" class="mb-1"> <i class="fa-solid fa-barcode"></i> 
-				<span>Produtos</span>
-				</a> <a href="loginFuncionario" onclick="removeObjeto()" id="sair"> <i class="fa-solid fa-right-from-bracket"></i> 
-				<span>Sair</span>
-				</a>
-				
-			</nav>
-		</section>
-	</header>
+	<header id="menuLojista"></header>
 	
 	<button type="button" class="btn botaoAtivaMenu ">
 		<i class="fa-solid fa-arrow-left mover-left"></i>

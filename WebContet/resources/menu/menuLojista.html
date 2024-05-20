@@ -4,37 +4,30 @@
 <link rel="stylesheet" href="style.css">
 <body>
 	<section id="modalMenu" class="abracaMenu modalMenu">
-		<img class="logoSumare animate__bounceIn"
-			src="http://localhost:8090/wesell-front/resources/assets/img/wesell_horizontal_branco.png"
-			alt="Logo" />
+		<img class="logoSumare"
+			src="http://localhost:8090/wesell-front/resources/assets/img/logo.svg"
+			alt="Logo Sumare" />
 		<button id="teste" type="button" class="btn botaoDesativaMenu ">
 			<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
 		</button>
 		<hr />
-		<p>
-			<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span></span>
-		</p>
+		<nav class="nav-sidebar">
+			<a href="usuarioLojista" class="mb-1"> <i
+				class="fa-solid fa-user me-2" style="width: 28px;"></i> <span
+				id="usuarioNome">Usuário</span>
+			</a>
+		</nav>
 		<hr />
-		<nav class="menu">
-			<div class="item">
-				<a class="sub-btn">Administração <i
-					class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<a href="listarCategoria" class="sub-item">Categoria</a> <a
-						href="listarSubCategoria" class="sub-item">Sub-Categoria</a> <a
-						href="listarCargos" class="sub-item">Cargos</a> <a
-						href="listarColaboradores" class="sub-item">Colaboradores</a>
-				</div>
-			</div>
-			<div class="item">
-				<a class="sub-btn">Loja <i
-					class="fas fa-angle-right dropdown"></i></a>
-				<div class="sub-menu">
-					<a href="listarLojista" class="sub-item">Lojas Cadastradas</a> <a
-						href="listarFuncionarios" class="sub-item">Funcionários
-						Lojista </a> <a href="listarProduto" class="sub-item">Produtos</a>
-				</div>
-			</div>
+		<nav class="nav-sidebar">
+			<a href="lojaLojista" id="hiddenMenu1" class="mb-1"> <i
+				class="fa-solid fa-shop"></i> <span>Minha Loja</span>
+			</a> <a href="listarFuncionarioLojista" id="hiddenMenu2" class="mb-1"> <i
+				class="fa-solid fa-user-group"></i> <span>Funcionários</span>
+			</a> <a href="listarProdutoLojista" class="mb-1"> <i
+				class="fa-solid fa-barcode"></i> <span>Produtos</span>
+			</a> <a href="loginFuncionario" onclick="removeObjeto()" id="sair"> <i
+				class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
+			</a>
 		</nav>
 	</section>
 </body>

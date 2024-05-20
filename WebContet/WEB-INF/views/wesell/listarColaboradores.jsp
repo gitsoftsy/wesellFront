@@ -16,6 +16,10 @@ String contextPath = request.getContextPath();
 
 <title>Wesell</title>
 
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
 <!-- Bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -56,10 +60,9 @@ String contextPath = request.getContextPath();
 
 </head>
 
+<header id="menu" > </header>
+
 <body>
-
-	<header id="menu" ></header>
-
 	<div class="bg-loading">
 		<div class="spinner">
 			<div class="rect1"></div>
@@ -76,8 +79,8 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-shop"></i> <span>Lista de
-						Lojistas</span>
+					<i class="fa-regular fa-handshake"></i> <span>Lista de
+						Colaboradores</span>
 				</div>
 			</div>
 		</section>
@@ -86,11 +89,11 @@ String contextPath = request.getContextPath();
 				style="display: flex; flex-flow:column;align-items:left; gap:20px">
 				<div class="d-flex gap-4">
 					<button id="exportar-excel" class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center"><i class="fa-solid fa-file-export"></i>Exportar</button>
-					<a href="cadastroDeLojista" class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i class="fa-regular fa-pen-to-square"></i>Nova Loja</a>
+					<a href="cadastroDeColaboradores" class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i class="fa-regular fa-pen-to-square"></i>Novo Colaborador</a>
 				</div>
-				<div class="input-group" >
+				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
-						placeholder="Buscar Lojista" /> <span
+						placeholder="Buscar Colaborador" /> <span
 						class="input-group-text icone-pesquisa"><i class="fas fa-search"></i></span>
 				</div>
 				
@@ -98,27 +101,20 @@ String contextPath = request.getContextPath();
 
 			<table
 				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Lojistas cadastrados</caption>
+				<caption>Colaboradores cadastrados</caption>
 				<thead>
 					<tr>
-						<th scope="col" >Ativo</th>
-						<th scope="col" >Razão Social</th>
-						<th scope="col" >Nome Fantasia</th>
-						<th scope="col" >CNPJ</th>
-						<th scope="col" >Inscrição Estadual</th>
-						<th scope="col">Endereço</th>
-						<th scope="col" >Número</th>
-						<th scope="col" >Bairro</th>
-						<th scope="col" >Cidade</th>
-						<th scope="col">Estado</th>
-						<th scope="col">CEP</th>
-						<th scope="col">Site</th>
+						<th scope="col" width="10%">Ativo</th>
+						<th scope="col">Nome</th>
+						<th scope="col">CPF</th>
+						<th scope="col">Usuário</th>
+						<th scope="col">E-mail</th>
 						<th scope="col" width="15%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
-		   		<nav aria-label="Page navigation example">
+					<nav aria-label="Page navigation example">
   <ul id="pagination-list" class="pagination">
     <li id="prev" class="page-item"><a class="page-link" href="#">Previous</a></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -146,12 +142,11 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script
-		src="<%=contextPath%>/resources//assets/js/lojista/listarLojista.js"></script>
+		src="<%=contextPath%>/resources//assets/js/colaborador/listarColaboradores.js"></script>
 	<script src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<script
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
-	
 </body>
 </html>
