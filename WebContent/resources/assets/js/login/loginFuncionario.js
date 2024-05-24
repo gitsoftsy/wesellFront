@@ -8,7 +8,8 @@ $("#form-login").submit(function(e) {
 	var objeto = {
 		"email": $("#email").val(),
 		"senha": $("#senha").val(),
-		"perfil": $('#tipoLogin').val()
+		"perfil": $('#tipoLogin').val(),
+		"administrador": "N"
 	}
 
 	if (perfil == 'COLABORADOR') {
@@ -16,7 +17,7 @@ $("#form-login").submit(function(e) {
 			"email": $("#email").val(),
 			"senha": $("#senha").val(),
 			"perfil": $('#tipoLogin').val(),
-			"administrador": "N"
+			"administrador": "S"
 		}
 	}
 
@@ -42,7 +43,7 @@ $("#form-login").submit(function(e) {
 				if (data.administrador.toUpperCase() == 'S') {
 					window.location.href = 'usuarioLojista'
 				} else {
-					window.location.href = 'usuarioLojista'
+					window.location.href = 'listarProdutoLojista'
 				}
 			} else if (perfil == 'COLABORADOR') {
 				if (data.administrador.toUpperCase() == 'S') {
@@ -50,8 +51,14 @@ $("#form-login").submit(function(e) {
 				} else {
 					window.location.href = 'listarCategoria'
 				}
+			} else if (perfil == 'FUNCIONARIO') {
+				if (data.administrador.toUpperCase() == 'S') {
+					window.location.href = 'listarProdutoLojista'
+				} else {
+					window.location.href = 'listarProdutoLojista'
+				}
 			}
-			
+
 			data.perfil = perfil
 			localStorage.setItem("usuario", JSON.stringify(data));
 		})

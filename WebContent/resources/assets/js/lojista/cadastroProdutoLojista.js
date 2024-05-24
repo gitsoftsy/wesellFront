@@ -4,7 +4,7 @@ const elemento = document.querySelector('#modalMenu');
 const idProduto = params.get("id");
 var edição = ""
 
-botaoDesativa.addEventListener('click', () => {
+/*botaoDesativa.addEventListener('click', () => {
 	elemento.classList.add('animar-sair');
 	elemento.classList.remove('animar-entrar');
 
@@ -13,7 +13,7 @@ botaoDesativa.addEventListener('click', () => {
 botaoAtiva.addEventListener('click', () => {
 	elemento.classList.add('animar-entrar');
 	elemento.classList.remove('animar-sair');
-});
+});*/
 
 var ValorConvertidoPreco
 

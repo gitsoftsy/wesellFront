@@ -63,6 +63,19 @@ public class LojistaController {
 		return "lojista/usuarioLojista";
 	}
 	
+	@RequestMapping(value = { "cadastroTelefoneLojista" }, method = RequestMethod.GET)
+	public String cadastroTelefoneLojista(HttpSession session, Model model) throws Exception {
+		
+		
+		return "telefone/cadastroTelefoneLojista";
+	}
+	
+	@RequestMapping(value = { "listarTelefoneLojista" }, method = RequestMethod.GET)
+	public String listarTelefoneLojista(HttpSession session, Model model) throws Exception {
+
+		return "telefone/listarTelefoneLojista";
+	}
+	
 	@RequestMapping(value = { "cadastroDeProduto" }, method = RequestMethod.GET)
 	public String cadastroDeProduto(HttpSession session, Model model) throws Exception {
 		

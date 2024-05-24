@@ -1,4 +1,7 @@
-var url_base = "https://api-relatorios.sumare.edu.br/api-wesell";
+var url_base = "http://ec2-18-235-243-90.compute-1.amazonaws.com:8080/api-wesell";
+
+// Definir o charset padrão para todos os scripts carregados dinamicamente
+document.currentScript.charset = 'UTF-8';
 
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
@@ -20,14 +23,14 @@ window.addEventListener("load", function() {
 	$(".bg-loading").addClass("none");
 
 
-	setTimeout(function() {
+	/*setTimeout(function() {
 		const dataUser = JSON.parse(localStorage.getItem('usuario'))
 		if (dataUser.perfil.toUpperCase() == 'FUNCIONARIO') {
 			$('#hiddenMenu1').hide()
 			$('#hiddenMenu2').hide()
 		}
 
-	}, 50);
+	}, 100);*/
 	
 	
 	const url = window.location.pathname
