@@ -29,12 +29,14 @@
 				class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
 			</a> <a href="listarTelefoneLojista" class="mb-1"> <i
 				class="fa-solid fa-phone"></i> <span>Telefones</span>
+			</a> <a href="listarBannerLojista" class="mb-1"> <i
+				class="fa-solid fa-image"></i> <span>Banners</span>
 			</a>
 		</nav>
 	</section>
 </body>
 
-<script  charset="UTF-8" type="text/javascript">
+<script charset="UTF-8" type="text/javascript">
 	$(document).ready(function() {
 		var perfilArmazenado = JSON.parse(localStorage.getItem('perfil'));
 
@@ -58,5 +60,6 @@
 		});
 	});
 </script>
-<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"></script>
+<script charset="UTF-8"
+	src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"></script>
 </html>

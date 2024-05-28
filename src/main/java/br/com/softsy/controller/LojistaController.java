@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LojistaController {
+	
 	@RequestMapping(value = { "cadastroDeLojista" }, method = RequestMethod.GET)
 	public String cadastroDeLojista(HttpSession session, Model model) throws Exception {
 
@@ -73,14 +74,7 @@ public class LojistaController {
 	@RequestMapping(value = { "listarTelefoneLojista" }, method = RequestMethod.GET)
 	public String listarTelefoneLojista(HttpSession session, Model model) throws Exception {
 
-		return "telefone/listarTelefoneLojista";
-	}
-	
-	@RequestMapping(value = { "cadastroDeProduto" }, method = RequestMethod.GET)
-	public String cadastroDeProduto(HttpSession session, Model model) throws Exception {
-		
-		
-		return "produto/cadastroDeProduto";
+		return "lojista/listarTelefoneLojista";
 	}
 	
 	@RequestMapping(value = { "listarProduto" }, method = RequestMethod.GET)

@@ -4,19 +4,6 @@ const elemento = document.querySelector('#modalMenu');
 var edição = ""
 const idFuncionarios = params.get("id");
 
-
-
-botaoDesativa.addEventListener('click', () => {
-	elemento.classList.add('animar-sair');
-	elemento.classList.remove('animar-entrar');
-
-});
-
-botaoAtiva.addEventListener('click', () => {
-	elemento.classList.add('animar-entrar');
-	elemento.classList.remove('animar-sair');
-});
-
 function ativaSenhas() {
 
 	$("#senha, #confirmarSenha").removeAttr("disabled")
@@ -50,16 +37,17 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON.message);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível cadastrar os dados pessoais, confira os dados e tente novamente",
+			});
 		}
 	}).done(function(data) {
 
@@ -76,28 +64,22 @@ function cadastrar() {
 			data: JSON.stringify(telefone),
 			contentType: "application/json; charset=utf-8",
 			error: function(e) {
-				Toastify({
-					text: e.responseJSON.message,
-					duration: 2000,
-					position: "center",
-					backgroundColor: "red",
-					close: true,
-					className: "Toastify__toast--custom"
-				}).showToast();
-				console.log(e.responseJSON)
+				Swal.close();
+				console.log(e.responseJSON.message);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível cadastrar o telefone, confira-o e tente novamente",
+				});
 			}
 		}).done((function(data) {
-
-			Toastify({
-				text: "cadastrado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
+			Swal.close();
+			Swal.fire({
+				title: "Cadastrado com sucesso!",
+				icon: "success",
+			}).then((result) => {
 				window.location.href = 'listarFuncionarioLojista';
-			}, 1000);
+			});
 		}))
 	});
 };
@@ -116,79 +98,38 @@ function editar() {
 
 	}
 
+
 	$.ajax({
 		url: url_base + "/funcionarios",
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON[0].mensagem,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
+			Swal.close();
 			console.log(e.responseJSON)
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível editar os dados pessoais, confira os dados e tente novamente",
+			});
+
 		}
 	})
 		.done(function(data) {
-
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
+			Swal.close();
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success",
+			}).then(done => {
 				window.location.href = 'listarFuncionarioLojista';
-			}, 1000);
+			})
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
-
-}
-
-function editarTelefone() {
-
-	$.ajax({
-		url: url_base + "/telefones/funcionario/" + idFuncionarios,
-		type: "GET",
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
-		}
-	}).done(function(data) {
-
-		var telefoneEdit = {
-			"idTelefoneFuncionario": data[0].idTelefoneFuncionario, // idtelefone aqui
-			"funcionarioId": idFuncionarios,
-			"telefone": $('#telefone').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-			"tpTelefone": "C"
-		}
-
-		$.ajax({
-			url: url_base + "/telefones",
-			type: "PUT",
-			data: JSON.stringify(telefoneEdit),
-			contentType: "application/json; charset=utf-8",
-		})
-
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-	});
-
 
 }
 
@@ -202,24 +143,25 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		
-		$('#cargo').append($('<option>', { 
-			 value: "",
-			 text : "Selecione...", }));
-		
-		
+
+		$('#cargo').append($('<option>', {
+			value: "",
+			text: "Selecione...",
+		}));
+
+
 		$.each(data, function(index, item) {
-				
-               		 $('#cargo').append($('<option>', { 
-                     value: item.idCargo,
-                     id: item.idCargo,
-                     text : item.cargo ,
-                     name : item.cargo 
-                 }));
-           })
-	
+
+			$('#cargo').append($('<option>', {
+				value: item.idCargo,
+				id: item.idCargo,
+				text: item.cargo,
+				name: item.cargo
+			}));
+		})
+
 	})
-	
+
 
 	$.ajax({
 		url: url_base + '/lojistas',
@@ -238,9 +180,7 @@ $(document).ready(function() {
 		$("#lojista").html(html);
 	};
 
-	if (idFuncionarios == undefined) {
-
-	} else {
+	if (idFuncionarios) {
 
 		$("#tituloPagina, #tituloForm").text("Editar Funcionario")
 		$("#btn-submit").text("Editar")
@@ -279,7 +219,7 @@ $(document).ready(function() {
 			async: false,
 		})
 			.done(function(data) {
-			
+
 				$("#telefone").val(data[0].telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3"))
 
 			})
@@ -312,10 +252,8 @@ $("#form-funcionario").on("submit", function(e) {
 			if (edição == "sim") {
 
 				editar()
-				editarTelefone()
 			} else {
 				cadastrar()
-				
 			}
 
 		}

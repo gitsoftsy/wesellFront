@@ -48,10 +48,8 @@ function cadastrar() {
 function editar() {
 
 	var objetoEdit = {
-
 		"idCategoria": idCategoria,
 		"categoria": $('#descricaoCategoria').val(),
-
 	}
 
 	$.ajax({

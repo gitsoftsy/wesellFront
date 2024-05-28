@@ -18,31 +18,31 @@ botaoAtiva.addEventListener('click', () => {
 var ValorConvertidoPreco
 
 document.getElementById('precoDeVenda').addEventListener('input', function(e) {
-    let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-    valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
-   ValorConvertidoPreco = valor
-    valor = valor.replace('.', ','); // Troca ponto por vírgula
-    
-    valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
-    
-    e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
+	let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+	valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
+	ValorConvertidoPreco = valor
+	valor = valor.replace('.', ','); // Troca ponto por vírgula
+
+	valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
+
+	e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
 });
 
 var ValorConvertidoComissao
 
 document.getElementById('comissao').addEventListener('input', function(e) {
-    let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-    valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
-    ValorConvertidoComissao = valor
-    valor = valor.replace('.', ','); // Troca ponto por vírgula
-    
-    valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
-    
-    e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
+	let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+	valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
+	ValorConvertidoComissao = valor
+	valor = valor.replace('.', ','); // Troca ponto por vírgula
+
+	valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
+
+	e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
 });
 
 var user = localStorage.getItem("usuario")
-	var usuario = JSON.parse(user);
+var usuario = JSON.parse(user);
 
 $("#usuarioNome").text(usuario.nome)
 
@@ -61,108 +61,108 @@ function mostraModalFeedback(tipo, mensagem) {
 	}
 }
 
-	// Modal imagens
-		
-		let indiceAtual = 0;
+// Modal imagens
 
-		function mudarImagem(n) {
-		  let imagens = document.querySelectorAll(".imagens img");
-		  imagens[indiceAtual].classList.remove("imagem-ativa");
-		  indiceAtual = (imagens.length + indiceAtual + n) % imagens.length;
-		  imagens[indiceAtual].classList.add("imagem-ativa");
-		}
-		
-		// Inicializar o carrossel com a primeira imagem ativa
-		document.addEventListener("DOMContentLoaded", function() {
-		  mudarImagem(0);
+let indiceAtual = 0;
+
+function mudarImagem(n) {
+	let imagens = document.querySelectorAll(".imagens img");
+	imagens[indiceAtual].classList.remove("imagem-ativa");
+	indiceAtual = (imagens.length + indiceAtual + n) % imagens.length;
+	imagens[indiceAtual].classList.add("imagem-ativa");
+}
+
+// Inicializar o carrossel com a primeira imagem ativa
+document.addEventListener("DOMContentLoaded", function() {
+	mudarImagem(0);
+});
+
+var botao = document.getElementById("abrirModalImg")
+
+botao.addEventListener("click", function(e) {
+	e.preventDefault(e)
+
+	$("#carrossel").removeClass("none")
+
+	var carrossel = document.getElementById("carrossel")
+	var imagem = document.getElementsByClassName("imagem-ativa")
+	setTimeout(function() {
+		document.addEventListener("click", function(event) {
+			e.preventDefault(e)
+
+			if (carrossel.contains(event.target)) {
+
+			} else { $("#carrossel").addClass("none") }
 		});
-		
-	var botao = document.getElementById("abrirModalImg")
-	
-	botao.addEventListener("click", function(e){
-		  e.preventDefault(e)
-		  
-			$("#carrossel").removeClass("none")	
-			
-			var carrossel = document.getElementById("carrossel")
-			var imagem = document.getElementsByClassName("imagem-ativa")
-			setTimeout(function(){
-			document.addEventListener("click", function(event){
-				e.preventDefault(e)
-				
-				if(carrossel.contains(event.target)){
-					
-				} else { $("#carrossel").addClass("none") }
-				});	
-			}, 1000)
-			
-			
-	})
-	
-	
-			
-		
-			
-		
-		
-		
+	}, 1000)
+
+
+})
+
+
+
+
+
+
+
+
 var imagensBase64 = []
 // Funcao converter imagem para base64
 function converterImagem() {
- 
-    // Receber o arquivo do formulario
-    var receberArquivos = document.getElementById("imagem-produto").files;
- 
-    // Verificar se existe o arquivo
-    if (receberArquivos.length > 0) {
- 
-        // Função para ler cada arquivo
-        function lerArquivo(index) {
-            var reader = new FileReader();
- 
-            reader.onload = function (arquivoCarregado) {
-                const input = document.getElementById("imagem-produto");
- 
-                const tamanhoMaximo = 500 * 500; // 1MB
- 
-                if (input.files[index].size > tamanhoMaximo) {
-                    Toastify({
-                        text: "A imagem é muito grande. O tamanho máximo é de 500 X 500.",
-                        duration: 3000,
-                        position: "center",
-                        backgroundColor:"red",
-                        close: true,
-                        className: "Toastify__toast--custom"
-                    }).showToast();
-                    input.value = "";
-                } else {
-                    var imagemBase64 = arquivoCarregado.target.result;
-                    imagensBase64.push(imagemBase64);
-                    console.log(imagemBase64);
- 
-                    // Verificar se ainda há mais arquivos para ler
-                    if (index < receberArquivos.length - 1) {
-                        lerArquivo(index + 1);
-                    }
-                }
-            };
- 
-            reader.readAsDataURL(receberArquivos[index]);
-        }
- 
-        // Iniciar o processo de leitura
-        lerArquivo(0);
-    }
+
+	// Receber o arquivo do formulario
+	var receberArquivos = document.getElementById("imagem-produto").files;
+
+	// Verificar se existe o arquivo
+	if (receberArquivos.length > 0) {
+
+		// Função para ler cada arquivo
+		function lerArquivo(index) {
+			var reader = new FileReader();
+
+			reader.onload = function(arquivoCarregado) {
+				const input = document.getElementById("imagem-produto");
+
+				const tamanhoMaximo = 500 * 500; // 1MB
+
+				if (input.files[index].size > tamanhoMaximo) {
+					Toastify({
+						text: "A imagem é muito grande. O tamanho máximo é de 500 X 500.",
+						duration: 3000,
+						position: "center",
+						backgroundColor: "red",
+						close: true,
+						className: "Toastify__toast--custom"
+					}).showToast();
+					input.value = "";
+				} else {
+					var imagemBase64 = arquivoCarregado.target.result;
+					imagensBase64.push(imagemBase64);
+					console.log(imagemBase64);
+
+					// Verificar se ainda há mais arquivos para ler
+					if (index < receberArquivos.length - 1) {
+						lerArquivo(index + 1);
+					}
+				}
+			};
+
+			reader.readAsDataURL(receberArquivos[index]);
+		}
+
+		// Iniciar o processo de leitura
+		lerArquivo(0);
+	}
 }
 
 var novoValor
 $("#subCategoria").change(function() {
 
-  var valorSelecionado =  $("#subCategoria option:selected").attr("value")
+	var valorSelecionado = $("#subCategoria option:selected").attr("value")
 
-   novoValor = valorSelecionado == "exemplo" ? "36" :  valorSelecionado;
-  
-  console.log(novoValor)
+	novoValor = valorSelecionado == "exemplo" ? "36" : valorSelecionado;
+
+	console.log(novoValor)
 });
 
 var user = localStorage.getItem("usuario")
@@ -189,19 +189,29 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 3000,
-				backgroundColor:"red",
-				position: "center",
-				type: "erro",
-			}).showToast();
-
+			Swal.close();
+			console.log(objeto);
+			console.log(e.responseJSON[0].mensagem);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível cadastrar, confira os dados e tente novamente",
+			});
 		}
 	}).done(function(data) {
+		Swal.close();
+		Swal.fire({
+			title: "Criado com sucesso!",
+			icon: "success",
+		}).then((result) => {
+			window.location.href = 'listarProdutoLojista';
+		});
 
-		var imagens = {
+		/*var imagens = {
 			"imagem": imagensBase64[0],
 			"produtoId": data.idProduto,
 		}
@@ -212,70 +222,81 @@ function cadastrar() {
 			data: JSON.stringify(imagens),
 			contentType: "application/json; charset=utf-8",
 			error: function(e) {
-				console.log(e)
-
+				console.log(e.responseJSON.message)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível cadastrar, confira os dados e tente novamente",
+				});
 			}
 		}).done(function(data) {
-
-
-			Toastify({
-				text: "cadastrado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
-				window.location.href = 'listarProdutoLojista';
-			}, 1000);
-		})
+			Swal.close();
+			Swal.fire({
+				title: "Criado com sucesso!",
+				icon: "success",
+			}).then((result) => {
+				window.location.href = 'listarTelefoneLojista';
+			});
+		})*/
 	})
+}
+
+const converterValor = (valor) => {
+	let valorFormatado = valor.replace(/\D/g, '');
+	valorFormatado = (valorFormatado / 100).toFixed(2) + '';
+	
+	return valorFormatado
 }
 
 function editar() {
 	
-	
+	let preco = converterValor($('#precoDeVenda').val())
+	let comissao = converterValor($('#comissao').val())
 
 	var objetoEdit = {
 		"idProduto": idProduto,
 		"nomeProduto": $('#nomeProduto').val(),
 		"descrProduto": $('#descricao').val(),
-		"preco": ValorConvertidoPreco,
-		"comissao": ValorConvertidoComissao,
+		"preco": preco,
+		"comissao": comissao,
 		"categoriaId": $("#categoria option:selected").attr("value"),
 		"subcategoriaId": $('#subCategoria option:selected').attr("value"),
 		"lojistaId": usuario.lojistaId,
 	}
+	
+	console.log(preco)
+	console.log(comissao)
+	
+	console.log(objetoEdit)
 
 	$.ajax({
 		url: url_base + "/produtos",
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-			text:  e.responseJSON.message,
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON[0].mensagem);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Não foi possível cadastrar, confira os dados e tente novamente",
+			});
 		}
 	})
 		.done(function(data) {
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
+			Swal.close();
+			Swal.fire({
+				title: "Editado com sucesso!",
+				icon: "success",
+			}).then((result) => {
 				window.location.href = 'listarProdutoLojista';
-			}, 1000);
+			});
 		})
-		
+
 
 }
 
@@ -283,51 +304,71 @@ var categoria = []
 var subcategoria = []
 var lojista = []
 
+function loadSubCategories(categoryId) {
+
+	$.ajax({
+		url: url_base + `/subcategorias/categoria/${categoryId}`,
+		type: "GET",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
+		success: function(data) {
+			Swal.close()
+			$('#subCategoria').empty().append($('<option>', {
+				value: "",
+				text: "Selecione...",
+			}));
+
+			$.each(data, function(index, item) {
+				$('#subCategoria').append($('<option>', {
+					value: item.id,
+					text: item.nome,
+				}));
+			});
+		},
+		error: function(xhr, status, error) {
+			Swal.close()
+			console.error("Erro ao buscar subcategorias:", status, error);
+		}
+	});
+}
+
 $(document).ready(function() {
+	$('#categoria').change(function() {
+		const categoryId = $(this).val()
+		if (categoryId) {
+			loadSubCategories(categoryId);
+		} else {
+			alert('Foi4')
+			$('#subCategoria').empty().append($('<option>', {
+				value: "",
+				text: "Selecione...",
+			}));
+		}
+	});
 
 	$.ajax({
 		url: url_base + '/categorias',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		
-		$('#categoria').append($('<option>', { 
-			 value: "",
-			 text : "Selecione...", }));
-		
-		
-		$.each(data, function(index, item) {
-				
-               		 $('#categoria').append($('<option>', { 
-                     value: item.idCategoria,
-                     id: item.idCategoria,
-                     text : item.categoria ,
-                     name : item.categoria
-                 }));
-           })
-	
-	})
 
-	$.ajax({
-		url: url_base + '/subcategorias',
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-		
-		$('#subCategoria').append($('<option>', { 
-			 value: "",
-			 text : "Selecione...", }));
-		
-		
+		$('#categoria').append($('<option>', {
+			value: "",
+			text: "Selecione...",
+		}));
+
+
 		$.each(data, function(index, item) {
-				
-               		 $('#subCategoria').append($('<option>', { 
-                     value: item.id,
-                     id: item.id,
-                     text : item.nome ,
-                     name : item.nome
-                 }));
-           })
+
+			$('#categoria').append($('<option>', {
+				value: item.idCategoria,
+				id: item.idCategoria,
+				text: item.categoria,
+				name: item.categoria
+			}));
+		})
+
 	})
 
 	$.ajax({
@@ -353,23 +394,23 @@ $(document).ready(function() {
 
 
 	} else {
-		
 
-		
+
+
 		$("#imagem-produto").attr("disabled", "disabled")
-		
-		
-		
+
+
+
 		$("#abrirModalImg").removeClass("none")
 
 		$("#categoria, #subCategoria ,#lojista").attr("disabled", "disabled")
 
 		$("#tituloPagina, #tituloForm").text("Editar Produto")
 		$("#btn-submit").text("Editar")
-		
-		
-		
-	
+
+
+
+
 
 		$.ajax({
 			url: url_base + "/produtos/" + idProduto,
@@ -377,14 +418,42 @@ $(document).ready(function() {
 			async: false,
 		})
 			.done(function(data) {
+				$.ajax({
+					url: url_base + `/subcategorias/categoria/${data.categorias.idCategoria}`,
+					type: "GET",
+					beforeSend: function() {
+						Swal.showLoading()
+					},
+					success: function(dataSubCategoria) {
+						Swal.close()
+						$('#subCategoria').append($('<option>', {
+							value: "",
+							text: "Selecione...",
+						}));
+
+						$.each(dataSubCategoria, function(index, item) {
+							$('#subCategoria').append($('<option>', {
+								value: item.id,
+								text: item.nome,
+								id: item.id,
+								name: item.nome
+							}));
+						});
+						$('#subCategoria').find(`option[value=${data.subcategorias.id}]`).attr("selected", "selected")
+					},
+					error: function(xhr, status, error) {
+						Swal.close()
+						console.error("Erro ao buscar subcategorias:", status, error);
+					}
+				});
+				console.log(data.subcategorias.id)
 				$('#nomeProduto').val(data.nomeProduto),
 					$('#descricao').val(data.descrProduto),
-					
+
 					$('#precoDeVenda').val(data.preco),
 					$('#comissao').val(data.comissao),
 					$('#categoria').find(`option[value=${data.categorias.idCategoria}]`).attr("selected", "selected"),
-					$('#subCategoria').find(`option[value=${data.subcategorias.id}]`).attr("selected", "selected"),
-					$('#lojista').find(`option[value=${data.lojista.idLojista}]`).attr("selected", "selected"),
+				$('#lojista').find(`option[value=${data.lojista.idLojista}]`).attr("selected", "selected"),
 
 					edição = "sim"
 			})
@@ -392,18 +461,18 @@ $(document).ready(function() {
 				console.log('erro ao buscar dados.')
 				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 			});
-			
-			$.ajax({
+
+		$.ajax({
 			url: url_base + "/imagens/" + 17,
 			type: 'GET',
 			async: false,
-		}).done(function(data){
-			
+		}).done(function(data) {
+
 			imagem = data.imagem
 			console.log(data.imagem)
-			
+
 			$("#img0").attr("src", imagem)
-			})
+		})
 	}
 
 });

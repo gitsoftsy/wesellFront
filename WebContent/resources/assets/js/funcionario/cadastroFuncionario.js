@@ -4,19 +4,6 @@ const elemento = document.querySelector('#modalMenu');
 var edição = ""
 const idFuncionarios = params.get("id");
 
-
-
-botaoDesativa.addEventListener('click', () => {
-	elemento.classList.add('animar-sair');
-	elemento.classList.remove('animar-entrar');
-
-});
-
-botaoAtiva.addEventListener('click', () => {
-	elemento.classList.add('animar-entrar');
-	elemento.classList.remove('animar-sair');
-});
-
 function ativaSenhas() {
 
 	$("#senha, #confirmarSenha").removeAttr("disabled")
@@ -98,46 +85,46 @@ function cadastrar() {
 };
 
 function editar() {
-	
-		var objetoFinal
-	
-	
-  const valorInput = $("#senha").val();
-  
-  if (valorInput) {
-	  alert("com senha")
-	  var objetoComSenha = {
 
-		"idFuncionario": idFuncionarios,
-		"cargoId": $("#cargo option:selected").attr("id"),
-		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"email": $('#email').val(),
-		"senha": $('#senha').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
-		"nome": $('#nome').val(),
+	var objetoFinal
+
+
+	const valorInput = $("#senha").val();
+
+	if (valorInput) {
+		alert("com senha")
+		var objetoComSenha = {
+
+			"idFuncionario": idFuncionarios,
+			"cargoId": $("#cargo option:selected").attr("id"),
+			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"email": $('#email').val(),
+			"senha": $('#senha').val(),
+			"lojistaId": $("#lojista option:selected").attr("id"),
+			"nome": $('#nome').val(),
+
+		}
+
+
+		objetoFinal = objetoComSenha
+
+	} else {
+		alert("sem senha")
+		var objetoSemSenha = {
+
+			"idFuncionario": idFuncionarios,
+			"cargoId": $("#cargo option:selected").attr("id"),
+			"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+			"email": $('#email').val(),
+			"lojistaId": $("#lojista option:selected").attr("id"),
+			"nome": $('#nome').val(),
+
+		}
+
+
+		objetoFinal = objetoSemSenha
 
 	}
-	  
- 
-    objetoFinal = objetoComSenha
-    
-  } else {
-	  	alert("sem senha")
-	var objetoSemSenha = {
-
-		"idFuncionario": idFuncionarios,
-		"cargoId": $("#cargo option:selected").attr("id"),
-		"cpf": $('#cpf').val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		"email": $('#email').val(),
-		"lojistaId": $("#lojista option:selected").attr("id"),
-		"nome": $('#nome').val(),
-
-	}
-	 
-    
-    objetoFinal = objetoSemSenha
-    
-  }
 
 
 
@@ -150,7 +137,7 @@ function editar() {
 		contentType: "application/json; charset=utf-8",
 		error: function(e) {
 			Toastify({
-				text:   e.responseJSON[0].mensagem,
+				text: e.responseJSON[0].mensagem,
 				duration: 10000,
 				position: "center",
 				backgroundColor: "red",
@@ -173,7 +160,7 @@ function editar() {
 				window.location.href = 'listarFuncionarios';
 			}, 1000);
 		})
-		
+
 
 }
 
@@ -227,22 +214,23 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-	
-	$('#cargo').append($('<option>', { 
-			 value: "",
-			 text : "Selecione...", }));
-		
-		
+
+		$('#cargo').append($('<option>', {
+			value: "",
+			text: "Selecione...",
+		}));
+
+
 		$.each(data, function(index, item) {
-				
-               		 $('#cargo').append($('<option>', { 
-                     value: item.idCargo,
-                     id: item.idCargo,
-                     text : item.cargo ,
-                     name : item.cargo 
-                 }));
-           })
-	
+
+			$('#cargo').append($('<option>', {
+				value: item.idCargo,
+				id: item.idCargo,
+				text: item.cargo,
+				name: item.cargo
+			}));
+		})
+
 	})
 
 	$.ajax({
@@ -250,27 +238,27 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-		
-		$('#lojista').append($('<option>', { 
-			 value: "",
-			 text : "Selecione...", }));
-		
-		
-		$.each(data, function(index, item) {
-				
-               		 $('#lojista').append($('<option>', { 
-                     value: item.idLojista,
-                     id: item.idLojista,
-                     text : item.nomeFantasia ,
-                     name : item.nomeFantasia
-                 }));
-           })
-		
-	})
-	
-	if (idFuncionarios == undefined) {
 
-	} else {
+		$('#lojista').append($('<option>', {
+			value: "",
+			text: "Selecione...",
+		}));
+
+
+		$.each(data, function(index, item) {
+
+			$('#lojista').append($('<option>', {
+				value: item.idLojista,
+				id: item.idLojista,
+				text: item.nomeFantasia,
+				name: item.nomeFantasia
+			}));
+		})
+
+	})
+
+	alert(idFuncionarios)
+	if (idFuncionarios) {
 
 		$("#tituloPagina, #tituloForm").text("Editar Funcionario")
 		$("#btn-submit").text("Editar")
@@ -307,12 +295,10 @@ $(document).ready(function() {
 			async: false,
 		})
 			.done(function(data) {
-			
+
 				$("#telefone").val(data[0].telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3"))
 
 			})
-
-
 	}
 
 });

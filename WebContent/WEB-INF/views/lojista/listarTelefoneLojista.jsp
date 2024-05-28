@@ -13,8 +13,9 @@ String contextPath = request.getContextPath();
 <title>Wesell</title>
 
 <!-- Sweetalert -->
-<script  charset="UTF-8" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script  charset="UTF-8" src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 <!-- Bootstrap -->
 <link
@@ -22,7 +23,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script  charset="UTF-8"
+<script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -36,7 +37,7 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-<script  charset="UTF-8"
+<script charset="UTF-8"
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- CSS -->
@@ -49,7 +50,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script  charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
+<script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/areaLojista.css" />
@@ -80,9 +81,9 @@ String contextPath = request.getContextPath();
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-2"
 				style="display: flex; flex-flow: column; align-items: center; gap: 20px">
-				<a href="cadastroTelefoneLojista" class="btn btn-primary btn-lg px-3 py-1"
-					onclick="limpaCampo()" data-bs-target="#newCadastro">Novo
-					telefone</a>
+				<button class="btn btn-primary btn-lg px-3 py-1"
+					onclick="limpaCampo()" data-bs-toggle="modal"
+					data-bs-target="#newCadastro">Novo telefone</button>
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar telefone" /> <span
@@ -117,7 +118,7 @@ String contextPath = request.getContextPath();
 		</section>
 	</main>
 
-	<!-- <div class="modal fade" id="newCadastro" tabindex="-1"
+	<div class="modal fade" id="newCadastro" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -129,10 +130,22 @@ String contextPath = request.getContextPath();
 				<div class="modal-body">
 					<form id="formCadastro">
 						<div class="mb-4">
-							<label for="nome" class="form-label">Área de
-								Conhecimento:</label> <input type="text" class="form-control"
-								id="cadastro-nome" required aria-describedby="Descricao"
-								autocomplete="off">
+							<label for="nome" class="form-label">Telefone:</label> <input
+								type="text" id="telefoneT" autocomplete="off" name="telefone"
+								class="form-control inputForm" data-mask="(00)0000-0000"
+								maxlength="11" /> <input type="text" id="telefoneC"
+								autocomplete="off" name="telefone"
+								class="form-control inputForm" data-mask="(00)00000-0000"
+								maxlength="11" />
+						</div>
+						<div class="mb-4">
+							<label for="tipoTelefone" class="form-label">Tipo de
+								telefone:<span class="red">*</span>
+							</label> <select id="tipoTelefone" required class="form-select inputForm"
+								style="padding-top: 10px">
+								<option value='C'>Celular</option>
+								<option value='T'>Telefone</option>
+							</select>
 						</div>
 
 						<div class="d-flex justify-content-end gap-2">
@@ -146,28 +159,72 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
+	<div class="modal fade" id="editTel" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="title-edit">Editar</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="formEdit">
+						<div class="mb-4">
+							<label for="nome" class="form-label">Telefone:</label> <input
+								type="text" id="telefoneTEdit" autocomplete="off" name="telefone"
+								class="form-control inputForm" data-mask="(00)0000-0000"
+								maxlength="11" /> <input type="text" id="telefoneCEdit"
+								autocomplete="off" name="telefone"
+								class="form-control inputForm" data-mask="(00)00000-0000"
+								maxlength="11" />
+						</div>
+						<div class="mb-4">
+							<label for="tipoTelefoneEdit" class="form-label">Tipo de
+								telefone:<span class="red">*</span>
+							</label> <select id="tipoTelefoneEdit" required class="form-select inputForm"
+								style="padding-top: 10px">
+								<option value='C'>Celular</option>
+								<option value='T'>Telefone</option>
+							</select>
+						</div>
+						<div class="d-flex justify-content-end gap-2">
+							<button type="button" onclick='excluir()'
+								class="btn btn-danger" data-bs-dismiss="modal">Remover</button>
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">Fechar</button>
+							<button type="submit" data-bs-dismiss="modal"
+								class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-	<script  charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script  charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/telefone/listarTelefoneLojista.js"></script>
-	<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/lojista/listarTelefoneLojista.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </body>
 </html>
