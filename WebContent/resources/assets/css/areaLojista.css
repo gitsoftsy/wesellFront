@@ -11,6 +11,11 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+/* modal sweetalert*/
+.swal2-input, .swal2-select {
+     width: 70% !important;
+}
+
 
 
 /* modal imagens */
@@ -211,9 +216,9 @@ a{
 	cursor:pointer;
 }
 
-.modal{
+/* .modal{
 	margin-top: 10%;
-}
+} */
 
 .titulo-modal{
 	margin-top:25px;
