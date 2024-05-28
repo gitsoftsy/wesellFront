@@ -10,45 +10,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class BannerController {
 	
-	@RequestMapping(value = { "listarBannersPrincipais" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "listarBanners" }, method = RequestMethod.GET)
 	public String listarBannersPrincipais(HttpSession session, Model model) throws Exception {
 		
 		
-		return "banners/bannersPrincipais";
+		return "banners/banners";
 	}
 	
-	@RequestMapping(value = { "listarBannersSecundarios" }, method = RequestMethod.GET)
-	public String listarBannersSecundarios(HttpSession session, Model model) throws Exception {
-		
-		
-		return "banners/bannersSecundarios";
-	}
 	
-	@RequestMapping(value = { "cadastroDeBannerPrincipal" }, method = RequestMethod.GET)
+	
+	@RequestMapping(value = { "cadastroDeBanner" }, method = RequestMethod.GET)
 	public String cadastroDeBannerPrincipal(HttpSession session, Model model) throws Exception {
 		
 		
-		return "banners/newBannerPrincipal";
+		return "banners/newBanner";
 	}
 	
-	@RequestMapping(value = { "cadastroDeBannerSecundario" }, method = RequestMethod.GET)
-	public String cadastroDeBannerSecundario(HttpSession session, Model model) throws Exception {
-		
-		
-		return "banners/newBannerSecundario";
-	}
 	
-	@RequestMapping(value = { "editBannerPrincipal" }, method = RequestMethod.GET)
+	
+	@RequestMapping(value = { "editBanner" }, method = RequestMethod.GET)
 	public String editBannerPrincipal(HttpSession session, Model model) throws Exception {
 		
 		
-		return "banners/editBannerPrincipal";
+		return "banners/editBanner";
 	}
 	
-	@RequestMapping(value = { "editBannerSecundario" }, method = RequestMethod.GET)
-	public String editBannerSecundario(HttpSession session, Model model) throws Exception {
-		
-		
-		return "banners/editBannerSecundario";
-	}
+	
 }

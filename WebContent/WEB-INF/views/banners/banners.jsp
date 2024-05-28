@@ -81,7 +81,7 @@ String contextPath = request.getContextPath();
 			<div class="card">
 				<div class="card-body title">
 					<i class="fa-solid fa-shop"></i> <span>Lista de
-						Banners principais</span>
+						Banners</span>
 				</div>
 			</div>
 		</section>
@@ -90,7 +90,7 @@ String contextPath = request.getContextPath();
 				style="display: flex; flex-flow:column;align-items:left; gap:20px">
 				<div class="d-flex gap-4">
 					<button id="exportar-excel" disabled="disabled" class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center"><i class="fa-solid fa-file-export"></i>Exportar</button>
-					<a href="cadastroDeBannerPrincipal" class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i class="fa-regular fa-pen-to-square"></i>Novo banner</a>
+					<a href="cadastroDeBanner" class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i class="fa-regular fa-pen-to-square"></i>Novo banner</a>
 				</div>
 				<div class="input-group" >
 					<input id="inputBusca" type="text" class="form-control inputForm"
@@ -102,7 +102,7 @@ String contextPath = request.getContextPath();
 
 			<table
 				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Banners principais cadastrados</caption>
+				<caption>Banners cadastrados</caption>
 				<thead>
 					<tr>
 						
@@ -138,7 +138,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script  charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/banners/bannersPrincipais.js"></script>
+		src="<%=contextPath%>/resources/assets/js/banners/banners.js"></script>
 	<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 	<script  charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
