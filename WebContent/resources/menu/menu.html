@@ -20,6 +20,8 @@
 				<a class="sub-btn">Administração <i
 					class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
+				<a href="listarBannersPrincipais" class="sub-item">Banners Principais</a> <a
+						href="listarBannersSecundarios" class="sub-item">Banners Secundários</a>
 					<a href="listarCategoria" class="sub-item">Categoria</a> <a
 						href="listarSubCategoria" class="sub-item">Sub-Categoria</a> <a
 						href="listarCargos" class="sub-item">Cargos</a> <a
@@ -27,10 +29,10 @@
 				</div>
 			</div>
 			<div class="item">
-				<a class="sub-btn">Loja <i
-					class="fas fa-angle-right dropdown"></i></a>
+				<a class="sub-btn">Loja <i class="fas fa-angle-right dropdown"></i></a>
 				<div class="sub-menu">
-					<a href="listarLojista" class="sub-item">Lojas Cadastradas</a> <a
+					 <a
+						href="listarLojista" class="sub-item">Lojas Cadastradas</a> <a
 						href="listarFuncionarios" class="sub-item">Funcionários
 						Lojista </a> <a href="listarProduto" class="sub-item">Produtos</a>
 				</div>
@@ -39,7 +41,7 @@
 	</section>
 </body>
 
-<script  charset="UTF-8" type="text/javascript">
+<script charset="UTF-8" type="text/javascript">
 	$(document).ready(function() {
 		var perfilArmazenado = JSON.parse(localStorage.getItem('perfil'));
 
@@ -63,5 +65,6 @@
 		});
 	});
 </script>
-<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"></script>
+<script charset="UTF-8"
+	src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"></script>
 </html>
