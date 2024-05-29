@@ -16,18 +16,13 @@ String contextPath = request.getContextPath();
 
 <title>Wesell</title>
 
-<!-- Sweetalert -->
-<script charset="UTF-8"
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
-
 <!-- Bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script charset="UTF-8"
+<script  charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -41,7 +36,7 @@ String contextPath = request.getContextPath();
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-<script charset="UTF-8"
+<script  charset="UTF-8"
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <!-- CSS -->
@@ -54,10 +49,14 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
+<script  charset="UTF-8" src="https://kit.fontawesome.com/2476720ce5.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css" />
+
+<!-- Sweetalert -->
+<script  charset="UTF-8" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script  charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -79,14 +78,14 @@ String contextPath = request.getContextPath();
 	</button>
 
 	<button type="button" class="btn botaoAtivaMenu ">
-		<i class="fa-solid fa-arrow-left mover-left "></i>
+		<i class="fa-solid fa-arrow-left mover-left"></i>
 	</button>
 	<main class="py-4 container-res">
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-barcode"></i> <span>Lista de Produtos
-					</span>
+					<i class="fa-regular fa-address-card"></i> <span>Lista de
+						Influencer</span>
 				</div>
 			</div>
 		</section>
@@ -98,38 +97,25 @@ String contextPath = request.getContextPath();
 						class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center">
 						<i class="fa-solid fa-file-export"></i>Exportar
 					</button>
-					<a href="cadastroDeProduto"
-						class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i
-						class="fa-regular fa-pen-to-square"></i>Novo Produto</a>
-					<button id="import-excel" data-bs-toggle="modal"
-						data-bs-target="#importProduct"
-						class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center">
-						<i class="fa-solid fa-file-export"></i>Importar
-					</button>
 				</div>
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
-						placeholder="Buscar Produto" /> <span
+						placeholder="Buscar Influencer" /> <span
 						class="input-group-text icone-pesquisa"><i
 						class="fas fa-search"></i></span>
 				</div>
-
 			</div>
 
 			<table
 				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
-				<caption>Produtos cadastrados</caption>
+				<caption>Influencer Cadastrados</caption>
 				<thead>
 					<tr>
 						<th scope="col" width="10%">Ativo</th>
-						<th scope="col">Nome</th>
-						<th scope="col">Descrição</th>
-						<th scope="col">Categoria</th>
-						<th scope="col">Sub-Categoria</th>
-						<th scope="col">Preço</th>
-						<th scope="col">Comissão</th>
-						<th scope="col">Loja</th>
-						<th scope="col" width="15%">Ações</th>
+						<th scope="col" width="25%">Nome</th>
+						<th scope="col">Data de nascimento</th>
+						<th scope="col" width="30%">Celular</th>
+						<th scope="col" width="10%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
@@ -147,64 +133,28 @@ String contextPath = request.getContextPath();
 		</section>
 	</main>
 
-	<div class="modal fade" id="importProduct" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="title-novo-ato">Importar
-						Produtos</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form id="formImport">
-						<div class="mb-4">
-							<label for="fileExcel" class="form-label">Arquivo Excel:<span
-								class="red">*</span></label> <input class="form-control " required
-								type="file" id="fileExcel" name="logoConta"> </input>
-						</div>
-						<div class="mb-4">
-							<label for="lojista" class="form-label">Lojista:<span class="red">*</span>
-							</label> <select id="lojista" required class="form-select inputForm"
-								style="padding-top: 10px">
-							</select>
-						</div>
-
-						<div class="d-flex justify-content-end gap-2">
-
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">Fechar</button>
-							<button type="submit" data-bs-dismiss="modal"
-								class="btn btn-primary">Salvar</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
+	<script  charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
+	<script  charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
+	<script  charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script charset="UTF-8"
+	<script  charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources//assets/js/produto/listarProduto.js"></script>
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-	<script charset="UTF-8"
+	<script  charset="UTF-8"
+		src="<%=contextPath%>/resources//assets/js/influencer/listarInfluencer.js"></script>
+	<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+	<script  charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-	<script charset="UTF-8"
+
+	<script  charset="UTF-8"
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
 </body>
 </html>

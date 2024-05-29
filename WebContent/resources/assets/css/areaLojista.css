@@ -4,6 +4,16 @@
 	box-sizing: border-box;
 }
 
+.botaoExcel{
+	background-color:#107c42; 
+	color:white;
+}
+
+.botaoExcel:hover{
+	background-color:#107c42; 
+	color:white;
+}
+
 body {
 	min-height: 100vh;
 	width: 100%;

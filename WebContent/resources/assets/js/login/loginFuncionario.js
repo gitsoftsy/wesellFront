@@ -27,18 +27,20 @@ $("#form-login").submit(function(e) {
 		type: "POST",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-
+			Swal.close();
+			console.log(e.responseJSON.message);
 			Swal.fire({
-				title: "Usuário ou senha inválido !!",
 				icon: "error",
-			})
-
-			console.log(e)
-
+				title: "Usuário ou senha inválido !!"
+			});
 		}
 	})
 		.done(function(data) {
+			Swal.close();
 			if (perfil == 'LOJISTA') {
 				if (data.administrador.toUpperCase() == 'S') {
 					window.location.href = 'usuarioLojista'
