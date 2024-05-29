@@ -105,7 +105,13 @@ String contextPath = request.getContextPath();
 				<caption>Banners cadastrados</caption>
 				<thead>
 					<tr>
-						
+						<th scope="col">Data do Cadastro</th>
+						<th scope="col">Tipo do Banner</th>
+						<th scope="col">Tipo do Dispositivo</th>
+						<th scope="col">LocalBanner</th>
+						<th scope="col">Data Início</th>
+						<th scope="col">Data Fim</th>
+						<th scope="col" width="15%">Ações</th>
 					</tr>
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>

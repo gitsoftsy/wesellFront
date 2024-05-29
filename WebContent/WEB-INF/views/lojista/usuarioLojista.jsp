@@ -76,14 +76,14 @@ String contextPath = request.getContextPath();
 		<section class="mb-5">
 			<div class="card">
 				<div class="card-body title">
-					<i class="fa-solid fa-user-pen fa-lg"></i>  <span id="tituloPagina"></span>
+					<i class="fa-solid fa-user-pen fa-lg"></i>  <span id="tituloPagina">Usuário</span>
 				</div>
 			</div>
 		</section>
 		<section class="pt-4">
 			<form id="form-funcionario"
 				class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp">
-				<h1 id="tituloForm" class="text-left mb-5"></h1>
+				<h1 id="tituloForm" class="text-left mb-5">Dados do Usuário</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
