@@ -81,6 +81,14 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+
+    <!-- cropper -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
   </head>
 
   <body>
@@ -165,7 +173,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Tipo de banner<span class="red">*</span></label
               >
               <select
-                class="form-select"
+                class="form-select inputForm"
                 aria-label="Tipo de banner"
                 id="tipoBanner"
                 required
@@ -176,18 +184,16 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 <option value="C">Comprador</option>
               </select>
             </div>
-
             <div class="col-md-6">
-              <label for="imagem2" class="form-label"
+              <label for="inputImage" class="form-label"
                 >Imagem<span class="red">*</span></label
               >
               <input
                 required
-                disabled
-                autocomplete="off"
                 type="file"
-                id="imagem2"
-                name="imagem2"
+                id="inputImage"
+                disabled
+                accept="image/*"
                 class="form-control inputForm"
               />
             </div>
@@ -262,8 +268,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               </button>
             </div>
           </div>
-          <!-- Button trigger modal -->
-          <button
+
+          <!-- <button
             type="button"
             style="display: none"
             class="btn btn-primary"
@@ -273,20 +279,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           >
             Launch demo modal
           </button>
-
-          <!-- Button modal de cadastro  -->
-          <button
-            type="button"
-            style="display: none"
-            class="btn btn-primary"
-            id="openModalBtn"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            Launch demo modal
-          </button>
-
-          <!-- Modal de cadastro -->
           <div
             class="modal fade"
             id="exampleModal"
@@ -305,14 +297,62 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="modal-title fs-5 titulo-modal"
                     id="exampleModalLabel"
                   >
-                    Seu cadastro foi realizado!
+                    Cadastrado com sucesso!
                   </h1>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </form>
       </section>
+      <!-- Modal crop-->
+      <button
+        type="button"
+        class="btn btn-primary"
+        hidden
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      ></button>
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <!-- <div id="imagePreview"></div> -->
+              <div class="col-12">
+                <div class="img-container">
+                  <img id="imgBanner" src="" alt="Imagem para recortar" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="btnCancel"
+                class="btn btn-sm btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                id="btnCrop"
+                class="btn btn-sm btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Recortar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script
       charset="UTF-8"
