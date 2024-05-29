@@ -21,6 +21,12 @@ public class WesellController {
 		return "wesell/listarColaboradores";
 	}
 	
+	@RequestMapping(value = { "listarInfluencer" }, method = RequestMethod.GET)
+	public String listarInfluencer(HttpSession session, Model model) throws Exception {
+
+		return "wesell/listarInfluencer";
+	}
+	
 	@RequestMapping(value = { "listarLojista" }, method = RequestMethod.GET)
 	public String listarLojista(HttpSession session, Model model) throws Exception {
 
