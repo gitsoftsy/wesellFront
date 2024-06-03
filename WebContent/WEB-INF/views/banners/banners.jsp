@@ -14,13 +14,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
     <title>Wesell</title>
 
-    <!-- Sweetalert -->
-    <script
-      charset="UTF-8"
-      src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
-    ></script>
-    <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
-
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -46,10 +39,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
       rel="stylesheet"
     />
-    <script
-      charset="UTF-8"
-      src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"
-    ></script>
 
     <!-- CSS -->
 
@@ -201,8 +190,19 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
+      src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"
+    ></script>
+    <script
+      charset="UTF-8"
       src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"
     ></script>
+
+    <!-- Sweetalert -->
+    <script
+      charset="UTF-8"
+      src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
+    ></script>
+    <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
     <script
       charset="UTF-8"
       src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"

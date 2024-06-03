@@ -35,13 +35,12 @@ $(document).ready(function () {
 
   $("#staticBackdrop").on("shown.bs.modal", function () {
     const tipoDispositivo = $("#tipoDispositivo").val();
-    const aspectRatio = tipoDispositivo === "M" ? 2 / 3 : 16 / 9;
+    const aspectRatio = tipoDispositivo === "M" ? 2 / 3 : 14 / 4;
 
     cropper = new Cropper(image, {
       aspectRatio,
-      viewMode: 3,
+      viewMode: 2,
       responsive: true,
-      scalable: true,
       zoomable: true,
       ready() {
         cropper.reset();

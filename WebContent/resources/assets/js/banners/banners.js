@@ -14,7 +14,7 @@ botaoAtiva.addEventListener("click", () => {
 
 var banners = [];
 
-$(document).ready(function () {
+function getDados() {
   $.ajax({
     url: url_base + "/banners/ativos",
     type: "GET",
@@ -39,71 +39,9 @@ $(document).ready(function () {
     banners = data;
     renderizarItens(data);
   });
-
-  function renderizarItens(banner) {
-    var html = banner
-      .map(function (item) {
-        var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
-        var tipoBanner =
-          item.tipoBanner === "I" ? "Influenciador" : "Comprador";
-        var tipoDispositivo =
-          item.tipoDispositivo === "M" ? "Mobile" : "Desktop";
-        var localBanner = item.localBanner === "P" ? "Principal" : "Secundário";
-
-        function formatarData(data) {
-          var partes = data.split("-");
-          return partes[2] + "/" + partes[1] + "/" + partes[0];
-        }
-
-        var dataInicioExibicaoBR = formatarData(item.dataInicioExibicao);
-        var dataFimExibicaoBR = formatarData(item.dataFimExibicao);
-
-        return (
-          "<tr>" +
-          "<td>" +
-          tipoBanner +
-          "</td>" +
-          "<td>" +
-          tipoDispositivo +
-          "</td>" +
-          "<td>" +
-          localBanner +
-          "</td>" +
-          "<td>" +
-          item.ordem +
-          "</td>" +
-          "<td>" +
-          item.urlDestino +
-          "</td>" +
-          "<td>" +
-          dataInicioExibicaoBR +
-          "</td>" +
-          "<td>" +
-          dataFimExibicaoBR +
-          "</td>" +
-          "<td>" +
-          '<button type="button" class="btn btn-status btn-sm ' +
-          buttonClass +
-          '" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
-          (item.ativo === "S"
-            ? "<i class='fa-solid fa-check fa-xl'></i>"
-            : '<i class="fa-solid fa-xmark fa-xl"></i>') +
-          "</button>" +
-          "</td>" +
-          '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-          item.idBanner +
-          '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></span> <input type="checkbox" data-status="' +
-          item.ativo +
-          '" data-id="' +
-          item.idBanner +
-          '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
-          "</tr>"
-        );
-      })
-      .join("");
-
-    $("#colaTabela").html(html);
-  }
+}
+$(document).ready(function () {
+  getDados();
 
   $("#inputBusca").on("keyup", function () {
     var valorBusca = $(this).val().toLowerCase();
@@ -255,10 +193,93 @@ $(document).ready(function () {
     }
   });
 });
+function renderizarItens(banner) {
+  var html = banner
+    .map(function (item) {
+      var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+      var tipoBanner = item.tipoBanner === "I" ? "Influenciador" : "Comprador";
+      var tipoDispositivo = item.tipoDispositivo === "M" ? "Mobile" : "Desktop";
+      var localBanner = item.localBanner === "P" ? "Principal" : "Secundário";
 
+      function formatarData(data) {
+        var partes = data.split("-");
+        return partes[2] + "/" + partes[1] + "/" + partes[0];
+      }
+
+      var dataInicioExibicaoBR = formatarData(item.dataInicioExibicao);
+      var dataFimExibicaoBR = formatarData(item.dataFimExibicao);
+
+      return (
+        "<tr>" +
+        "<td>" +
+        tipoBanner +
+        "</td>" +
+        "<td>" +
+        tipoDispositivo +
+        "</td>" +
+        "<td>" +
+        localBanner +
+        "</td>" +
+        "<td>" +
+        item.ordem +
+        "</td>" +
+        "<td>" +
+        item.urlDestino +
+        "</td>" +
+        "<td>" +
+        dataInicioExibicaoBR +
+        "</td>" +
+        "<td>" +
+        dataFimExibicaoBR +
+        "</td>" +
+        "<td>" +
+        '<button type="button" class="btn btn-status btn-sm ' +
+        buttonClass +
+        '" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
+        (item.ativo === "S"
+          ? "<i class='fa-solid fa-check fa-xl'></i>"
+          : '<i class="fa-solid fa-xmark fa-xl"></i>') +
+        "</button>" +
+        "</td>" +
+        '<td class="d-flex"><button style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
+        item.idBanner +
+        '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></button> <input type="checkbox" data-status="' +
+        item.ativo +
+        '" data-id="' +
+        item.idBanner +
+        '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"> <button style="margin-left: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-value="' +
+        item.idBanner +
+        '" onclick="remover(this)">Remover</button></td>' +
+        "</tr>"
+      );
+    })
+    .join("");
+
+  $("#colaTabela").html(html);
+}
 function editar(user) {
   var id = user.getAttribute("data-value");
   window.location.href = "?id=" + id;
+}
+
+function remover(item) {
+  var idBanner = item.getAttribute("data-value");
+
+  $.ajax({
+    url: url_base + "/banners/" + idBanner,
+    type: "DELETE",
+    contentType: "application/json; charset=utf-8",
+    error: function (e) {
+      console.log(e);
+      alert(e.responseJSON.message);
+    },
+  }).done(function (data) {
+    Swal.fire({
+      icon: "success",
+      title: "Removido com sucesso!",
+    });
+    getDados();
+  });
 }
 
 function alteraStatus(element) {
