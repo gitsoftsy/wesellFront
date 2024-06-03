@@ -1,7 +1,10 @@
 var base64 = "";
+var usuario = "";
 $(document).ready(function () {
   let cropper;
   let image = document.getElementById("imgBanner");
+  var user = localStorage.getItem("usuario");
+  usuario = JSON.parse(user);
 
   $("#tipoDispositivo").on("change", function () {
     const tipoDispositivo = $(this).val();
@@ -61,7 +64,7 @@ $(document).ready(function () {
     });
   });
 
-  $(window).on('resize', function() {
+  $(window).on("resize", function () {
     if (cropper) {
       cropper.reset();
       cropper.fit();
@@ -88,20 +91,26 @@ $(document).ready(function () {
 
 $("#form-cadastro").submit(function (e) {
   e.preventDefault();
+
+  var base64SemPrefixo = base64.replace(
+    /^data:image\/(png|jpeg|jpg);base64,/,
+    ""
+  );
+
   var dados = {
-    escolaId: Number($("#escolaId").val()),
-    dependenciaAdmId: Number($("#dependenciaAdmId").val()),
-    creditos: Number($("#creditos").val()),
-    horasAula: Number($("#horasAula").val()),
-    horasLab: Number($("#horasLab").val()),
-    horasEstagio: Number($("#horasEstagio").val()),
-    horasAtiv: Number($("#horasAtiv").val()),
-    disciplina: $("#disciplina").val(),
-    nome: $("#nome").val(),
+    colaboradorId: usuario.id,
+    tipoBanner: $("#tipoBanner").val(),
+    localBanner: $("#localBanner").val(),
+    tipoDispositivo: $("#tipoDispositivo").val(),
+    pathImagem: base64SemPrefixo,
+    ordem: Number($("#ordem").val()),
+    urlDestino: $("#urlDestino").val(),
+    dataInicioExibicao: $("#dtInicio").val(),
+    dataFimExibicao: $("#dtFim").val(),
   };
 
   $.ajax({
-    url: url_base + "/disciplina",
+    url: url_base + "/banners",
     type: "POST",
     data: JSON.stringify(dados),
     contentType: "application/json; charset=utf-8",
@@ -117,6 +126,6 @@ $("#form-cadastro").submit(function (e) {
       close: true,
       className: "Toastify__toast--custom",
     }).showToast();
-    window.location.href = "disciplinas";
+    window.location.href = "listarBanners";
   });
 });
