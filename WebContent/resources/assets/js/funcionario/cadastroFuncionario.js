@@ -257,7 +257,6 @@ $(document).ready(function() {
 
 	})
 
-	alert(idFuncionarios)
 	if (idFuncionarios) {
 
 		$("#tituloPagina, #tituloForm").text("Editar Funcionario")

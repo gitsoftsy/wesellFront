@@ -241,17 +241,10 @@ function cadastrar() {
 	})
 }
 
-const converterValor = (valor) => {
-	let valorFormatado = valor.replace(/\D/g, '');
-	valorFormatado = (valorFormatado / 100).toFixed(2) + '';
-	
-	return valorFormatado
-}
-
 function editar() {
 	
-	let preco = converterValor($('#precoDeVenda').val())
-	let comissao = converterValor($('#comissao').val())
+	let preco = $('#precoDeVenda').val().replace(',', '.');
+	let comissao = $('#comissao').val().replace(',', '.');
 
 	var objetoEdit = {
 		"idProduto": idProduto,
