@@ -1,17 +1,3 @@
-const botaoDesativa = document.querySelector("#btnDesativa");
-const botaoAtiva = document.querySelector(".botaoAtivaMenu");
-const elemento = document.querySelector("#modalMenu");
-
-botaoDesativa.addEventListener("click", () => {
-  elemento.classList.add("animar-sair");
-  elemento.classList.remove("animar-entrar");
-});
-
-botaoAtiva.addEventListener("click", () => {
-  elemento.classList.add("animar-entrar");
-  elemento.classList.remove("animar-sair");
-});
-
 var banners = [];
 
 function getDados() {
@@ -20,13 +6,7 @@ function getDados() {
     type: "GET",
     async: false,
     error: function (e) {
-      Toastify({
-        text: e.responseJSON.message,
-        duration: 3000,
-        backgroundColor: "red",
-        position: "center",
-        type: "erro",
-      }).showToast();
+      console.log(e);
     },
   }).done(function (data) {
     $("#exportar-excel").click(function () {
@@ -41,7 +21,92 @@ function getDados() {
   });
 }
 $(document).ready(function () {
-  getDados();
+  $.ajax({
+    url: url_base + "/banners/ativos",
+    type: "GET",
+    async: false,
+    error: function (e) {
+      console.log(e);
+    },
+  }).done(function (data) {
+    $("#exportar-excel").click(function () {
+      var planilha = XLSX.utils.json_to_sheet(data);
+      var livro = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+      XLSX.writeFile(livro, "banners.xlsx");
+    });
+
+    banners = data;
+    renderizarItens(data);
+  });
+
+  function renderizarItens(banner) {
+    var html = banner
+      .map(function (item) {
+        var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+
+        var tipoBanner =
+          item.tipoBanner === "I" ? "Influenciador" : "Comprador";
+        var tipoDispositivo =
+          item.tipoDispositivo === "M" ? "Mobile" : "Desktop";
+        var localBanner = item.localBanner === "P" ? "Principal" : "Secundário";
+
+        function formatarData(data) {
+          var partes = data.split("-");
+          return partes[2] + "/" + partes[1] + "/" + partes[0];
+        }
+
+        var dataInicioExibicaoBR = formatarData(item.dataInicioExibicao);
+        var dataFimExibicaoBR = formatarData(item.dataFimExibicao);
+
+        return (
+          "<tr>" +
+          "<td>" +
+          tipoBanner +
+          "</td>" +
+          "<td>" +
+          tipoDispositivo +
+          "</td>" +
+          "<td>" +
+          localBanner +
+          "</td>" +
+          "<td>" +
+          item.ordem +
+          "</td>" +
+          "<td>" +
+          item.urlDestino +
+          "</td>" +
+          "<td>" +
+          dataInicioExibicaoBR +
+          "</td>" +
+          "<td>" +
+          dataFimExibicaoBR +
+          "</td>" +
+          "<td>" +
+          '<button type="button" class="btn btn-status btn-sm ' +
+          buttonClass +
+          '" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
+          (item.ativo === "S"
+            ? "<i class='fa-solid fa-check fa-xl'></i>"
+            : '<i class="fa-solid fa-xmark fa-xl"></i>') +
+          "</button>" +
+          "</td>" +
+          '<td class="d-flex"><button style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
+          item.idBanner +
+          '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></button> <input type="checkbox" data-status="' +
+          item.ativo +
+          '" data-id="' +
+          item.idBanner +
+          '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"> <button style="margin-left: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-value="' +
+          item.idBanner +
+          '" onclick="remover(this)">Remover</button></td>' +
+          "</tr>"
+        );
+      })
+      .join("");
+
+    $("#colaTabela").html(html);
+  }
 
   $("#inputBusca").on("keyup", function () {
     var valorBusca = $(this).val().toLowerCase();
@@ -193,73 +258,10 @@ $(document).ready(function () {
     }
   });
 });
-function renderizarItens(banner) {
-  var html = banner
-    .map(function (item) {
-      var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
-      var tipoBanner = item.tipoBanner === "I" ? "Influenciador" : "Comprador";
-      var tipoDispositivo = item.tipoDispositivo === "M" ? "Mobile" : "Desktop";
-      var localBanner = item.localBanner === "P" ? "Principal" : "Secundário";
 
-      function formatarData(data) {
-        var partes = data.split("-");
-        return partes[2] + "/" + partes[1] + "/" + partes[0];
-      }
-
-      var dataInicioExibicaoBR = formatarData(item.dataInicioExibicao);
-      var dataFimExibicaoBR = formatarData(item.dataFimExibicao);
-
-      return (
-        "<tr>" +
-        "<td>" +
-        tipoBanner +
-        "</td>" +
-        "<td>" +
-        tipoDispositivo +
-        "</td>" +
-        "<td>" +
-        localBanner +
-        "</td>" +
-        "<td>" +
-        item.ordem +
-        "</td>" +
-        "<td>" +
-        item.urlDestino +
-        "</td>" +
-        "<td>" +
-        dataInicioExibicaoBR +
-        "</td>" +
-        "<td>" +
-        dataFimExibicaoBR +
-        "</td>" +
-        "<td>" +
-        '<button type="button" class="btn btn-status btn-sm ' +
-        buttonClass +
-        '" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
-        (item.ativo === "S"
-          ? "<i class='fa-solid fa-check fa-xl'></i>"
-          : '<i class="fa-solid fa-xmark fa-xl"></i>') +
-        "</button>" +
-        "</td>" +
-        '<td class="d-flex"><button style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-        item.idBanner +
-        '" onclick="editar(this)"><i class="fa-solid fa-pen fa-lg"></i></button> <input type="checkbox" data-status="' +
-        item.ativo +
-        '" data-id="' +
-        item.idBanner +
-        '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"> <button style="margin-left: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-value="' +
-        item.idBanner +
-        '" onclick="remover(this)">Remover</button></td>' +
-        "</tr>"
-      );
-    })
-    .join("");
-
-  $("#colaTabela").html(html);
-}
 function editar(user) {
   var id = user.getAttribute("data-value");
-  window.location.href = "?id=" + id;
+  window.location.href = "editBanner?id=" + id;
 }
 
 function remover(item) {
@@ -285,8 +287,8 @@ function remover(item) {
 function alteraStatus(element) {
   var id = element.getAttribute("data-id");
   var status = element.getAttribute("data-status");
+  var button = $(element).closest("tr").find(".btn-status");
 
-  const button = $(element).closest("tr").find(".btn-status");
   if (status === "S") {
     button.removeClass("btn-success").addClass("btn-danger");
     button.find("i").removeClass("fa-check").addClass("fa-xmark");
@@ -300,16 +302,20 @@ function alteraStatus(element) {
   $.ajax({
     url:
       url_base + `/banners/${id}${status === "S" ? "/desativar" : "/ativar"}`,
-    type: "put",
-    error: function (e) {
-      Toastify({
-        text: e.responseJSON.message,
-        duration: 2000,
-        position: "center",
-        close: true,
-        className: "Toastify__toast--custom",
-      }).showToast();
-      console.log(e.responseJSON);
+    type: "PUT",
+    beforeSend: function () {
+      Swal.showLoading();
     },
+    error: function (e) {
+      Swal.close();
+      console.log(e.responseJSON.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Não foi possível realizar esse comando!",
+      });
+    },
+  }).done(function () {
+    Swal.close();
   });
 }

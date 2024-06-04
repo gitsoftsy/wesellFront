@@ -43,8 +43,6 @@ function alteraStatus(element) {
 }
 
 $(document).ready(function() {
-
-
 	$.ajax({
 		url: url_base + "/vendedor",
 		type: "GET",
@@ -74,7 +72,6 @@ $(document).ready(function() {
 		cargos = data;
 		renderizarInfluencer(data);
 	})
-
 
 	function renderizarInfluencer(influencers) {
 		var html = influencers.map(function(item) {

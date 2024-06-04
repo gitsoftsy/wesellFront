@@ -114,17 +114,17 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-regular fa-plus fa-lg"></i>
-            <span id="tituloPagina">Cadastro de Banner</span>
+            <i class="fa-solid fa-pen fa-lg"></i>
+            <span id="tituloPagina">Editar dados</span>
           </div>
         </div>
       </section>
       <section class="pt-4">
         <form
-          id="form-cadastro"
+          id="form-edit"
           class="card form p-5 col-8 mx-auto animate__animated animate__animated animate__bounceInUp"
         >
-          <h1 id="tituloForm" class="text-center mb-5">Cadastro</h1>
+          <h1 id="tituloForm" class="text-center mb-5">Dados do banner</h1>
           <input
             type="text"
             id="usuarioCadastro"
@@ -132,72 +132,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             value="${funcionario.idUsuario}"
           />
 
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label for="localBanner" class="form-label"
-                >Local banner<span class="red">*</span></label
-              >
-              <select
-                class="form-select mb-3"
-                aria-label="Local banner"
-                id="localBanner"
-                required
-                name="localBanner"
-              >
-                <option selected disabled>Selecione o local</option>
-                <option value="P">Principal</option>
-                <option value="S">Secundário</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="tipoDispositivo" class="form-label"
-                >Tipo de dispositivo<span class="red">*</span></label
-              >
-              <select
-                class="form-select mb-3"
-                aria-label="Tipo de dispositivo"
-                id="tipoDispositivo"
-                required
-                name="tipoDispositivo"
-              >
-                <option selected disabled>Selecione o tipo</option>
-                <option value="M">Mobile</option>
-                <option value="D">Desktop</option>
-              </select>
-            </div>
-          </div>
 
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label for="tipoBanner" class="form-label"
-                >Tipo de banner<span class="red">*</span></label
-              >
-              <select
-                class="form-select inputForm"
-                aria-label="Tipo de banner"
-                id="tipoBanner"
-                required
-                name="tipoBanner"
-              >
-                <option selected disabled>Selecione o tipo</option>
-                <option value="I">Influenciador</option>
-                <option value="C">Comprador</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="inputImage" class="form-label"
-                >Imagem<span class="red">*</span></label
-              >
-              <input
-                required
-                type="file"
-                id="inputImage"
-                disabled
-                accept="image/*"
-                class="form-control inputForm"
-              />
-            </div>
-          </div>
 
           <div class="row mb-2">
             <div class="col-md-6">
@@ -264,7 +199,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 id="btn-submit"
                 class="btn confirm btn-primary btn-register"
               >
-                Cadastrar
+                Salvar
               </button>
             </div>
           </div>
@@ -391,7 +326,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/banners/newBanner.js"
+      src="<%=contextPath%>/resources/assets/js/banners/editBanner.js"
     ></script>
   </body>
 </html>

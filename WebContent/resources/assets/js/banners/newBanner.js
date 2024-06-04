@@ -86,10 +86,55 @@ $(document).ready(function () {
       cropper.destroy();
     }
   });
+
+  var hoje = new Date().toISOString().split("T")[0];
+
+  $("#dtInicio").attr("min", hoje);
+  $("#dtFim").attr("min", hoje);
+
+  $("#dtInicio").on("change", function () {
+    $("#dtFim").attr("min", $(this).val());
+
+    if ($("#dtFim").val() < hoje || $("#dtFim").val() < $(this).val()) {
+      $("#dtFim").val("");
+    }
+  });
+
+  $("#dtFim").on("blur", function () {
+    if ($(this).val() < hoje || $(this).val() < $("#dtInicio").val()) {
+      $(this).val("");
+    }
+  });
+
+  $("#dtInicio").on("blur", function () {
+    if ($("#dtInicio").val() < hoje) {
+      return $("#dtInicio").val("");
+    }
+  });
 });
 
 $("#form-cadastro").submit(function (e) {
   e.preventDefault();
+
+  var dataInicioExibicao = new Date($("#dtInicio").val());
+  var dataFimExibicao = new Date($("#dtFim").val());
+  var dataAtual = new Date();
+
+  if (dataInicioExibicao < dataAtual) {
+    Swal.fire({
+      icon: "error",
+      title: "A data de início não pode ser menor que a data atual.",
+    });
+    return;
+  }
+
+  if (dataFimExibicao < dataInicioExibicao) {
+    Swal.fire({
+      icon: "error",
+      title: "A data de fim não pode ser menor que a data de início.",
+    });
+    return;
+  }
 
   var base64SemPrefixo = base64.replace(
     /^data:image\/(png|jpeg|jpg);base64,/,
@@ -118,13 +163,12 @@ $("#form-cadastro").submit(function (e) {
       alert(e.responseJSON.message);
     },
   }).done(function (data) {
-    Toastify({
-      text: "cadastrado com sucesso!",
-      duration: 2000,
-      position: "center",
-      close: true,
-      className: "Toastify__toast--custom",
-    }).showToast();
-    window.location.href = "listarBanners";
+    Swal.fire({
+      icon: "success",
+      title: "Cadastrado com sucesso!",
+    });
+    setTimeout(function () {
+      window.location.href = "listarBanners";
+    }, 2000);
   });
 });
