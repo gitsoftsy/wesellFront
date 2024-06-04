@@ -16,6 +16,12 @@ botaoAtiva.addEventListener('click', () => {
 var produto = []
 var imge = []
 
+// Desabilita o link
+document.getElementById('cadastroDeProdutoLink').onclick = function() {
+	alert("Esse botão essa desativado por enquanto, para análise se há a necessidade de existir esse botão aqui.")
+	return false;
+};
+
 $(document).ready(function() {
 	function base64ToCSVAndDownload(base64String, fileName) {
 		// Decodifica a string Base64 para obter os dados binários
@@ -78,7 +84,7 @@ $(document).ready(function() {
 		}
 		return btoa(binary);
 	}
-	
+
 	$.ajax({
 		url: url_base + '/lojistas/ativos',
 		type: "GET",

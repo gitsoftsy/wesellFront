@@ -98,7 +98,7 @@ String contextPath = request.getContextPath();
 						class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center">
 						<i class="fa-solid fa-file-export"></i>Exportar
 					</button>
-					<a href="cadastroDeProduto"
+					<a href="cadastroDeProduto" id="cadastroDeProdutoLink"
 						class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i
 						class="fa-regular fa-pen-to-square"></i>Novo Produto</a>
 					<button id="import-excel" data-bs-toggle="modal"

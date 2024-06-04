@@ -21,36 +21,37 @@ $("#cep").blur(function() {
 		url: 'https://viacep.com.br/ws/' + $('#cep').val() + '/json/',
 		type: "get",
 		async: false,
-		
+
 	})
 		.done(function(data) {
-			if(data.erro ==   true){
-				
-			Toastify({
-				text:  "CEP inválido, Por favor Verifique.",
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
-		
+			if (data.erro == true) {
+
+				Toastify({
+					text: "CEP inválido, Por favor Verifique.",
+					duration: 2000,
+					position: "center",
+					backgroundColor: "red",
+					close: true,
+					className: "Toastify__toast--custom"
+				}).showToast();
+				console.log(e.responseJSON)
+
 			} else {
-			$('#endereco').val(data.logradouro);
-			$('#bairro').val(data.bairro);
-			$('#cidade').val(data.localidade);
-			$('#estado').val(data.uf);
-		}
+				$('#endereco').val(data.logradouro);
+				$('#bairro').val(data.bairro);
+				$('#cidade').val(data.localidade);
+				$('#estado').val(data.uf);
+			}
 		});
 });
 
 function cadastrar() {
 
 	var objeto = {
+
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"nomeFantasia": $("#nomeFantasia").val(),
-    	"razaoSocial": $("#razaoSocial").val(),
+		"razaoSocial": $("#razaoSocial").val(),
 		"inscrEstadual": $('#inscricaoEstadual').val(),
 		"endereco": $('#endereco').val(),
 		"numero": $('#numero').val(),
@@ -58,9 +59,11 @@ function cadastrar() {
 		"bairro": $('#bairro').val(),
 		"cidade": $('#cidade').val(),
 		"estado": $('#estado').val(),
-		"cep": $('#cep').val(),
+		"cep": $('#cep').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"site": $('#site').val(),
+		"colaboradorId": 17
 	};
+	console.log(objeto)
 
 	$.ajax({
 
@@ -68,28 +71,36 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-			text:  e.responseJSON.message,
-			duration: 2000,
-			position: "center",
-			backgroundColor: "red",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON.message);
+			console.log(e.responseJSON.error);
+
+			if (e.responseJSON.message == "could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement") {
+				Swal.fire({
+					icon: "error",
+					title: "Erro",
+					text: "Já exite um lojista com esse cnpj ",
+				});
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Não foi possível cadastrar no momento, tente mais tarde!",
+				});
+			}
 		}
 	}).done(function(data) {
-		Toastify({
-			text: "cadastrado com sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		setTimeout(function() {
+		Swal.close();
+		Swal.fire({
+			title: "Criado com sucesso",
+			icon: "success"
+		}).then((result) => {
 			window.location.href = 'listarLojista';
-		}, 1000);
+		});
 	})
 }
 
@@ -100,7 +111,7 @@ function editar() {
 		"idLojista": idLojista,
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"nomeFantasia": $("#nomeFantasia").val(),
-    	"razaoSocial":  $("#razaoSocial").val(),
+		"razaoSocial": $("#razaoSocial").val(),
 		"inscrEstadual": $('#inscricaoEstadual').val(),
 		"endereco": $('#endereco').val(),
 		"numero": $('#numero').val(),
@@ -110,7 +121,7 @@ function editar() {
 		"estado": $('#estado').val(),
 		"cep": $('#cep').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"site": $('#site').val(),
-		"ativo":"S",
+		"ativo": "S",
 
 	}
 
@@ -119,30 +130,29 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-			text: e.responseJSON.error,
-			duration: 2000,
-			position: "center",
-			backgroundColor: "red",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON.message);
+			console.log(e.responseJSON.error);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: e.responseJSON.error,
+			});
 
 		}
 	}).done(function(data) {
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
-				window.location.href = 'listarLojista';
-			}, 1000);
-		})
+		Swal.close();
+		Swal.fire({
+			title: "Editado com sucesso",
+			icon: "success"
+		}).then((result) => {
+			window.location.href = 'listarLojista';
+		});
+	})
 }
 
 $(document).ready(function() {
@@ -151,19 +161,19 @@ $(document).ready(function() {
 	if (idLojista == undefined) {
 
 	} else {
-		
+
 		$("#tituloPagina, #tituloForm").text("Editar Lojista")
 		$("#btn-submit").text("Editar")
-		
+
 		$.ajax({
 			url: url_base + "/lojistas/" + idLojista,
 			type: "GET",
 			async: false,
 		})
 			.done(function(data) {
-				    $('#cnpj').val(data.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5")),
-				    $("#nomeFantasia").val(data.nomeFantasia),
-				    $("#razaoSocial").val(data.razaoSocial),
+				$('#cnpj').val(data.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5")),
+					$("#nomeFantasia").val(data.nomeFantasia),
+					$("#razaoSocial").val(data.razaoSocial),
 					$('#inscricaoEstadual').val(data.inscrEstadual),
 					$('#endereco').val(data.endereco),
 					$('#numero').val(data.numero),
