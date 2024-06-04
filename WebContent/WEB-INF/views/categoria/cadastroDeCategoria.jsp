@@ -111,10 +111,21 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="descricaoCategoria"
 							class="form-control inputForm" maxlength="255" />
 					</div>
-					<div class="col-md-6">
-						<label for="inputImage" class="form-label">Imagem<span
-							class="red">*</span></label> <input required type="file" id="inputImage"
-							accept="image/*" class="form-control inputForm" />
+					<div class="col-md-6" id="alterarLogo">
+						<label for="alteraLogo" class="form-label"> Alterar Logo:<span
+							class="red">*</span>
+						</label>
+						<div class="form-control">
+							<label for="alteraLogo">Sim</label> <label class="switch">
+								<input type="checkbox" id="alteraLogo" name="alteraLogo">
+								<span class="slider"></span>
+							</label> <label for="alteraLogo">Não</label>
+						</div>
+					</div>
+					<div class="col-md-6" id="divLogoEscola">
+						<label for="logoEscola" class="form-label">Imagem:<span
+							class="red">*</span></label> <input class="form-control inputForm"
+							type="file" id="inputImage" name="logoEscola"> </input>
 					</div>
 
 				</div>

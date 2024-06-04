@@ -87,7 +87,10 @@ function cadastrar() {
 
 	var objeto = {
 		"categoria": $('#descricaoCategoria').val(),
+		"pathImagem": base64SemPrefixo
 	};
+	
+	console.log(objeto)
 
 	$.ajax({
 
@@ -95,29 +98,25 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.error,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
-
+			Swal.close();
+			console.log(e.responseJSON.error);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.error
+			});
 		}
 	}).done(function(data) {
-		Toastify({
-			text: "cadastrado com sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		setTimeout(function() {
+		Swal.close();
+		Swal.fire({
+			title: "Criado com sucesso",
+			icon: "success"
+		}).then((result) => {
 			window.location.href = 'listarCategoria';
-		}, 2000);
+		});
 	})
 }
 
@@ -159,7 +158,15 @@ function editar() {
 }
 
 
-
+$('input[name="alteraLogo"]').change(function() {
+	if ($(this).is(':checked') == true) {
+		$('#divLogoEscola').show();
+		$("#inputImage").attr('required', true);
+	} else {
+		$('#divLogoEscola').hide();
+		$("#inputImage").val(null).attr('required', false);
+	}
+});
 
 
 $(document).ready(function() {
@@ -168,7 +175,7 @@ $(document).ready(function() {
 
 
 	if (idCategoria == undefined) {
-
+		$("#alterarLogo").hide();
 	} else {
 
 		$("#tituloPagina, #tituloForm").text("Editar Categoria")
@@ -180,6 +187,7 @@ $(document).ready(function() {
 			async: false,
 		})
 			.done(function(data) {
+				$("#divLogoEscola").hide();
 				$('#descricaoCategoria').val(data.categoria);
 				edição = "sim"
 			})

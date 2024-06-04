@@ -35,6 +35,7 @@ $(document).ready(function() {
 		}
 	})
 		.done(function(data) {
+			Swal.close();
 
 			$('#exportar-excel').click(function() {
 				var planilha = XLSX.utils.json_to_sheet(data);

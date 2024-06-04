@@ -67,6 +67,138 @@ body {
   width: 90%;
 }
 
+/* The switch - the box around the slider */
+.switch {
+  transform: rotate(180deg);
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 4em;
+  height: 1.5em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #8B0000 	;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+   border:1px solid #000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+	background: #031e3b;
+
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #9cc9fa;;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(2.6em);
+}
+
+.card-form{
+	width: 45%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5%;
+}
+
+.form-label{
+	font-size: .9rem;
+}
+
+.ball-switch{
+margin-left: 5%;
+transform: rotate(180deg);
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 1.5em;
+}
+
+.ball-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.tittle-switch{
+	width: 45%;
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.title-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #8B0000;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.title-slider:before{
+	position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.08em;
+  width: 1.08em;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+   border:1px solid #000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+
+.ball-switch input:checked + .title-slider {
+	background: #031e3b;
+
+}
+
+.ball-switch input:focus + .title-slider {
+  box-shadow: 0 0 1px #9cc9fa;;
+}
+
+.ball-switch input:checked + .title-slider:before {
+  transform: translateX(1.7em);
+}
+
+
 /* modal imagens */
 
 .carrossel {
