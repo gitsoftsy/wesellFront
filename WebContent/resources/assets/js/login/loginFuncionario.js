@@ -32,7 +32,7 @@ $("#form-login").submit(function(e) {
 		},
 		error: function(e) {
 			Swal.close();
-			console.log(e.responseJSON.message);
+			console.log(e.responseJSON);
 			Swal.fire({
 				icon: "error",
 				title: "Usuário ou senha inválido !!"

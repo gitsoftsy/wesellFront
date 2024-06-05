@@ -4,9 +4,9 @@ const idCargo = params.get("id");
 
 
 window.addEventListener("load", function() {
-    const loader = document.querySelector(".bg-loading");
-    loader.parentElement.removeChild(loader);
-    $(".bg-loading").addClass("none");
+	const loader = document.querySelector(".bg-loading");
+	loader.parentElement.removeChild(loader);
+	$(".bg-loading").addClass("none");
 });
 
 
@@ -22,29 +22,25 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-			text: e.responseJSON.message,
-			duration: 2000,
-			position: "center",
-			close: true,
-			backgroundColor: "red",
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
-
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
 		}
 	}).done(function(data) {
-		Toastify({
-			text: "cadastrado com sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		setTimeout(function() {
+		Swal.close();
+		Swal.fire({
+			icon: "success",
+			title: "Cadastrado com sucesso!"
+		}).then(result => {
 			window.location.href = 'listarCargos';
-		}, 1000);
+		})
 	})
 }
 
@@ -62,43 +58,40 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-			text: e.responseJSON.message,
-			duration: 2000,
-			position: "center",
-			close: true,
-			backgroundColor: "red",
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
 		}
 	}).done(function(data) {
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
-				window.location.href = 'listarCargos';
-			}, 1000);
+		Swal.close();
+		Swal.fire({
+			icon: "success",
+			title: "Editado com sucesso!"
+		}).then(result => {
+			window.location.href = 'listarCargos';
 		})
-		
+	})
+
 
 }
 
 $(document).ready(function() {
-	
+
 
 	if (idCargo == undefined) {
 
 	} else {
-		
+
 		$("#tituloPagina, #tituloForm").text("Editar Cargo")
 		$("#btn-submit").text("Editar")
-		
+
 		$.ajax({
 			url: url_base + "/cargos/" + idCargo,
 			type: "GET",
@@ -118,8 +111,8 @@ $(document).ready(function() {
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
 	if (edição == "sim") {
-		
-        editar()
+
+		editar()
 	} else {
 		cadastrar()
 	}

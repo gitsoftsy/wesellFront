@@ -132,28 +132,25 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.error,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON.error);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.error
+			});
 		}
 	}).done(function(data) {
-		Toastify({
-			text: "Editado com sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		setTimeout(function() {
+		Swal.close();
+		Swal.fire({
+			title: "Editado com sucesso",
+			icon: "success"
+		}).then((result) => {
 			window.location.href = 'listarCategoria';
-		}, 2000);
+		});
 	})
 }
 

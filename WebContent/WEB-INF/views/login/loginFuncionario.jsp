@@ -89,7 +89,7 @@ String contextPath = request.getContextPath();
 			<button type="submit" class="btn btn-primary mt-4 mb-3"
 				style="font-size: 18px">Login</button>
 			<a class="text-center link-dark link-offset-2 link-underline-dark"
-				href="home">Trocar perfil de acesso</a>
+				href="home" hidden>Trocar perfil de acesso</a>
 		</form>
 	</div>
 

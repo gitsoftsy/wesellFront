@@ -238,13 +238,11 @@ $("#form-funcionario").on("submit", function(e) {
 		if (senhaInput.value != confirmarSenhaInput.value) {
 			$("#senha").val("")
 			$("#confirmarSenha").val("")
-
-			Toastify({
-				text: "as Senhas não Coincidem!",
-				duration: 5000,
-				position: "center",
-				type: "info",
-			}).showToast()
+			
+			Swal.fire({
+				title: "As senhas não coincidem!",
+				icon: "info"
+			})
 
 
 		} else {

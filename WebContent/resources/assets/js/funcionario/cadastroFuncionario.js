@@ -32,16 +32,16 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON[0].mensagem,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON[0].mensagem
+			});
 		}
 	}).done(function(data) {
 
@@ -58,28 +58,22 @@ function cadastrar() {
 			data: JSON.stringify(telefone),
 			contentType: "application/json; charset=utf-8",
 			error: function(e) {
-				Toastify({
-					text: e.responseJSON.message,
-					duration: 2000,
-					position: "center",
-					backgroundColor: "red",
-					close: true,
-					className: "Toastify__toast--custom"
-				}).showToast();
-				console.log(e.responseJSON)
+				Swal.close();
+				console.log(e.responseJSON);
+				Swal.fire({
+					icon: "error",
+					title: e.responseJSON.message
+				});
 			}
 		}).done((function(data) {
+			Swal.close()
 
-			Toastify({
-				text: "cadastrado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
+			Swal.fire({
+				icon: "success",
+				title: "Cadastrado com sucesso"
+			}).then(result => {
 				window.location.href = 'listarFuncionarios';
-			}, 1000);
+			})
 		}))
 	});
 };
@@ -135,30 +129,26 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoFinal),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON[0].mensagem,
-				duration: 10000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON[0].mensagem
+			});
 		}
 	})
 		.done(function(data) {
-
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
+			Swal.close();
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success"
+			}).then((result) => {
 				window.location.href = 'listarFuncionarios';
-			}, 1000);
+			});
 		})
 
 
@@ -170,18 +160,19 @@ function editarTelefone() {
 		url: url_base + "/telefones/funcionario/" + idFuncionarios,
 		type: "GET",
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
 		}
 	}).done(function(data) {
+		Swal.close();
 
 		var telefoneEdit = {
 			"idTelefoneFuncionario": data[0].idTelefoneFuncionario, // idtelefone aqui
@@ -210,7 +201,7 @@ var lojistas = []
 $(document).ready(function() {
 
 	$.ajax({
-		url: url_base + '/cargos',
+		url: url_base + '/cargos/ativos',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
@@ -312,12 +303,10 @@ $("#form-funcionario").on("submit", function(e) {
 			$("#senha").val("")
 			$("#confirmarSenha").val("")
 
-			Toastify({
-				text: "as Senhas não Coincidem!",
-				duration: 5000,
-				position: "center",
-				type: "info",
-			}).showToast()
+			Swal.fire({
+				title: "As senhas não coincidem!",
+				icon: "info"
+			})
 
 
 		} else {

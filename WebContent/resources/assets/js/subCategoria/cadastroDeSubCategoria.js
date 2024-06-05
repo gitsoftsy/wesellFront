@@ -42,31 +42,25 @@ function cadastrar() {
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			
-			console.log(e.responseJSON)
-			
-			Toastify({
-			text: e.responseJSON.error,
-			duration: 2000,
-			position: "center",
-			backgroundColor: "red",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.error
+			});
 		}
 	}).done(function(data) {
-		Toastify({
-			text: "cadastrado com sucesso!",
-			duration: 2000,
-			position: "center",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		setTimeout(function() {
+		Swal.close();
+		Swal.fire({
+			icon: "success",
+			title: "Cadastrado com sucesso!"
+		}).then(result => {
 			window.location.href = 'listarSubCategoria';
-		}, 1000);
+		})
 	})
 }
 
@@ -76,7 +70,7 @@ function editar() {
 
 		"id": idSubCategoria,
 		"nome": $('#descricaoSubCategoria').val(),
-		"categoriaId":$("#categoria option:selected").attr("id"),
+		"categoriaId": $("#categoria option:selected").attr("id"),
 
 	}
 
@@ -85,68 +79,64 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			
-			Toastify({
-			text: e.responseJSON.error,
-			duration: 2000,
-			position: "center",
-			backgroundColor: "red",
-			close: true,
-			className: "Toastify__toast--custom"
-		}).showToast();
-		console.log(e.responseJSON)
-
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.error
+			});
 		}
 	})
 		.done(function(data) {
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
+			Swal.close();
+			Swal.fire({
+				icon: "success",
+				title: "Editado com sucesso!"
+			}).then(result => {
 				window.location.href = 'listarSubCategoria';
-			}, 1000);
+			})
 		})
 }
 
 var categorias = []
 
 $(document).ready(function() {
-	
+
 	$.ajax({
 		url: url_base + '/categorias',
 		type: "GET",
 		async: false,
 	}).done(function(data) {
-	
-	$('#categoria').append($('<option>', { 
-			 value: "",
-			 text : "Selecione...", }));
-		
-		
+
+		$('#categoria').append($('<option>', {
+			value: "",
+			text: "Selecione...",
+		}));
+
+
 		$.each(data, function(index, item) {
-				
-               		 $('#categoria').append($('<option>', { 
-                     value: item.idCategoria,
-                     id: item.idCategoria,
-                     text : item.categoria ,
-                     name : item.categoria
-                 }));
-           })
-	
+
+			$('#categoria').append($('<option>', {
+				value: item.idCategoria,
+				id: item.idCategoria,
+				text: item.categoria,
+				name: item.categoria
+			}));
+		})
+
 	})
 
 	if (idSubCategoria == undefined) {
 
 	} else {
-		
+
 		$("#tituloPagina, #tituloForm").text("Editar Sub-Categoria")
 		$("#btn-submit").text("Editar")
-		
+
 		$.ajax({
 			url: url_base + "/subcategorias/" + idSubCategoria,
 			type: "GET",
@@ -154,7 +144,7 @@ $(document).ready(function() {
 		})
 			.done(function(data) {
 				$('#categoria').find(`option[id=${data.categoria.idCategoria}]`).attr("selected", "selected"),
-				$('#descricaoSubCategoria').val(data.nome);
+					$('#descricaoSubCategoria').val(data.nome);
 				edição = "sim"
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
@@ -167,7 +157,7 @@ $(document).ready(function() {
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
 	if (edição == "sim") {
-		
+
 		editar()
 	} else {
 		cadastrar()

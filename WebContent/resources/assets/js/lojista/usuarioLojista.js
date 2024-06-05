@@ -1,10 +1,10 @@
 
-	
-	var user = localStorage.getItem("usuario")
-	var usuario = JSON.parse(user);
-	
-	$("#usuarioNome").text(usuario.nome)
-	
+
+var user = localStorage.getItem("usuario")
+var usuario = JSON.parse(user);
+
+$("#usuarioNome").text(usuario.nome)
+
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
@@ -31,7 +31,7 @@ function ativaSenhas() {
 
 }
 
-function removeObjeto(){
+function removeObjeto() {
 	localStorage.clear();
 }
 
@@ -58,25 +58,27 @@ function editar() {
 		type: "PUT",
 		data: JSON.stringify(objetoEdit),
 		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			Swal.showLoading()
+		},
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
 		}
 	}).done(function(data) {
-
-			setTimeout(function() {
-				window.location.href = 'usuarioLojista';
-			}, 1000);
-			
+		Swal.close();
+		Swal.fire({
+			icon: "success",
+			title: "Editado com sucesso!"
+		}).then(result => {
+			window.location.href = 'usuarioLojista';
 		})
-	
+	})
+
 }
 
 function editarTelefone() {
@@ -166,49 +168,49 @@ $(document).ready(function() {
 	$("select option[value='exemplo']").attr("selected", "selected");
 
 
-	
 
-		$("#tituloPagina, #tituloForm").text(usuario.nome)
-		$("#btn-submit").text("Editar")
 
-		$("#labelSenha").text("Senha Atual:")
+	$("#tituloPagina, #tituloForm").text(usuario.nome)
+	$("#btn-submit").text("Editar")
 
-		$("#alteraSen").removeClass("none")
+	$("#labelSenha").text("Senha Atual:")
 
-		$("#senha, #confirmarSenha").attr("disabled", "disabled")
-		$("#senha, #confirmarSenha").attr("type", "hidden")
-		$("#labelSenha, #confirmarSenhaLabel").addClass("none")
+	$("#alteraSen").removeClass("none")
 
-		$.ajax({
-			url: url_base + "/funcionarios/" + usuario.id,
-			type: "GET",
-			async: false,
+	$("#senha, #confirmarSenha").attr("disabled", "disabled")
+	$("#senha, #confirmarSenha").attr("type", "hidden")
+	$("#labelSenha, #confirmarSenhaLabel").addClass("none")
+
+	$.ajax({
+		url: url_base + "/funcionarios/" + usuario.id,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+			$('#cargo').find(`option[id=${data.cargo.idCargo}]`).attr("selected", "selected"),
+				$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")),
+				$('#email').val(data.email),
+				$('#senha').val(data.senha),
+				$("#confirmarSenha").val(data.senha)
+			$('#lojista').find(`option[id=${data.lojista.idLojista}]`).attr("selected", "selected"),
+				$('#nome').val(data.nome),
+				edição = "sim"
 		})
-			.done(function(data) {
-				$('#cargo').find(`option[id=${data.cargo.idCargo}]`).attr("selected", "selected"),
-					$('#cpf').val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")),
-					$('#email').val(data.email),
-					$('#senha').val(data.senha),
-					$("#confirmarSenha").val(data.senha)
-				$('#lojista').find(`option[id=${data.lojista.idLojista}]`).attr("selected", "selected"),
-					$('#nome').val(data.nome),
-					edição = "sim"
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.log('erro ao buscar dados.')
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log('erro ao buscar dados.')
+			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+		});
 
-		$.ajax({
-			url: url_base + "/telefones/funcionario/" + usuario.id,
-			type: "GET",
-			async: false,
+	$.ajax({
+		url: url_base + "/telefones/funcionario/" + usuario.id,
+		type: "GET",
+		async: false,
+	})
+		.done(function(data) {
+
+			$("#telefone").val(data[0].telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3"))
+
 		})
-			.done(function(data) {
-			
-				$("#telefone").val(data[0].telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3"))
-
-			})
 
 
 });
@@ -223,18 +225,16 @@ $("#form-funcionario").on("submit", function(e) {
 			$("#senha").val("")
 			$("#confirmarSenha").val("")
 
-			Toastify({
-				text: "as Senhas não Coincidem!",
-				duration: 5000,
-				position: "center",
-				type: "info",
-			}).showToast()
+			Swal.fire({
+				title: "As senhas não coincidem!",
+				icon: "info"
+			})
 
 
 		} else {
 
-				editar()
-				editarTelefone()
+			editar()
+			editarTelefone()
 
 		}
 	};

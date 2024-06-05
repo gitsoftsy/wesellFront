@@ -327,13 +327,10 @@ function alteraStatus(element) {
 		url: url_base + `/produtos/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		success: function() {
-			Toastify({
-				text: `${status === "S" ? 'desativado' : 'ativado'} Com Sucesso!`,
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
+			Swal.fire({
+				title: `${status === "S" ? 'Desativado' : 'Ativado'} com sucesso!`,
+				icon: "success"
+			})
 
 		},
 		error: function(error) {

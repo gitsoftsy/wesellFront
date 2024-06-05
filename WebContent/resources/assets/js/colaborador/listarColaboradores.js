@@ -253,14 +253,11 @@ function alteraStatus(element) {
 		url: url_base + `/colaboradores/${id}${status === "S" ? '/desativar' : '/ativar'}`,
 		type: "put",
 		error: function(e) {
-			Toastify({
-				text: e.responseJSON.error,
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
+			console.log(e.responseJSON.error);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.error
+			});
 
 		}
 	});

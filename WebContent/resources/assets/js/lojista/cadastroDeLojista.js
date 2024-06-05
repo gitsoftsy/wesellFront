@@ -25,16 +25,12 @@ $("#cep").blur(function() {
 	})
 		.done(function(data) {
 			if (data.erro == true) {
-
-				Toastify({
-					text: "CEP inválido, Por favor Verifique.",
-					duration: 2000,
-					position: "center",
-					backgroundColor: "red",
-					close: true,
-					className: "Toastify__toast--custom"
-				}).showToast();
 				console.log(e.responseJSON)
+
+				Swal.fire({
+					icon: "error",
+					title: "CEP inválido, Por favor Verifique."
+				});
 
 			} else {
 				$('#endereco').val(data.logradouro);
