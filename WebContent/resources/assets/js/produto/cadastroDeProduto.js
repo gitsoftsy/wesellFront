@@ -1,408 +1,313 @@
-const botaoDesativa = document.querySelector('#teste');
-const botaoAtiva = document.querySelector('.botaoAtivaMenu');
-const elemento = document.querySelector('#modalMenu');
 const idProduto = params.get("id");
-var edição = ""
+var ValorConvertidoPreco;
+var ValorConvertidoComissao;
+var edição = "";
 
-/*botaoDesativa.addEventListener('click', () => {
-	elemento.classList.add('animar-sair');
-	elemento.classList.remove('animar-entrar');
+$(document).ready(function () {
+  fetchData("/categorias", "#categoria", "idCategoria", "categoria");
+  fetchData("/lojistas", "#lojista", "idLojista", "nomeFantasia");
 
+  $("#categoria").change(function () {
+    const categoryId = $(this).val();
+    loadSubCategories(categoryId);
+  });
+
+  $("#precoDeVenda").on("input", function (e) {
+    formatCurrencyInput(e, function (formattedValue, rawValue) {
+      ValorConvertidoPreco = rawValue;
+      e.target.value = formattedValue;
+    });
+  });
+
+  $("#comissao").on("input", function (e) {
+    formatCurrencyInput(e, function (formattedValue, rawValue) {
+      ValorConvertidoComissao = rawValue;
+      e.target.value = formattedValue;
+    });
+  });
+
+  if (idProduto) {
+    
+    $("#area-input-edit").removeAttr('hidden');
+    $("#area-input-cadastro").hide()
+
+    $("#tituloPagina, #tituloForm").text("Editar Produto");
+    $("#btn-submit").text("Salvar");
+
+    $.ajax({
+      url: url_base + "/produtos/" + idProduto,
+      type: "GET",
+      async: false,
+    })
+      .done(function (data) {
+        $("#nomeProduto").val(data.nomeProduto),
+          $("#descricao").val(data.descrProduto),
+          $("#precoDeVenda").val(
+            data.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 })
+          ),
+          $("#comissao").val(
+            data.comissao.toLocaleString("pt-br", { minimumFractionDigits: 2 })
+          ),
+          $("#categoria")
+            .val(data.categorias.idCategoria)
+            .attr("selected", true);
+        loadSubCategories(data.categorias.idCategoria).then(() => {
+          $("#subCategoria").val(data.subcategorias.id).attr("selected", true);
+        });
+
+        $("#lojista").val(data.lojista.idLojista).attr("selected", true);
+        edição = "sim";
+      })
+      .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("erro ao buscar dados.");
+        console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+      });
+
+    $.ajax({
+      url: url_base + "/imagens/produto/" + idProduto,
+      type: "GET",
+      async: false,
+    }).done(function (data) {
+      
+    });
+  }
 });
 
-botaoAtiva.addEventListener('click', () => {
-	elemento.classList.add('animar-entrar');
-	elemento.classList.remove('animar-sair');
-});
-*/
-var ValorConvertidoPreco
-
-document.getElementById('precoDeVenda').addEventListener('input', function(e) {
-	let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-	valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
-	ValorConvertidoPreco = valor
-	valor = valor.replace('.', ','); // Troca ponto por vírgula
-
-	valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
-
-	e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
-});
-
-var ValorConvertidoComissao
-
-document.getElementById('comissao').addEventListener('input', function(e) {
-	let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-	valor = (valor / 100).toFixed(2) + ''; // Divide por 100 para converter em um número decimal e fixa duas casas decimais
-	ValorConvertidoComissao = valor
-	valor = valor.replace('.', ','); // Troca ponto por vírgula
-
-	valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona ponto como separador de milhar
-
-	e.target.value = `${valor}`; // Atualiza o campo com o valor formatado
-});
-
-// Modal imagens
-
-let indiceAtual = 0;
-
-function mudarImagem(n) {
-	let imagens = document.querySelectorAll(".imagens img");
-	imagens[indiceAtual].classList.remove("imagem-ativa");
-	indiceAtual = (imagens.length + indiceAtual + n) % imagens.length;
-	imagens[indiceAtual].classList.add("imagem-ativa");
+function formatCurrencyInput(event, callback) {
+  let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não é dígito
+  let rawValue = (value / 100).toFixed(2); // Converte para número decimal e fixa duas casas decimais
+  let formattedValue = rawValue.replace(".", ","); // Troca ponto por vírgula
+  formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Adiciona ponto como separador de milhar
+  callback(formattedValue, rawValue);
 }
 
-// Inicializar o carrossel com a primeira imagem ativa
-document.addEventListener("DOMContentLoaded", function() {
-	mudarImagem(0);
-});
+async function fetchData(endpoint, selectId, valueKey, textKey) {
+  try {
+    const response = await $.ajax({
+      url: url_base + endpoint,
+      type: "GET",
+      async: false,
+    });
 
-var botao = document.getElementById("abrirModalImg")
-
-botao.addEventListener("click", function(e) {
-	e.preventDefault(e)
-
-	$("#carrossel").removeClass("none")
-
-})
-
-function sairModal() {
-
-	$("#carrossel").addClass("none")
-
+    response.forEach((item) => {
+      $(selectId).append(
+        $("<option>", {
+          value: item[valueKey],
+          id: item[valueKey],
+          text: item[textKey],
+          name: item[textKey],
+        })
+      );
+    });
+  } catch (error) {
+    console.error(`Erro ao buscar dados de ${endpoint}:`, error);
+  }
 }
 
+async function loadSubCategories(categoryId) {
+  await $.ajax({
+    url: `${url_base}/subcategorias/categoria/${categoryId}`,
+    type: "GET",
+    success: function (data) {
+      const subCategoriaSelect = $("#subCategoria").empty();
+      subCategoriaSelect.append(
+        $("<option>", {
+          value: "",
+          text: "Selecione...",
+          disabled: true,
+          selected: true,
+        })
+      );
 
-
-
-var imagensBase64 = []
-// Funcao converter imagem para base64
-function converterImagem() {
-
-	// Receber o arquivo do formulario
-	var receberArquivos = document.getElementById("imagem-produto").files;
-
-	// Verificar se existe o arquivo
-	if (receberArquivos.length > 0) {
-
-		// Função para ler cada arquivo
-		function lerArquivo(index) {
-			var reader = new FileReader();
-
-			reader.onload = function(arquivoCarregado) {
-				const input = document.getElementById("imagem-produto");
-
-				var imagemBase64 = arquivoCarregado.target.result;
-				imagensBase64.push(imagemBase64);
-				console.log(imagensBase64);
-
-				// Verificar se ainda há mais arquivos para ler
-				if (index < receberArquivos.length - 1) {
-					lerArquivo(index + 1);
-				}
-
-			};
-
-			reader.readAsDataURL(receberArquivos[index]);
-		}
-
-		// Iniciar o processo de leitura
-		lerArquivo(0);
-	}
+      data.forEach((item) => {
+        subCategoriaSelect.append(
+          $("<option>", {
+            value: item.id,
+            text: item.nome,
+          })
+        );
+      });
+    },
+    error: function (xhr, status, error) {
+      console.error("Erro ao buscar subcategorias:", status, error);
+    },
+  });
 }
 
-var novoValor
-$("#subCategoria").change(function() {
+async function cadastrarProduto(objeto) {
+  try {
+    const response = await $.ajax({
+      url: url_base + "/produtos",
+      type: "POST",
+      data: JSON.stringify(objeto),
+      contentType: "application/json; charset=utf-8",
+      beforeSend: function () {
+        Swal.showLoading();
+      },
+    });
 
-	var valorSelecionado = $("#subCategoria option:selected").attr("value")
+    return response.idProduto;
+  } catch (error) {
+    console.log(objeto);
+    console.log(error.responseJSON[0].mensagem);
+    Swal.close();
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: error.responseJSON[0].message,
+    });
+    throw error;
+  }
+}
 
-	novoValor = valorSelecionado == "exemplo" ? "36" : valorSelecionado;
+async function cadastrarImagens(imagensBase64, produtoId) {
+  try {
+    var imagens = {
+      base64List: imagensBase64,
+      produtoId: produtoId,
+    };
 
-});
+    await $.ajax({
+      url: url_base + "/imagens/upload",
+      type: "POST",
+      data: JSON.stringify(imagens),
+      contentType: "application/json; charset=utf-8",
+    });
+  } catch (error) {
+    console.log(imagens);
+    console.log(error);
+    Swal.close();
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Falha ao cadastrar imagens.",
+    });
+    throw error;
+  }
+}
 
-function cadastrar() {
+async function converterImagensParaBase64(files) {
+  const imagensBase64 = [];
 
-	console.log(imagensBase64[0, 1, 2, 3, 4, 5])
+  const promises = Array.from(files).map((file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        imagensBase64.push(
+          event.target.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, "")
+        );
+        resolve();
+      };
+      reader.onerror = function (error) {
+        reject(error);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 
-	var objeto = {
-		"nomeProduto": $('#nomeProduto').val(),
-		"descrProduto": $('#descricao').val(),
-		"preco": ValorConvertidoPreco,
-		"comissao": ValorConvertidoComissao,
-		"categoriaId": $("#categoria option:selected").attr("value"),
-		"subcategoriaId": novoValor,
-		"lojistaId": $('#lojista option:selected').attr("value"),
+  await Promise.all(promises);
+  return imagensBase64;
+}
 
-	};
+async function cadastrar() {
+  const input = document.getElementById("imagem-produto");
+  const files = input.files;
 
-	$.ajax({
+  let imagensBase64 = [];
+  if (files.length > 0) {
+    try {
+      imagensBase64 = await converterImagensParaBase64(files);
+      console.log(imagensBase64);
+    } catch (error) {
+      console.error("Erro ao converter imagens:", error);
+      Swal.fire({
+        title: "Erro ao converter imagens",
+        icon: "error",
+      });
+      return;
+    }
+  }
 
-		url: url_base + '/produtos',
-		type: "post",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(objeto);
-			console.log(e.responseJSON[0].mensagem);
-			Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Falha na requisição. Não foi possível realizar esse comando!",
-			});
-		}
-	}).done(function(data) {
+  var objeto = {
+    nomeProduto: $("#nomeProduto").val(),
+    descrProduto: $("#descricao").val(),
+    preco: ValorConvertidoPreco,
+    comissao: ValorConvertidoComissao,
+    categoriaId: $("#categoria").val(),
+    subcategoriaId: $("#subCategoria").val(),
+    lojistaId: $("#lojista").val(),
+  };
 
-		var imagens = {
-			"imagem": imagensBase64[0],
-			"produtoId": data.idProduto,
-		}
+  try {
+    const produtoId = await cadastrarProduto(objeto);
+    await cadastrarImagens(imagensBase64, produtoId);
 
-		$.ajax({
-			url: url_base + "/imagens",
-			type: 'POST',
-			data: JSON.stringify(imagens),
-			contentType: "application/json; charset=utf-8",
-			error: function(e) {
-				console.log(e.responseJSON.message)
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: e.responseJSON.message,
-				});
-
-			}
-		}).done(function(data) {
-			Swal.close();
-			Swal.fire({
-				title: "Criado com sucesso!",
-				icon: "success",
-			}).then((result) => {
-				window.location.href = 'listarTelefoneLojista';
-			});
-		})
-	})
+    Swal.close();
+    Swal.fire({
+      title: "Cadastrado com sucesso!",
+      icon: "success",
+    }).then((result) => {
+      window.location.href = "listarProduto";
+    });
+  } catch (error) {}
 }
 
 function editar() {
+  let preco = converterValor($("#precoDeVenda").val());
+  let comissao = converterValor($("comissao").val());
 
-	let preco = converterValor($('#precoDeVenda').val())
-	let comissao = converterValor($('comissao').val())
+  var objetoEdit = {
+    idProduto: idProduto,
+    nomeProduto: $("#nomeProduto").val(),
+    descrProduto: $("#descricao").val(),
+    preco: preco,
+    comissao: comissao,
+    categoriaId: $("#categoria option:selected").attr("value"),
+    subcategoriaId: $("#subCategoria option:selected").attr("value"),
+    lojistaId: $("#lojista option:selected").attr("value"),
+  };
 
-	var objetoEdit = {
-		"idProduto": idProduto,
-		"nomeProduto": $('#nomeProduto').val(),
-		"descrProduto": $('#descricao').val(),
-		"preco": preco,
-		"comissao": comissao,
-		"categoriaId": $("#categoria option:selected").attr("value"),
-		"subcategoriaId": $('#subCategoria option:selected').attr("value"),
-		"lojistaId": $('#lojista option:selected').attr("value"),
-	}
-	
-	console.log(preco)
-	console.log(comissao)
-	
-	console.log(objetoEdit)
+  console.log(preco);
+  console.log(comissao);
 
-	$.ajax({
-		url: url_base + "/produtos",
-		type: "PUT",
-		data: JSON.stringify(objetoEdit),
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			Toastify({
-				text: e.responseJSON.message,
-				duration: 2000,
-				position: "center",
-				backgroundColor: "red",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			console.log(e.responseJSON)
-		}
-	})
-		.done(function(data) {
-			Toastify({
-				text: "Editado com sucesso!",
-				duration: 2000,
-				position: "center",
-				close: true,
-				className: "Toastify__toast--custom"
-			}).showToast();
-			setTimeout(function() {
-				window.location.href = 'listarProduto';
-			}, 1000);
-		})
+  console.log(objetoEdit);
+
+  $.ajax({
+    url: url_base + "/produtos",
+    type: "PUT",
+    data: JSON.stringify(objetoEdit),
+    contentType: "application/json; charset=utf-8",
+    error: function (e) {
+      Toastify({
+        text: e.responseJSON.message,
+        duration: 2000,
+        position: "center",
+        backgroundColor: "red",
+        close: true,
+        className: "Toastify__toast--custom",
+      }).showToast();
+      console.log(e.responseJSON);
+    },
+  }).done(function (data) {
+    Toastify({
+      text: "Editado com sucesso!",
+      duration: 2000,
+      position: "center",
+      close: true,
+      className: "Toastify__toast--custom",
+    }).showToast();
+    setTimeout(function () {
+      window.location.href = "listarProduto";
+    }, 1000);
+  });
 }
+// cadastro do prduto
+$("#form-cadastro").on("submit", async function (e) {
+  e.preventDefault();
 
-var categoria = []
-var subcategoria = []
-var lojista = []
-
-// Função para carregar as subcategorias com base na categoria selecionada
-function loadSubCategories(categoryId) {
-	$.ajax({
-		url: url_base + `/subcategorias/${28}`,
-		type: "GET",
-		success: function(data) {
-			$('#subCategoria').empty().append($('<option>', {
-				value: "",
-				text: "Selecione...",
-			}));
-
-			$.each(data, function(index, item) {
-				$('#subCategoria').append($('<option>', {
-					value: item.id,
-					text: item.nome,
-				}));
-			});
-		},
-		error: function(xhr, status, error) {
-			console.error("Erro ao buscar subcategorias:", status, error);
-		}
-	});
-}
-
-$(document).ready(function() {
-	$('#categoria').change(function() {
-		alert('Foi1')
-		const categoryId = $(this).val()
-		alert('Foi2')
-		if (categoryId) {
-			alert('Foi3')
-			loadSubCategories(categoryId);
-		} else {
-			alert('Foi4')
-			$('#subCategoria').empty().append($('<option>', {
-				value: "",
-				text: "Selecione...",
-			}));
-		}
-	});
-
-	$.ajax({
-		url: url_base + '/categorias',
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-
-		$('#categoria').append($('<option>', {
-			value: "",
-			text: "Selecione...",
-		}));
-
-
-		$.each(data, function(index, item) {
-
-			$('#categoria').append($('<option>', {
-				value: item.idCategoria,
-				id: item.idCategoria,
-				text: item.categoria,
-				name: item.categoria
-			}));
-		})
-
-	})
-
-	$.ajax({
-		url: url_base + '/lojistas',
-		type: "GET",
-		async: false,
-	}).done(function(data) {
-
-		$('#lojista').append($('<option>', {
-			value: "",
-			text: "Selecione...",
-		}));
-
-
-		$.each(data, function(index, item) {
-
-			$('#lojista').append($('<option>', {
-				value: item.idLojista,
-				id: item.idLojista,
-				text: item.nomeFantasia,
-				name: item.nomeFantasia
-			}));
-		})
-
-	})
-
-	if (idProduto == undefined) {
-
-
-
-
-	} else {
-
-		$("#imagem-produto").attr("disabled", "disabled")
-
-
-
-		$("#abrirModalImg").removeClass("none")
-
-		$("#categoria, #subCategoria ,#lojista").attr("disabled", "disabled")
-
-		$("#tituloPagina, #tituloForm").text("Editar Produto")
-		$("#btn-submit").text("Editar")
-
-		$.ajax({
-			url: url_base + "/produtos/" + idProduto,
-			type: "GET",
-			async: false,
-		})
-			.done(function(data) {
-				$('#nomeProduto').val(data.nomeProduto),
-					$('#descricao').val(data.descrProduto),
-
-					$('#precoDeVenda').val(data.preco.toLocaleString('pt-br', { minimumFractionDigits: 2 })),
-					$('#comissao').val(data.comissao.toLocaleString('pt-br', { minimumFractionDigits: 2 })),
-					$('#categoria').find(`option[value=${data.categorias.idCategoria}]`).attr("selected", "selected"),
-					$('#subCategoria').find(`option[value=${data.subcategorias.id}]`).attr("selected", "selected"),
-					$('#lojista').find(`option[value=${data.lojista.idLojista}]`).attr("selected", "selected"),
-
-					edição = "sim"
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				console.log('erro ao buscar dados.')
-				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-			});
-
-		$.ajax({
-			url: url_base + "/imagens/produto/" + idProduto,
-			type: 'GET',
-			async: false,
-		}).done(function(data) {
-
-			imagem = data[0].imagem
-
-
-			$("#img0").attr("src", imagem)
-
-
-
-
-		})
-	}
-
+  if (edição == "sim") {
+    editar();
+  } else {
+    cadastrar();
+  }
 });
-$("#form-funcionario").on("submit", function(e) {
-	e.preventDefault();
-
-
-	if (edição == "sim") {
-
-		editar()
-	} else {
-
-		cadastrar()
-
-	}
-});
-
-
-

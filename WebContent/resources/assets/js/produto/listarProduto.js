@@ -16,11 +16,11 @@ botaoAtiva.addEventListener('click', () => {
 var produto = []
 var imge = []
 
-// Desabilita o link
-document.getElementById('cadastroDeProdutoLink').onclick = function() {
-	alert("Esse botão essa desativado por enquanto, para análise se há a necessidade de existir esse botão aqui.")
-	return false;
-};
+// // Desabilita o link
+// document.getElementById('cadastroDeProdutoLink').onclick = function() {
+// 	alert("Esse botão essa desativado por enquanto, para análise se há a necessidade de existir esse botão aqui.")
+// 	return false;
+// };
 
 $(document).ready(function() {
 	function base64ToCSVAndDownload(base64String, fileName) {
@@ -117,12 +117,12 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 
-			$('#exportar-excel').click(function() {
-				var planilha = XLSX.utils.json_to_sheet(data);
-				var livro = XLSX.utils.book_new();
-				XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
-				XLSX.writeFile(livro, "produtosLojista.xlsx");
-			});
+			// $('#exportar-excel').click(function() {
+			// 	var planilha = XLSX.utils.json_to_sheet(data);
+			// 	var livro = XLSX.utils.book_new();
+			// 	XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
+			// 	XLSX.writeFile(livro, "produtosLojista.xlsx");
+			// });
 			produto = data;
 			renderizarProduto(data);
 		})
@@ -130,9 +130,9 @@ $(document).ready(function() {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 		});
 
-	function renderizarProduto(produto) {
+	function renderizarProduto(produtos) {
 
-		var html = produto.map(function(item) {
+		var html = produtos.map(function(item) {
 			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
 
 			return (
