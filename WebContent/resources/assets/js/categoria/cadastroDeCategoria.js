@@ -89,7 +89,7 @@ function cadastrar() {
 		"categoria": $('#descricaoCategoria').val(),
 		"pathImagem": base64SemPrefixo
 	};
-	
+
 	console.log(objeto)
 
 	$.ajax({
@@ -122,36 +122,93 @@ function cadastrar() {
 
 function editar() {
 
-	var objetoEdit = {
-		"idCategoria": idCategoria,
-		"categoria": $('#descricaoCategoria').val(),
-	}
-
-	$.ajax({
-		url: url_base + "/categorias",
-		type: "PUT",
-		data: JSON.stringify(objetoEdit),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading()
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON.error);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.error
-			});
+	if (base64 == "") {
+		var objetoEdit = {
+			"idCategoria": idCategoria,
+			"categoria": $('#descricaoCategoria').val(),
 		}
-	}).done(function(data) {
-		Swal.close();
-		Swal.fire({
-			title: "Editado com sucesso",
-			icon: "success"
-		}).then((result) => {
-			window.location.href = 'listarCategoria';
-		});
-	})
+
+		$.ajax({
+			url: url_base + "/categorias",
+			type: "PUT",
+			data: JSON.stringify(objetoEdit),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close();
+				console.log(e.responseJSON.error);
+				Swal.fire({
+					icon: "error",
+					title: e.responseJSON.error
+				});
+			}
+		}).done(function(data) {
+			Swal.close();
+			Swal.fire({
+				title: "Editado com sucesso",
+				icon: "success"
+			}).then((result) => {
+				window.location.href = 'listarCategoria';
+			});
+		})
+	} else {
+		var objetoEdit = {
+			"idCategoria": idCategoria,
+			"categoria": $('#descricaoCategoria').val(),
+		}
+
+		$.ajax({
+			url: url_base + "/categorias",
+			type: "PUT",
+			data: JSON.stringify(objetoEdit),
+			contentType: "application/json; charset=utf-8",
+			beforeSend: function() {
+				Swal.showLoading()
+			},
+			error: function(e) {
+				Swal.close();
+				console.log(e.responseJSON.error);
+				Swal.fire({
+					icon: "error",
+					title: e.responseJSON.error
+				});
+			}
+		}).done(function(data) {
+			var base64SemPrefixo = base64.replace(
+				/^data:image\/(png|jpeg|jpg);base64,/,
+				""
+			);
+
+			let objetoImg = {
+				pathImagem: base64SemPrefixo
+			}
+
+			$.ajax({
+				url: url_base + `/categorias/imagem/${idCategoria}`,
+				type: "PUT",
+				data: JSON.stringify(objetoImg),
+				contentType: "application/json; charset=utf-8",
+				error: function(e) {
+					Swal.close();
+					console.log(e.responseJSON.error);
+					Swal.fire({
+						icon: "error",
+						title: e.responseJSON.error
+					});
+				}
+			}).done(function(data) {
+				Swal.close();
+				Swal.fire({
+					title: "Editado com sucesso",
+					icon: "success"
+				}).then((result) => {
+					window.location.href = 'listarCategoria';
+				});
+			})
+		})
+	}
 }
 
 
