@@ -81,6 +81,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+
+    <!-- swiper -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
 
   <body>
@@ -126,15 +132,14 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
           <div class="row mb-2" id="area-input-edit" hidden>
             <div class="col-md-12">
-              <label for="nomeProduto" class="form-label"
+              <label for="nomeProdutoEdit" class="form-label"
                 >Nome do produto:<span class="red">*</span></label
               >
               <input
                 type="text"
-                id="nomeProduto"
-                required
+                id="nomeProdutoEdit"
                 autocomplete="off"
-                name="nomeProduto"
+                name="nomeProdutoEdit"
                 class="form-control inputForm"
                 maxlength="255"
               />
@@ -164,7 +169,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 required
                 autocomplete="off"
                 type="file"
-                onchange="converterImagem();"
+                accept="image/*"
                 id="imagem-produto"
                 name="file"
                 class="form-control inputForm"
@@ -259,15 +264,30 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               </select>
             </div>
           </div>
-          <div class="row mb-2">
+          <div class="row mb-3" id="title-imagens" hidden>
             <div class="col-md-12 d-flex justify-content-between">
               <h5 class="m-0">Imagens do produto</h5>
-              <button class="btn btn-success btn-sm">Adicionar</button>
+              <button
+              type="button"
+                class="btn btn-success btn-sm"
+                onclick="limpaInput()"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Adicionar
+              </button>
             </div>
           </div>
-          <div class="row mb-2">
-            <div class="col-md-12">
-              <!-- carrossel de imagens -->
+          <div id="area-carrossel" class="mb-3" hidden>
+            <div class="col-md-12 mb-2">
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                 
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+              </div>
             </div>
           </div>
 
@@ -283,20 +303,52 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
         </form>
-
-        <div id="carrossel" class="carrossel none">
-          <div class="imagens">
-            <img id="img0" src="" alt="Imagem 1" class="imagem-ativa" />
-            <img id="img1" src="" alt="Imagem 2" />
-            <img id="img2" src="" alt="Imagem 3" />
-          </div>
-          <button class="anterior btn" onclick="mudarImagem(-1)">❮</button>
-          <button class="proximo btn" onclick="mudarImagem(1)">❯</button>
-          <button class="btn btn-info sairModal" onclick="sairModal()">
-            Sair
-          </button>
-        </div>
       </section>
+
+      <!-- modal new image -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Adicionar imagens ao produto</h5>
+              <button
+              id="btn-close"
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body py-5">
+              <form id="form-new-image" class="row">
+                <div class="col-8">
+                  <input
+                    required
+                    autocomplete="off"
+                    type="file"
+                    accept="image/*"
+                    id="new-imagem-produto"
+                    name="new-file"
+                    multiple
+                    class="form-control inputForm"
+                  />
+                </div>
+                <div class="col">
+                  <button type="submit" id="btn-submit" class="btn btn-primary ms-auto">
+                    Adicionar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script
       charset="UTF-8"
@@ -304,6 +356,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script
       charset="UTF-8"
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

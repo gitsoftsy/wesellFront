@@ -4,6 +4,18 @@ var ValorConvertidoComissao;
 var edição = "";
 
 $(document).ready(function () {
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 8,
+    slidesPerGroup: 3,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
   fetchData("/categorias", "#categoria", "idCategoria", "categoria");
   fetchData("/lojistas", "#lojista", "idLojista", "nomeFantasia");
 
@@ -27,9 +39,12 @@ $(document).ready(function () {
   });
 
   if (idProduto) {
-    
-    $("#area-input-edit").removeAttr('hidden');
-    $("#area-input-cadastro").hide()
+    listarImagens()
+    $("#area-input-edit").removeAttr("hidden");
+    $("#nomeProdutoEdit").attr("required", "required");
+    $("#area-carrossel").removeAttr("hidden");
+    $("#title-imagens").removeAttr("hidden");
+    $("#area-input-cadastro").hide();
 
     $("#tituloPagina, #tituloForm").text("Editar Produto");
     $("#btn-submit").text("Salvar");
@@ -40,7 +55,7 @@ $(document).ready(function () {
       async: false,
     })
       .done(function (data) {
-        $("#nomeProduto").val(data.nomeProduto),
+        $("#nomeProdutoEdit").val(data.nomeProduto),
           $("#descricao").val(data.descrProduto),
           $("#precoDeVenda").val(
             data.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 })
@@ -67,9 +82,7 @@ $(document).ready(function () {
       url: url_base + "/imagens/produto/" + idProduto,
       type: "GET",
       async: false,
-    }).done(function (data) {
-      
-    });
+    }).done(function (data) {});
   }
 });
 
@@ -79,6 +92,48 @@ function formatCurrencyInput(event, callback) {
   let formattedValue = rawValue.replace(".", ","); // Troca ponto por vírgula
   formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Adiciona ponto como separador de milhar
   callback(formattedValue, rawValue);
+}
+
+async function listarImagens() {
+  await $.ajax({
+    url: url_base + "/imagens/lista",
+    type: "GET",
+    contentType: "application/json",
+    data: JSON.stringify({
+      caminhoDaPasta:
+        "/opt/apache-tomcat-9.0.89/webapps/ROOT/Imagens/uploads/produtos/" + idProduto,
+    }),
+    success: function (data) {
+      data.forEach(function (imageBase64) {
+        addImageCard(imageBase64);
+      });
+    },
+    error: function (e) {
+      console.log("Erro ao buscar dados.");
+      console.error("Erro na solicitação AJAX:", e);
+    },
+  });
+}
+
+function addImageCard(imageBase64) {
+  var divCard = $('<div>', { class: 'swiper-slide card-image' });
+
+
+  var img = $('<img>', {
+      src: 'data:image/webp;base64,' + imageBase64,
+      alt: 'imagem'
+  });
+
+
+  var buttonRemove = $('<button>', {
+      class: 'btn btn-sm btn-danger',
+      text: 'Remover'
+  });
+
+  divCard.append(img);
+  divCard.append(buttonRemove);
+
+  $('.swiper-wrapper').append(divCard);
 }
 
 async function fetchData(endpoint, selectId, valueKey, textKey) {
@@ -194,7 +249,10 @@ async function converterImagensParaBase64(files) {
       const reader = new FileReader();
       reader.onload = function (event) {
         imagensBase64.push(
-          event.target.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, "")
+          event.target.result.replace(
+            /^data:image\/(png|jpeg|jpg|webp);base64,/,
+            ""
+          )
         );
         resolve();
       };
@@ -253,12 +311,13 @@ async function cadastrar() {
 }
 
 function editar() {
+  console.log("edit");
   let preco = converterValor($("#precoDeVenda").val());
   let comissao = converterValor($("comissao").val());
 
   var objetoEdit = {
     idProduto: idProduto,
-    nomeProduto: $("#nomeProduto").val(),
+    nomeProduto: $("#nomeProdutoEdit").val(),
     descrProduto: $("#descricao").val(),
     preco: preco,
     comissao: comissao,
@@ -301,6 +360,10 @@ function editar() {
     }, 1000);
   });
 }
+
+function limpaInput() {
+  $("#new-imagem-produto").val("");
+}
 // cadastro do prduto
 $("#form-cadastro").on("submit", async function (e) {
   e.preventDefault();
@@ -310,4 +373,36 @@ $("#form-cadastro").on("submit", async function (e) {
   } else {
     cadastrar();
   }
+});
+
+$("#form-new-image").on("submit", async function (e) {
+  e.preventDefault();
+
+  const input = document.getElementById("new-imagem-produto");
+  const files = input.files;
+
+  let imagensBase64 = [];
+  if (files.length > 0) {
+    try {
+      imagensBase64 = await converterImagensParaBase64(files);
+      console.log(imagensBase64);
+    } catch (error) {
+      console.error("Erro ao converter imagens:", error);
+      Swal.fire({
+        title: "Erro ao converter imagens",
+        icon: "error",
+      });
+      return;
+    }
+  }
+  try {
+    await cadastrarImagens(imagensBase64, idProduto);
+    Swal.fire({
+      title: "Adicionado com sucesso!",
+      icon: "success",
+    }).then((result) => {
+      limpaInput();
+      document.getElementById("btn-close").click();
+    });
+  } catch (error) {}
 });

@@ -11,6 +11,21 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.card-image {
+  position: relative;
+}
+.card-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-image button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
 .abracaMenu .menu {
   width: 100%;
 }
@@ -89,7 +104,7 @@ body {
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background: #8B0000 	;
+  background: #8b0000;
   border-radius: 50px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -105,38 +120,37 @@ body {
   inset: 0;
   background-color: white;
   border-radius: 50px;
-   border:1px solid #000;
+  border: 1px solid #000;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .switch input:checked + .slider {
-	background: #031e3b;
-
+  background: #031e3b;
 }
 
 .switch input:focus + .slider {
-  box-shadow: 0 0 1px #9cc9fa;;
+  box-shadow: 0 0 1px #9cc9fa;
 }
 
 .switch input:checked + .slider:before {
   transform: translateX(2.6em);
 }
 
-.card-form{
-	width: 45%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 5%;
+.card-form {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
 }
 
-.form-label{
-	font-size: .9rem;
+.form-label {
+  font-size: 0.9rem;
 }
 
-.ball-switch{
-margin-left: 5%;
-transform: rotate(180deg);
+.ball-switch {
+  margin-left: 5%;
+  transform: rotate(180deg);
   font-size: 17px;
   position: relative;
   display: inline-block;
@@ -150,26 +164,26 @@ transform: rotate(180deg);
   height: 0;
 }
 
-.tittle-switch{
-	width: 45%;
-	height: 80%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
+.tittle-switch {
+  width: 45%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .title-slider {
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background: #8B0000;
+  background: #8b0000;
   border-radius: 50px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.title-slider:before{
-	position: absolute;
+.title-slider:before {
+  position: absolute;
   content: "";
   display: flex;
   align-items: center;
@@ -179,25 +193,21 @@ transform: rotate(180deg);
   inset: 0;
   background-color: white;
   border-radius: 50px;
-   border:1px solid #000;
+  border: 1px solid #000;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
 .ball-switch input:checked + .title-slider {
-	background: #031e3b;
-
+  background: #031e3b;
 }
 
 .ball-switch input:focus + .title-slider {
-  box-shadow: 0 0 1px #9cc9fa;;
+  box-shadow: 0 0 1px #9cc9fa;
 }
 
 .ball-switch input:checked + .title-slider:before {
   transform: translateX(1.7em);
 }
-
 
 /* modal imagens */
 
@@ -350,12 +360,7 @@ transform: rotate(180deg);
 
 /* bootstrap */
 
-.modal-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .circulo-border {
   background-color: #07f11762;
