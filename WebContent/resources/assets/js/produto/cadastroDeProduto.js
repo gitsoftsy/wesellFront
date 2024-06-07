@@ -3,8 +3,10 @@ var ValorConvertidoPreco;
 var ValorConvertidoComissao;
 var edição = "";
 
+let swiper;
+
 $(document).ready(function () {
-  var swiper = new Swiper(".mySwiper", {
+  swiper = new Swiper(".mySwiper", {
     slidesPerView: 4,
     spaceBetween: 15,
     navigation: {
@@ -183,10 +185,12 @@ async function listarImagens() {
     contentType: "application/json",
     success: function (data) {
       console.log(data);
-      $(".swiper-wrapper").empty();
+
       data.forEach(function (img) {
         addImageCard(img);
       });
+
+      swiper.update();
     },
     error: function (e) {
       console.log("Erro ao listar imagens.");
@@ -202,8 +206,14 @@ function addImageCard(img) {
   );
 
   var divCard = $("<div>", {
-    class: "swiper-slide card-image",
+    class: "swiper-slide card-image shadow-sm",
     "data-id": img.idImagemProduto,
+  });
+
+  var linkElement = $("<a>", {
+    href: imageUrl,
+    "data-fancybox": "gallery",
+    "data-caption": "imagem " + img.idImagemProduto,
   });
 
   var imgElement = $("<img>", {
@@ -218,7 +228,8 @@ function addImageCard(img) {
     type: "button",
   });
 
-  divCard.append(imgElement);
+  linkElement.append(imgElement);
+  divCard.append(linkElement);
   divCard.append(buttonRemove);
 
   $(".swiper-wrapper").append(divCard);
@@ -226,15 +237,17 @@ function addImageCard(img) {
 
 $(document).on("click", ".btn-remove", function () {
   var idImagemProduto = $(this).data("id");
-  console.log("ID da imagem a ser removida:", idImagemProduto);
 
-  $(this).closest(".card-image").remove();
+  var $button = $(this);
 
-  removeImageById(idImagemProduto);
+  $button.html("Removendo...");
+  $button.prop("disabled", true);
+
+  removeImageById(idImagemProduto, $button);
 });
 
-function removeImageById(id) {
-  $.ajax({
+async function removeImageById(id, $button) {
+  await $.ajax({
     url: url_base + "/imagens/" + id,
     type: "DELETE",
     contentType: "application/json; charset=utf-8",
@@ -248,14 +261,19 @@ function removeImageById(id) {
         className: "Toastify__toast--custom",
       }).showToast();
       console.log(e.responseJSON);
+
+      $button.html("Remover");
+      $button.prop("disabled", false);
     },
   }).done(function (data) {
     Swal.fire({
       title: "Removido com sucesso!",
       icon: "success",
+    }).then(() => {
+      $button.closest(".card-image").remove();
+      document.getElementById("btn-close").click();
+      swiper.update();
     });
-    listarImagens();
-    document.getElementById("btn-close").click();
   });
 }
 
@@ -314,6 +332,14 @@ async function converterImagensParaBase64(files) {
 $("#form-new-image").on("submit", async function (e) {
   e.preventDefault();
 
+  const $button = $("#btn-submit-modal");
+  const originalButtonText = $button.html();
+
+  $button.html(
+    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+  );
+  $button.prop("disabled", true);
+
   const input = document.getElementById("new-imagem-produto");
   const files = input.files;
 
@@ -328,6 +354,8 @@ $("#form-new-image").on("submit", async function (e) {
         title: "Erro ao converter imagens",
         icon: "error",
       });
+      $button.html(originalButtonText);
+      $button.prop("disabled", false);
       return;
     }
   }
@@ -338,13 +366,84 @@ $("#form-new-image").on("submit", async function (e) {
       icon: "success",
     }).then((result) => {
       limpaInput();
+      $(".swiper-wrapper").empty();
+
       listarImagens();
+      $button.html(originalButtonText);
+      $button.prop("disabled", false);
       document.getElementById("btn-close").click();
     });
-  } catch (error) {}
+  } catch (error) {
+    $button.html(originalButtonText);
+    $button.prop("disabled", false);
+  }
 });
 
-async function cadastrar() {
+function formatCurrencyInput2(value) {
+  let numericValue = value.replace(/\D/g, "");
+  let rawValue = (numericValue / 100).toFixed(2);
+  let formattedValue = rawValue.replace(".", ",");
+  formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  return { formattedValue, rawValue };
+}
+
+async function editar($button, originalButtonText) {
+  let precoDeVendaVal = $("#precoDeVenda").val();
+  let comissaoVal = $("#comissao").val();
+
+  let precoConvertido =
+    ValorConvertidoPreco || formatCurrencyInput2(precoDeVendaVal).rawValue;
+  let comissaoConvertida =
+    ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
+
+  var objetoEdit = {
+    idProduto: idProduto,
+    nomeProduto: $("#nomeProdutoEdit").val(),
+    descrProduto: $("#descricao").val(),
+    preco: precoConvertido,
+    comissao: comissaoConvertida,
+    categoriaId: $("#categoria").val(),
+    subcategoriaId: $("#subCategoria").val(),
+    lojistaId: $("#lojista").val(),
+  };
+
+  $.ajax({
+    url: url_base + "/produtos",
+    type: "PUT",
+    data: JSON.stringify(objetoEdit),
+    contentType: "application/json; charset=utf-8",
+    error: function (e) {
+      Toastify({
+        text: e.responseJSON.message,
+        duration: 2000,
+        position: "center",
+        backgroundColor: "red",
+        close: true,
+        className: "Toastify__toast--custom",
+      }).showToast();
+      console.log(e.responseJSON);
+
+      $button.html(originalButtonText);
+      $button.prop("disabled", false);
+    },
+  })
+    .done(function (data) {
+      Swal.fire({
+        title: "Editado com sucesso!",
+        icon: "success",
+      }).then(() => {
+        setTimeout(function () {
+          window.location.href = "listarProduto";
+        }, 2000);
+      });
+    })
+    .always(() => {
+      $button.html(originalButtonText);
+      $button.prop("disabled", false);
+    });
+}
+
+async function cadastrar($button, originalButtonText) {
   const input = document.getElementById("imagem-produto");
   const files = input.files;
 
@@ -352,13 +451,15 @@ async function cadastrar() {
   if (files.length > 0) {
     try {
       imagensBase64 = await converterImagensParaBase64(files);
-      console.log(imagensBase64);
     } catch (error) {
       console.error("Erro ao converter imagens:", error);
       Swal.fire({
         title: "Erro ao converter imagens",
         icon: "error",
       });
+
+      $button.html(originalButtonText);
+      $button.prop("disabled", false);
       return;
     }
   }
@@ -377,55 +478,22 @@ async function cadastrar() {
     const produtoId = await cadastrarProduto(objeto);
     await cadastrarImagens(imagensBase64, produtoId);
 
-    Swal.close();
     Swal.fire({
       title: "Cadastrado com sucesso!",
       icon: "success",
     }).then((result) => {
       window.location.href = "listarProduto";
     });
-  } catch (error) {}
-}
-
-function editar() {
-  var objetoEdit = {
-    idProduto: idProduto,
-    nomeProduto: $("#nomeProdutoEdit").val(),
-    descrProduto: $("#descricao").val(),
-    preco: ValorConvertidoPreco || $("#precoDeVenda").val(),
-    comissao: ValorConvertidoComissao || $("#comissao").val(),
-    categoriaId: $("#categoria").val(),
-    subcategoriaId: $("#subCategoria").val(),
-    lojistaId: $("#lojista").val(),
-  };
-
-  console.log(objetoEdit);
-
-  $.ajax({
-    url: url_base + "/produtos",
-    type: "PUT",
-    data: JSON.stringify(objetoEdit),
-    contentType: "application/json; charset=utf-8",
-    error: function (e) {
-      Toastify({
-        text: e.responseJSON.message,
-        duration: 2000,
-        position: "center",
-        backgroundColor: "red",
-        close: true,
-        className: "Toastify__toast--custom",
-      }).showToast();
-      console.log(e.responseJSON);
-    },
-  }).done(function (data) {
+  } catch (error) {
+    console.error("Erro ao cadastrar produto:", error);
     Swal.fire({
-      title: "Editado com sucesso!",
-      icon: "success",
+      title: "Erro ao cadastrar produto",
+      icon: "error",
     });
-    setTimeout(function () {
-      window.location.href = "listarProduto";
-    }, 2000);
-  });
+  } finally {
+    $button.html(originalButtonText);
+    $button.prop("disabled", false);
+  }
 }
 
 function limpaInput() {
@@ -435,9 +503,17 @@ function limpaInput() {
 $("#form-cadastro").on("submit", async function (e) {
   e.preventDefault();
 
+  const $button = $("#btn-submit");
+  const originalButtonText = $button.html();
+
+  $button.html(
+    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+  );
+  $button.prop("disabled", true);
+
   if (edição == "sim") {
-    editar();
+    await editar($button, originalButtonText);
   } else {
-    cadastrar();
+    await cadastrar($button, originalButtonText);
   }
 });

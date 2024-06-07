@@ -54,6 +54,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     <!-- CSS -->
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+    />
+    <link
+      rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
@@ -154,7 +158,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="text"
                 id="nomeProduto"
-                
                 autocomplete="off"
                 name="nomeProduto"
                 class="form-control inputForm"
@@ -166,7 +169,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Imagens do Produto:<span class="red">*</span></label
               >
               <input
-                
                 autocomplete="off"
                 type="file"
                 accept="image/*"
@@ -268,7 +270,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="col-md-12 d-flex justify-content-between">
               <h5 class="m-0">Imagens do produto</h5>
               <button
-              type="button"
+                type="button"
                 class="btn btn-success btn-sm"
                 onclick="limpaInput()"
                 data-bs-toggle="modal"
@@ -281,9 +283,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div id="area-carrossel" class="mb-3" hidden>
             <div class="col-md-12 mb-2">
               <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                 
-                </div>
+                <div class="swiper-wrapper"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
@@ -318,7 +318,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-header">
               <h5 class="modal-title">Adicionar imagens ao produto</h5>
               <button
-              id="btn-close"
+                id="btn-close"
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
@@ -340,7 +340,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   />
                 </div>
                 <div class="col">
-                  <button type="submit" id="btn-submit" class="btn btn-primary ms-auto">
+                  <button
+                    type="submit"
+                    id="btn-submit-modal"
+                    class="btn px-4 btn-primary ms-auto"
+                  >
                     Adicionar
                   </button>
                 </div>
@@ -350,6 +354,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         </div>
       </div>
     </main>
+
     <script
       charset="UTF-8"
       src="https://code.jquery.com/jquery-3.7.1.js"
@@ -390,5 +395,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/produto/cadastroDeProduto.js"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   </body>
 </html>
