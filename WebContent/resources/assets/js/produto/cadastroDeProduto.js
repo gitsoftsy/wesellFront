@@ -5,11 +5,8 @@ var edição = "";
 
 $(document).ready(function () {
   var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 8,
-    slidesPerGroup: 3,
-    loop: true,
-    loopFillGroupWithBlank: true,
+    slidesPerView: 4,
+    spaceBetween: 15,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -39,9 +36,12 @@ $(document).ready(function () {
   });
 
   if (idProduto) {
-    listarImagens()
-    $("#area-input-edit").removeAttr("hidden");
+    listarImagens();
     $("#nomeProdutoEdit").attr("required", "required");
+    $("#categoria").attr("disabled", "disabled");
+    $("#subCategoria").attr("disabled", "disabled");
+    $("#lojista").attr("disabled", "disabled");
+    $("#area-input-edit").removeAttr("hidden");
     $("#area-carrossel").removeAttr("hidden");
     $("#title-imagens").removeAttr("hidden");
     $("#area-input-cadastro").hide();
@@ -83,6 +83,9 @@ $(document).ready(function () {
       type: "GET",
       async: false,
     }).done(function (data) {});
+  } else {
+    $("#nomeProduto").attr("required", "required");
+    $("#imagem-produto").attr("required", "required");
   }
 });
 
@@ -92,48 +95,6 @@ function formatCurrencyInput(event, callback) {
   let formattedValue = rawValue.replace(".", ","); // Troca ponto por vírgula
   formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Adiciona ponto como separador de milhar
   callback(formattedValue, rawValue);
-}
-
-async function listarImagens() {
-  await $.ajax({
-    url: url_base + "/imagens/lista",
-    type: "GET",
-    contentType: "application/json",
-    data: JSON.stringify({
-      caminhoDaPasta:
-        "/opt/apache-tomcat-9.0.89/webapps/ROOT/Imagens/uploads/produtos/" + idProduto,
-    }),
-    success: function (data) {
-      data.forEach(function (imageBase64) {
-        addImageCard(imageBase64);
-      });
-    },
-    error: function (e) {
-      console.log("Erro ao buscar dados.");
-      console.error("Erro na solicitação AJAX:", e);
-    },
-  });
-}
-
-function addImageCard(imageBase64) {
-  var divCard = $('<div>', { class: 'swiper-slide card-image' });
-
-
-  var img = $('<img>', {
-      src: 'data:image/webp;base64,' + imageBase64,
-      alt: 'imagem'
-  });
-
-
-  var buttonRemove = $('<button>', {
-      class: 'btn btn-sm btn-danger',
-      text: 'Remover'
-  });
-
-  divCard.append(img);
-  divCard.append(buttonRemove);
-
-  $('.swiper-wrapper').append(divCard);
 }
 
 async function fetchData(endpoint, selectId, valueKey, textKey) {
@@ -215,6 +176,89 @@ async function cadastrarProduto(objeto) {
   }
 }
 
+async function listarImagens() {
+  await $.ajax({
+    url: url_base + "/imagens/produto/" + idProduto,
+    type: "GET",
+    contentType: "application/json",
+    success: function (data) {
+      console.log(data);
+      $(".swiper-wrapper").empty();
+      data.forEach(function (img) {
+        addImageCard(img);
+      });
+    },
+    error: function (e) {
+      console.log("Erro ao listar imagens.");
+      console.error("Erro na solicitação AJAX:", e);
+    },
+  });
+}
+
+function addImageCard(img) {
+  var imageUrl = img.imagem.replace(
+    "/opt/apache-tomcat-9.0.89/webapps/ROOT",
+    "http://ec2-18-235-243-90.compute-1.amazonaws.com:8080"
+  );
+
+  var divCard = $("<div>", {
+    class: "swiper-slide card-image",
+    "data-id": img.idImagemProduto,
+  });
+
+  var imgElement = $("<img>", {
+    src: imageUrl,
+    alt: "imagem " + img.idImagemProduto,
+  });
+
+  var buttonRemove = $("<button>", {
+    class: "btn btn-sm btn-danger btn-remove",
+    text: "Remover",
+    "data-id": img.idImagemProduto,
+    type: "button",
+  });
+
+  divCard.append(imgElement);
+  divCard.append(buttonRemove);
+
+  $(".swiper-wrapper").append(divCard);
+}
+
+$(document).on("click", ".btn-remove", function () {
+  var idImagemProduto = $(this).data("id");
+  console.log("ID da imagem a ser removida:", idImagemProduto);
+
+  $(this).closest(".card-image").remove();
+
+  removeImageById(idImagemProduto);
+});
+
+function removeImageById(id) {
+  $.ajax({
+    url: url_base + "/imagens/" + id,
+    type: "DELETE",
+    contentType: "application/json; charset=utf-8",
+    error: function (e) {
+      Toastify({
+        text: e.responseJSON.message,
+        duration: 2000,
+        position: "center",
+        backgroundColor: "red",
+        close: true,
+        className: "Toastify__toast--custom",
+      }).showToast();
+      console.log(e.responseJSON);
+    },
+  }).done(function (data) {
+    Swal.fire({
+      title: "Removido com sucesso!",
+      icon: "success",
+    });
+    listarImagens();
+    document.getElementById("btn-close").click();
+  });
+}
+
 async function cadastrarImagens(imagensBase64, produtoId) {
   try {
     var imagens = {
@@ -267,6 +311,39 @@ async function converterImagensParaBase64(files) {
   return imagensBase64;
 }
 
+$("#form-new-image").on("submit", async function (e) {
+  e.preventDefault();
+
+  const input = document.getElementById("new-imagem-produto");
+  const files = input.files;
+
+  let imagensBase64 = [];
+  if (files.length > 0) {
+    try {
+      imagensBase64 = await converterImagensParaBase64(files);
+      console.log(imagensBase64);
+    } catch (error) {
+      console.error("Erro ao converter imagens:", error);
+      Swal.fire({
+        title: "Erro ao converter imagens",
+        icon: "error",
+      });
+      return;
+    }
+  }
+  try {
+    await cadastrarImagens(imagensBase64, idProduto);
+    Swal.fire({
+      title: "Adicionado com sucesso!",
+      icon: "success",
+    }).then((result) => {
+      limpaInput();
+      listarImagens();
+      document.getElementById("btn-close").click();
+    });
+  } catch (error) {}
+});
+
 async function cadastrar() {
   const input = document.getElementById("imagem-produto");
   const files = input.files;
@@ -311,23 +388,16 @@ async function cadastrar() {
 }
 
 function editar() {
-  console.log("edit");
-  let preco = converterValor($("#precoDeVenda").val());
-  let comissao = converterValor($("comissao").val());
-
   var objetoEdit = {
     idProduto: idProduto,
     nomeProduto: $("#nomeProdutoEdit").val(),
     descrProduto: $("#descricao").val(),
-    preco: preco,
-    comissao: comissao,
-    categoriaId: $("#categoria option:selected").attr("value"),
-    subcategoriaId: $("#subCategoria option:selected").attr("value"),
-    lojistaId: $("#lojista option:selected").attr("value"),
+    preco: ValorConvertidoPreco || $("#precoDeVenda").val(),
+    comissao: ValorConvertidoComissao || $("#comissao").val(),
+    categoriaId: $("#categoria").val(),
+    subcategoriaId: $("#subCategoria").val(),
+    lojistaId: $("#lojista").val(),
   };
-
-  console.log(preco);
-  console.log(comissao);
 
   console.log(objetoEdit);
 
@@ -348,16 +418,13 @@ function editar() {
       console.log(e.responseJSON);
     },
   }).done(function (data) {
-    Toastify({
-      text: "Editado com sucesso!",
-      duration: 2000,
-      position: "center",
-      close: true,
-      className: "Toastify__toast--custom",
-    }).showToast();
+    Swal.fire({
+      title: "Editado com sucesso!",
+      icon: "success",
+    });
     setTimeout(function () {
       window.location.href = "listarProduto";
-    }, 1000);
+    }, 2000);
   });
 }
 
@@ -373,36 +440,4 @@ $("#form-cadastro").on("submit", async function (e) {
   } else {
     cadastrar();
   }
-});
-
-$("#form-new-image").on("submit", async function (e) {
-  e.preventDefault();
-
-  const input = document.getElementById("new-imagem-produto");
-  const files = input.files;
-
-  let imagensBase64 = [];
-  if (files.length > 0) {
-    try {
-      imagensBase64 = await converterImagensParaBase64(files);
-      console.log(imagensBase64);
-    } catch (error) {
-      console.error("Erro ao converter imagens:", error);
-      Swal.fire({
-        title: "Erro ao converter imagens",
-        icon: "error",
-      });
-      return;
-    }
-  }
-  try {
-    await cadastrarImagens(imagensBase64, idProduto);
-    Swal.fire({
-      title: "Adicionado com sucesso!",
-      icon: "success",
-    }).then((result) => {
-      limpaInput();
-      document.getElementById("btn-close").click();
-    });
-  } catch (error) {}
 });

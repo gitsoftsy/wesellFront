@@ -154,7 +154,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="text"
                 id="nomeProduto"
-                required
+                
                 autocomplete="off"
                 name="nomeProduto"
                 class="form-control inputForm"
@@ -166,7 +166,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Imagens do Produto:<span class="red">*</span></label
               >
               <input
-                required
+                
                 autocomplete="off"
                 type="file"
                 accept="image/*"
