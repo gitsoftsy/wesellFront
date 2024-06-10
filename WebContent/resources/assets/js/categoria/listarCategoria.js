@@ -230,7 +230,7 @@ function alteraStatus(element) {
 		type: "put",
 		error: function(e) {
 			Swal.close();
-			console.log(e.responseJSON.);
+			console.log(e.responseJSON);
 			Swal.fire({
 				icon: "error",
 				title: e.responseJSON.message
