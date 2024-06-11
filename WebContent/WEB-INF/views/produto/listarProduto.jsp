@@ -123,7 +123,6 @@ String contextPath = request.getContextPath();
 					<tr>
 						<th scope="col" width="10%">Ativo</th>
 						<th scope="col">Nome</th>
-						<th scope="col">Descrição</th>
 						<th scope="col">Categoria</th>
 						<th scope="col">Sub-Categoria</th>
 						<th scope="col">Preço</th>

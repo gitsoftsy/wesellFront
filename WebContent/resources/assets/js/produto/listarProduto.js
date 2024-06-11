@@ -150,9 +150,6 @@ $(document).ready(function() {
 				item.nomeProduto +
 				"</td>" +
 				"<td>" +
-				item.descrProduto +
-				"</td>" +
-				"<td>" +
 				item.categorias.categoria +
 				"</td>" +
 				"<td>" +

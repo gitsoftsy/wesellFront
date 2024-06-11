@@ -7,6 +7,23 @@ let swiper;
 var lojista = "";
 
 $(document).ready(function () {
+  tinymce.init({
+    selector: "#descricao",
+    language: "pt_BR",
+    placeholder: "Digite a descrição aqui...",
+    spellchecker_language: "pt",
+    plugins:
+      "anchor autolink charmap codesample emoticons link lists media searchreplace visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
+    toolbar:
+      "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table spellcheckdialog typography align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+    statusbar: false, // Remove o footer
+    setup: function (editor) {
+      editor.on("change", function () {
+        tinymce.triggerSave(); // Garante que o valor do textarea seja atualizado
+      });
+    },
+  });
+
   var user = localStorage.getItem("usuario");
   lojista = JSON.parse(user);
 
@@ -392,7 +409,7 @@ function formatCurrencyInput2(value) {
 }
 
 async function editar($button, originalButtonText) {
-  console.log(lojista)
+  console.log(lojista);
   let precoDeVendaVal = $("#precoDeVenda").val();
   let comissaoVal = $("#comissao").val();
 
@@ -508,6 +525,14 @@ function limpaInput() {
 // cadastro do prduto
 $("#form-cadastro").on("submit", async function (e) {
   e.preventDefault();
+
+  if (tinymce.get("descricao").getContent().trim() === "") {
+    Swal.fire({
+      title: "A descrição é obrigatória.",
+      icon: "error",
+    });
+    return;
+  }
 
   const $button = $("#btn-submit");
   const originalButtonText = $button.html();

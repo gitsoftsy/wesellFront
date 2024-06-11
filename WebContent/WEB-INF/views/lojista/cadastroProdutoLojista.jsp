@@ -52,7 +52,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -155,7 +158,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="text"
                 id="nomeProduto"
-                
                 autocomplete="off"
                 name="nomeProduto"
                 class="form-control inputForm"
@@ -167,7 +169,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Imagens do Produto:<span class="red">*</span></label
               >
               <input
-                
                 autocomplete="off"
                 type="file"
                 accept="image/*"
@@ -179,22 +180,20 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
 
-          <div class="row mb-2">
-            <div class="col-md-6">
+          <div class="row mb-3">
+            <div class="col-md-12">
               <label for="descricao" class="form-label"
                 >Descrição:<span class="red">*</span></label
               >
-              <input
-                required
-                autocomplete="off"
-                type="text"
+              <textarea
+                class="form-control inputForm"
                 id="descricao"
                 name="descricao"
-                class="form-control inputForm"
-                maxlength="2000"
-              />
+              ></textarea>
             </div>
+          </div>
 
+          <div class="row mb-2">
             <div class="col-md-6">
               <label for="precoDeVenda" class="form-label"
                 >Preço de venda:<span class="red">*</span></label
@@ -209,9 +208,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 maxlength="12"
               />
             </div>
-          </div>
-
-          <div class="row mb-2">
             <div class="col-md-6">
               <label for="comissao" class="form-label"
                 >Comissão:<span class="red">*</span></label
@@ -226,7 +222,9 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 maxlength="12"
               />
             </div>
+          </div>
 
+          <div class="row mb-2">
             <div class="col-md-6">
               <label for="categoria" class="form-label"
                 >Categoria:<span class="red">*</span></label
@@ -235,9 +233,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 <option value="" selected disabled>Selecione...</option>
               </select>
             </div>
-          </div>
-
-          <div class="row mb-3">
             <div class="col-md-6">
               <label for="subCategoria" class="form-label"
                 >Sub-Categoria:</label
@@ -251,11 +246,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               </select>
             </div>
           </div>
+
           <div class="row mb-3" id="title-imagens" hidden>
             <div class="col-md-12 d-flex justify-content-between">
               <h5 class="m-0">Imagens do produto</h5>
               <button
-              type="button"
+                type="button"
                 class="btn btn-success btn-sm"
                 onclick="limpaInput()"
                 data-bs-toggle="modal"
@@ -268,9 +264,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div id="area-carrossel" class="mb-3" hidden>
             <div class="col-md-12 mb-2">
               <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                 
-                </div>
+                <div class="swiper-wrapper"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
@@ -305,7 +299,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="modal-header">
               <h5 class="modal-title">Adicionar imagens ao produto</h5>
               <button
-              id="btn-close"
+                id="btn-close"
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
@@ -327,7 +321,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                   />
                 </div>
                 <div class="col">
-                  <button type="submit" id="btn-submit-modal" class="btn px-4 btn-primary ms-auto">
+                  <button
+                    type="submit"
+                    id="btn-submit-modal"
+                    class="btn px-4 btn-primary ms-auto"
+                  >
                     Adicionar
                   </button>
                 </div>
@@ -337,7 +335,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         </div>
       </div>
     </main>
-
 
     <script
       charset="UTF-8"
@@ -378,6 +375,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     <script
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/lojista/cadastroProdutoLojista.js"
+    ></script>
+    <script
+      src="https://cdn.tiny.cloud/1/tub5hw8vpj09xypy6t87uo5wioekn7xhtafc5aur6fizsu1w/tinymce/7/tinymce.min.js"
+      referrerpolicy="origin"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   </body>
