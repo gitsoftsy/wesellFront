@@ -9,7 +9,7 @@ const params = new URLSearchParams(queryString);
 function removeObjeto() {
 	localStorage.clear();
 }
-const path_base = "http://localhost:8090/wesell-front/resources/menu";
+const path_base = "http://localhost:8080/wesell-front/resources/menu";
 
 // const path_base = "http://ec2-34-203-201-76.compute-1.amazonaws.com:8080/wesell-front/resources/menu";
 
