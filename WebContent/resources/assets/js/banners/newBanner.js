@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     cropper = new Cropper(image, {
       aspectRatio,
-      viewMode: 2,
+      viewMode: 1,
       responsive: true,
       zoomable: true,
       ready() {
