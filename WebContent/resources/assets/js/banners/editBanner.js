@@ -52,11 +52,11 @@ $(document).ready(function () {
 
 $("#form-edit").on("submit", function (e) {
   e.preventDefault();
-  var dataInicioExibicao = new Date($("#dtInicio").val());
-  var dataFimExibicao = new Date($("#dtFim").val());
+   var dataInicioExibicao = new Date($("#dtInicio").val() + 'T00:00:00');
+  var dataFimExibicao = new Date($("#dtFim").val() + 'T00:00:00');
   var dataAtual = new Date();
 
-  if (dataInicioExibicao < dataAtual) {
+  if (dataInicioExibicao.setHours(0, 0, 0, 0) < dataAtual.setHours(0, 0, 0, 0)) {
     Swal.fire({
       icon: "error",
       title: "A data de início não pode ser menor que a data atual.",
@@ -64,7 +64,7 @@ $("#form-edit").on("submit", function (e) {
     return;
   }
 
-  if (dataFimExibicao < dataInicioExibicao) {
+  if (dataFimExibicao.setHours(0, 0, 0, 0) < dataInicioExibicao.setHours(0, 0, 0, 0)) {
     Swal.fire({
       icon: "error",
       title: "A data de fim não pode ser menor que a data de início.",

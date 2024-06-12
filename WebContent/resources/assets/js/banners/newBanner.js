@@ -44,30 +44,8 @@ $(document).ready(function () {
       zoomable: true,
       ready() {
         cropper.reset();
-        cropper.fit();
       },
-      // ready() {
-      //   const croppedImageDataURL = cropper
-      //     .getCroppedCanvas()
-      //     .toDataURL("image/png");
-      //   // $("#imagePreview").html(
-      //   //   `<img src="${croppedImageDataURL}" alt="Imagem recortada">`
-      //   // );
-      // },
-      // crop(event) {
-      //   const croppedImageDataURL = cropper
-      //     .getCroppedCanvas()
-      //     .toDataURL("image/png");
-      //   $("#imagePreview img").attr("src", croppedImageDataURL);
-      // },
     });
-  });
-
-  $(window).on("resize", function () {
-    if (cropper) {
-      cropper.reset();
-      cropper.fit();
-    }
   });
 
   $("#btnCrop").on("click", function () {
@@ -116,11 +94,11 @@ $(document).ready(function () {
 $("#form-cadastro").submit(function (e) {
   e.preventDefault();
 
-  var dataInicioExibicao = new Date($("#dtInicio").val());
-  var dataFimExibicao = new Date($("#dtFim").val());
+  var dataInicioExibicao = new Date($("#dtInicio").val() + 'T00:00:00');
+  var dataFimExibicao = new Date($("#dtFim").val() + 'T00:00:00');
   var dataAtual = new Date();
 
-  if (dataInicioExibicao < dataAtual) {
+  if (dataInicioExibicao.setHours(0, 0, 0, 0) < dataAtual.setHours(0, 0, 0, 0)) {
     Swal.fire({
       icon: "error",
       title: "A data de início não pode ser menor que a data atual.",
@@ -128,7 +106,7 @@ $("#form-cadastro").submit(function (e) {
     return;
   }
 
-  if (dataFimExibicao < dataInicioExibicao) {
+  if (dataFimExibicao.setHours(0, 0, 0, 0) < dataInicioExibicao.setHours(0, 0, 0, 0)) {
     Swal.fire({
       icon: "error",
       title: "A data de fim não pode ser menor que a data de início.",
