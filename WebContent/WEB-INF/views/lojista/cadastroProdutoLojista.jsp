@@ -75,9 +75,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       src="https://kit.fontawesome.com/2476720ce5.js"
       crossorigin="anonymous"
     ></script>
+
     <link
       rel="stylesheet"
-      href="<%=contextPath%>/resources/assets/css/style.css"
+      href="<%=contextPath%>/resources/assets/css/areaLojista.css"
     />
 
     <!-- Animation-css -->
@@ -94,8 +95,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
   </head>
 
   <body>
-    <header id="menu"></header>
-
     <div class="bg-loading">
       <div class="spinner">
         <div class="rect1"></div>
@@ -105,9 +104,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       </div>
     </div>
 
-    <button id="teste" type="button" class="btn botaoDesativaMenu">
-      <i class="fa-solid fa-arrow-right" style="color: #ffffff"></i>
-    </button>
+    <header id="menuLojista"></header>
 
     <button type="button" class="btn botaoAtivaMenu">
       <i class="fa-solid fa-arrow-left mover-left"></i>

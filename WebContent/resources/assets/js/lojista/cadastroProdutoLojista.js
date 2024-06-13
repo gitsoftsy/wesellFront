@@ -1,3 +1,6 @@
+const botaoDesativa = document.querySelector('#teste');
+const botaoAtiva = document.querySelector('.botaoAtivaMenu');
+const elemento = document.querySelector('#modalMenu');
 const idProduto = params.get("id");
 var ValorConvertidoPreco;
 var ValorConvertidoComissao;
@@ -37,7 +40,64 @@ $(document).ready(function () {
   });
 
   fetchData("/categorias", "#categoria", "idCategoria", "categoria");
-  fetchData("/lojistas", "#lojista", "idLojista", "nomeFantasia");
+  fetchData("/lojistas", "#lojista", "idLojista", "nomeFantasia").then(() => {
+    if (idProduto) {
+      listarImagens();
+      $("#nomeProdutoEdit").attr("required", "required");
+      $("#categoria").attr("disabled", "disabled");
+      $("#subCategoria").attr("disabled", "disabled");
+      $("#lojista").attr("disabled", "disabled");
+      $("#area-input-edit").removeAttr("hidden");
+      $("#area-carrossel").removeAttr("hidden");
+      $("#title-imagens").removeAttr("hidden");
+      $("#area-input-cadastro").hide();
+
+      $("#tituloPagina, #tituloForm").text("Editar Produto");
+      $("#btn-submit").text("Salvar");
+
+      $.ajax({
+        url: url_base + "/produtos/" + idProduto,
+        type: "GET",
+        async: false,
+      })
+        .done(function (data) {
+          $("#nomeProdutoEdit").val(data.nomeProduto),
+            $("#descricao").val(data.descrProduto),
+            $("#precoDeVenda").val(
+              data.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 })
+            ),
+            $("#comissao").val(
+              data.comissao.toLocaleString("pt-br", {
+                minimumFractionDigits: 2,
+              })
+            ),
+            $("#categoria")
+              .val(data.categorias.idCategoria)
+              .attr("selected", true);
+          loadSubCategories(data.categorias.idCategoria).then(() => {
+            $("#subCategoria")
+              .val(data.subcategorias.id)
+              .attr("selected", true);
+          });
+
+          $("#lojista").val(data.lojista.idLojista).attr("selected", true);
+          edição = "sim";
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          console.log("erro ao buscar dados.");
+          console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+        });
+
+      $.ajax({
+        url: url_base + "/imagens/produto/" + idProduto,
+        type: "GET",
+        async: false,
+      }).done(function (data) {});
+    } else {
+      $("#nomeProduto").attr("required", "required");
+      $("#imagem-produto").attr("required", "required");
+    }
+  });
 
   $("#categoria").change(function () {
     const categoryId = $(this).val();
@@ -57,59 +117,6 @@ $(document).ready(function () {
       e.target.value = formattedValue;
     });
   });
-
-  if (idProduto) {
-    listarImagens();
-    $("#nomeProdutoEdit").attr("required", "required");
-    $("#categoria").attr("disabled", "disabled");
-    $("#subCategoria").attr("disabled", "disabled");
-    $("#lojista").attr("disabled", "disabled");
-    $("#area-input-edit").removeAttr("hidden");
-    $("#area-carrossel").removeAttr("hidden");
-    $("#title-imagens").removeAttr("hidden");
-    $("#area-input-cadastro").hide();
-
-    $("#tituloPagina, #tituloForm").text("Editar Produto");
-    $("#btn-submit").text("Salvar");
-
-    $.ajax({
-      url: url_base + "/produtos/" + idProduto,
-      type: "GET",
-      async: false,
-    })
-      .done(function (data) {
-        $("#nomeProdutoEdit").val(data.nomeProduto),
-          $("#descricao").val(data.descrProduto),
-          $("#precoDeVenda").val(
-            data.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 })
-          ),
-          $("#comissao").val(
-            data.comissao.toLocaleString("pt-br", { minimumFractionDigits: 2 })
-          ),
-          $("#categoria")
-            .val(data.categorias.idCategoria)
-            .attr("selected", true);
-        loadSubCategories(data.categorias.idCategoria).then(() => {
-          $("#subCategoria").val(data.subcategorias.id).attr("selected", true);
-        });
-
-        $("#lojista").val(data.lojista.idLojista).attr("selected", true);
-        edição = "sim";
-      })
-      .fail(function (jqXHR, textStatus, errorThrown) {
-        console.log("erro ao buscar dados.");
-        console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
-      });
-
-    $.ajax({
-      url: url_base + "/imagens/produto/" + idProduto,
-      type: "GET",
-      async: false,
-    }).done(function (data) {});
-  } else {
-    $("#nomeProduto").attr("required", "required");
-    $("#imagem-produto").attr("required", "required");
-  }
 });
 
 function formatCurrencyInput(event, callback) {
