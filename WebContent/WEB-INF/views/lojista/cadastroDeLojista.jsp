@@ -193,71 +193,153 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-4">
 					<div class="col-md-6">
-						<label for="calcularFrete" class="form-label">Calcular Frete:<span
-							class="red">*</span></label>
+						<label for="calcularFrete" class="form-label">Calcular
+							Frete:<span class="red">*</span>
+						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="calcularFrete"
-									id="sim" value="S" required /> <label
+								<input class="form-check-input" type="radio"
+									name="calcularFrete" id="sim" value="S" required /> <label
 									class="form-check-label" for="sim">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="calcularFrete"
-									id="nao" value="N" required /> <label
+								<input class="form-check-input" type="radio"
+									name="calcularFrete" id="nao" value="N" required /> <label
 									class="form-check-label" for="nao">Não</label>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="avisoRecebimento" class="form-label">Aviso Recebimento:<span
-							class="red">*</span></label>
+						<label for="avisoRecebimento" class="form-label">Aviso
+							Recebimento:<span class="red">*</span>
+						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="avisoRecebimento"
-									id="sim" value="S" required /> <label
+								<input class="form-check-input" type="radio"
+									name="avisoRecebimento" id="sim" value="S" required /> <label
 									class="form-check-label" for="sim">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="avisoRecebimento"
-									id="nao" value="N" required /> <label
+								<input class="form-check-input" type="radio"
+									name="avisoRecebimento" id="nao" value="N" required /> <label
 									class="form-check-label" for="nao">Não</label>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row mb-4">
 					<div class="col-md-6">
-						<label for="maosProprias" class="form-label">Maos Proprias:<span
-							class="red">*</span></label>
+						<label for="maosProprias" class="form-label">Maos
+							Proprias:<span class="red">*</span>
+						</label>
 						<div class="form-control">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="maosProprias"
-									id="sim" value="S" required /> <label
-									class="form-check-label" for="sim">Sim</label>
+									id="sim" value="S" required /> <label class="form-check-label"
+									for="sim">Sim</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="maosProprias"
-									id="nao" value="N" required /> <label
+									id="nao" value="N" required /> <label class="form-check-label"
+									for="nao">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="aceitaBoleto" class="form-label">Aceita
+							Boleto:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="aceitaBoleto"
+									id="sim" value="S" required /> <label class="form-check-label"
+									for="sim">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="aceitaBoleto"
+									id="nao" value="N" required /> <label class="form-check-label"
+									for="nao">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<label for="aceitaPix" class="form-label">Aceita Pix:<span
+							class="red">*</span></label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="aceitaPix"
+									id="sim" value="S" required /> <label class="form-check-label"
+									for="sim">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="aceitaPix"
+									id="nao" value="N" required /> <label class="form-check-label"
+									for="nao">Não</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="aceitaCartao" class="form-label">Aceita
+							Cartao:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="aceitaCartao"
+									id="sim" value="S" required /> <label class="form-check-label"
+									for="sim">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="aceitaCartao"
+									id="nao" value="N" required /> <label class="form-check-label"
+									for="nao">Não</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<label for="possuiParcelamento" class="form-label">Possui
+							Parcelamento:<span class="red">*</span>
+						</label>
+						<div class="form-control">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="possuiParcelamento" id="sim" value="S" required /> <label
+									class="form-check-label" for="sim">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="possuiParcelamento" id="nao" value="N" required /> <label
 									class="form-check-label" for="nao">Não</label>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="aceitaBoleto" class="form-label">Aceita Boleto:<span
-							class="red">*</span></label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaBoleto"
-									id="sim" value="S" required /> <label
-									class="form-check-label" for="sim">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaBoleto"
-									id="nao" value="N" required /> <label
-									class="form-check-label" for="nao">Não</label>
-							</div>
-						</div>
+						<label for="maximoParcelas" class="form-label">Maximo de
+							Parcelas:<span class="red">*</span>
+						</label> <input type="text" id="maximoParcelas" required
+							autocomplete="off" name="maximoParcelas" data-mask="00"
+							class="form-control" />
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-md-6" id="cardCEP">
+						<label for="cepCd" class="form-label">CEP do CD:<span
+							class="red">*</span></label> <input type='tel' class="form-control"
+							id="cepCd" data-mask="00000-000" name="cepCd" />
+					</div>
+					<div class="col-md-6">
+						<label for="valorMinimoDaCompra" class="form-label">Valor
+							Minimo da Compra:<span class="red">*</span>
+						</label> <input type="text" id="valorMinimoDaCompra" required
+							autocomplete="off" name="valorMinimoDaCompra"
+							class="form-control inputForm" maxlength="12" />
 					</div>
 				</div>
 

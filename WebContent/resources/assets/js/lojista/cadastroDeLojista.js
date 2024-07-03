@@ -3,6 +3,10 @@ const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
 var edição = ""
 const idLojista = params.get("id");
+const user = localStorage.getItem('usuario')
+const jsonUser = JSON.parse(user)
+let preco = 0
+let valorConvertidoPreco;
 
 botaoDesativa.addEventListener('click', () => {
 	elemento.classList.add('animar-sair');
@@ -14,6 +18,62 @@ botaoAtiva.addEventListener('click', () => {
 	elemento.classList.add('animar-entrar');
 	elemento.classList.remove('animar-sair');
 });
+
+function formatCurrencyInput(event, callback) {
+	let value = event.target.value.replace(/\D/g, "");
+	let rawValue = (value / 100).toFixed(2);
+	let formattedValue = rawValue.replace(".", ",");
+	formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+	callback(formattedValue, rawValue);
+}
+
+$("#valorMinimoDaCompra").on("input", function(e) {
+	formatCurrencyInput(e, function(formattedValue, rawValue) {
+		valorConvertidoPreco = rawValue;
+		e.target.value = formattedValue;
+	});
+});
+
+
+function ValidarCEP(value) {
+	console.log(value)
+	const cep = $('#cepCd');
+	const message = $("<p id='errMessage'></p>").text("CEP Inválido").css('color', '#FF0000');
+	if (value) {
+		$("#btn-submit").removeAttr('disabled');
+		cep.removeClass('err-message')
+		$('#errMessage').css('display', 'none')
+	} else {
+		if ($("#cardCEP").find('#errMessage').length > 0) {
+			$('#errMessage').remove()
+		}
+		$("#btn-submit").attr("disabled", "disabled");
+		cep.addClass('err-message')
+		$("#cardCEP").append(message)
+		message.show()
+	}
+}
+
+
+$("#cepCd").blur(function() {
+	$.ajax({
+		url: 'https://viacep.com.br/ws/' + $('#cepCd').val() + '/json/',
+		type: "get",
+		async: false,
+	})
+		.done(function(data) {
+			if (data.erro == 'true') {
+				console.log(data)
+
+				ValidarCEP(false)
+			} else {
+				console.log(data)
+
+				ValidarCEP(true)
+			}
+		});
+});
+
 
 $("#cep").blur(function() {
 
@@ -44,7 +104,7 @@ $("#cep").blur(function() {
 function cadastrar() {
 
 	var objeto = {
-
+		"colaboradorId": jsonUser.id,
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"nomeFantasia": $("#nomeFantasia").val(),
 		"razaoSocial": $("#razaoSocial").val(),
@@ -57,7 +117,16 @@ function cadastrar() {
 		"estado": $('#estado').val(),
 		"cep": $('#cep').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"site": $('#site').val(),
-		"colaboradorId": 17
+		"calcularFrete": $('input[name="calcularFrete"]:checked').val(),
+		"avisoRecebimento": $('input[name="avisoRecebimento"]:checked').val(),
+		"maosProprias": $('input[name="maosProprias"]:checked').val(),
+		"aceitaBoleto": $('input[name="aceitaBoleto"]:checked').val(),
+		"aceitaPix": $('input[name="aceitaPix"]:checked').val(),
+		"aceitaCartao": $('input[name="aceitaCartao"]:checked').val(),
+		"possuiParcelamento": $('input[name="possuiParcelamento"]:checked').val(),
+		"maximoParcelas": $('#maximoParcelas').val(),
+		"cepCd": $('#cepCd').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"valorMinimoDaCompra": valorConvertidoPreco,
 	};
 	console.log(objeto)
 
@@ -105,6 +174,7 @@ function editar() {
 	var objetoEdit = {
 
 		"idLojista": idLojista,
+		"colaboradorId": jsonUser.id,
 		"cnpj": $('#cnpj').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"nomeFantasia": $("#nomeFantasia").val(),
 		"razaoSocial": $("#razaoSocial").val(),
@@ -118,6 +188,16 @@ function editar() {
 		"cep": $('#cep').val().replace(/[^a-zA-Z0-9 ]/g, ""),
 		"site": $('#site').val(),
 		"ativo": "S",
+		"calcularFrete": $('input[name="calcularFrete"]:checked').val(),
+		"avisoRecebimento": $('input[name="avisoRecebimento"]:checked').val(),
+		"maosProprias": $('input[name="maosProprias"]:checked').val(),
+		"aceitaBoleto": $('input[name="aceitaBoleto"]:checked').val(),
+		"aceitaPix": $('input[name="aceitaPix"]:checked').val(),
+		"aceitaCartao": $('input[name="aceitaCartao"]:checked').val(),
+		"possuiParcelamento": $('input[name="possuiParcelamento"]:checked').val(),
+		"maximoParcelas": $('#maximoParcelas').val(),
+		"cepCd": $('#cepCd').val().replace(/[^a-zA-Z0-9 ]/g, ""),
+		"valorMinimoDaCompra": valorConvertidoPreco,
 
 	}
 
@@ -167,19 +247,64 @@ $(document).ready(function() {
 			async: false,
 		})
 			.done(function(data) {
-				$('#cnpj').val(data.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5")),
-					$("#nomeFantasia").val(data.nomeFantasia),
-					$("#razaoSocial").val(data.razaoSocial),
-					$('#inscricaoEstadual').val(data.inscrEstadual),
-					$('#endereco').val(data.endereco),
-					$('#numero').val(data.numero),
-					$('#complemento').val(data.complemento),
-					$('#bairro').val(data.bairro),
-					$('#cidade').val(data.cidade),
-					$('#estado').val(data.estado),
-					$('#cep').val(data.cep.replace(/^(\d{4})(\d{4})$/, "$1-$2")),
-					$('#site').val(data.site),
-					edição = "sim"
+				$('#cnpj').val(data.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5"))
+				$("#nomeFantasia").val(data.nomeFantasia)
+				$("#razaoSocial").val(data.razaoSocial)
+				$('#inscricaoEstadual').val(data.inscrEstadual)
+				$('#endereco').val(data.endereco)
+				$('#numero').val(data.numero)
+				$('#complemento').val(data.complemento)
+				$('#bairro').val(data.bairro)
+				$('#cidade').val(data.cidade)
+				$('#estado').val(data.estado)
+				$('#cep').val(data.cep.replace(/^(\d{5})(\d{3})$/, "$1-$2"))
+				$('#site').val(data.site)
+				$('#maximoParcelas').val(data.maximoParcelas)
+				$('#valorMinimoDaCompra').val(data.valorMinimoDaCompra.toLocaleString("pt-br", { minimumFractionDigits: 2 }))
+				$('#cepCd').val(data.cepCd.replace(/^(\d{5})(\d{3})$/, "$1-$2"))
+				valorConvertidoPreco = data.valorMinimoDaCompra
+
+				if (data.calcularFrete === 'S') {
+					$('input[name="calcularFrete"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="calcularFrete"][id="nao"]').prop('checked', true)
+				}
+
+				if (data.avisoRecebimento === 'S') {
+					$('input[name="avisoRecebimento"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="avisoRecebimento"][id="nao"]').prop('checked', true)
+				}
+
+				if (data.maosProprias === 'S') {
+					$('input[name="maosProprias"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="maosProprias"][id="nao"]').prop('checked', true)
+				}
+
+				if (data.aceitaBoleto === 'S') {
+					$('input[name="aceitaBoleto"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="aceitaBoleto"][id="nao"]').prop('checked', true)
+				}
+
+				if (data.aceitaPix === 'S') {
+					$('input[name="aceitaPix"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="aceitaPix"][id="nao"]').prop('checked', true)
+				}
+
+				if (data.aceitaCartao === 'S') {
+					$('input[name="aceitaCartao"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="aceitaCartao"][id="nao"]').prop('checked', true)
+				}
+
+				if (data.possuiParcelamento === 'S') {
+					$('input[name="possuiParcelamento"][id="sim"]').prop('checked', true)
+				} else {
+					$('input[name="possuiParcelamento"][id="nao"]').prop('checked', true)
+				}
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
 				console.log('erro ao buscar dados.')
@@ -190,7 +315,7 @@ $(document).ready(function() {
 });
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
-	if (edição == "sim") {
+	if (idLojista != undefined) {
 
 		editar()
 	} else {
