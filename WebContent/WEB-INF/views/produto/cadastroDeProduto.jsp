@@ -91,6 +91,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -186,7 +191,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Descrição:<span class="red">*</span></label
               >
               <textarea
-                class="form-control inputForm"
+                class="form-control summernote inputForm"
                 id="descricao"
                 name="descricao"
               ></textarea>
@@ -199,7 +204,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Preço de venda:<span class="red">*</span></label
               >
               <input
-                type="text"
+                type="tel"
                 id="precoDeVenda"
                 required
                 autocomplete="off"
@@ -209,15 +214,15 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               />
             </div>
             <div class="col-md-6">
-              <label for="comissao" class="form-label"
-                >Comissão:<span class="red">*</span></label
+              <label for="precoPromocional" class="form-label"
+                >Preço promocional:<span class="red">*</span></label
               >
               <input
+                type="tel"
+                id="precoPromocional"
                 required
                 autocomplete="off"
-                type="text"
-                id="comissao"
-                name="comissao"
+                name="precoPromocional"
                 class="form-control inputForm"
                 maxlength="12"
               />
@@ -226,6 +231,20 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
           <div class="row mb-2">
             <div class="col-md-6">
+              <label for="comissao" class="form-label"
+                >Comissão:<span class="red">*</span></label
+              >
+              <input
+                required
+                autocomplete="off"
+                type="tel"
+                id="comissao"
+                name="comissao"
+                class="form-control inputForm"
+                maxlength="12"
+              />
+            </div>
+            <div class="col-md-6">
               <label for="categoria" class="form-label"
                 >Categoria:<span class="red">*</span></label
               >
@@ -233,6 +252,9 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 <option value="" selected disabled>Selecione...</option>
               </select>
             </div>
+          </div>
+
+          <div class="row mb-2">
             <div class="col-md-6">
               <label for="subCategoria" class="form-label"
                 >Sub-Categoria:</label
@@ -245,9 +267,15 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 <option value="" selected disabled>Selecione...</option>
               </select>
             </div>
+            <div class="col-md-6">
+              <label for="marca" class="form-label">Marca:</label>
+              <select id="marca" name="marca" class="form-select inputForm">
+                <option value="" selected disabled>Selecione...</option>
+              </select>
+            </div>
           </div>
 
-          <div class="row mb-3">
+          <div class="row mb-2">
             <div class="col-md-6">
               <label for="lojista" class="form-label"
                 >Lojista:<span class="red">*</span></label
@@ -260,6 +288,218 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               >
                 <option value="" selected disabled>Selecione...</option>
               </select>
+            </div>
+            <div class="col-md-6">
+              <label htmlFor="destaque" class="form-label">
+                Produto em destaque?<span class="red">*</span>
+              </label>
+              <div
+                class="btn-group area-radio mb-4"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="destaque"
+                  id="destaqueS"
+                  value="S"
+                />
+                <label class="btn btn-outline-secondary" for="destaqueS">
+                  Sim
+                </label>
+
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="destaque"
+                  id="destaqueN"
+                  value="N"
+                />
+                <label class="btn btn-outline-secondary" for="destaqueN">
+                  Não
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <label htmlFor="nivel" class="form-label">
+                Qual o nível de relevância?<span class="red">*</span>
+              </label>
+              <div
+                class="btn-group area-radio mb-4"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="nivel"
+                  id="padrao"
+                  value="1"
+                />
+                <label class="btn btn-outline-secondary" for="padrao">
+                  Padrão
+                </label>
+
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="nivel"
+                  id="media"
+                  value="2"
+                />
+                <label class="btn btn-outline-secondary" for="media">
+                  Média
+                </label>
+
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="nivel"
+                  id="alta"
+                  value="3"
+                />
+                <label class="btn btn-outline-secondary" for="alta">
+                  Alta
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label htmlFor="possuiFrete" class="form-label">
+                Possui frete?<span class="red">*</span>
+              </label>
+              <div
+                class="btn-group area-radio mb-4"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="possuiFrete"
+                  id="possuiFreteS"
+                  value="S"
+                />
+                <label class="btn btn-outline-secondary" for="possuiFreteS">
+                  Sim
+                </label>
+
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="possuiFrete"
+                  id="possuiFreteN"
+                  value="N"
+                />
+                <label class="btn btn-outline-secondary" for="possuiFreteN">
+                  Não
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2 dimensoes">
+            <div class="col-md-6">
+              <label for="peso" class="form-label"
+                >Peso (kg):<span class="red">*</span></label
+              >
+              <input
+                type="tel"
+                id="peso"
+                autocomplete="off"
+                name="peso"
+                class="form-control inputForm"
+                maxlength="12"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="largura" class="form-label"
+                >Largura (cm):<span class="red">*</span></label
+              >
+              <input
+                autocomplete="off"
+                type="number"
+                min="1"
+                id="largura"
+                name="largura"
+                class="form-control inputForm"
+                maxlength="12"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3 dimensoes">
+            <div class="col-md-6">
+              <label for="altura" class="form-label"
+                >Altura (cm):<span class="red">*</span></label
+              >
+              <input
+                type="number"
+                min="1"
+                id="altura"
+                autocomplete="off"
+                name="altura"
+                class="form-control inputForm"
+                maxlength="12"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="profundidade" class="form-label"
+                >Profundidade (cm):<span class="red">*</span></label
+              >
+              <input
+                autocomplete="off"
+                type="number"
+                min="1"
+                id="profundidade"
+                name="profundidade"
+                class="form-control inputForm"
+                maxlength="12"
+              />
+            </div>
+            <div class="col-md-6">
+              <label htmlFor="freteGratis" class="form-label">
+                Frete grátis?<span class="red">*</span>
+              </label>
+              <div
+                class="btn-group area-radio mb-4"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="freteGratis"
+                  id="freteGratisS"
+                  value="S"
+                />
+                <label class="btn btn-outline-secondary" for="freteGratisS">
+                  Sim
+                </label>
+
+                <input
+                  type="radio"
+                  required
+                  class="btn-check"
+                  name="freteGratis"
+                  id="freteGratisN"
+                  value="N"
+                />
+                <label class="btn btn-outline-secondary" for="freteGratisN">
+                  Não
+                </label>
+              </div>
             </div>
           </div>
 
@@ -392,10 +632,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/produto/cadastroDeProduto.js"
     ></script>
-    <script
-      src="https://cdn.tiny.cloud/1/tub5hw8vpj09xypy6t87uo5wioekn7xhtafc5aur6fizsu1w/tinymce/7/tinymce.min.js"
-      referrerpolicy="origin"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-pt-BR.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   </body>
 </html>
