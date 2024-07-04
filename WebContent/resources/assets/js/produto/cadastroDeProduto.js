@@ -11,6 +11,7 @@ $(document).ready(function () {
   $(".summernote").summernote({
     lang: "pt-BR",
     height: 200,
+    tabsize: 2,
     minHeight: 100,
     maxHeight: 400,
     placeholder: "Digite aqui...",
@@ -27,6 +28,12 @@ $(document).ready(function () {
       ["height", ["height"]],
       ["insert", ["link", "hr"]],
     ],
+  });
+  var noteBar = $(".note-toolbar");
+  noteBar.find("[data-toggle]").each(function () {
+    $(this)
+      .attr("data-bs-toggle", $(this).attr("data-toggle"))
+      .removeAttr("data-toggle");
   });
 
   swiper = new Swiper(".mySwiper", {

@@ -29,6 +29,13 @@ $(document).ready(function () {
     ],
   });
 
+  var noteBar = $(".note-toolbar");
+  noteBar.find("[data-toggle]").each(function () {
+    $(this)
+      .attr("data-bs-toggle", $(this).attr("data-toggle"))
+      .removeAttr("data-toggle");
+  });
+
   var user = localStorage.getItem("usuario");
   lojista = JSON.parse(user);
 
