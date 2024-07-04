@@ -1,30 +1,32 @@
-const botaoDesativa = document.querySelector('#teste');
-const botaoAtiva = document.querySelector('.botaoAtivaMenu');
-const elemento = document.querySelector('#modalMenu');
 const idProduto = params.get("id");
 var ValorConvertidoPreco;
+var ValorConvertidoPrecoPromo;
 var ValorConvertidoComissao;
+var peso;
 var edição = "";
 
 let swiper;
-var lojista = "";
 
 $(document).ready(function () {
-  tinymce.init({
-    selector: "#descricao",
-    language: "pt_BR",
-    placeholder: "Digite a descrição aqui...",
-    spellchecker_language: "pt",
-    plugins:
-      "anchor autolink charmap codesample emoticons link lists media searchreplace visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
-    toolbar:
-      "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table spellcheckdialog typography align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-    statusbar: false, // Remove o footer
-    setup: function (editor) {
-      editor.on("change", function () {
-        tinymce.triggerSave(); // Garante que o valor do textarea seja atualizado
-      });
-    },
+  $(".summernote").summernote({
+    lang: "pt-BR",
+    height: 200,
+    minHeight: 100,
+    maxHeight: 400,
+    placeholder: "Digite aqui...",
+    fontNames: ["Arial", "Arial Black", "Comic Sans MS", "Courier New"],
+    fontNamesIgnoreCheck: ["Arial", "Comic Sans MS"],
+    spellCheck: true,
+    toolbar: [
+      ["style", ["style"]],
+      ["font", ["bold", "italic", "underline", "clear"]],
+      ["fontname", ["fontname"]],
+      ["fontsize", ["fontsize"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["height", ["height"]],
+      ["insert", ["link", "hr"]],
+    ],
   });
 
   var user = localStorage.getItem("usuario");
@@ -39,13 +41,32 @@ $(document).ready(function () {
     },
   });
 
-  fetchData("/categorias", "#categoria", "idCategoria", "categoria");
-  fetchData("/lojistas", "#lojista", "idLojista", "nomeFantasia").then(() => {
+  $(".dimensoes").hide().find("input").prop("required", false);
+
+  $('input[name="possuiFrete"]').change(function () {
+    if ($(this).val() === "S") {
+      $(".dimensoes").slideDown().find("input").prop("required", true);
+    } else {
+      $(".dimensoes").slideUp().find("input").prop("required", false);
+      $(".dimensoes input").val("");
+      $("input[name='freteGratis']").prop("checked", false);
+    }
+  });
+
+  fetchData("/lojistas/ativos", "#lojista", "idLojista", "nomeFantasia");
+  fetchData("/marcas/ativos", "#marca", "idMarca", "marca");
+  fetchData(
+    "/categorias/ativos",
+    "#categoria",
+    "idCategoria",
+    "categoria"
+  ).then(() => {
     if (idProduto) {
       listarImagens();
       $("#nomeProdutoEdit").attr("required", "required");
       $("#categoria").attr("disabled", "disabled");
       $("#subCategoria").attr("disabled", "disabled");
+      $("#marca").attr("disabled", "disabled");
       $("#lojista").attr("disabled", "disabled");
       $("#area-input-edit").removeAttr("hidden");
       $("#area-carrossel").removeAttr("hidden");
@@ -61,19 +82,63 @@ $(document).ready(function () {
         async: false,
       })
         .done(function (data) {
-          $("#nomeProdutoEdit").val(data.nomeProduto),
-            $("#descricao").val(data.descrProduto),
-            $("#precoDeVenda").val(
-              data.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 })
-            ),
-            $("#comissao").val(
-              data.comissao.toLocaleString("pt-br", {
-                minimumFractionDigits: 2,
-              })
-            ),
-            $("#categoria")
-              .val(data.categorias.idCategoria)
-              .attr("selected", true);
+          console.log(data);
+          $("#nomeProdutoEdit").val(data.nomeProduto);
+          $("#descricao").val(data.descrProduto);
+          $("#descricao").summernote("code", data.descrProduto);
+          $("#precoPromocional").val(
+            data.precoPromocional.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })
+          );
+          $("#precoDeVenda").val(
+            data.precoVenda.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })
+          );
+          $("#comissao").val(
+            data.comissao.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })
+          );
+
+          if (data.altura && data.largura && data.profundidade) {
+            $("#altura").val(data.altura);
+            $("#peso").val(
+              data.peso
+                .toLocaleString("pt-br", {
+                  minimumFractionDigits: 2,
+                  useGrouping: false,
+                })
+                .replace(",", ".")
+            );
+            $("#largura").val(data.largura);
+            $("#profundidade").val(data.profundidade);
+            $("input[name='possuiFrete'][value='S']").prop("checked", true);
+            $(".dimensoes").slideDown().find("input").prop("required", true);
+          } else {
+            $("input[name='possuiFrete'][value='N']").prop("checked", true);
+          }
+
+          $(`input[name='nivel'][value='${data.nivelRelevancia}']`).prop(
+            "checked",
+            true
+          );
+          $(`input[name='destaque'][value='${data.destacar}']`).prop(
+            "checked",
+            true
+          );
+
+          if (data.freteGratis === "S") {
+            $("input[name='freteGratis'][value='S']").prop("checked", true);
+          } else {
+            $("input[name='freteGratis'][value='N']").prop("checked", true);
+          }
+
+          $("#categoria")
+            .val(data.categorias.idCategoria)
+            .attr("selected", true);
+          $("#marca").val(data.marca.idMarca).attr("selected", true);
           loadSubCategories(data.categorias.idCategoria).then(() => {
             $("#subCategoria")
               .val(data.subcategorias.id)
@@ -111,9 +176,23 @@ $(document).ready(function () {
     });
   });
 
+  $("#precoPromocional").on("input", function (e) {
+    formatCurrencyInput(e, function (formattedValue, rawValue) {
+      ValorConvertidoPrecoPromo = rawValue;
+      e.target.value = formattedValue;
+    });
+  });
+
   $("#comissao").on("input", function (e) {
     formatCurrencyInput(e, function (formattedValue, rawValue) {
       ValorConvertidoComissao = rawValue;
+      e.target.value = formattedValue;
+    });
+  });
+
+  $("#peso").on("input", function (e) {
+    formatKgInput(e, function (formattedValue, rawValue) {
+      peso = rawValue;
       e.target.value = formattedValue;
     });
   });
@@ -123,6 +202,14 @@ function formatCurrencyInput(event, callback) {
   let value = event.target.value.replace(/\D/g, "");
   let rawValue = (value / 100).toFixed(2);
   let formattedValue = rawValue.replace(".", ",");
+  formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  callback(formattedValue, rawValue);
+}
+
+function formatKgInput(event, callback) {
+  let value = event.target.value.replace(/\D/g, "");
+  let rawValue = (value / 100).toFixed(2);
+  let formattedValue = rawValue;
   formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
   callback(formattedValue, rawValue);
 }
@@ -319,7 +406,6 @@ async function cadastrarImagens(imagensBase64, produtoId) {
       contentType: "application/json; charset=utf-8",
     });
   } catch (error) {
-    console.log(imagens);
     console.log(error);
     Swal.close();
     Swal.fire({
@@ -415,25 +501,46 @@ function formatCurrencyInput2(value) {
   return { formattedValue, rawValue };
 }
 
+function formatKg2(value) {
+  let numericValue = value.replace(/\D/g, "");
+  let rawValue = (numericValue / 100).toFixed(2);
+  let formattedValue = rawValue;
+  formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  return { formattedValue, rawValue };
+}
+
 async function editar($button, originalButtonText) {
-  console.log(lojista);
   let precoDeVendaVal = $("#precoDeVenda").val();
   let comissaoVal = $("#comissao").val();
+  let precoPromoVal = $("#precoPromocional").val();
+  let pesoVal = $("#peso").val();
 
   let precoConvertido =
     ValorConvertidoPreco || formatCurrencyInput2(precoDeVendaVal).rawValue;
   let comissaoConvertida =
     ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
+  let precoPromocional =
+    ValorConvertidoPrecoPromo || formatCurrencyInput2(precoPromoVal).rawValue;
+  let pesoConvertido = peso || formatKg2(pesoVal).rawValue;
 
   var objetoEdit = {
     idProduto: idProduto,
     nomeProduto: $("#nomeProdutoEdit").val(),
     descrProduto: $("#descricao").val(),
-    preco: precoConvertido,
+    precoVenda: precoConvertido,
     comissao: comissaoConvertida,
+    precoPromocional: precoPromocional,
+    peso: pesoConvertido,
+    largura: $("#largura").val(),
+    altura: $("#altura").val(),
+    profundidade: $("#profundidade").val(),
     categoriaId: $("#categoria").val(),
     subcategoriaId: $("#subCategoria").val(),
     lojistaId: lojista.lojistaId,
+    marcaId: $("#marca").val(),
+    nivelRelevancia: $("input[name='nivel']:checked").val(),
+    destacar: $("input[name='destaque']:checked").val(),
+    freteGratis: $("input[name='possuiFrete']:checked").val(),
   };
 
   $.ajax({
@@ -463,7 +570,7 @@ async function editar($button, originalButtonText) {
       }).then(() => {
         setTimeout(function () {
           window.location.href = "listarProdutoLojista";
-        }, 1000);
+        }, 2000);
       });
     })
     .always(() => {
@@ -475,7 +582,6 @@ async function editar($button, originalButtonText) {
 async function cadastrar($button, originalButtonText) {
   const input = document.getElementById("imagem-produto");
   const files = input.files;
-  console.log(lojista);
 
   let imagensBase64 = [];
   if (files.length > 0) {
@@ -497,11 +603,20 @@ async function cadastrar($button, originalButtonText) {
   var objeto = {
     nomeProduto: $("#nomeProduto").val(),
     descrProduto: $("#descricao").val(),
-    preco: ValorConvertidoPreco,
+    precoVenda: ValorConvertidoPreco,
     comissao: ValorConvertidoComissao,
+    precoPromocional: ValorConvertidoPrecoPromo,
+    peso,
+    largura: $("#largura").val(),
+    altura: $("#altura").val(),
+    profundidade: $("#profundidade").val(),
     categoriaId: $("#categoria").val(),
     subcategoriaId: $("#subCategoria").val(),
     lojistaId: lojista.lojistaId,
+    marcaId: $("#marca").val(),
+    nivelRelevancia: $("input[name='nivel']:checked").val(),
+    destacar: $("input[name='destaque']:checked").val(),
+    freteGratis: $("input[name='possuiFrete']:checked").val(),
   };
 
   try {
@@ -533,7 +648,8 @@ function limpaInput() {
 $("#form-cadastro").on("submit", async function (e) {
   e.preventDefault();
 
-  if (tinymce.get("descricao").getContent().trim() === "") {
+  var descricaoContent = $("#descricao").summernote("code").trim();
+  if (descricaoContent === "") {
     Swal.fire({
       title: "A descrição é obrigatória.",
       icon: "error",

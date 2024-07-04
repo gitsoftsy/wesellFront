@@ -125,11 +125,11 @@ $(document).ready(function () {
           item.categorias.categoria +
           "</td>" +
           "<td>" +
-          item.subcategorias.nome +
+          item.subcategorias?.nome +
           "</td>" +
           "<td>" +
           "R$ " +
-          item.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 }) +
+          item.precoVenda.toLocaleString("pt-br", { minimumFractionDigits: 2 }) +
           "</td>" +
           "<td>" +
           "R$ " +

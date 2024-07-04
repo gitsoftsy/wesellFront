@@ -45,6 +45,8 @@ $(document).ready(function () {
       $(".dimensoes").slideDown().find("input").prop("required", true);
     } else {
       $(".dimensoes").slideUp().find("input").prop("required", false);
+      $(".dimensoes input").val("");
+      $("input[name='freteGratis']").prop("checked", false);
     }
   });
 
@@ -61,6 +63,7 @@ $(document).ready(function () {
       $("#nomeProdutoEdit").attr("required", "required");
       $("#categoria").attr("disabled", "disabled");
       $("#subCategoria").attr("disabled", "disabled");
+      $("#marca").attr("disabled", "disabled");
       $("#lojista").attr("disabled", "disabled");
       $("#area-input-edit").removeAttr("hidden");
       $("#area-carrossel").removeAttr("hidden");
@@ -76,19 +79,63 @@ $(document).ready(function () {
         async: false,
       })
         .done(function (data) {
-          $("#nomeProdutoEdit").val(data.nomeProduto),
-            $("#descricao").val(data.descrProduto),
-            $("#precoDeVenda").val(
-              data.preco.toLocaleString("pt-br", { minimumFractionDigits: 2 })
-            ),
-            $("#comissao").val(
-              data.comissao.toLocaleString("pt-br", {
-                minimumFractionDigits: 2,
-              })
-            ),
-            $("#categoria")
-              .val(data.categorias.idCategoria)
-              .attr("selected", true);
+          console.log(data);
+          $("#nomeProdutoEdit").val(data.nomeProduto);
+          $("#descricao").val(data.descrProduto);
+          $("#descricao").summernote("code", data.descrProduto);
+          $("#precoPromocional").val(
+            data.precoPromocional.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })
+          );
+          $("#precoDeVenda").val(
+            data.precoVenda.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })
+          );
+          $("#comissao").val(
+            data.comissao.toLocaleString("pt-br", {
+              minimumFractionDigits: 2,
+            })
+          );
+
+          if (data.altura && data.largura && data.profundidade) {
+            $("#altura").val(data.altura);
+            $("#peso").val(
+              data.peso
+                .toLocaleString("pt-br", {
+                  minimumFractionDigits: 2,
+                  useGrouping: false,
+                })
+                .replace(",", ".")
+            );
+            $("#largura").val(data.largura);
+            $("#profundidade").val(data.profundidade);
+            $("input[name='possuiFrete'][value='S']").prop("checked", true);
+            $(".dimensoes").slideDown().find("input").prop("required", true);
+          } else {
+            $("input[name='possuiFrete'][value='N']").prop("checked", true);
+          }
+
+          $(`input[name='nivel'][value='${data.nivelRelevancia}']`).prop(
+            "checked",
+            true
+          );
+          $(`input[name='destaque'][value='${data.destacar}']`).prop(
+            "checked",
+            true
+          );
+
+          if (data.freteGratis === "S") {
+            $("input[name='freteGratis'][value='S']").prop("checked", true);
+          } else {
+            $("input[name='freteGratis'][value='N']").prop("checked", true);
+          }
+
+          $("#categoria")
+            .val(data.categorias.idCategoria)
+            .attr("selected", true);
+          $("#marca").val(data.marca.idMarca).attr("selected", true);
           loadSubCategories(data.categorias.idCategoria).then(() => {
             $("#subCategoria")
               .val(data.subcategorias.id)
@@ -493,7 +540,7 @@ async function editar($button, originalButtonText) {
     freteGratis: $("input[name='possuiFrete']:checked").val(),
   };
 
-  console.log(objeto);
+  console.log(objetoEdit);
 
   $.ajax({
     url: url_base + "/produtos",
