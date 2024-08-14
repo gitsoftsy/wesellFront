@@ -1,4 +1,4 @@
-var url_base = "http://ec2-18-235-243-90.compute-1.amazonaws.com:8080/api-wesell";
+var url_base = "https://api.we-sell.store/api-wesell";
 
 // Definir o charset padrão para todos os scripts carregados dinamicamente
 document.currentScript.charset = 'UTF-8';
@@ -9,9 +9,9 @@ const params = new URLSearchParams(queryString);
 function removeObjeto() {
 	localStorage.clear();
 }
-//  const path_base = "http://localhost:8090/wesell-front/resources/menu";
+const path_base = "http://localhost:8090/wesell-front/resources/menu";
 
-const path_base = "http://ec2-34-203-201-76.compute-1.amazonaws.com:8080/wesell-front/resources/menu";
+// const path_base = "http://ec2-34-203-201-76.compute-1.amazonaws.com:8080/wesell-front/resources/menu";
 
 window.addEventListener("load", function() {
 	$("#menu").load(path_base + "/menu.html");
