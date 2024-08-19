@@ -54,7 +54,7 @@ $(document).ready(function() {
 	$("#telefoneT").hide()
 
 	$.ajax({
-		url: url_base + "/telefones/funcionario/" + usuario.id,
+		url: url_base + "/telefones",
 		type: "GET",
 		async: false,
 	})

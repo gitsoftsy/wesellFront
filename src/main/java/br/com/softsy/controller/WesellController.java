@@ -77,7 +77,7 @@ public class WesellController {
 		return "cargo/listarCargos";
 	}
 	
-	@RequestMapping(value = { " marcas" }, method = RequestMethod.GET)
+	@RequestMapping(value = { " listarMarcas" }, method = RequestMethod.GET)
 	public String marcas(HttpSession session, Model model) throws Exception {
 		
 		

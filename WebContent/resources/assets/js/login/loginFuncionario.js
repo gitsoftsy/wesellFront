@@ -54,11 +54,8 @@ $("#form-login").submit(function(e) {
 					window.location.href = 'listarCategoria'
 				}
 			} else if (perfil == 'FUNCIONARIO') {
-				if (data.administrador.toUpperCase() == 'S') {
-					window.location.href = 'listarProdutoLojista'
-				} else {
-					window.location.href = 'listarProdutoLojista'
-				}
+				window.location.href = 'listarProdutoLojista'
+
 			}
 
 			data.perfil = perfil

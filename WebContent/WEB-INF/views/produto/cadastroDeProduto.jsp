@@ -193,7 +193,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </div>
 
           <div class="row mb-2">
-            <div class="col-md-6">
+            <div class="col-md-6" id="cardPrecoDeVenda">
               <label for="precoDeVenda" class="form-label"
                 >Preço de venda:<span class="red">*</span></label
               >
@@ -203,11 +203,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 required
                 autocomplete="off"
                 name="precoDeVenda"
-                class="form-control inputForm"
+                class="form-control"
                 maxlength="12"
               />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id="cardPrecoPromocional">
               <label for="precoPromocional" class="form-label"
                 >Preço promocional:<span class="red">*</span></label
               >
@@ -217,14 +217,14 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 required
                 autocomplete="off"
                 name="precoPromocional"
-                class="form-control inputForm"
+                class="form-control"
                 maxlength="12"
               />
             </div>
           </div>
 
           <div class="row mb-2">
-            <div class="col-md-6">
+            <div class="col-md-6" id="cardComissao">
               <label for="comissao" class="form-label"
                 >Comissão:<span class="red">*</span></label
               >
@@ -234,7 +234,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 type="tel"
                 id="comissao"
                 name="comissao"
-                class="form-control inputForm"
+                class="form-control"
                 maxlength="12"
               />
             </div>
@@ -242,7 +242,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <label for="categoria" class="form-label"
                 >Categoria:<span class="red">*</span></label
               >
-              <select id="categoria" required class="form-select inputForm">
+              <select id="categoria" required class="form-select">
                 <option value="" selected disabled>Selecione...</option>
               </select>
             </div>

@@ -80,7 +80,7 @@ String contextPath = request.getContextPath();
 						style="padding-top: 10px">
 						<option value='' selected disabled>Selecione uma opção</option>
 						<option value='COLABORADOR'>Wesell</option>
-						<option value='FUNCIONARIO'>Funcionário do Lojista</option>
+						<!-- <option value='FUNCIONARIO'>Funcionário do Lojista</option> -->
 						<option value='FUNCIONARIO'>Lojista</option>
 					</select>
 				</div>

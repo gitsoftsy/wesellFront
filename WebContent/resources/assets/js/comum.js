@@ -1,4 +1,4 @@
-var url_base = "https://api.we-sell.store/api-wesell";
+var url_base = "http://ec2-18-235-243-90.compute-1.amazonaws.com:8080/api-wesell";
 
 // Definir o charset padrão para todos os scripts carregados dinamicamente
 document.currentScript.charset = 'UTF-8';
@@ -32,11 +32,12 @@ window.addEventListener("load", function() {
 		}
 
 	}, 100);*/
-	
-	
+
+
 	const url = window.location.pathname
-	const dataUser = localStorage.getItem('usuario')
-	if (url.includes('loginFuncionario') == false) {
+	const dataUser = JSON.parse(localStorage.getItem('usuario'))
+	if (url.includes('loginFuncionario') == false && url.includes('listarLojista') == false) {
+		console.log(dataUser)
 		if (dataUser == "" || dataUser == undefined) {
 			Swal.fire({
 				title: "Nenhum usuário localizado, logue novamente",
@@ -46,6 +47,28 @@ window.addEventListener("load", function() {
 					window.location.href = "loginFuncionario"
 				}
 			})
+		} else {
+			if (dataUser.perfil == 'COLABORADOR' && url.toLowerCase().includes('lojista') == false) {
+				console.log(url.toLowerCase())
+				console.log(url.toLowerCase().includes('lojista'))
+				Swal.fire({
+					title: "Nenhum usuário localizado, logue novamente",
+					icon: "info",
+				}).then(result => {
+					if (result) {
+						window.location.href = "loginFuncionario"
+					}
+				})
+			} else {
+				Swal.fire({
+					title: "Nenhum usuário localizado, logue novamente",
+					icon: "info",
+				}).then(result => {
+					if (result) {
+						window.location.href = "loginFuncionario"
+					}
+				})
+			}
 		}
 	}
 

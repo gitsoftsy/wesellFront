@@ -15,9 +15,9 @@ public class LoginController {
 		return "login/loginFuncionario";
 	}
 	
-	@RequestMapping(value = { "loginInfluencer" }, method = RequestMethod.GET)
-	public String loginInfluencer(HttpSession session, Model model) throws Exception {
-
-		return "login/loginInfluencer";
-	}
+//	@RequestMapping(value = { "loginInfluencer" }, method = RequestMethod.GET)
+//	public String loginInfluencer(HttpSession session, Model model) throws Exception {
+//
+//		return "login/loginInfluencer";
+//	}
 }

@@ -12,7 +12,8 @@
 		</button>
 		<hr />
 		<p>
-			<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span></span>
+			<i class="fa-solid fa-user me-2" style="width: 28px;"></i> <span
+				id="nomeUser"></span>
 		</p>
 		<hr />
 		<nav class="menu">
@@ -23,9 +24,10 @@
 					<a href="listarBanners" class="sub-item">Banners</a> <a
 						href="listarCargos" class="sub-item">Cargos</a> <a
 						href="listarCategoria" class="sub-item">Categoria</a><a
+						href="listarColaboradores" class="sub-item">Colaboradores</a><a
 						href="listarInfluencer" class="sub-item">Influencers</a> <a
-						href="listarSubCategoria" class="sub-item">Sub-Categoria</a> <a
-						href="listarColaboradores" class="sub-item">Colaboradores</a>
+						href="listarMarcas" class="sub-item">Marca</a><a
+						href="listarSubCategoria" class="sub-item">Sub-Categoria</a>
 				</div>
 			</div>
 			<div class="item">
@@ -36,16 +38,17 @@
 						Lojista </a> <a href="listarProduto" class="sub-item">Produtos</a>
 				</div>
 			</div>
-			<a href="loginFuncionario" style="color: #fff; font-size: 1.5rem;" onclick="removeObjeto()" id="sair"> <i
+			<a href="loginFuncionario" style="color: #fff; font-size: 1.5rem;"
+				onclick="removeObjeto()" id="sair"> <i
 				class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
-			</a> 
+			</a>
 		</nav>
 	</section>
 </body>
 
 <script charset="UTF-8" type="text/javascript">
 	$(document).ready(function() {
-		var perfilArmazenado = JSON.parse(localStorage.getItem('perfil'));
+		var perfilArmazenado = JSON.parse(localStorage.getItem('usuario'));
 
 		if (perfilArmazenado && perfilArmazenado.perfil === 'escola') {
 			$('#nome-user').text(perfilArmazenado.nome);
@@ -59,8 +62,9 @@
 					$(this).parent().hide();
 				}
 			});
-
 		}
+		$('#nomeUser').text(perfilArmazenado.nome.split(' ')[0])
+
 		$(".sub-btn").click(function() {
 			$(this).next(".sub-menu").slideToggle();
 			$(this).find(".dropdown").toggleClass("rotate");

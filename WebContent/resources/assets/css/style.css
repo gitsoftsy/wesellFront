@@ -77,7 +77,7 @@ body {
 .abracaMenu .menu .item .sub-menu {
   display: none;
   overflow: hidden;
-  height: 33vh;
+  height: auto;
 }
 
 .abracaMenu .menu .item .sub-menu a {
