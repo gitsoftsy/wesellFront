@@ -58,9 +58,9 @@ body {
 .note-modal {
   top: auto !important;
 }
-.modal-backdrop {
+/* .modal-backdrop {
   position: relative !important;
-}
+} */
 .card-image {
   text-align: center;
   border: 1px solid #dee2e6;
