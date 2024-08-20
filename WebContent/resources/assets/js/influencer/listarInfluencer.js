@@ -39,6 +39,10 @@ function alteraStatus(element) {
 		}
 	}).done(function(data) {
 		Swal.close();
+		Swal.fire({
+			title: "Status alterado!",
+			icon: "success"
+		})
 	})
 }
 
