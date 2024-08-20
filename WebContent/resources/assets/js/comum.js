@@ -9,17 +9,25 @@ const params = new URLSearchParams(queryString);
 function removeObjeto() {
 	localStorage.clear();
 }
-const path_base = "http://localhost:8090/wesell-front/resources/menu";
+let path_base = window.location.origin
+let path_menu = ""
 
-// const path_base = "http://ec2-34-203-201-76.compute-1.amazonaws.com:8080/wesell-front/resources/menu";
+let path_img = ""
+
+if (window.location.origin.includes("localhost") > 0) {
+	path_menu = path_base + "/wesell-front/resources/menu"
+} else {
+	path_menu = path_base + "/resources/menu"
+}
 
 window.addEventListener("load", function() {
-	$("#menu").load(path_base + "/menu.html");
+
+	$("#menu").load(path_menu + "/menu.html");
 	const loader = document.querySelector(".bg-loading");
 	loader.parentElement.removeChild(loader);
 	$(".bg-loading").addClass("none");
 
-	$("#menuLojista").load(path_base + "/menuLojista.html");
+	$("#menuLojista").load(path_menu + "/menuLojista.html");
 	const loader2 = document.querySelector(".bg-loading");
 	$(".bg-loading").addClass("none");
 
@@ -37,7 +45,6 @@ window.addEventListener("load", function() {
 	const url = window.location.pathname
 	const dataUser = JSON.parse(localStorage.getItem('usuario'))
 	if (url.includes('loginFuncionario') == false && url.includes('listarLojista') == false) {
-		console.log(dataUser)
 		if (dataUser == "" || dataUser == undefined) {
 			Swal.fire({
 				title: "Nenhum usuário localizado, logue novamente",
@@ -49,8 +56,6 @@ window.addEventListener("load", function() {
 			})
 		} else {
 			if (dataUser.perfil == 'COLABORADOR' && url.toLowerCase().includes('lojista') == false) {
-				console.log(url.toLowerCase())
-				console.log(url.toLowerCase().includes('lojista'))
 				Swal.fire({
 					title: "Nenhum usuário localizado, logue novamente",
 					icon: "info",

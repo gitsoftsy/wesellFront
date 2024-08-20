@@ -4,9 +4,7 @@
 <link rel="stylesheet" href="style.css">
 <body>
 	<section id="modalMenu" class="abracaMenu modalMenu">
-		<img class="logoSumare"
-			src="http://ec2-34-203-201-76.compute-1.amazonaws.com:8080/wesell-front/resources/assets/img/logo.svg"
-			alt="Logo Sumare" />
+		<img class="logoSumare" alt="Logo Sumare" />
 		<button id="teste" type="button" class="btn botaoDesativaMenu ">
 			<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
 		</button>
@@ -29,34 +27,52 @@
 				class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
 			</a> <a href="listarTelefoneLojista" class="mb-1"> <i
 				class="fa-solid fa-phone"></i> <span>Telefones</span>
-			</a> 
+			</a>
 		</nav>
 	</section>
 </body>
 
+
+<script charset="UTF-8"
+	src="<%=contextPath%>/resources/assets/js/comum.js"></script>
 <script charset="UTF-8" type="text/javascript">
-	$(document).ready(function() {
-		var perfilArmazenado = JSON.parse(localStorage.getItem('perfil'));
+	$(document).ready(
+			function() {
+				var perfilArmazenado = JSON.parse(localStorage
+						.getItem('perfil'));
 
-		if (perfilArmazenado && perfilArmazenado.perfil === 'escola') {
-			$('#nome-user').text(perfilArmazenado.nome);
+				const path_base = window.location.origin + "";
 
-			if (perfilArmazenado.logo) {
-				$('.logoSumare').attr('src', perfilArmazenado.logo);
-			}
+				let path_img = "";
 
-			$('.menu .sub-btn').each(function() {
-				if ($(this).text().trim() === 'Configurações') {
-					$(this).parent().hide();
+				if (window.location.origin.includes("localhost") > 0) {
+					path_img = path_base
+							+ "/wesell-front/resources/assets/img/logo.svg";
+				} else {
+					path_img = path_base + "/resources/assets/img/logo.svg";
 				}
-			});
 
-		}
-		$(".sub-btn").click(function() {
-			$(this).next(".sub-menu").slideToggle();
-			$(this).find(".dropdown").toggleClass("rotate");
-		});
-	});
+				$(".logoSumare").attr("src", path_img);
+
+				if (perfilArmazenado && perfilArmazenado.perfil === 'escola') {
+					$('#nome-user').text(perfilArmazenado.nome);
+
+					if (perfilArmazenado.logo) {
+						$('.logoSumare').attr('src', perfilArmazenado.logo);
+					}
+
+					$('.menu .sub-btn').each(function() {
+						if ($(this).text().trim() === 'Configurações') {
+							$(this).parent().hide();
+						}
+					});
+
+				}
+				$(".sub-btn").click(function() {
+					$(this).next(".sub-menu").slideToggle();
+					$(this).find(".dropdown").toggleClass("rotate");
+				});
+			});
 </script>
 <script charset="UTF-8"
 	src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"></script>
