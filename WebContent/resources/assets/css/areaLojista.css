@@ -526,6 +526,9 @@ table {
   overflow: auto;
   display: block;
 }
+.tableTel {
+  display: table !important;
+}
 
 th,
 td {

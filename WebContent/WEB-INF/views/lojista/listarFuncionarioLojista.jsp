@@ -83,7 +83,7 @@ String contextPath = request.getContextPath();
 		</section>
 		<section class="pt-4 card card-table px-5 py-3">
 			<div class="mt-3 mb-2"
-				style="display: flex; flex-flow:column;align-items:center; gap:20px">
+				style="display: flex; flex-flow:column;align-items:end; gap:20px">
 				<a href="cadastroFuncionarioLojista"
 					class="btn btn-primary btn-lg px-3 py-1">Novo funcionário</a>
 				<div class="input-group">
@@ -95,7 +95,7 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tableTel tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Funcionários cadastrados</caption>
 				<thead>
 					<tr>
