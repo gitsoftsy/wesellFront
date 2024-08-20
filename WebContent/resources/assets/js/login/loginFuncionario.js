@@ -42,7 +42,7 @@ $("#form-login").submit(function(e) {
 		.done(function(data) {
 			Swal.close();
 			if (perfil == 'LOJISTA') {
-				if (data.administrador.toUpperCase() == 'S') {
+				if (data?.administrador?.toUpperCase() == 'S') {
 					window.location.href = 'usuarioLojista'
 				} else {
 					window.location.href = 'listarProdutoLojista'
