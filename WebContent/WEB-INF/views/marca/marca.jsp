@@ -115,7 +115,7 @@ String contextPath = request.getContextPath();
 			</div>
 
 			<table
-				class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
+				class="table tableTel tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
 				<caption>Marcas Cadastradas</caption>
 				<thead>
 					<tr>
