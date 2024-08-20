@@ -48,7 +48,7 @@ window.addEventListener("load", function() {
 				}
 			})
 		} else {
-			if (dataUser.perfil == 'COLABORADOR' && url.toLowerCase().includes('lojista') == false) {
+			if (dataUser.perfil == 'COLABORADOR' && url.toLowerCase().includes('lojista')) {
 				console.log(url.toLowerCase())
 				console.log(url.toLowerCase().includes('lojista'))
 				Swal.fire({
@@ -59,7 +59,7 @@ window.addEventListener("load", function() {
 						window.location.href = "loginFuncionario"
 					}
 				})
-			} else {
+			} else if(dataUser.perfil == 'FUNCIONARIO' && url.toLowerCase().includes('lojista') == false) {
 				Swal.fire({
 					title: "Nenhum usuário localizado, logue novamente",
 					icon: "info",
