@@ -32,54 +32,35 @@ $("#form-login").submit(function(e) {
 		},
 		error: function(e) {
 			Swal.close();
+			console.log(e)
 			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: "Usuário ou senha inválido !!"
-			});
-		}
-	})
-		.done(function(data) {
-			Swal.close();
-			if (perfil == 'LOJISTA') {
-				if (data?.administrador?.toUpperCase() == 'S') {
-					window.location.href = 'usuarioLojista'
-				} else {
-					window.location.href = 'listarProdutoLojista'
-				}
-			} else if (perfil == 'COLABORADOR') {
-				if (data.administrador.toUpperCase() == 'S') {
-					window.location.href = 'listarColaboradores'
-				} else {
-					window.location.href = 'listarCategoria'
-				}
-			} else if (perfil == 'FUNCIONARIO') {
-				window.location.href = 'listarProdutoLojista'
 
+			if (e.responseJSON.message != undefined) {
+				Swal.fire({
+					icon: "warning",
+					title: "Usuário desativado, entre em contato com o administrador da plataforma"
+				})
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Usuário ou senha inválido !!"
+				});
 			}
+		}
+	}).done(function(data) {
+		Swal.close();
 
-			data.perfil = perfil
-			localStorage.setItem("usuario", JSON.stringify(data));
-		})
+		if (perfil == 'COLABORADOR') {
+			if (data.administrador.toUpperCase() == 'S') {
+				window.location.href = 'listarColaboradores'
+			} else {
+				window.location.href = 'listarCategoria'
+			}
+		} else if (perfil == 'FUNCIONARIO') {
+			window.location.href = 'listarProdutoLojista'
 
-
-
-
-
-
+		}
+		data.perfil = perfil
+		localStorage.setItem("usuario", JSON.stringify(data));
+	})
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
