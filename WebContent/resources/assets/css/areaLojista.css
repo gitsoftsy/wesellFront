@@ -21,7 +21,6 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-/* modal sweetalert*/
 .swal2-input,
 .swal2-select {
   width: 70% !important;
@@ -424,7 +423,7 @@ a {
   left: 0;
   height: 100%;
   width: 280px;
-  background-color: #183153;
+  background-color: #343A40;
   min-height: 100vh;
   top: 0;
   color: #fff;
