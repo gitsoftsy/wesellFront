@@ -12,7 +12,7 @@
 		<nav class="nav-sidebar">
 			<a href="usuarioLojista" class="mb-1"> <i
 				class="fa-solid fa-user me-2" style="width: 28px;"></i> <span
-				id="usuarioNome">Usuário</span>
+				id="usuarioNome"></span>
 			</a>
 		</nav>
 		<hr />
@@ -39,7 +39,7 @@
 	$(document).ready(
 			function() {
 				var perfilArmazenado = JSON.parse(localStorage
-						.getItem('perfil'));
+						.getItem('usuario'));
 
 				const path_base = window.location.origin + "";
 
@@ -68,6 +68,7 @@
 					});
 
 				}
+				$("#usuarioNome").text(perfilArmazenado.nome.split(" ")[0]);
 				$(".sub-btn").click(function() {
 					$(this).next(".sub-menu").slideToggle();
 					$(this).find(".dropdown").toggleClass("rotate");
