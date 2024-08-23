@@ -1,7 +1,7 @@
 const idProduto = params.get("id");
-var ValorConvertidoPreco;
-var ValorConvertidoPrecoPromo;
-var ValorConvertidoComissao;
+var valorConvertidoPreco;
+var valorConvertidoPrecoPromo;
+var valorConvertidoComissao;
 var peso;
 var edição = "";
 
@@ -178,21 +178,21 @@ $(document).ready(function () {
 
   $("#precoDeVenda").on("input", function (e) {
     formatCurrencyInput(e, function (formattedValue, rawValue) {
-      ValorConvertidoPreco = rawValue;
+      valorConvertidoPreco = rawValue;
       e.target.value = formattedValue;
     });
   });
 
   $("#precoPromocional").on("input", function (e) {
     formatCurrencyInput(e, function (formattedValue, rawValue) {
-      ValorConvertidoPrecoPromo = rawValue;
+      valorConvertidoPrecoPromo = rawValue;
       e.target.value = formattedValue;
     });
   });
 
   $("#comissao").on("input", function (e) {
     formatCurrencyInput(e, function (formattedValue, rawValue) {
-      ValorConvertidoComissao = rawValue;
+      valorConvertidoComissao = rawValue;
       e.target.value = formattedValue;
     });
   });
@@ -523,11 +523,11 @@ async function editar($button, originalButtonText) {
   let pesoVal = $("#peso").val();
 
   let precoConvertido =
-    ValorConvertidoPreco || formatCurrencyInput2(precoDeVendaVal).rawValue;
+    valorConvertidoPreco || formatCurrencyInput2(precoDeVendaVal).rawValue;
   let comissaoConvertida =
-    ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
+    valorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
   let precoPromocional =
-    ValorConvertidoPrecoPromo || formatCurrencyInput2(precoPromoVal).rawValue;
+    valorConvertidoPrecoPromo || formatCurrencyInput2(precoPromoVal).rawValue;
   let pesoConvertido = peso || formatKg2(pesoVal).rawValue;
 
   var objetoEdit = {
@@ -610,9 +610,9 @@ async function cadastrar($button, originalButtonText) {
   var objeto = {
     nomeProduto: $("#nomeProduto").val(),
     descrProduto: $("#descricao").val(),
-    precoVenda: ValorConvertidoPreco,
-    comissao: ValorConvertidoComissao,
-    precoPromocional: ValorConvertidoPrecoPromo,
+    precoVenda: valorConvertidoPreco,
+    comissao: valorConvertidoComissao,
+    precoPromocional: valorConvertidoPrecoPromo,
     peso,
     largura: $("#largura").val(),
     altura: $("#altura").val(),

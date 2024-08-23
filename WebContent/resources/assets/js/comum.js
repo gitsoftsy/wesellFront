@@ -1,4 +1,4 @@
-var url_base = "http://ec2-18-235-243-90.compute-1.amazonaws.com:8080/api-wesell";
+var url_base = "https://api.we-sell.store/api-wesell";
 
 // Definir o charset padrão para todos os scripts carregados dinamicamente
 document.currentScript.charset = 'UTF-8';
