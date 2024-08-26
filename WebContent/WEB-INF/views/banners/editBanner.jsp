@@ -132,8 +132,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             value="${funcionario.idUsuario}"
           />
 
-
-
           <div class="row mb-2">
             <div class="col-md-6">
               <label for="dtInicio" class="form-label"
@@ -322,7 +320,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comum.js"
+      src="<%=contextPath%>/resources/assets/js/comum.js?v=1"
     ></script>
     <script
       charset="UTF-8"

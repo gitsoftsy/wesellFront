@@ -183,7 +183,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/lojista/listarProdutoLojista.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js"></script>
+		src="<%=contextPath%>/resources/assets/js/comum.js?v=1"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
 	<script charset="UTF-8"

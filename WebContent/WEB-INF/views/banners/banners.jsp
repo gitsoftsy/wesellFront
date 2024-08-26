@@ -36,10 +36,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       rel="stylesheet"
     />
     <link
-    href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
-    rel="stylesheet">
-  <script  charset="UTF-8"
-    src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+      href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+      rel="stylesheet"
+    />
+    <script
+      charset="UTF-8"
+      src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"
+    ></script>
 
     <!-- CSS -->
 
@@ -187,7 +190,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comum.js"
+      src="<%=contextPath%>/resources/assets/js/comum.js?v=1"
     ></script>
     <script
       charset="UTF-8"
