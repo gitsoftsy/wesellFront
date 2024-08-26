@@ -198,7 +198,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 		<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js?v=1"></script>
+		src="<%=contextPath%>/resources/assets/js/comum.js?v=2"></script>
 		<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/produto/listarProduto.js"></script>
 		<script charset="UTF-8"

@@ -112,7 +112,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           id="form-funcionario"
           class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp"
         >
-          <h1 id="tituloForm" class="text-center mb-5">Cadastrar Cargo</h1>
+          <h1 id="tituloForm" class="text-center mb-5">Cadastro</h1>
           <input
             type="text"
             id="usuarioCadastro"
@@ -220,7 +220,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comum.js?v=1"
+      src="<%=contextPath%>/resources/assets/js/comum.js?v=2"
     ></script>
     <script
       charset="UTF-8"
