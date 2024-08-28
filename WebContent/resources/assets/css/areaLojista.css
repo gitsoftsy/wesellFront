@@ -350,7 +350,7 @@ a {
 
 .logoSumare {
   margin-top: 20px;
-  width: 80%;
+  width: 70%;
 }
 
 .modal-cand {
@@ -455,11 +455,10 @@ a {
 }
 
 .btn-register {
-  width: 10em;
+  width: 12em;
   max-height: 38px;
   margin: 0 auto;
   margin-top: 1em;
-  letter-spacing: 1px;
   font-size: 18px !important;
 }
 
@@ -665,7 +664,6 @@ td {
     max-height: 38px;
     margin: 0 auto;
     margin-top: 1em;
-    letter-spacing: 1px;
     font-size: 18px !important;
   }
 

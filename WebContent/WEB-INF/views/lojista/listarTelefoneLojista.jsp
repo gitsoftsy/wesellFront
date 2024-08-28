@@ -338,13 +338,14 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/comum.js?v=2"
     ></script>
-    <script
-      charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comumLojista.js"
-    ></script>
+    
     <script
       charset="UTF-8"
       src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"
+    ></script>
+    <script
+      charset="UTF-8"
+      src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"
     ></script>
   </body>
 </html>

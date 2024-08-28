@@ -184,11 +184,12 @@ String contextPath = request.getContextPath();
 		src="<%=contextPath%>/resources/assets/js/lojista/listarProdutoLojista.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=2"></script>
+	
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comumLojista.js"></script>
+	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<script charset="UTF-8"
-		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 	<script charset="UTF-8"
-		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+	src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"></script>
 </body>
 </html>

@@ -1,80 +1,85 @@
 <html>
-<head>
-</head>
-<link rel="stylesheet" href="style.css">
-<body>
-	<section id="modalMenu" class="abracaMenu modalMenu">
-		<img class="logoSumare" alt="Logo Sumare" />
-		<button id="teste" type="button" class="btn botaoDesativaMenu ">
-			<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
-		</button>
-		<hr />
-		<nav class="nav-sidebar">
-			<a href="usuarioLojista" class="mb-1"> <i
-				class="fa-solid fa-user me-2" style="width: 28px;"></i> <span
-				id="usuarioNome"></span>
-			</a>
-		</nav>
-		<hr />
-		<nav class="nav-sidebar">
-			<a href="lojaLojista" id="hiddenMenu1" class="mb-1"> <i
-				class="fa-solid fa-shop"></i> <span>Minha Loja</span>
-			</a> <a href="listarFuncionarioLojista" id="hiddenMenu2" class="mb-1">
-				<i class="fa-solid fa-user-group"></i> <span>Funcionários</span>
-			</a> <a href="listarProdutoLojista" class="mb-1"> <i
-				class="fa-solid fa-barcode"></i> <span>Produtos</span>
-			</a> <a href="loginFuncionario" onclick="removeObjeto()" id="sair"> <i
-				class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
-			</a> <a href="listarTelefoneLojista" class="mb-1"> <i
-				class="fa-solid fa-phone"></i> <span>Telefones</span>
-			</a>
-		</nav>
-	</section>
-</body>
+  <head> </head>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <section id="modalMenu" class="abracaMenu modalMenu">
+      <img class="logoSumare" alt="Logo Sumare" />
+      <button id="teste" type="button" class="btn botaoDesativaMenu">
+        <i class="fa-solid fa-arrow-right" style="color: #ffffff"></i>
+      </button>
+      <hr />
+      <nav class="nav-sidebar">
+        <a href="usuarioLojista" class="mb-1">
+          <i class="fa-solid fa-user me-2" style="width: 28px"></i>
+          <span id="usuarioNome"></span>
+        </a>
+      </nav>
+      <hr />
+      <nav class="nav-sidebar">
+        <a href="lojaLojista" id="hiddenMenu1" class="mb-1">
+          <i class="fa-solid fa-shop"></i> <span>Minha Loja</span>
+        </a>
+        <a href="listarFuncionarioLojista" id="hiddenMenu2" class="mb-1">
+          <i class="fa-solid fa-user-group"></i> <span>Funcionários</span>
+        </a>
+        <a href="listarProdutoLojista" class="mb-1">
+          <i class="fa-solid fa-barcode"></i> <span>Produtos</span>
+        </a>
+        <a href="loginFuncionario" onclick="removeObjeto()" id="sair">
+          <i class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
+        </a>
+        <a href="listarTelefoneLojista" class="mb-1">
+          <i class="fa-solid fa-phone"></i> <span>Telefones</span>
+        </a>
+      </nav>
+    </section>
+  </body>
 
+  <script
+    charset="UTF-8"
+    src="<%=contextPath%>/resources/assets/js/comum.js"
+  ></script>
+  <script charset="UTF-8" type="text/javascript">
+    $(document).ready(function () {
+      var perfilArmazenado = JSON.parse(localStorage.getItem("usuario"));
 
-<script charset="UTF-8"
-	src="<%=contextPath%>/resources/assets/js/comum.js"></script>
-<script charset="UTF-8" type="text/javascript">
-	$(document).ready(
-			function() {
-				var perfilArmazenado = JSON.parse(localStorage
-						.getItem('usuario'));
+      const path_base = window.location.origin + "";
 
-				const path_base = window.location.origin + "";
+      let path_img = "";
 
-				let path_img = "";
+      if (window.location.origin.includes("localhost") > 0) {
+        path_img =
+          path_base +
+          "/wesell-front/resources/assets/img/wesell_horizontal_branco.png";
+      } else {
+        path_img =
+          path_base + "/resources/assets/img/wesell_horizontal_branco.png";
+      }
 
-				if (window.location.origin.includes("localhost") > 0) {
-					path_img = path_base
-							+ "/wesell-front/resources/assets/img/logo.svg";
-				} else {
-					path_img = path_base + "/resources/assets/img/logo.svg";
-				}
+      $(".logoSumare").attr("src", path_img);
 
-				$(".logoSumare").attr("src", path_img);
+      if (perfilArmazenado && perfilArmazenado.perfil === "escola") {
+        $("#nome-user").text(perfilArmazenado.nome);
 
-				if (perfilArmazenado && perfilArmazenado.perfil === 'escola') {
-					$('#nome-user').text(perfilArmazenado.nome);
+        if (perfilArmazenado.logo) {
+          $(".logoSumare").attr("src", perfilArmazenado.logo);
+        }
 
-					if (perfilArmazenado.logo) {
-						$('.logoSumare').attr('src', perfilArmazenado.logo);
-					}
-
-					$('.menu .sub-btn').each(function() {
-						if ($(this).text().trim() === 'Configurações') {
-							$(this).parent().hide();
-						}
-					});
-
-				}
-				$("#usuarioNome").text(perfilArmazenado.nome.split(" ")[0]);
-				$(".sub-btn").click(function() {
-					$(this).next(".sub-menu").slideToggle();
-					$(this).find(".dropdown").toggleClass("rotate");
-				});
-			});
-</script>
-<script charset="UTF-8"
-	src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"></script>
+        $(".menu .sub-btn").each(function () {
+          if ($(this).text().trim() === "Configurações") {
+            $(this).parent().hide();
+          }
+        });
+      }
+      $("#usuarioNome").text(perfilArmazenado.nome.split(" ")[0]);
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+    });
+  </script>
+  <script
+    charset="UTF-8"
+    src="<%=contextPath%>/resources/assets/js/menu/menuPrincipal.js"
+  ></script>
 </html>

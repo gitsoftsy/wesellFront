@@ -14,6 +14,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
     <title>Wesell</title>
 
+    <!-- Sweetalert -->
+    <script
+      charset="UTF-8"
+      src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
+    ></script>
+    <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
+
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -66,22 +73,19 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <link
       rel="stylesheet"
-      href="<%=contextPath%>/resources/assets/css/areaLojista.css"
+      href="<%=contextPath%>/resources/assets/css/style.css"
     />
+
     <!-- Animation-css -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <!-- Sweetalert -->
-    <script
-      charset="UTF-8"
-      src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
-    ></script>
-    <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
   </head>
 
   <body>
+    <header id="menu"></header>
+
     <div class="bg-loading">
       <div class="spinner">
         <div class="rect1"></div>
@@ -90,7 +94,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <div class="rect4"></div>
       </div>
     </div>
-    <header id="menuLojista"></header>
+
+    <button id="teste" type="button" class="btn botaoDesativaMenu">
+      <i class="fa-solid fa-arrow-right" style="color: #ffffff"></i>
+    </button>
 
     <button type="button" class="btn botaoAtivaMenu">
       <i class="fa-solid fa-arrow-left mover-left"></i>
@@ -99,17 +106,17 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-user-pen fa-lg"></i>
-            <span id="tituloPagina">Cadastro de Funcionários</span>
+            <i class="fa-regular fa-handshake"></i>
+            <span id="tituloPagina">Editar Colaborador</span>
           </div>
         </div>
       </section>
       <section class="pt-4">
         <form
           id="form-funcionario"
-          class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp"
+          class="card form p-5 col-8 mx-auto animate__animated animate__animated animate__bounceInUp"
         >
-          <h1 id="tituloForm" class="text-center mb-5">Cadastro</h1>
+          <h1 id="tituloForm" class="text-center mb-5">Dados do Colaborador</h1>
           <input
             type="text"
             id="usuarioCadastro"
@@ -118,7 +125,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           />
 
           <div class="row mb-2">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label for="nome" class="form-label"
                 >Nome:<span class="red">*</span></label
               >
@@ -132,66 +139,52 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 maxlength="255"
               />
             </div>
-          </div>
-
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label for="email" class="form-label"
-                >Email:<span class="red">*</span></label
-              >
-              <input
-                type="email"
-                id="email"
-                required
-                autocomplete="off"
-                name="email"
-                class="form-control inputForm"
-                maxlength="255"
-              />
-            </div>
             <div class="col-md-6">
               <label for="cpf" class="form-label"
                 >CPF:<span class="red">*</span></label
               >
               <input
-                type="text"
-                id="cpf"
                 required
                 autocomplete="off"
+                type="text"
+                id="cpf"
                 name="cpf"
                 class="form-control inputForm"
-                data-mask="000.000.000-00"
                 maxlength="11"
+                required
+                data-mask="000.000.000-00"
               />
             </div>
           </div>
 
           <div class="row mb-2">
             <div class="col-md-6">
-              <label for="telefone" class="form-label"
-                >Telefone:<span class="red">*</span></label
+              <label for="usuario" class="form-label"
+                >Usuário:<span class="red">*</span></label
               >
               <input
                 type="text"
-                id="telefone"
+                id="usuario"
                 required
                 autocomplete="off"
-                name="telefone"
+                name="usuario"
                 class="form-control inputForm"
-                data-mask="(00)00000-0000"
-                maxlength="11"
+                maxlength="40"
               />
             </div>
             <div class="col-md-6">
-              <label for="cargo" class="form-label"
-                >Cargo:<span class="red">*</span></label
+              <label for="email" class="form-label"
+                >E-mail:<span class="red">*</span></label
               >
-              <select
-                id="cargo"
-                required
+              <input
+                type="email"
+                id="email"
+                required="required"
                 autocomplete="off"
-                class="form-select inputForm"
-              ></select>
+                name="email"
+                class="form-control inputForm"
+                maxlength="255"
+              />
             </div>
           </div>
 
@@ -201,7 +194,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 id="labelSenha"
                 for="senha"
                 class="form-label animate__animated"
-                >Senha:<span class="red">*</span></label
+                >Nova Senha:<span class="red">*</span></label
               >
               <input
                 type="password"
@@ -232,15 +225,28 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
 
-          <div class="row mb-2 none" id="alteraSen">
-            <div class="col-md">
+          <div class="row mb-2">
+            <div class="col-md none" id="alteraSen">
               <div class="form-control border-0 p-0">
                 <button
-                  onclick="ativaSenhas()"
+                  onclick="alteraSenha()"
                   type="button"
                   class="btn btn-secondary btn-sm"
                 >
                   Alterar Senha
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2 none" id="alteraSenhaNao">
+            <div class="col-md">
+              <div class="form-control border-0 p-0">
+                <button
+                  onclick="alteraSenhaNao()"
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                >
+                  Cancelar
                 </button>
               </div>
             </div>
@@ -253,10 +259,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 id="btn-submit"
                 class="btn confirm btn-primary btn-register"
               >
-                Cadastrar
+                Salvar Alterações
               </button>
             </div>
           </div>
+          
         </form>
       </section>
     </main>
@@ -297,11 +304,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"
-    ></script>
-    <script
-      charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/lojista/cadastroFuncionarioLojista.js"
+      src="<%=contextPath%>/resources/assets/js/colaborador/dadosColaborador.js"
     ></script>
   </body>
 </html>

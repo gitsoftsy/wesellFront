@@ -185,7 +185,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comumLojista.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"
     ></script>
     <script
       charset="UTF-8"

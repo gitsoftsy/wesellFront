@@ -55,8 +55,8 @@ $(document).ready(function() {
 	if (idFuncionarios) {
 		$('#alteraSenhasDiv').show()
 
-		$("#tituloPagina, #tituloForm").text("Editar Funcionario")
-		$("#btn-submit").text("Editar")
+		$("#tituloPagina, #tituloForm").text("Editar Funcionário")
+		$("#btn-submit").text("Salvar")
 
 		$('.divSenhas').hide()
 		$("#senha, #confirmarSenha").prop('required', false)

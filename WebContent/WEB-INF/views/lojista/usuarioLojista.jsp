@@ -92,7 +92,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <div class="card">
           <div class="card-body title">
             <i class="fa-solid fa-user-pen fa-lg"></i>
-            <span id="tituloPagina">Usuário</span>
+            <span id="tituloPagina">Editar Usuário</span>
           </div>
         </div>
       </section>
@@ -101,7 +101,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           id="form-funcionario"
           class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp"
         >
-          <h1 id="tituloForm" class="text-left mb-5">Dados do Usuário</h1>
+          <h1 id="tituloForm" class="text-center mb-5">Dados do Usuário</h1>
           <input
             type="text"
             id="usuarioCadastro"
@@ -195,7 +195,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 id="labelSenha"
                 for="senha"
                 class="form-label animate__animated"
-                >Senha:<span class="red">*</span></label
+                >Nova Senha:<span class="red">*</span></label
               >
               <input
                 type="password"
@@ -230,11 +230,24 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <div class="col-md">
               <div class="form-control border-0 p-0">
                 <button
-                  onclick="ativaSenhas()"
+                  onclick="alteraSenha()"
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-secondary btn-sm"
                 >
                   Alterar Senha
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2 none" id="alteraSenhaNao">
+            <div class="col-md">
+              <div class="form-control border-0 p-0">
+                <button
+                  onclick="alteraSenhaNao()"
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                >
+                  Cancelar
                 </button>
               </div>
             </div>
@@ -247,7 +260,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 id="btn-submit"
                 class="btn confirm btn-primary btn-register"
               >
-                Cadastrar
+                Salvar Alterações
               </button>
             </div>
           </div>
@@ -277,10 +290,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
     ></script>
-
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/lojista/usuarioLojista.js"
+      src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"
+    ></script>
+    <script
+      charset="UTF-8"
+      src="<%=contextPath%>/resources/assets/js/lojista/usuarioLojista.js"
     ></script>
     <script
       charset="UTF-8"
@@ -288,11 +304,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comumLojista.js"
-    ></script>
-    <script
-      charset="UTF-8"
-      src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"
     ></script>
   </body>
 </html>

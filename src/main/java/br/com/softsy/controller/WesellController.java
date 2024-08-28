@@ -15,6 +15,12 @@ public class WesellController {
 		return "wesell/cadastroDeColaboradores";
 	}
 
+	@RequestMapping(value = { "dadosColaborador" }, method = RequestMethod.GET)
+	public String dadosColaborador(HttpSession session, Model model) throws Exception {
+
+		return "wesell/dadosColaborador";
+	}
+
 	@RequestMapping(value = { "listarColaboradores" }, method = RequestMethod.GET)
 	public String listarColaboradores(HttpSession session, Model model) throws Exception {
 

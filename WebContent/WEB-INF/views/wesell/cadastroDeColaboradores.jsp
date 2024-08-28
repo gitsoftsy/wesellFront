@@ -231,7 +231,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 <button
                   onclick="ativaSenhas()"
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-secondary btn-sm"
                 >
                   Alterar Senha
                 </button>

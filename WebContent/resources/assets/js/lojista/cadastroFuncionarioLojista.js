@@ -5,14 +5,12 @@ var edição = ""
 const idFuncionarios = params.get("id");
 
 function ativaSenhas() {
-
 	$("#senha, #confirmarSenha").removeAttr("disabled")
 	$("#senha, #confirmarSenha").attr("type", "password")
 	$("#labelSenha, #confirmarSenhaLabel").removeClass("none")
 	$("#labelSenha").text("Nova Senha:")
 	$("#senha").val("")
 	$("#confirmarSenha").val("")
-
 }
 
 var user = localStorage.getItem("usuario")
@@ -182,7 +180,7 @@ $(document).ready(function() {
 
 	if (idFuncionarios) {
 
-		$("#tituloPagina, #tituloForm").text("Editar Funcionario")
+		$("#tituloPagina, #tituloForm").text("Dados do Funcionário")
 		$("#btn-submit").text("Editar")
 
 		$("#labelSenha").text("Senha Atual:")

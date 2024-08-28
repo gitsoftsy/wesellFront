@@ -1,68 +1,33 @@
 var user = localStorage.getItem("usuario");
 var usuario = JSON.parse(user);
-var cargo = [];
+var adm = "";
 $("#usuarioNome").text(usuario.nome);
 
 $(document).ready(function () {
-  $.ajax({
-    url: url_base + "/cargos",
-    type: "GET",
-    async: false,
-  }).done(function (data) {
-    $("#cargo").append(
-      $("<option>", {
-        value: "",
-        text: "Selecione...",
-      })
-    );
-
-    $.each(data, function (index, item) {
-      $("#cargo").append(
-        $("<option>", {
-          value: item.idCargo,
-          id: item.idCargo,
-          text: item.cargo,
-          name: item.cargo,
-        })
-      );
-    });
-  });
   $("#alteraSen").removeClass("none");
   $("#senha, #confirmarSenha").attr("disabled", "disabled");
   $("#senha, #confirmarSenha").attr("type", "hidden");
   $("#labelSenha, #confirmarSenhaLabel").addClass("none");
-
   $.ajax({
-    url: url_base + "/funcionarios/" + usuario.id,
+    url: url_base + "/colaboradores/" + usuario.id,
     type: "GET",
     async: false,
   })
     .done(function (data) {
-      $("#cargo")
-        .find(`option[id=${data.cargo.idCargo}]`)
-        .attr("selected", "selected"),
+		console.log(data)
+      $("#nome").val(data.nome),
         $("#cpf").val(
           data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
-        ),
-        $("#email").val(data.email),
-        $("#senha").val(data.senha),
-        $("#confirmarSenha").val(data.senha);
-      $("#nome").val(data.nome);
+        );
+      $("#usuario").val(data.usuario);
+      $("#email").val(data.email), (edição = "sim");
+		adm = data.administrador
+	 
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.log("erro ao buscar dados.");
       console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
     });
-
-  $.ajax({
-    url: url_base + "/telefones/funcionario/" + usuario.id,
-    type: "GET",
-    async: false,
-  }).done(function (data) {
-    $("#telefone").val(
-      data[0].telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3")
-    );
-  });
 });
 
 function removeObjeto() {
@@ -74,36 +39,37 @@ function alteraSenha() {
   $("#labelSenha, #confirmarSenhaLabel").removeClass("none");
   $("#alteraSen").addClass("none");
   $("#alteraSenhaNao").removeClass("none");
-  $("#senha, #confirmarSenha").attr("type", "password")
+  $("#senha, #confirmarSenha").attr("type", "password");
   $("#senha").val("");
   $("#confirmarSenha").val("");
 }
 
 function alteraSenhaNao() {
-	$("#alteraSen").removeClass("none");
-	$("#alteraSenhaNao").addClass("none");
-	$("#senha").val("");
-	$("#confirmarSenha").val("");
-	$("#senha, #confirmarSenha").attr("disabled", "disabled");
-	$("#senha, #confirmarSenha").attr("type", "hidden");
-	$("#labelSenha, #confirmarSenhaLabel").addClass("none");
-  }
+  $("#alteraSen").removeClass("none");
+  $("#alteraSenhaNao").addClass("none");
+  $("#senha").val("");
+  $("#confirmarSenha").val("");
+  $("#senha, #confirmarSenha").attr("disabled", "disabled");
+  $("#senha, #confirmarSenha").attr("type", "hidden");
+  $("#labelSenha, #confirmarSenhaLabel").addClass("none");
+}
 
 function editar() {
   var objetoEdit = {
-    idFuncionario: usuario.id,
-    cargoId: $("#cargo option:selected").attr("id"),
+    idColaborador: usuario.id,
+    nome: $("#nome").val(),
     cpf: $("#cpf")
       .val()
       .replace(/[^a-zA-Z0-9 ]/g, ""),
-    email: $("#email").val(),
+    usuario: $("#usuario").val(),
     senha: $("#senha").val(),
-    lojistaId: usuario.lojistaId,
-    nome: $("#nome").val(),
+    administrador: adm,
+    alterarSenha: "N",
+    email: $("#email").val(),
   };
 
   $.ajax({
-    url: url_base + "/funcionarios",
+    url: url_base + "/colaboradores",
     type: "PUT",
     data: JSON.stringify(objetoEdit),
     contentType: "application/json; charset=utf-8",
@@ -115,23 +81,16 @@ function editar() {
       console.log(e.responseJSON);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Não foi possível editar os dados pessoais, confira os dados e tente novamente",
+        title: e.responseJSON.message,
       });
     },
-  })
-    .done(function (data) {
-      Swal.close();
-      Swal.fire({
-        title: "Editado com sucesso",
-        icon: "success",
-      }).then((done) => {
-        window.location.href = "listarFuncionarioLojista";
-      });
-    })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+  }).done(function (data) {
+    Swal.close();
+    Swal.fire({
+      title: "Editado com sucesso",
+      icon: "success",
     });
+  });
 }
 
 $("#form-funcionario").on("submit", function (e) {
