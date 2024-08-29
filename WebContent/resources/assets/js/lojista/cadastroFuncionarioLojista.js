@@ -106,6 +106,7 @@ $(document).ready(function () {
       );
     });
   }
+  $('select').select2()
 });
 
 $('input[name="alterarSenha"]').change(function () {

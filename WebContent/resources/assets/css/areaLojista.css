@@ -60,6 +60,63 @@ body {
 /* .modal-backdrop {
   position: relative !important;
 } */
+ /* The switch - the box around the slider */
+.switch {
+	transform: rotate(180deg);
+	position: relative;
+	display: inline-block;
+	width: 4em;
+	height: 1.5em;
+}
+ 
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+ 
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	inset: 0;
+	background: #8B0000;
+	border-radius: 50px;
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+ 
+.slider-certidao {
+	background: #031e3b;
+}
+ 
+.slider:before {
+	position: absolute;
+	content: "";
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 1.5em;
+	width: 1.5em;
+	inset: 0;
+	background-color: white;
+	border-radius: 50px;
+	border: 1px solid #000;
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+ 
+.switch input:checked+.slider {
+	background: #031e3b;
+}
+ 
+.switch input:focus+.slider {
+	box-shadow: 0 0 1px #9cc9fa;;
+}
+ 
+.switch input:checked+.slider:before {
+	transform: translateX(2.6em);
+}
+ 
 .card-image {
   text-align: center;
   border: 1px solid #dee2e6;
