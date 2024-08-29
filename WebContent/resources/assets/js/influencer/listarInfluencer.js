@@ -140,7 +140,7 @@ $(document).ready(function() {
 		realizarBusca(valorBusca);
 	});
 
-	var rows = 8;
+	var rows = 7;
 	var currentPage = 1;
 
 	showPage(currentPage);

@@ -4,6 +4,9 @@ var cargo = [];
 $("#usuarioNome").text(usuario.nome);
 
 $(document).ready(function () {
+  $(".divSenhas").hide();
+  $("#senha, #confirmarSenha").prop("required", false);
+
   $.ajax({
     url: url_base + "/cargos",
     type: "GET",
@@ -27,10 +30,6 @@ $(document).ready(function () {
       );
     });
   });
-  $("#alteraSen").removeClass("none");
-  $("#senha, #confirmarSenha").attr("disabled", "disabled");
-  $("#senha, #confirmarSenha").attr("type", "hidden");
-  $("#labelSenha, #confirmarSenhaLabel").addClass("none");
 
   $.ajax({
     url: url_base + "/funcionarios/" + usuario.id,
@@ -45,9 +44,7 @@ $(document).ready(function () {
           data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
         ),
         $("#email").val(data.email),
-        $("#senha").val(data.senha),
-        $("#confirmarSenha").val(data.senha);
-      $("#nome").val(data.nome);
+        $("#nome").val(data.nome);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.log("erro ao buscar dados.");
@@ -65,47 +62,52 @@ $(document).ready(function () {
   });
 });
 
+$('input[name="alterarSenha"]').change(function () {
+  if ($(this).is(":checked") == true) {
+    $(".divSenhas").show();
+    $("#senha, #confirmarSenha").prop("required", true);
+  } else {
+    $(".divSenhas").hide();
+    $("#senha, #confirmarSenha").prop("required", false);
+  }
+});
+
 function removeObjeto() {
   localStorage.removeItem("usuario");
 }
 
-function alteraSenha() {
-  $("#senha, #confirmarSenha").removeAttr("disabled");
-  $("#labelSenha, #confirmarSenhaLabel").removeClass("none");
-  $("#alteraSen").addClass("none");
-  $("#alteraSenhaNao").removeClass("none");
-  $("#senha, #confirmarSenha").attr("type", "password")
-  $("#senha").val("");
-  $("#confirmarSenha").val("");
-}
-
-function alteraSenhaNao() {
-	$("#alteraSen").removeClass("none");
-	$("#alteraSenhaNao").addClass("none");
-	$("#senha").val("");
-	$("#confirmarSenha").val("");
-	$("#senha, #confirmarSenha").attr("disabled", "disabled");
-	$("#senha, #confirmarSenha").attr("type", "hidden");
-	$("#labelSenha, #confirmarSenhaLabel").addClass("none");
-  }
-
 function editar() {
-  var objetoEdit = {
-    idFuncionario: usuario.id,
-    cargoId: $("#cargo option:selected").attr("id"),
-    cpf: $("#cpf")
-      .val()
-      .replace(/[^a-zA-Z0-9 ]/g, ""),
-    email: $("#email").val(),
-    senha: $("#senha").val(),
-    lojistaId: usuario.lojistaId,
-    nome: $("#nome").val(),
-  };
+  var objetoFinal = {};
+
+  if ($('input[name="alterarSenha"]').is(":checked") == true) {
+    objetoFinal = {
+      idFuncionario: usuario.id,
+      cargoId: $("#cargo option:selected").attr("id"),
+      cpf: $("#cpf")
+        .val()
+        .replace(/[^a-zA-Z0-9 ]/g, ""),
+      email: $("#email").val(),
+      senha: $("#senha").val(),
+      lojistaId: usuario.lojistaId,
+      nome: $("#nome").val(),
+    };
+  } else {
+    objetoFinal = {
+      idFuncionario: usuario.id,
+      cargoId: $("#cargo option:selected").attr("id"),
+      cpf: $("#cpf")
+        .val()
+        .replace(/[^a-zA-Z0-9 ]/g, ""),
+      email: $("#email").val(),
+      lojistaId: usuario.lojistaId,
+      nome: $("#nome").val(),
+    };
+  }
 
   $.ajax({
     url: url_base + "/funcionarios",
     type: "PUT",
-    data: JSON.stringify(objetoEdit),
+    data: JSON.stringify(objetoFinal),
     contentType: "application/json; charset=utf-8",
     beforeSend: function () {
       Swal.showLoading();
@@ -140,19 +142,12 @@ $("#form-funcionario").on("submit", function (e) {
   const senhaInput = document.getElementById("senha");
   const confirmarSenhaInput = document.getElementById("confirmarSenha");
 
-  function requerimentoSenha() {
-    if (senhaInput.value != confirmarSenhaInput.value) {
-      $("#senha").val("");
-      $("#confirmarSenha").val("");
-
-      Swal.fire({
-        title: "As senhas não coincidem!",
-        icon: "info",
-      });
-    } else {
-      editar();
-    }
+  if (senhaInput.value != confirmarSenhaInput.value) {
+    Swal.fire({
+      title: "As senhas não coincidem!",
+      icon: "info",
+    });
+  } else {
+    editar();
   }
-
-  requerimentoSenha();
 });

@@ -189,8 +189,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
 
-          <div class="row mb-2">
-            <div id="escondeSenha" class="col-md-6">
+          <div class="row mb-2 divSenhas">
+            <div class="col-md-6">
               <label
                 id="labelSenha"
                 for="senha"
@@ -200,14 +200,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="password"
                 id="senha"
-                required
                 autocomplete="off"
                 name="senha"
                 class="form-control inputForm"
                 maxlength="255"
               />
             </div>
-            <div id="escondeSenha" class="col-md-6">
+            <div class="col-md-6">
               <label
                 id="confirmarSenhaLabel"
                 for="confirmarSenha"
@@ -217,7 +216,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="password"
                 id="confirmarSenha"
-                required
                 autocomplete="off"
                 name="confirmarSenha"
                 class="form-control inputForm"
@@ -226,29 +224,22 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
 
-          <div class="row mb-2 none" id="alteraSen">
-            <div class="col-md">
-              <div class="form-control border-0 p-0">
-                <button
-                  onclick="alteraSenha()"
-                  type="button"
-                  class="btn btn-secondary btn-sm"
-                >
-                  Alterar Senha
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2 none" id="alteraSenhaNao">
-            <div class="col-md">
-              <div class="form-control border-0 p-0">
-                <button
-                  onclick="alteraSenhaNao()"
-                  type="button"
-                  class="btn btn-secondary btn-sm"
-                >
-                  Cancelar
-                </button>
+          <div class="row mb-2" id="alteraSenhasDiv">
+            <div class="col-md-6" id="alterarSenha">
+              <label for="alterarSenha" class="form-label">
+                Alterar Senha:<span class="red">*</span>
+              </label>
+              <div class="form-control">
+                <label for="alterarSenha">Sim</label>
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    id="alterarSenha"
+                    name="alterarSenha"
+                  />
+                  <span class="slider"></span>
+                </label>
+                <label for="alterarSenha">Não</label>
               </div>
             </div>
           </div>
@@ -285,19 +276,17 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
-    ></script>
-    <script
-      charset="UTF-8"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
-    ></script>
+    ></script>    
     <script
       charset="UTF-8"
       src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/lojista/usuarioLojista.js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
     ></script>
+
+   
     <script
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/comum.js?v=2"
@@ -305,6 +294,10 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     <script
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"
+    ></script>
+    <script
+      charset="UTF-8"
+      src="<%=contextPath%>/resources/assets/js/lojista/usuarioLojista.js"
     ></script>
   </body>
 </html>

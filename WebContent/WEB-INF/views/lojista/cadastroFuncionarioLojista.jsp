@@ -21,12 +21,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <script
-      charset="UTF-8"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -195,8 +189,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
 
-          <div class="row mb-2">
-            <div id="escondeSenha" class="col-md-6">
+          <div class="row mb-2 divSenhas">
+            <div class="col-md-6">
               <label
                 id="labelSenha"
                 for="senha"
@@ -206,14 +200,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="password"
                 id="senha"
-                required
                 autocomplete="off"
                 name="senha"
                 class="form-control inputForm"
                 maxlength="255"
               />
             </div>
-            <div id="escondeSenha" class="col-md-6">
+            <div class="col-md-6">
               <label
                 id="confirmarSenhaLabel"
                 for="confirmarSenha"
@@ -223,7 +216,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <input
                 type="password"
                 id="confirmarSenha"
-                required
                 autocomplete="off"
                 name="confirmarSenha"
                 class="form-control inputForm"
@@ -232,16 +224,22 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
           </div>
 
-          <div class="row mb-2 none" id="alteraSen">
-            <div class="col-md">
-              <div class="form-control border-0 p-0">
-                <button
-                  onclick="ativaSenhas()"
-                  type="button"
-                  class="btn btn-secondary btn-sm"
-                >
-                  Alterar Senha
-                </button>
+          <div class="row mb-2" id="alteraSenhasDiv">
+            <div class="col-md-6" id="alterarSenha">
+              <label for="alterarSenha" class="form-label">
+                Alterar Senha:<span class="red">*</span>
+              </label>
+              <div class="form-control">
+                <label for="alterarSenha">Sim</label>
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    id="alterarSenha"
+                    name="alterarSenha"
+                  />
+                  <span class="slider"></span>
+                </label>
+                <label for="alterarSenha">Não</label>
               </div>
             </div>
           </div>
@@ -301,7 +299,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/lojista/cadastroFuncionarioLojista.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/cadastroFuncionarioLojista.js"
     ></script>
   </body>
 </html>
