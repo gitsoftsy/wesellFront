@@ -1032,7 +1032,7 @@ td {
   }
 
   .botaoDesativaMenu {
-    display: inline;
+    display: none;
     position: relative;
     top: 10px;
     border: none;
