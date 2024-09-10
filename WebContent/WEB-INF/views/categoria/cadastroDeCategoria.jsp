@@ -53,7 +53,7 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
 
 <!-- Animation-css -->
 <link rel="stylesheet"
@@ -201,7 +201,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js?v=2"></script>
+		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int)(Math.random()*10000)%>"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources//assets/js/categoria/cadastroDeCategoria.js"></script>
 </body>

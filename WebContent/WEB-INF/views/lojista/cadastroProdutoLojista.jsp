@@ -77,7 +77,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <link
       rel="stylesheet"
-      href="<%=contextPath%>/resources/assets/css/areaLojista.css"
+      href="<%=contextPath%>/resources/assets/css/areaLojista.css?v=<%=(int)(Math.random()*10000)%>"
     />
 
     <!-- Animation-css -->
@@ -612,7 +612,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comum.js?v=2"
+      src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int)(Math.random()*10000)%>"
     ></script>
     <script
       charset="UTF-8"

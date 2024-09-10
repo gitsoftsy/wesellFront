@@ -52,7 +52,7 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/areaLojista.css" />
+	href="<%=contextPath%>/resources/assets/css/areaLojista.css?v=<%=(int)(Math.random()*10000)%>" />
 
 <!-- Sweetalert -->
 <script charset="UTF-8"
@@ -183,7 +183,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/lojista/listarProdutoLojista.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js?v=2"></script>
+		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int)(Math.random()*10000)%>"></script>
 	
 	<script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
