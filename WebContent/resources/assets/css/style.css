@@ -610,6 +610,7 @@ a {
   text-align: left;
   padding-left: 15px;
   box-shadow: 1px 0px 11px -8px #000;
+ 
 }
 
 .title {
@@ -638,6 +639,10 @@ a {
   align-items: center;
   overflow: hidden;
   position: relative;
+}
+
+#menu.open {
+    max-height: 100%; /* Ajuste a altura conforme necessário */
 }
 
 .img-container img {
@@ -670,7 +675,6 @@ a {
 
 .btn-primary {
   border-radius: 6px;
-
   overflow: hidden;
   box-shadow: 0 0 40px 40px #076b92 inset, 0 0 0 0 #076b92 !important;
   -webkit-transition: all 150ms ease-in-out;
@@ -866,9 +870,9 @@ td {
 @media screen and (max-width: 768px) {
 	.abracaMenu{
 		display: none;
-		width: 100%;
 		z-index: 99;
 		padding-left: 0;
+		width: 100%;
 	}
 	
 	.container-menu-sair{

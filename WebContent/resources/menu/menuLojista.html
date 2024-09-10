@@ -2,8 +2,21 @@
   <head> </head>
   <link rel="stylesheet" href="style.css" />
   <body>
+    <section id="menu-mobile" class="menu-mobile">
+		<div class="container-header">
+			<div class="img-mobile-menu">
+				<img class="logoSumare logoMobile animate__bounceIn" alt="Logo" />
+			</div>
+			<i class="fa-solid fa-bars" id="barsIcon"></i>
+		</div>
+	</section>
     <section id="modalMenu" class="abracaMenu modalMenu">
-      <img class="logoSumare" alt="Logo Sumare" />
+    <div class="container-menu-sair">
+      	<i class="fa-solid fa-xmark" id="closeIcon"></i>
+      </div>
+      <div class="container-menu-img">
+      	<img class="logoSumare animate__bouncIn" alt="Logo" />
+      </div>
       <button id="teste" type="button" class="btn botaoDesativaMenu">
         <i class="fa-solid fa-arrow-right" style="color: #ffffff"></i>
       </button>
@@ -72,10 +85,21 @@
         });
       }
       $("#usuarioNome").text(perfilArmazenado.nome.split(" ")[0]);
+      
       $(".sub-btn").click(function () {
         $(this).next(".sub-menu").slideToggle();
         $(this).find(".dropdown").toggleClass("rotate");
       });
+      
+      $("#barsIcon").click(()=>{
+    	  $(".abracaMenu").show()
+    	  $("#closeIcon").show()
+      })
+      
+      $("#closeIcon").click(()=>{
+    	  $(".abracaMenu").hide()
+    	  $("#closeIcon").hide()
+      })
     });
   </script>
   <script

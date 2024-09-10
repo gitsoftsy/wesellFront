@@ -500,6 +500,10 @@ a {
   font-size: 1.4em;
 }
 
+#closeIcon{
+	display: none;
+}
+
 #sair {
   position: absolute;
   width: 251.75px;
@@ -602,6 +606,10 @@ td {
   text-overflow: ellipsis;
 }
 
+.menu-mobile{
+	display: none;
+}
+
 @media screen and (max-width: 1439px) {
   .container-res {
     margin-left: 17em;
@@ -700,6 +708,76 @@ td {
   .container-res {
     margin-right: 2em;
   }
+}
+
+
+@media screen and (max-width: 768px) {
+	.abracaMenu{
+		display: none;
+		width: 100%;
+		z-index: 99;
+		padding-left: 0;
+	}
+	
+	.container-menu-sair{
+		color: #fff;
+		display: flex;
+		justify-content: end;
+		align-items: center;
+		height: 5%;
+		padding-right: 2%;
+	}
+	
+	.container-menu-sair i{
+		font-size: 1.2rem
+	}
+	
+	.nav-sidebar{
+		padding-left: 2%
+	}
+	
+	.container-menu-img{
+		padding: 2%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	
+	.menu-mobile {
+		display: block;
+		flex-direction: row;
+		height: 20%;
+		width: 100vw;
+		background-color: #343A40;
+		padding: 2%;
+	}
+	
+	.container-header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.fa-bars{
+		color: #fff;
+	}
+	
+	.img-mobile-menu{
+		width: 20%;
+	}
+	
+	.logoSumare{
+		margin-top: 0;
+	}
+	
+	
+	.container-res{
+		margin-left: 2rem
+	}
+	
+	
 }
 
 @media screen and (max-width: 425px) {
