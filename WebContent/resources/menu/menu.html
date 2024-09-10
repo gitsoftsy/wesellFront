@@ -11,7 +11,12 @@
 		</div>
 	</section>
     <section id="modalMenu" class="abracaMenu modalMenu">
-      <img class="logoSumare animate__bounceIn" alt="Logo" />
+     <div class="container-menu-sair">
+      	<i class="fa-solid fa-xmark" id="closeIcon"></i>
+      </div>
+      <div class="container-menu-img">
+      	<img class="logoSumare animate__bouncIn" alt="Logo" />
+      </div>
       <button id="teste" type="button" class="btn botaoDesativaMenu">
         <i class="fa-solid fa-arrow-right" style="color: #ffffff"></i>
       </button>
@@ -52,7 +57,7 @@
         </div>
         <a
           href="loginFuncionario"
-          style="color: #fff; font-size: 1.5rem"
+          style="color: #fff; padding-left: 2%;"
           onclick="removeObjeto()"
           id="sair"
         >
@@ -102,6 +107,16 @@
         });
       }
       $("#nomeUser").text(perfilArmazenado.nome.split(" ")[0]);
+      
+      $("#barsIcon").click(()=>{
+    	  $(".abracaMenu").show()
+    	  $("#closeIcon").show()
+      })
+      
+      $("#closeIcon").click(()=>{
+    	  $(".abracaMenu").hide()
+    	  $("#closeIcon").hide()
+      })
 
       $(".sub-btn").click(function () {
         $(this).next(".sub-menu").slideToggle();
