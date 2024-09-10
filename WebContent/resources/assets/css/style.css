@@ -126,6 +126,18 @@ body {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+
+
+/* container table */
+.container-table {
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.card{
+	width: 100%
+}
+
 .slider:before {
   position: absolute;
   content: "";
@@ -744,6 +756,10 @@ td {
   color: #fff !important;
 }
 
+.menu-mobile{
+	display: none;
+}
+
 @media screen and (max-width: 1439px) {
   .container-res {
     margin-left: 17em;
@@ -842,6 +858,30 @@ td {
   .container-res {
     margin-right: 2em;
   }
+}
+
+@media screen and (max-width: 768px) {
+	.abracaMenu{
+		display: none;
+	}
+	
+	.menu-mobile {
+		display: block;
+		flex-direction: row;
+		height: 20%;
+		width: 100vw;
+		background-color: #183153;
+		
+	}
+	
+	.img-mobile-menu{
+		width: 20%;
+	}
+	
+	
+	.container-res{
+		margin-left: 2rem
+	}
 }
 
 @media screen and (max-width: 425px) {
