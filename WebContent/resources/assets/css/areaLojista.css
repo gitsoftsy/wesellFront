@@ -535,6 +535,10 @@ a {
 .card-table {
   height: 640px !important;
 }
+.card {
+      width: 100%;
+
+}
 
 #card-table {
   height: 480px !important;
@@ -568,6 +572,12 @@ a {
 
 #colaTabela {
   font-size: 1.2em;
+}
+
+/* container table */
+.container-table {
+	overflow-x: scroll;
+	overflow-y: scroll;
 }
 
 .container-res {
