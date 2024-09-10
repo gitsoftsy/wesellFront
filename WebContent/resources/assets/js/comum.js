@@ -41,6 +41,7 @@ window.addEventListener("load", function () {
 
   const url = window.location.pathname;
   const dataUser = JSON.parse(localStorage.getItem("usuario"));
+  containerResponsivo()
   if (
     url.includes("loginFuncionario") == false &&
     url.includes("listarLojista") == false
@@ -78,9 +79,17 @@ window.addEventListener("load", function () {
         }).then((result) => {
           if (result) {
             window.location.href = "loginFuncionario";
-          }
+          }		
         });
       }
     }
   }
 });
+
+function containerResponsivo() {
+	let container = $('<div>')
+	container.addClass('container-table')
+	container.append($('.table'))
+	$("nav").before(container)
+}
+

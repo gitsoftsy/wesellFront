@@ -575,16 +575,15 @@ a {
   margin-right: 10%;
 }
 
-table {
+/* table {
   width: 100%;
   table-layout: fixed !important;
   overflow: auto;
-  display: block;
-}
-.tableTel {
+} */
+/* .tableTel {
   display: table !important;
 }
-
+ */
 th,
 td {
   max-width: 500px;
