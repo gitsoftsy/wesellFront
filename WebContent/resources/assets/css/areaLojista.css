@@ -849,7 +849,7 @@ td {
   }
 
   .botaoAtivaMenu {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 99;
     right: -31px;
