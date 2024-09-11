@@ -319,22 +319,26 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="form-check-input"
                     type="radio"
                     name="calcularFrete"
-                    id="sim"
+                    id="calcularFreteSim"
                     value="S"
                     required
                   />
-                  <label class="form-check-label" for="sim">Sim</label>
+                  <label class="form-check-label" for="calcularFreteSim"
+                    >Sim</label
+                  >
                 </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="calcularFrete"
-                    id="nao"
+                    id="calcularFreteNao"
                     value="N"
                     required
                   />
-                  <label class="form-check-label" for="nao">Não</label>
+                  <label class="form-check-label" for="calcularFreteNao"
+                    >Não</label
+                  >
                 </div>
               </div>
             </div>
@@ -342,28 +346,32 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <label for="avisoRecebimento" class="form-label"
                 >Aviso Recebimento:<span class="red">*</span>
               </label>
-              <div class="form-control">
+              <div class="form-control" id="avisoRecebimento">
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="avisoRecebimento"
-                    id="sim"
+                    id="avisoRecebimentoS"
                     value="S"
                     required
                   />
-                  <label class="form-check-label" for="sim">Sim</label>
+                  <label class="form-check-label" for="avisoRecebimentoS"
+                    >Sim</label
+                  >
                 </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="avisoRecebimento"
-                    id="nao"
+                    id="avisoRecebimentoN"
                     value="N"
                     required
                   />
-                  <label class="form-check-label" for="nao">Não</label>
+                  <label class="form-check-label" for="avisoRecebimentoN"
+                    >Não</label
+                  >
                 </div>
               </div>
             </div>
@@ -374,31 +382,50 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               <label for="maosProprias" class="form-label"
                 >Maos Proprias:<span class="red">*</span>
               </label>
-              <div class="form-control">
+              <div class="form-control" id="maosProprias">
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="maosProprias"
-                    id="sim"
+                    id="maosPropriasSim"
                     value="S"
                     required
                   />
-                  <label class="form-check-label" for="sim">Sim</label>
+                  <label class="form-check-label" for="maosPropriasSim"
+                    >Sim</label
+                  >
                 </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="maosProprias"
-                    id="nao"
+                    id="maosPropriasNao"
                     value="N"
                     required
                   />
-                  <label class="form-check-label" for="nao">Não</label>
+                  <label class="form-check-label" for="maosPropriasNao"
+                    >Não</label
+                  >
                 </div>
               </div>
             </div>
+            <div class="col-md-6" id="cardCEP">
+              <label for="cepCd" class="form-label"
+                >CEP do CD:<span class="red">*</span></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                id="cepCd"
+                data-mask="00000-000"
+                name="cepCd"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-4">
             <div class="col-md-6">
               <label for="aceitaBoleto" class="form-label"
                 >Aceita Boleto:<span class="red">*</span>
@@ -409,28 +436,29 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="form-check-input"
                     type="radio"
                     name="aceitaBoleto"
-                    id="sim"
+                    id="aceitaBoletoS"
                     value="S"
                     required
                   />
-                  <label class="form-check-label" for="sim">Sim</label>
+                  <label class="form-check-label" for="aceitaBoletoS"
+                    >Sim</label
+                  >
                 </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="aceitaBoleto"
-                    id="nao"
+                    id="aceitaBoletoN"
                     value="N"
                     required
                   />
-                  <label class="form-check-label" for="nao">Não</label>
+                  <label class="form-check-label" for="aceitaBoletoN"
+                    >Não</label
+                  >
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="row mb-4">
             <div class="col-md-6">
               <label for="aceitaPix" class="form-label"
                 >Aceita Pix:<span class="red">*</span></label
@@ -441,25 +469,28 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="form-check-input"
                     type="radio"
                     name="aceitaPix"
-                    id="sim"
+                    id="aceitaPixSim"
                     value="S"
                     required
                   />
-                  <label class="form-check-label" for="sim">Sim</label>
+                  <label class="form-check-label" for="aceitaPixSim">Sim</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="aceitaPix"
-                    id="nao"
+                    id="aceitaPixNao"
                     value="N"
                     required
                   />
-                  <label class="form-check-label" for="nao">Não</label>
+                  <label class="form-check-label" for="aceitaPixNao">Não</label>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="row mb-4">
             <div class="col-md-6">
               <label for="aceitaCartao" class="form-label"
                 >Aceita Cartao:<span class="red">*</span>
@@ -470,57 +501,65 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                     class="form-check-input"
                     type="radio"
                     name="aceitaCartao"
-                    id="sim"
+                    id="aceitaCartaoSim"
                     value="S"
                     required
                   />
-                  <label class="form-check-label" for="sim">Sim</label>
+                  <label class="form-check-label" for="aceitaCartaoSim"
+                    >Sim</label
+                  >
                 </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="aceitaCartao"
-                    id="nao"
+                    id="aceitaCartaoNao"
                     value="N"
                     required
                   />
-                  <label class="form-check-label" for="nao">Não</label>
+                  <label class="form-check-label" for="aceitaCartaoNao"
+                    >Não</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="possuiParcelamento" class="form-label"
+                >Possui Parcelamento:<span class="red">*</span>
+              </label>
+              <div class="form-control" id="possuiParcelamento">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="possuiParcelamento"
+                    id="possuiParcelamentoS"
+                    value="S"
+                    required
+                  />
+                  <label class="form-check-label" for="possuiParcelamentoS"
+                    >Sim</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="possuiParcelamento"
+                    id="possuiParcelamentoN"
+                    value="N"
+                    required
+                  />
+                  <label class="form-check-label" for="possuiParcelamentoN"
+                    >Não</label
+                  >
                 </div>
               </div>
             </div>
           </div>
 
           <div class="row mb-4">
-            <div class="col-md-6">
-              <label for="possuiParcelamento" class="form-label"
-                >Possui Parcelamento:<span class="red">*</span>
-              </label>
-              <div class="form-control">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="possuiParcelamento"
-                    id="sim"
-                    value="S"
-                    required
-                  />
-                  <label class="form-check-label" for="sim">Sim</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="possuiParcelamento"
-                    id="nao"
-                    value="N"
-                    required
-                  />
-                  <label class="form-check-label" for="nao">Não</label>
-                </div>
-              </div>
-            </div>
             <div class="col-md-6">
               <label for="maximoParcelas" class="form-label"
                 >Maximo de Parcelas:<span class="red">*</span>
@@ -533,21 +572,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 name="maximoParcelas"
                 data-mask="00"
                 class="form-control"
-              />
-            </div>
-          </div>
-
-          <div class="row mb-4">
-            <div class="col-md-6" id="cardCEP">
-              <label for="cepCd" class="form-label"
-                >CEP do CD:<span class="red">*</span></label
-              >
-              <input
-                type="tel"
-                class="form-control"
-                id="cepCd"
-                data-mask="00000-000"
-                name="cepCd"
               />
             </div>
             <div class="col-md-6">
