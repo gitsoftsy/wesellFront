@@ -344,7 +344,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
             <div class="col-md-6">
               <label for="avisoRecebimento" class="form-label"
-                >Aviso Recebimento:<span class="red">*</span>
+                >Aviso de Recebimento:<span class="red">*</span>
               </label>
               <div class="form-control" id="avisoRecebimento">
                 <div class="form-check form-check-inline">
@@ -380,7 +380,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div class="row mb-4">
             <div class="col-md-6">
               <label for="maosProprias" class="form-label"
-                >Maos Proprias:<span class="red">*</span>
+                >Mãos Próprias:<span class="red">*</span>
               </label>
               <div class="form-control" id="maosProprias">
                 <div class="form-check form-check-inline">
@@ -493,7 +493,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div class="row mb-4">
             <div class="col-md-6">
               <label for="aceitaCartao" class="form-label"
-                >Aceita Cartao:<span class="red">*</span>
+                >Aceita Cartão:<span class="red">*</span>
               </label>
               <div class="form-control">
                 <div class="form-check form-check-inline">
@@ -562,7 +562,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div class="row mb-4">
             <div class="col-md-6">
               <label for="maximoParcelas" class="form-label"
-                >Maximo de Parcelas:<span class="red">*</span>
+                >Máximo de Parcelas:<span class="red">*</span>
               </label>
               <input
                 type="text"
@@ -576,7 +576,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
             <div class="col-md-6">
               <label for="valorMinimoDaCompra" class="form-label"
-                >Valor Minimo da Compra:<span class="red">*</span>
+                >Valor Mínimo da Compra:<span class="red">*</span>
               </label>
               <input
                 type="text"
@@ -679,7 +679,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/lojista/cadastroDeLojista.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/cadastroDeLojista.js"
     ></script>
   </body>
 </html>

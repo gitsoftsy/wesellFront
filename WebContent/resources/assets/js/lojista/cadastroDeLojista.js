@@ -365,7 +365,6 @@ $(document).ready(function () {
         console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
       });
   }
-
   $('input[name="calcularFrete"]').change(toggleFields);
   $('input[name="aceitaCartao"]').change(toggleFields);
   $('input[name="possuiParcelamento"]').change(toggleFields);
