@@ -110,7 +110,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section id="section" class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-barcode"></i>
+            <i class="fa-solid fa-file-export"></i>
             <span id="tituloPagina">Importar Produtos</span>
           </div>
         </div>
@@ -120,7 +120,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           id="form-cadastro"
           class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp"
         >
-          <h1 id="tituloForm" class="text-center mb-5">Cadastro</h1>
+          <h1 id="tituloForm" class="text-center mb-5">Dados de Importação</h1>
           <input
             type="text"
             id="usuarioCadastro"
@@ -147,7 +147,9 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 >Categoria:<span class="red">*</span></label
               >
               <select id="categoria" required class="form-select">
-                <option value="" selected disabled>Selecione a categoria</option>
+                <option value="" selected disabled>
+                  Selecione a categoria
+                </option>
               </select>
             </div>
           </div>
@@ -155,7 +157,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="subCategoria" class="form-label"
-                >Sub-Categoria:</label
+                >Sub-Categoria:<span class="red">*</span></label
               >
               <select
                 id="subCategoria"
@@ -171,9 +173,24 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               >
               <button
                 id="btnDownload"
-                class="btn btn-success form-input inputForm gap-2 d-flex align-items-center justify-content-center">
+                type="button"
+                style="width: 100%"
+                class="btn btn-secondary form-input inputForm gap-2 d-flex align-items-center justify-content-center"
+              >
                 <i class="fa-solid fa-file-arrow-down"></i>Baixar modelo
-					    </button>
+              </button>
+            </div>
+            <div class="col-md-6">
+              <label for="fileExcel" class="form-label"
+                >Importar arquivo:<span class="red">*</span></label
+              >
+              <input
+                class="form-control"
+                required
+                type="file"
+                id="fileExcel"
+                accept=".xls,.xlsx,.csv"
+              />
             </div>
           </div>
 
@@ -231,7 +248,9 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/produto/importarProduto.js"
     ></script>
-    <script charset="UTF-8"
-		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <script
+      charset="UTF-8"
+      src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"
+    ></script>
   </body>
 </html>
