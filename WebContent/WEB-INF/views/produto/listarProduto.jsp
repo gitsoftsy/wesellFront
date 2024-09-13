@@ -94,22 +94,23 @@ String contextPath = request.getContextPath();
 			<div class="mt-3 mb-2"
 				style="display: flex; flex-flow: column; align-items: left; gap: 20px">
 				<div class="d-flex gap-4">
-					<button id="exportar-excel"
-						class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center">
-						<i class="fa-solid fa-file-export"></i>Exportar
-					</button>
+					<a 	
+						href="importarProdutos" 
+						id="import-excel" 
+						class="btn btn-success gap-2 d-flex align-items-center justify-content-center">
+						<i class="fa-solid fa-file-export"></i>Importar
+					</a>
 					<a href="cadastroDeProduto" id="cadastroDeProdutoLink"
 						class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i
 						class="fa-regular fa-pen-to-square"></i>Novo Produto</a>
-					<button id="import-excel" data-bs-toggle="modal"
-						data-bs-target="#importProduct"
-						class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center">
-						<i class="fa-solid fa-file-export"></i>Importar
+					<button id="exportar-excel"
+						class="btn btn-success gap-2 d-flex align-items-center justify-content-center">
+						<i class="fa-solid fa-file-export"></i>Exportar
 					</button>
 				</div>
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
-						placeholder="Buscar Produto" /> <span
+						placeholder="Buscar" /> <span
 						class="input-group-text icone-pesquisa"><i
 						class="fas fa-search"></i></span>
 				</div>
@@ -135,53 +136,12 @@ String contextPath = request.getContextPath();
 			</table>
 			<nav aria-label="Page navigation example">
 				<ul id="pagination-list" class="pagination">
-					<li id="prev" class="page-item"><a class="page-link" href="#">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li id="next" class="page-item"><a class="page-link" href="#">Next</a></li>
+					
 				</ul>
 			</nav>
 
 		</section>
 	</main>
-
-	<div class="modal fade" id="importProduct" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="title-novo-ato">Importar
-						Produtos</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form id="formImport">
-						<div class="mb-4">
-							<label for="fileExcel" class="form-label">Arquivo Excel:<span
-								class="red">*</span></label> <input class="form-control " required
-								type="file" id="fileExcel" name="logoConta"> </input>
-						</div>
-						<div class="mb-4">
-							<label for="lojista" class="form-label">Lojista:<span class="red">*</span>
-							</label> <select id="lojista" required class="form-select inputForm"
-								style="padding-top: 10px">
-							</select>
-						</div>
-
-						<div class="d-flex justify-content-end gap-2">
-
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">Fechar</button>
-							<button type="submit" data-bs-dismiss="modal"
-								class="btn btn-primary">Salvar</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="

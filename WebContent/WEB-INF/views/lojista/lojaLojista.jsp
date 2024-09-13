@@ -299,7 +299,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
                 id="btn-submit"
                 class="btn confirm btn-primary btn-register"
               >
-                Editar
+                Salvar
               </button>
             </div>
           </div>

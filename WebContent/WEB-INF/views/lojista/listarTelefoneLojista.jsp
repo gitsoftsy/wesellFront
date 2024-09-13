@@ -108,7 +108,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               id="inputBusca"
               type="text"
               class="form-control inputForm"
-              placeholder="Buscar telefone"
+              placeholder="Buscar"
             />
             <span class="input-group-text icone-pesquisa"
               ><i class="fas fa-search"></i
@@ -133,15 +133,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         </table>
         <nav aria-label="Page navigation example">
           <ul id="pagination-list" class="pagination">
-            <li id="prev" class="page-item">
-              <a class="page-link" href="#">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li id="next" class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
+          
           </ul>
         </nav>
       </section>

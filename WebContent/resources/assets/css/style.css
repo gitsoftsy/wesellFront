@@ -443,17 +443,6 @@ a {
 .icone-pesquisa {
   position: relative;
 }
-
-.botaoExcel {
-  background-color: #107c42;
-  color: white;
-}
-
-.botaoExcel:hover {
-  background-color: #107c42;
-  color: white;
-}
-
 .botaoCadastro {
   background-color: #0095ff;
   color: white;
@@ -489,12 +478,14 @@ a {
   background-color: #e4e4e4;
   color: #183153;
 }
-
+.menuUser {
+  padding: 0 15px;
+}
 .nav-sidebar a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  width: 95%;
+  width: 100%;
   cursor: pointer;
   border-radius: 5px;
   padding: 0.3em;

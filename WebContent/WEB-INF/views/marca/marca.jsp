@@ -109,7 +109,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div class="d-flex gap-4">
             <button
               id="exportar-excel"
-              class="btn botaoExcel gap-2 d-flex align-items-center justify-content-center"
+              class="btn btn-success gap-2 d-flex align-items-center justify-content-center"
             >
               <i class="fa-solid fa-file-export"></i>Exportar
             </button>
@@ -130,7 +130,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               id="inputBusca"
               type="text"
               class="form-control inputForm"
-              placeholder="Buscar Cargo"
+              placeholder="Buscar"
             />
             <span class="input-group-text icone-pesquisa"
               ><i class="fas fa-search"></i
@@ -154,17 +154,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <tbody id="colaTabela" class="table-group-divider"></tbody>
         </table>
         <nav aria-label="Page navigation example">
-          <ul id="pagination-list" class="pagination">
-            <li id="prev" class="page-item">
-              <a class="page-link" href="#">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li id="next" class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
+          <ul id="pagination-list" class="pagination"></ul>
         </nav>
       </section>
       <div

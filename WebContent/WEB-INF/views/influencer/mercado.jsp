@@ -161,7 +161,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               id="filterInput"
               type="text"
               class="form-control inputForm"
-              placeholder="Buscar Produtos"
+              placeholder="Buscar"
             />
             <span class="input-group-text icone-pesquisa"
               ><i class="fas fa-search"></i

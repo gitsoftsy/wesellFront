@@ -233,7 +233,7 @@ $(document).ready(function() {
 	} else {
 
 		$("#tituloPagina, #tituloForm").text("Editar Categoria")
-		$("#btn-submit").text("Editar")
+		$("#btn-submit").text("Salvar")
 
 		$.ajax({
 			url: url_base + "/categorias/" + idCategoria,

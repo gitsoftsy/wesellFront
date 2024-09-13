@@ -90,7 +90,19 @@ public class LojistaController {
 		
 		return "produto/cadastroDeProduto";
 	}
-	
+
+	@RequestMapping(value = { "importarProdutos" }, method = RequestMethod.GET)
+	public String importarProdutos(HttpSession session, Model model) throws Exception {
+		
+		return "produto/importarProduto";
+	}
+
+	@RequestMapping(value = { "notificacoes" }, method = RequestMethod.GET)
+	public String notificacoes(HttpSession session, Model model) throws Exception {
+		
+		return "wesell/notificacoes";
+	}
+		
 	@RequestMapping(value = { "cadastroFuncionario" }, method = RequestMethod.GET)
 	public String cadastroFuncionario(HttpSession session, Model model) throws Exception {
 		/*if (session.getAttribute("loginFunc") == null) {

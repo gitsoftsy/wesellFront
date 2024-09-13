@@ -34,7 +34,6 @@ $("#valorMinimoDaCompra").on("input", function (e) {
 });
 
 function ValidarCEP(value) {
-  console.log(value);
   const cep = $("#cepCd");
   const message = $("<p id='errMessage'></p>")
     .text("CEP Inválido")
@@ -126,7 +125,6 @@ function cadastrar() {
       .replace(/[^a-zA-Z0-9 ]/g, ""),
     valorMinimoDaCompra: valorConvertidoPreco,
   };
-  console.log(objeto);
 
   $.ajax({
     url: url_base + "/lojistas",
@@ -237,7 +235,6 @@ $(document).ready(function () {
   function toggleFields() {
     var calcularFrete = $('input[name="calcularFrete"]:checked').val();
     var aceitaCartao = $('input[name="aceitaCartao"]:checked').val();
-    var possuiParcelamento = $('input[name="possuiParcelamento"]:checked').val();
 
     if (calcularFrete === "N") {
       $("#maosProprias").find('input[type="radio"]').prop("disabled", true);
@@ -258,14 +255,14 @@ $(document).ready(function () {
     }
 
     if (aceitaCartao === "N") {
+      $("#maximoParcelas").prop("disabled", true);
+      $("#maximoParcelas").val("");
       $("#possuiParcelamento")
         .find('input[type="radio"]')
         .prop("disabled", true);
       $("#possuiParcelamento")
         .find('input[type="radio"][value="N"]')
         .prop("checked", true);
-      $("#maximoParcelas").prop("disabled", true);
-      $("#maximoParcelas").val("");
     } else {
       $("#possuiParcelamento")
         .find('input[type="radio"]')
@@ -273,17 +270,20 @@ $(document).ready(function () {
       $("#maximoParcelas").prop("disabled", false);
     }
 
-	if (possuiParcelamento === "N") {
-		$("#maximoParcelas").prop("disabled", true);
-		$("#maximoParcelas").val("")
-	  } else {
-		$("#maximoParcelas").prop("disabled", false);
-	  }
+    var possuiParcelamento = $(
+      'input[name="possuiParcelamento"]:checked'
+    ).val();
+    if (possuiParcelamento === "N") {
+      $("#maximoParcelas").prop("disabled", true);
+      $("#maximoParcelas").val("");
+    } else {
+      $("#maximoParcelas").prop("disabled", false);
+    }
   }
   if (idLojista == undefined) {
   } else {
     $("#tituloPagina, #tituloForm").text("Editar Lojista");
-    $("#btn-submit").text("Editar");
+    $("#btn-submit").text("Salvar");
 
     $.ajax({
       url: url_base + "/lojistas/" + idLojista,
@@ -318,27 +318,51 @@ $(document).ready(function () {
         valorConvertidoPreco = data.valorMinimoDaCompra;
 
         if (data.calcularFrete === "S") {
-          $('input[name="calcularFrete"][id="calcularFreteSim"]').prop("checked", true);
+          $('input[name="calcularFrete"][id="calcularFreteSim"]').prop(
+            "checked",
+            true
+          );
         } else {
-          $('input[name="calcularFrete"][id="calcularFreteNao"]').prop("checked", true);
+          $('input[name="calcularFrete"][id="calcularFreteNao"]').prop(
+            "checked",
+            true
+          );
         }
 
         if (data.avisoRecebimento === "S") {
-          $('input[name="avisoRecebimento"][id="avisoRecebimentoS"]').prop("checked", true);
+          $('input[name="avisoRecebimento"][id="avisoRecebimentoS"]').prop(
+            "checked",
+            true
+          );
         } else {
-          $('input[name="avisoRecebimento"][id="avisoRecebimentoN"]').prop("checked", true);
+          $('input[name="avisoRecebimento"][id="avisoRecebimentoN"]').prop(
+            "checked",
+            true
+          );
         }
 
         if (data.maosProprias === "S") {
-          $('input[name="maosProprias"][id="maosPropriasSim"]').prop("checked", true);
+          $('input[name="maosProprias"][id="maosPropriasSim"]').prop(
+            "checked",
+            true
+          );
         } else {
-          $('input[name="maosProprias"][id="maosPropriasNao"]').prop("checked", true);
+          $('input[name="maosProprias"][id="maosPropriasNao"]').prop(
+            "checked",
+            true
+          );
         }
 
         if (data.aceitaBoleto === "S") {
-          $('input[name="aceitaBoleto"][id="aceitaBoletoS"]').prop("checked", true);
+          $('input[name="aceitaBoleto"][id="aceitaBoletoS"]').prop(
+            "checked",
+            true
+          );
         } else {
-          $('input[name="aceitaBoleto"][id="aceitaBoletoN"]').prop("checked", true);
+          $('input[name="aceitaBoleto"][id="aceitaBoletoN"]').prop(
+            "checked",
+            true
+          );
         }
 
         if (data.aceitaPix === "S") {
@@ -348,15 +372,27 @@ $(document).ready(function () {
         }
 
         if (data.aceitaCartao === "S") {
-          $('input[name="aceitaCartao"][id="aceitaCartaoSim"]').prop("checked", true);
+          $('input[name="aceitaCartao"][id="aceitaCartaoSim"]').prop(
+            "checked",
+            true
+          );
         } else {
-          $('input[name="aceitaCartao"][id="aceitaCartaoNao"]').prop("checked", true);
+          $('input[name="aceitaCartao"][id="aceitaCartaoNao"]').prop(
+            "checked",
+            true
+          );
         }
 
         if (data.possuiParcelamento === "S") {
-          $('input[name="possuiParcelamento"][id="possuiParcelamentoS"]').prop("checked", true);
+          $('input[name="possuiParcelamento"][id="possuiParcelamentoS"]').prop(
+            "checked",
+            true
+          );
         } else {
-          $('input[name="possuiParcelamento"][id="possuiParcelamentoN"]').prop("checked", true);
+          $('input[name="possuiParcelamento"][id="possuiParcelamentoN"]').prop(
+            "checked",
+            true
+          );
         }
         toggleFields();
       })
@@ -367,7 +403,17 @@ $(document).ready(function () {
   }
   $('input[name="calcularFrete"]').change(toggleFields);
   $('input[name="aceitaCartao"]').change(toggleFields);
-  $('input[name="possuiParcelamento"]').change(toggleFields);
+  $('input[name="possuiParcelamento"]').change(() => {
+    var possuiParcelamento = $(
+      'input[name="possuiParcelamento"]:checked'
+    ).val();
+    if (possuiParcelamento === "N") {
+      $("#maximoParcelas").prop("disabled", true);
+      $("#maximoParcelas").val("");
+    } else {
+      $("#maximoParcelas").prop("disabled", false);
+    }
+  });
 });
 $("#form-funcionario").on("submit", function (e) {
   e.preventDefault();
