@@ -91,6 +91,12 @@ public class LojistaController {
 		return "produto/cadastroDeProduto";
 	}
 
+	@RequestMapping(value = { "importarProdutosLojista" }, method = RequestMethod.GET)
+	public String importarProdutosLojista(HttpSession session, Model model) throws Exception {
+		
+		return "lojista/importarProdutoLojista";
+	}
+
 	@RequestMapping(value = { "importarProdutos" }, method = RequestMethod.GET)
 	public String importarProdutos(HttpSession session, Model model) throws Exception {
 		
