@@ -71,7 +71,6 @@ $("#btnDownload").click(function () {
       "PREÇO PROMOCIONAL": "",
       "COMISSAO WESELL": "",
       "COMISSAO INFLUENCER": "",
-      "POSSUI FRETE": "",
       "FRETE GRÁTIS": "",
       ALTURA: "",
       LARGURA: "",

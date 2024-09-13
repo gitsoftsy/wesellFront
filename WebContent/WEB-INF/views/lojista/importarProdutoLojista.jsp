@@ -71,7 +71,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <link
       rel="stylesheet"
-      href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>"
+      href="<%=contextPath%>/resources/assets/css/areaLojista.css?v=<%=(int)(Math.random()*10000)%>"
     />
 
     <!-- Animation-css -->
@@ -88,7 +88,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
   </head>
 
   <body>
-    <header id="menu"></header>
+    <header id="menuLojista"></header>
 
     <div class="bg-loading">
       <div class="spinner">

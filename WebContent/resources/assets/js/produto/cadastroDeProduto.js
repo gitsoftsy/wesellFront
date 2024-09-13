@@ -53,7 +53,7 @@ $(document).ready(function() {
 		} else {
 			$(".dimensoes").slideUp().find("input").prop("required", false);
 			$(".dimensoes input").val("");
-			$("input[name='freteGratis']").prop("checked", false);
+			$("input[name='freteGratis'][value='S']").prop("checked", true);
 		}
 	});
 
@@ -544,7 +544,7 @@ async function editar($button, originalButtonText) {
 		marcaId: $("#marca").val(),
 		nivelRelevancia: $("input[name='nivel']:checked").val(),
 		destacar: $("input[name='destaque']:checked").val(),
-		freteGratis: $("input[name='possuiFrete']:checked").val(),
+		freteGratis: $("input[name='freteGratis']:checked").val(),
 	};
 
 	console.log(objetoEdit);
@@ -612,7 +612,7 @@ async function cadastrar($button, originalButtonText) {
 		precoVenda: ValorConvertidoPreco,
 		comissao: ValorConvertidoComissao,
 		precoPromocional: ValorConvertidoPrecoPromo,
-		peso,
+		peso: peso || null,
 		largura: $("#largura").val(),
 		altura: $("#altura").val(),
 		profundidade: $("#profundidade").val(),
@@ -622,9 +622,8 @@ async function cadastrar($button, originalButtonText) {
 		marcaId: $("#marca").val(),
 		nivelRelevancia: $("input[name='nivel']:checked").val(),
 		destacar: $("input[name='destaque']:checked").val(),
-		freteGratis: $("input[name='possuiFrete']:checked").val(),
+		freteGratis: $("input[name='freteGratis']:checked").val(),
 	};
-	console.log(objeto);
 
 	try {
 		const produtoId = await cadastrarProduto(objeto);
