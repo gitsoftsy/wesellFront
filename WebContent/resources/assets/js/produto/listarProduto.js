@@ -1,6 +1,14 @@
 const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
 const elemento = document.querySelector("#modalMenu");
+var produto = [];
+var imge = [];
+var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
+var rows = 7;
+var currentPage = 1;
+var pagesToShow = 5;
 
 botaoDesativa.addEventListener("click", () => {
 	elemento.classList.add("animar-sair");
@@ -12,21 +20,85 @@ botaoAtiva.addEventListener("click", () => {
 	elemento.classList.remove("animar-sair");
 });
 
-var produto = [];
-var imge = [];
-
-var dados = [];
-var sortOrder = {};
-var dadosOriginais = [];
-var rows = 7;
-var currentPage = 1;
-var pagesToShow = 5;
 
 // // Desabilita o link
 // document.getElementById('cadastroDeProdutoLink').onclick = function() {
 // 	alert("Esse botão essa desativado por enquanto, para análise se há a necessidade de existir esse botão aqui.")
 // 	return false;
 // };
+
+
+
+
+function showPage(page) {
+	var start = (page - 1) * rows;
+	var end = start + rows;
+
+	$('#colaTabela tr').hide();
+	$('#colaTabela tr').slice(start, end).show();
+}
+
+function toggleNavigation() {
+	var totalRows = $('#colaTabela tr').length;
+	var totalPages = Math.ceil(totalRows / rows);
+
+	$('#prev').prop('disabled', currentPage === 1);
+	$('#next').prop('disabled', currentPage === totalPages);
+
+	$('#pagination').toggle(totalRows > 0);
+
+	$('#page-numbers').empty();
+
+	if (totalRows > 0) {
+		var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+		var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+		if (startPage > 1) {
+			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+			if (startPage > 2) {
+				$('#page-numbers').append('<span>...</span>');
+			}
+		}
+
+		for (var i = startPage; i <= endPage; i++) {
+			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+		}
+
+		if (endPage < totalPages) {
+			if (endPage < totalPages - 1) {
+				$('#page-numbers').append('<span>...</span>');
+			}
+			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+		}
+
+		$('.btn-page').click(function() {
+			goToPage(parseInt($(this).data('page')));
+		});
+	}
+}
+
+
+function updatePagination() {
+	toggleNavigation();
+}
+
+function goToPage(page) {
+	if (page >= 1 && page <= Math.ceil($('#colaTabela tr').length / rows)) {
+		currentPage = page;
+		showPage(currentPage);
+		updatePagination();
+
+	}
+}
+
+$('#prev').click(function() {
+	goToPage(currentPage - 1);
+});
+
+$('#next').click(function() {
+	goToPage(currentPage + 1);
+});
 
 $(document).ready(function() {
 	function base64ToCSVAndDownload(base64String, fileName) {
@@ -140,15 +212,15 @@ $(document).ready(function() {
 			$(this).prop("checked", false);
 		}
 	});
-	
+
 	showPage(currentPage);
 	updatePagination();
 });
 
 function renderizarProduto(produtos) {
-	
+
 	console.log(produtos)
-	
+
 	var html = produtos.content
 		.map(function(item) {
 			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
