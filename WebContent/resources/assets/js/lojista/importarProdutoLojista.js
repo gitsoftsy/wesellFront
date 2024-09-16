@@ -1,5 +1,5 @@
 var perfil = localStorage.getItem("usuario");
-var lojista = JSON.parse(perfil);
+var usuario = JSON.parse(perfil);
 
 $(document).ready(function () {
   fetchData("/categorias/ativos", "#categoria", "idCategoria", "categoria");
@@ -123,36 +123,37 @@ $("#form-cadastro").on("submit", async function (e) {
       var base64String = reader.result.split(",")[1];
 
       var objeto = {
-        categoriaId: $("#categoria").val(),
-        subcategoriaId: $("#subCategoria").val(),
-        lojistaId: lojista.lojistaId,
-        arquivo: base64String,
+        idUsuarioLojista: usuario.id,
+        idCategoria: $("#categoria").val(),
+        idSubCategoria: $("#subCategoria").val(),
+        idLojista: usuario.lojistaId,
+        nomeArquivo: file.name,
+        base64arquivo: base64String,
       };
 
-      console.log(objeto);
-      //   $.ajax({
-      //     url: url_base + "/marcas",
-      //     type: "POST",
-      //     data: JSON.stringify(objeto),
-      //     contentType: "application/json; charset=utf-8",
-      //     error: function (e) {
-      //       Swal.close();
-      //       console.log(e.responseJSON);
-      //       Swal.fire({
-      //         icon: "error",
-      //         title: "Oops...",
-      //         text: "Erro ao importar arquivo.",
-      //       });
-      //     },
-      //   }).done(function (data) {
-      //     Swal.close();
-      //     Swal.fire({
-      //       title: "Importado com sucesso",
-      //       icon: "success",
-      //     }).then((data) => {
-      //       window.location.href = "listarProduto";
-      //     });
-      //   });
+      $.ajax({
+        url: url_base + "/importacao/produto",
+        type: "POST",
+        data: JSON.stringify(objeto),
+        contentType: "application/json; charset=utf-8",
+        error: function (e) {
+          Swal.close();
+          console.log(e.responseJSON);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Erro ao importar arquivo.",
+          });
+        },
+      }).done(function (data) {
+        Swal.close();
+        Swal.fire({
+          title: "Importado com sucesso",
+          icon: "success",
+        }).then((data) => {
+          window.location.href = "listarProdutoLojista";
+        });
+      });
     };
 
     reader.readAsDataURL(file);

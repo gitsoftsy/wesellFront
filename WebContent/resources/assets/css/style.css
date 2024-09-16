@@ -8,6 +8,31 @@
   display: table !important;
 } */
 
+.notification-icon {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  background-color: red;
+  color: white;
+}
+
+.badge.hidden {
+  display: none;
+}
+
 body {
   min-height: 100vh;
   width: 100%;
@@ -18,7 +43,7 @@ body {
 .swiper-wrapper {
   height: 250px !important;
 }
-.note-modal{
+.note-modal {
   top: auto !important;
 }
 /* .modal-backdrop {
@@ -99,8 +124,8 @@ body {
   width: 70%;
 }
 
-#closeIcon{
-	display: none;
+#closeIcon {
+  display: none;
 }
 
 /* The switch - the box around the slider */
@@ -130,16 +155,14 @@ body {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
 /* container table */
 .container-table {
 	overflow-x: scroll;
 	overflow-y: hidden;
 }
 
-.card{
-	width: 100%
+.card {
+  width: 100%;
 }
 
 .slider:before {
@@ -480,12 +503,15 @@ a {
 }
 .menuUser {
   padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .nav-sidebar a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  width: 100%;
+  width: 75%;
   cursor: pointer;
   border-radius: 5px;
   padding: 0.3em;
@@ -495,8 +521,7 @@ a {
 }
 
 .nav-sidebar a:hover {
-  background-color: #e4e4e4;
-  color: #2d2d2d;
+  background-color: rgb(4, 45, 89);
 }
 
 .nav-sidebar i {
@@ -600,20 +625,17 @@ a {
   color: #fff;
   text-align: left;
   box-shadow: 1px 0px 11px -8px #000;
- 
 }
 
-.container-nome-user{
-	padding-left: 2%
+.container-nome-user {
+  padding-left: 2%;
 }
 
-
-.container-menu-img{
-	display: flex;
-    justify-content: center;
-    align-items: center;
+.container-menu-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .title {
   display: flex;
@@ -644,7 +666,7 @@ a {
 }
 
 #menu.open {
-    max-height: 100%; /* Ajuste a altura conforme necessário */
+  max-height: 100%; /* Ajuste a altura conforme necessário */
 }
 
 .img-container img {
@@ -762,11 +784,14 @@ td {
   color: #fff !important;
 }
 
-.menu-mobile{
-	display: none;
+.menu-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 1439px) {
+  .badge {
+    right: -2px;
+}
   .container-res {
     margin-left: 17em;
     margin-right: 3em;
@@ -865,73 +890,68 @@ td {
 }
 
 @media screen and (max-width: 768px) {
-	.abracaMenu{
-		display: none;
-		z-index: 99;
-		padding-left: 0;
-		width: 100%;
-	}
-	
-	.container-menu-sair{
-		color: #fff;
-		display: flex;
-		justify-content: end;
-		align-items: center;
-		height: 5%;
-		padding-right: 2%;
-	}
-	
-	.container-menu-sair i{
-		font-size: 1.2rem
-	}
-	
-	.nav-sidebar{
-		padding-left: 2%
-	}
-	
-	.container-menu-img{
-		padding: 2%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	
-	
-	.menu-mobile {
-		display: block;
-		flex-direction: row;
-		height: 20%;
-		width: 100%;
-		background-color: #183153;
-		padding: 2%;
-	}
-	
-	.container-header{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-	
-	.fa-bars{
-		color: #fff;
-	}
-	
-	.img-mobile-menu{
-		width: 20%;
-	}
-	
-	.logoSumare{
-		margin-top: 0;
-	}
-	
-	
-	.container-res{
-		margin-left: 2rem;
-		padding: 5%;
-	}
-	
-	
+  .abracaMenu {
+    display: none;
+    z-index: 99;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .container-menu-sair {
+    color: #fff;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 5%;
+    padding-right: 2%;
+  }
+
+  .container-menu-sair i {
+    font-size: 1.2rem;
+  }
+
+  .nav-sidebar {
+    padding-left: 2%;
+  }
+
+  .container-menu-img {
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-mobile {
+    display: block;
+    flex-direction: row;
+    height: 20%;
+    width: 100%;
+    background-color: #183153;
+    padding: 2%;
+  }
+
+  .container-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fa-bars {
+    color: #fff;
+  }
+
+  .img-mobile-menu {
+    width: 20%;
+  }
+
+  .logoSumare {
+    margin-top: 0;
+  }
+
+  .container-res {
+    margin-left: 2rem;
+  }
 }
 
 @media screen and (max-width: 425px) {

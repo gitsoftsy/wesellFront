@@ -110,12 +110,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section id="section" class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-solid fa-file-export"></i>
+            <i class="fa-solid fa-file-export fa-lg"></i>
             <span id="tituloPagina">Importar Produtos</span>
           </div>
         </div>
       </section>
-      <section class="pt-4">
+      <section>
         <form
           id="form-cadastro"
           class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp"

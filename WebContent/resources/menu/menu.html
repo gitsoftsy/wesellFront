@@ -2,30 +2,36 @@
   <head> </head>
   <link rel="stylesheet" href="style.css" />
   <body>
-  <section id="menu-mobile" class="menu-mobile">
-		<div class="container-header">
-			<div class="img-mobile-menu">
-				<img class="logoSumare logoMobile animate__bounceIn" alt="Logo" />
-			</div>
-			<i class="fa-solid fa-bars" id="barsIcon"></i>
-		</div>
-	</section>
+    <section id="menu-mobile" class="menu-mobile">
+      <div class="container-header">
+        <div class="img-mobile-menu">
+          <img class="logoSumare logoMobile animate__bounceIn" alt="Logo" />
+        </div>
+        <i class="fa-solid fa-bars" id="barsIcon"></i>
+      </div>
+    </section>
     <section id="modalMenu" class="abracaMenu modalMenu">
-     <div class="container-menu-sair">
-      	<i class="fa-solid fa-xmark" id="closeIcon"></i>
+      <div class="container-menu-sair">
+        <i class="fa-solid fa-xmark" id="closeIcon"></i>
       </div>
       <div class="container-menu-img">
-      	<img class="logoSumare animate__bouncIn" alt="Logo" />
+        <img class="logoSumare animate__bouncIn" alt="Logo" />
       </div>
       <button id="teste" type="button" class="btn botaoDesativaMenu">
         <i class="fa-solid fa-arrow-right" style="color: #ffffff"></i>
       </button>
       <hr />
       <nav class="nav-sidebar menuUser">
-        <a href="dadosColaborador" class="mb-1 container-nome-user">
-          <i class="fa-solid fa-user me-2" style="width: 28px"></i>
+        <a href="dadosColaborador" class="container-nome-user p-0">
+          <i class="fa-solid fa-user" style="width: 26px"></i>
           <span id="nomeUser"></span>
         </a>
+        <div class="notification-icon">
+          <a href="notificacoes">
+            <i class="fa-regular fa-bell fa-lg"></i>
+            <span id="notification-count" class="badge">1</span>
+          </a>
+        </div>
       </nav>
       <hr />
       <nav class="menu">
@@ -57,7 +63,7 @@
         </div>
         <a
           href="loginFuncionario"
-          style="color: #fff; padding-left: 5%;"
+          style="color: #fff; padding-left: 5%"
           onclick="removeObjeto()"
           id="sair"
         >
@@ -107,17 +113,17 @@
         });
       }
       $("#nomeUser").text(perfilArmazenado.nome.split(" ")[0]);
-      
-      $("#barsIcon").click(()=>{
-    	  $(".abracaMenu").show()
-    	  $("#closeIcon").show()
-    	  $('.abracaMenu').toggleClass('open');
-      })
-      
-      $("#closeIcon").click(()=>{
-    	  $(".abracaMenu").hide()
-    	  $("#closeIcon").hide()
-      })
+
+      $("#barsIcon").click(() => {
+        $(".abracaMenu").show();
+        $("#closeIcon").show();
+        $(".abracaMenu").toggleClass("open");
+      });
+
+      $("#closeIcon").click(() => {
+        $(".abracaMenu").hide();
+        $("#closeIcon").hide();
+      });
 
       $(".sub-btn").click(function () {
         $(this).next(".sub-menu").slideToggle();
