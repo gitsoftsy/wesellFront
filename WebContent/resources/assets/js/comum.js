@@ -108,12 +108,12 @@ function showPage(page) {
 	var start = (page - 1) * rows;
 	var end = start + rows;
 
-	$('#cola-tabela tr').hide();
-	$('#cola-tabela tr').slice(start, end).show();
+	$('#colaTabela tr').hide();
+	$('#colaTabela tr').slice(start, end).show();
 }
 
 function toggleNavigation() {
-	var totalRows = $('#cola-tabela tr').length;
+	var totalRows = $('#colaTabela tr').length;
 	var totalPages = Math.ceil(totalRows / rows);
 
 	$('#prev').prop('disabled', currentPage === 1);
@@ -159,7 +159,7 @@ function updatePagination() {
 }
 
 function goToPage(page) {
-	if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
+	if (page >= 1 && page <= Math.ceil($('#colaTabela tr').length / rows)) {
 		currentPage = page;
 		showPage(currentPage);
 		updatePagination();

@@ -3,6 +3,14 @@ const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
 let id = 0
 
+var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
+var rows = 7;
+var currentPage = 1;
+var pagesToShow = 5;
+
+
 botaoDesativa.addEventListener('click', () => {
 	elemento.classList.add('animar-sair');
 	elemento.classList.remove('animar-entrar');
@@ -43,8 +51,46 @@ $(document).ready(function() {
 		renderizarFuncionarios(data);
 	})
 
+	$('.checkbox-toggle').each(function() {
+		var status = $(this).data('status');
+		if (status !== 'S') {
+			$(this).prop('checked', false);
+		}
+	});
+	
+	showPage(currentPage);
+		updatePagination();
+});
 
-	function renderizarFuncionarios(cargos) {
+function alteraStatus(element) {
+	var id = element.getAttribute("data-id");
+	var status = element.getAttribute("data-status");
+
+	const button = $(element).closest("tr").find(".btn-status");
+	if (status === "S") {
+		button.removeClass("btn-success").addClass("btn-danger");
+		button.find("i").removeClass("fa-check").addClass("fa-xmark");
+		element.setAttribute("data-status", "N");
+	} else {
+		button.removeClass("btn-danger").addClass("btn-success");
+		button.find("i").removeClass("fa-xmark").addClass("fa-check");
+		element.setAttribute("data-status", "S");
+	}
+
+	$.ajax({
+		url: url_base + `/marcas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
+		type: "put",
+		error: function(e) {
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
+			});
+		}
+	});
+}
+
+function renderizarFuncionarios(cargos) {
 		var html = cargos.map(function(item) {
 			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
 			return (
@@ -80,174 +126,6 @@ $(document).ready(function() {
 
 		$("#colaTabela").html(html);
 	}
-
-	$("#inputBusca").on("keyup", function() {
-		var valorBusca = $(this).val().toLowerCase();
-
-		if (valorBusca === '') {
-			busca()
-			$("#colaTabela tr").show();
-		} else {
-			$("#colaTabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-			}).show();
-		}
-	});
-
-	function realizarBusca(valorInput) {
-		if (valorInput === '') {
-			showPage(currentPage);
-		} else {
-			$("#colaTabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-			}).show();
-		}
-	}
-
-	$("#inputBusca").on("input", function() {
-		var valorBusca = $(this).val().toLowerCase();
-		realizarBusca(valorBusca);
-	});
-
-	var rows = 8;
-	var currentPage = 1;
-
-	showPage(currentPage);
-	toggleNavigation();
-
-	function showPage(page) {
-		var start = (page - 1) * rows;
-		var end = start + rows;
-
-		$('.tabela-funcionarios tbody tr').hide();
-		$('.tabela-funcionarios tbody tr').slice(start, end).show();
-	}
-
-	function toggleNavigation() {
-		var totalRows = $('.tabela-funcionarios tbody tr').length;
-		var totalPages = Math.ceil(totalRows / rows);
-
-		generatePaginationList(totalPages); // Chama a função para gerar a lista de paginação
-
-
-		if (totalRows > rows) {
-			$('#prev, #next').show();
-		} else {
-			$('#prev, #next').hide();
-		}
-	}
-
-	$('#prev').click(function() {
-		if (currentPage > 1) {
-			currentPage--;
-			showPage(currentPage);
-			toggleNavigation();
-		}
-	});
-
-	$('#next').click(function() {
-		var totalRows = $('.tabela-funcionarios tbody tr').length;
-		var totalPages = Math.ceil(totalRows / rows);
-
-		if (currentPage < totalPages) {
-			currentPage++;
-			showPage(currentPage);
-			toggleNavigation();
-		}
-	});
-
-	function generatePaginationList(totalPages) {
-		var paginationList = $('#pagination-list');
-		paginationList.empty(); // Limpa a lista antes de adicionar novos itens
-
-		// Adiciona item "Prev"
-		var prevListItem = $('<li class="page-item">');
-		var prevLink = $('<a class="page-link" href="#" aria-label="Previous">&laquo;</a>').attr('data-page', 'prev');
-		prevListItem.append(prevLink);
-		paginationList.append(prevListItem);
-
-		for (let i = 1; i <= totalPages; i++) {
-			var listItem = $('<li class="page-item">');
-			var link = $('<a class="page-link" href="#"></a>').text(i).attr('data-page', i);
-
-			link.on('click', function(e) {
-				e.preventDefault(); // Previne o comportamento padrão do link
-				var page = $(this).data('page');
-
-				// Atualiza currentPage baseado no item clicado
-				if (page === 'prev') {
-					currentPage = Math.max(1, currentPage - 1);
-				} else if (page === 'next') {
-					currentPage = Math.min(totalPages, currentPage + 1);
-				} else {
-					currentPage = page;
-				}
-
-				showPage(currentPage);
-				toggleNavigation();
-			});
-
-			listItem.append(link);
-			paginationList.append(listItem);
-		}
-
-		// Adiciona item "Next"
-		var nextListItem = $('<li class="page-item">');
-		var nextLink = $('<a class="page-link" href="#" aria-label="Next">&raquo;</a>').attr('data-page', 'next');
-		nextListItem.append(nextLink);
-		paginationList.append(nextListItem);
-
-		// Atualiza o manipulador de clique para 'prev' e 'next' separadamente para evitar conflitos
-		prevLink.add(nextLink).on('click', function(e) {
-			e.preventDefault();
-			var page = $(this).data('page');
-
-			if (page === 'prev' && currentPage > 1) {
-				currentPage--;
-			} else if (page === 'next' && currentPage < totalPages) {
-				currentPage++;
-			}
-
-			showPage(currentPage);
-			toggleNavigation();
-		});
-	}
-
-	$('.checkbox-toggle').each(function() {
-		var status = $(this).data('status');
-		if (status !== 'S') {
-			$(this).prop('checked', false);
-		}
-	});
-});
-
-function alteraStatus(element) {
-	var id = element.getAttribute("data-id");
-	var status = element.getAttribute("data-status");
-
-	const button = $(element).closest("tr").find(".btn-status");
-	if (status === "S") {
-		button.removeClass("btn-success").addClass("btn-danger");
-		button.find("i").removeClass("fa-check").addClass("fa-xmark");
-		element.setAttribute("data-status", "N");
-	} else {
-		button.removeClass("btn-danger").addClass("btn-success");
-		button.find("i").removeClass("fa-xmark").addClass("fa-check");
-		element.setAttribute("data-status", "S");
-	}
-
-	$.ajax({
-		url: url_base + `/marcas/${id}${status === "S" ? '/desativar' : '/ativar'}`,
-		type: "put",
-		error: function(e) {
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	});
-}
 
 const cadastrar = () => {
 	var objeto = {

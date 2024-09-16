@@ -156,9 +156,15 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </thead>
           <tbody id="colaTabela" class="table-group-divider"></tbody>
         </table>
-        <nav aria-label="Page navigation example">
-          <ul id="pagination-list" class="pagination"></ul>
-        </nav>
+        <div id="pagination" class="mx-auto mt-auto">
+				<button id="prev" class="btn btn-sm">
+					<i class="fa-solid fa-angle-left fa-xl"></i>
+				</button>
+				<div id="page-numbers" class="btn-group"></div>
+				<button id="next" class="btn btn-sm">
+					<i class="fa-solid fa-angle-right fa-xl"></i>
+				</button>
+			</div>
       </section>
     </main>
 
