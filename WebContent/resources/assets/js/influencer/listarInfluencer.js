@@ -1,3 +1,9 @@
+var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
+var rows = 7;
+var currentPage = 1;
+var pagesToShow = 5;
 
 function formatarDataParaBR(data) {
 	var dataObj = new Date(data);
@@ -73,176 +79,10 @@ $(document).ready(function() {
 			XLSX.writeFile(livro, "cargos.xlsx");
 		});
 
-		cargos = data;
 		renderizarInfluencer(data);
 	})
 
-	function renderizarInfluencer(influencers) {
-		var html = influencers.map(function(item) {
-			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
-			return (
-				"<tr>" +
-				"<td>" +
-				'<button type="button" class="btn btn-status btn-sm ' +
-				buttonClass +
-				'" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
-				(item.ativo === "S"
-					? "<i class='fa-solid fa-check fa-xl'></i>"
-					: '<i class="fa-solid fa-xmark fa-xl"></i>') +
-				"</button>" +
-				"</td>" +
-				"<td>" +
-				item.nome +
-				"</td>" +
-				"<td>" +
-				formatarDataParaBR(item.dtNasc) +
-				"</td>" +
-				"<td>" +
-				item.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3") +
-				"</td>" +
-				'<td class="d-flex"><input type="checkbox" data-status="' +
-				item.ativo +
-				'" data-id="' +
-				item.idVendedor +
-				'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
-				"</tr>"
-			);
-		}).join("");
-
-		$("#colaTabela").html(html);
-	}
-
-	$("#inputBusca").on("keyup", function() {
-		var valorBusca = $(this).val().toLowerCase();
-
-		if (valorBusca === '') {
-			busca()
-			$("#colaTabela tr").show();
-		} else {
-			$("#colaTabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-			}).show();
-		}
-	});
-
-	function realizarBusca(valorInput) {
-		if (valorInput === '') {
-			showPage(currentPage);
-		} else {
-			$("#colaTabela tr").hide().filter(function() {
-				return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-			}).show();
-		}
-	}
-
-	$("#inputBusca").on("input", function() {
-		var valorBusca = $(this).val().toLowerCase();
-		realizarBusca(valorBusca);
-	});
-
-	var rows = 7;
-	var currentPage = 1;
-
-	showPage(currentPage);
-	toggleNavigation();
-
-	function showPage(page) {
-		var start = (page - 1) * rows;
-		var end = start + rows;
-
-		$('.tabela-funcionarios tbody tr').hide();
-		$('.tabela-funcionarios tbody tr').slice(start, end).show();
-	}
-
-	function toggleNavigation() {
-		var totalRows = $('.tabela-funcionarios tbody tr').length;
-		var totalPages = Math.ceil(totalRows / rows);
-
-		generatePaginationList(totalPages); // Chama a função para gerar a lista de paginação
-
-
-		if (totalRows > rows) {
-			$('#prev, #next').show();
-		} else {
-			$('#prev, #next').hide();
-		}
-	}
-
-	$('#prev').click(function() {
-		if (currentPage > 1) {
-			currentPage--;
-			showPage(currentPage);
-			toggleNavigation();
-		}
-	});
-
-	$('#next').click(function() {
-		var totalRows = $('.tabela-funcionarios tbody tr').length;
-		var totalPages = Math.ceil(totalRows / rows);
-
-		if (currentPage < totalPages) {
-			currentPage++;
-			showPage(currentPage);
-			toggleNavigation();
-		}
-	});
-
-	function generatePaginationList(totalPages) {
-		var paginationList = $('#pagination-list');
-		paginationList.empty(); // Limpa a lista antes de adicionar novos itens
-
-		// Adiciona item "Prev"
-		var prevListItem = $('<li class="page-item">');
-		var prevLink = $('<a class="page-link" href="#" aria-label="Previous">&laquo;</a>').attr('data-page', 'prev');
-		prevListItem.append(prevLink);
-		paginationList.append(prevListItem);
-
-		for (let i = 1; i <= totalPages; i++) {
-			var listItem = $('<li class="page-item">');
-			var link = $('<a class="page-link" href="#"></a>').text(i).attr('data-page', i);
-
-			link.on('click', function(e) {
-				e.preventDefault(); // Previne o comportamento padrão do link
-				var page = $(this).data('page');
-
-				// Atualiza currentPage baseado no item clicado
-				if (page === 'prev') {
-					currentPage = Math.max(1, currentPage - 1);
-				} else if (page === 'next') {
-					currentPage = Math.min(totalPages, currentPage + 1);
-				} else {
-					currentPage = page;
-				}
-
-				showPage(currentPage);
-				toggleNavigation();
-			});
-
-			listItem.append(link);
-			paginationList.append(listItem);
-		}
-
-		// Adiciona item "Next"
-		var nextListItem = $('<li class="page-item">');
-		var nextLink = $('<a class="page-link" href="#" aria-label="Next">&raquo;</a>').attr('data-page', 'next');
-		nextListItem.append(nextLink);
-		paginationList.append(nextListItem);
-
-		// Atualiza o manipulador de clique para 'prev' e 'next' separadamente para evitar conflitos
-		prevLink.add(nextLink).on('click', function(e) {
-			e.preventDefault();
-			var page = $(this).data('page');
-
-			if (page === 'prev' && currentPage > 1) {
-				currentPage--;
-			} else if (page === 'next' && currentPage < totalPages) {
-				currentPage++;
-			}
-
-			showPage(currentPage);
-			toggleNavigation();
-		});
-	}
+	
 
 	$('.checkbox-toggle').each(function() {
 		var status = $(this).data('status');
@@ -250,4 +90,42 @@ $(document).ready(function() {
 			$(this).prop('checked', false);
 		}
 	});
+	
+	showPage(currentPage);
+	updatePagination();
 });
+
+function renderizarInfluencer(influencers) {
+	var html = influencers.map(function(item) {
+		var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+		return (
+			"<tr>" +
+			"<td>" +
+			'<button type="button" class="btn btn-status btn-sm ' +
+			buttonClass +
+			'" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
+			(item.ativo === "S"
+				? "<i class='fa-solid fa-check fa-xl'></i>"
+				: '<i class="fa-solid fa-xmark fa-xl"></i>') +
+			"</button>" +
+			"</td>" +
+			"<td>" +
+			item.nome +
+			"</td>" +
+			"<td>" +
+			formatarDataParaBR(item.dtNasc) +
+			"</td>" +
+			"<td>" +
+			item.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3") +
+			"</td>" +
+			'<td class="d-flex"><input type="checkbox" data-status="' +
+			item.ativo +
+			'" data-id="' +
+			item.idVendedor +
+			'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+			"</tr>"
+		);
+	}).join("");
+
+	$("#colaTabela").html(html);
+}

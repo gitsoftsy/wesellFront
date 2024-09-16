@@ -42,6 +42,7 @@ window.addEventListener("load", function () {
   const url = window.location.pathname;
   const dataUser = JSON.parse(localStorage.getItem("usuario"));
   containerResponsivo()
+  /*containerResponsivoNav()*/
   if (
     url.includes("loginFuncionario") == false &&
     url.includes("listarLojista") == false
@@ -86,10 +87,92 @@ window.addEventListener("load", function () {
   }
 });
 
-function containerResponsivo() {
+function containerResponsivoNav() {
 	let container = $('<div>')
 	container.addClass('container-table')
 	container.append($('.table'))
 	$("nav").before(container)
 }
+
+
+function containerResponsivo() {
+	let container = $('<div>')
+	container.addClass('container-table')
+	container.append($('.table').not('.tableNot'))
+	$('#pagination').before(container)
+}
+
+
+
+function showPage(page) {
+	var start = (page - 1) * rows;
+	var end = start + rows;
+
+	$('#cola-tabela tr').hide();
+	$('#cola-tabela tr').slice(start, end).show();
+}
+
+function toggleNavigation() {
+	var totalRows = $('#cola-tabela tr').length;
+	var totalPages = Math.ceil(totalRows / rows);
+
+	$('#prev').prop('disabled', currentPage === 1);
+	$('#next').prop('disabled', currentPage === totalPages);
+
+	$('#pagination').toggle(totalRows > 0);
+
+	$('#page-numbers').empty();
+
+	if (totalRows > 0) {
+		var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+		var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+		if (startPage > 1) {
+			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+			if (startPage > 2) {
+				$('#page-numbers').append('<span>...</span>');
+			}
+		}
+
+		for (var i = startPage; i <= endPage; i++) {
+			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+		}
+
+		if (endPage < totalPages) {
+			if (endPage < totalPages - 1) {
+				$('#page-numbers').append('<span>...</span>');
+			}
+			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+		}
+
+		$('.btn-page').click(function() {
+			goToPage(parseInt($(this).data('page')));
+
+		});
+	}
+}
+
+
+function updatePagination() {
+	toggleNavigation();
+}
+
+function goToPage(page) {
+	if (page >= 1 && page <= Math.ceil($('#cola-tabela tr').length / rows)) {
+		currentPage = page;
+		showPage(currentPage);
+		updatePagination();
+
+	}
+}
+
+$('#prev').click(function() {
+	goToPage(currentPage - 1);
+});
+
+$('#next').click(function() {
+	goToPage(currentPage + 1);
+});
+
 
