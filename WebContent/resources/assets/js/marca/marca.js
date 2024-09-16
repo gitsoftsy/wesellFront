@@ -1,3 +1,10 @@
+var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
+var rows = 7;
+var currentPage = 1;
+var pagesToShow = 5;
+
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');

@@ -1,3 +1,10 @@
+var dados = [];
+var sortOrder = {};
+var dadosOriginais = [];
+var rows = 7;
+var currentPage = 1;
+var pagesToShow = 5;
+
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
@@ -94,139 +101,7 @@ $(document).ready(function() {
 				$("#colaTabela").html(html);
 			}
 
-			$("#inputBusca").on("keyup", function() {
-				var valorBusca = $(this).val().toLowerCase();
 
-				if (valorBusca === '') {
-					busca()
-					$("#colaTabela tr").show();
-				} else {
-					$("#colaTabela tr").hide().filter(function() {
-						return $(this).text().toLowerCase().indexOf(valorBusca) > -1;
-					}).show();
-				}
-			});
-
-			function realizarBusca(valorInput) {
-				if (valorInput === '') {
-					showPage(currentPage);
-				} else {
-					$("#colaTabela tr").hide().filter(function() {
-						return $(this).text().toLowerCase().indexOf(valorInput) > -1;
-					}).show();
-				}
-			}
-
-
-
-			$("#inputBusca").on("input", function() {
-				var valorBusca = $(this).val().toLowerCase();
-				realizarBusca(valorBusca);
-			});
-
-			var rows = 8;
-			var currentPage = 1;
-
-			showPage(currentPage);
-			toggleNavigation();
-
-			function showPage(page) {
-				var start = (page - 1) * rows;
-				var end = start + rows;
-
-				$('.tabela-funcionarios tbody tr').hide();
-				$('.tabela-funcionarios tbody tr').slice(start, end).show();
-			}
-
-			function toggleNavigation() {
-				var totalRows = $('.tabela-funcionarios tbody tr').length;
-				var totalPages = Math.ceil(totalRows / rows);
-
-				generatePaginationList(totalPages); // Chama a função para gerar a lista de paginação
-
-
-				if (totalRows > rows) {
-					$('#prev, #next').show();
-				} else {
-					$('#prev, #next').hide();
-				}
-			}
-
-			$('#prev').click(function() {
-				if (currentPage > 1) {
-					currentPage--;
-					showPage(currentPage);
-					toggleNavigation();
-				}
-			});
-
-			$('#next').click(function() {
-				var totalRows = $('.tabela-funcionarios tbody tr').length;
-				var totalPages = Math.ceil(totalRows / rows);
-
-				if (currentPage < totalPages) {
-					currentPage++;
-					showPage(currentPage);
-					toggleNavigation();
-				}
-			});
-
-			function generatePaginationList(totalPages) {
-				var paginationList = $('#pagination-list');
-				paginationList.empty(); // Limpa a lista antes de adicionar novos itens
-
-				// Adiciona item "Prev"
-				var prevListItem = $('<li class="page-item">');
-				var prevLink = $('<a class="page-link" href="#" aria-label="Previous">&laquo;</a>').attr('data-page', 'prev');
-				prevListItem.append(prevLink);
-				paginationList.append(prevListItem);
-
-				for (let i = 1; i <= totalPages; i++) {
-					var listItem = $('<li class="page-item">');
-					var link = $('<a class="page-link" href="#"></a>').text(i).attr('data-page', i);
-
-					link.on('click', function(e) {
-						e.preventDefault(); // Previne o comportamento padrão do link
-						var page = $(this).data('page');
-
-						// Atualiza currentPage baseado no item clicado
-						if (page === 'prev') {
-							currentPage = Math.max(1, currentPage - 1);
-						} else if (page === 'next') {
-							currentPage = Math.min(totalPages, currentPage + 1);
-						} else {
-							currentPage = page;
-						}
-
-						showPage(currentPage);
-						toggleNavigation();
-					});
-
-					listItem.append(link);
-					paginationList.append(listItem);
-				}
-
-				// Adiciona item "Next"
-				var nextListItem = $('<li class="page-item">');
-				var nextLink = $('<a class="page-link" href="#" aria-label="Next">&raquo;</a>').attr('data-page', 'next');
-				nextListItem.append(nextLink);
-				paginationList.append(nextListItem);
-
-				// Atualiza o manipulador de clique para 'prev' e 'next' separadamente para evitar conflitos
-				prevLink.add(nextLink).on('click', function(e) {
-					e.preventDefault();
-					var page = $(this).data('page');
-
-					if (page === 'prev' && currentPage > 1) {
-						currentPage--;
-					} else if (page === 'next' && currentPage < totalPages) {
-						currentPage++;
-					}
-
-					showPage(currentPage);
-					toggleNavigation();
-				});
-			}
 
 			$('.checkbox-toggle').each(function() {
 				var status = $(this).data('status');
@@ -234,6 +109,9 @@ $(document).ready(function() {
 					$(this).prop('checked', false);
 				}
 			});
+
+			showPage(currentPage);
+			updatePagination();
 		});
 
 })
@@ -376,53 +254,53 @@ function editar() {
 }
 
 function excluir() {
-    Swal.fire({
-        title: "Quer mesmo excluir?",
-        showDenyButton: true,
-        showCancelButton: false,
-        confirmButtonText: "Sim",
-        denyButtonText: `Não, cancelar`
-    }).then((result) => {
-        if (result.isConfirmed) { 
-            ajaxDelete();
-        }
-    });
+	Swal.fire({
+		title: "Quer mesmo excluir?",
+		showDenyButton: true,
+		showCancelButton: false,
+		confirmButtonText: "Sim",
+		denyButtonText: `Não, cancelar`
+	}).then((result) => {
+		if (result.isConfirmed) {
+			ajaxDelete();
+		}
+	});
 }
 
 const ajaxDelete = () => {
-    $.ajax({
-        url: url_base + `/telefones/${id}`,
-        type: "delete",
-        contentType: "application/json; charset=utf-8",
-        beforeSend: function() {
-            // Mostrar indicador de carregamento
-            Swal.fire({
-                title: 'Carregando...',
-                text: 'Por favor, aguarde',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-        },
-        error: function(e) {
-            Swal.close();
-            console.log(e);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Falha na requisição, tente mais tarde!"
-            });
-        }
-    }).done(function(data) {
-        Swal.close();
-        Swal.fire({
-            title: "Apagado com sucesso!",
-            icon: "success",
-        }).then((result) => {
-            window.location.href = 'listarTelefoneLojista';
-        });
-    });
+	$.ajax({
+		url: url_base + `/telefones/${id}`,
+		type: "delete",
+		contentType: "application/json; charset=utf-8",
+		beforeSend: function() {
+			// Mostrar indicador de carregamento
+			Swal.fire({
+				title: 'Carregando...',
+				text: 'Por favor, aguarde',
+				allowOutsideClick: false,
+				didOpen: () => {
+					Swal.showLoading();
+				}
+			});
+		},
+		error: function(e) {
+			Swal.close();
+			console.log(e);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Falha na requisição, tente mais tarde!"
+			});
+		}
+	}).done(function(data) {
+		Swal.close();
+		Swal.fire({
+			title: "Apagado com sucesso!",
+			icon: "success",
+		}).then((result) => {
+			window.location.href = 'listarTelefoneLojista';
+		});
+	});
 }
 
 
