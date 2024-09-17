@@ -2,7 +2,7 @@ var banners = [];
 var dados = [];
 var sortOrder = {};
 var dadosOriginais = [];
-var rows = 7;
+var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
 

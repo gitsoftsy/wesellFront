@@ -57,7 +57,7 @@ String contextPath = request.getContextPath();
 <script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int)(Math.random()*10000)%>" />
+	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 
 </head>
 
@@ -94,13 +94,10 @@ String contextPath = request.getContextPath();
 			<div class="mt-3 mb-2"
 				style="display: flex; flex-flow: column; align-items: left; gap: 20px">
 				<div class="d-flex gap-4">
-					<a 	
-						href="importarProdutos" 
-						id="import-excel" 
+					<a href="importarProdutos" id="import-excel"
 						class="btn btn-success gap-2 d-flex align-items-center justify-content-center">
 						<i class="fa-solid fa-file-export"></i>Importar
-					</a>
-					<a href="cadastroDeProduto" id="cadastroDeProdutoLink"
+					</a> <a href="cadastroDeProduto" id="cadastroDeProdutoLink"
 						class="btn botaoCadastro gap-2 d-flex align-items-center justify-content-center"><i
 						class="fa-regular fa-pen-to-square"></i>Novo Produto</a>
 					<button id="exportar-excel"
@@ -134,15 +131,17 @@ String contextPath = request.getContextPath();
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
-			<div id="pagination-product" class="mx-auto mt-auto">
-				<button id="prev-product" class="btn btn-sm">
+			<div id="pagination">
+				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
 				</button>
-				<div id="page-numbers-product" class="btn-group mt-2"></div>
-				<button id="next-product" class="btn btn-sm">
+				<div id="page-numbers" class="btn-group mt-2"></div>
+				<button id="next" class="btn btn-sm">
 					<i class="fa-solid fa-angle-right fa-xl"></i>
 				</button>
 			</div>
+
+
 
 		</section>
 	</main>
@@ -161,13 +160,15 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-		<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int)(Math.random()*10000)%>"></script>
-		<script charset="UTF-8"
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/produto/listarProduto.js"></script>
-		<script charset="UTF-8"
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

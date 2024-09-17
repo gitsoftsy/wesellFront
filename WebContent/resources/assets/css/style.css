@@ -29,6 +29,15 @@
   color: white;
 }
 
+#pagination{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;	
+	gap: 20px;
+}
+
 .badge.hidden {
   display: none;
 }
@@ -764,6 +773,13 @@ td {
 .area-radio {
   margin-top: 0.2em;
   width: 100%;
+}
+
+.btn-group{
+	gap: 2%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .btn-group > .btn-group:not(:last-child) > .btn,
 .btn-group > .btn.dropdown-toggle-split:first-child,

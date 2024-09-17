@@ -1,7 +1,7 @@
 var dados = [];
 var sortOrder = {};
 var dadosOriginais = [];
-var rows = 7;
+var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
 
@@ -22,11 +22,98 @@ botaoAtiva.addEventListener('click', () => {
 
 var funcionarios = []
 
+
+
+function showPage(page) {
+    // Exibe o modal de carregamento
+    Swal.fire({
+        title: 'Carregando...',
+        text: 'Por favor, aguarde.',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: false,
+        onOpen: () => {
+            Swal.showLoading(); // Exibe o spinner de carregamento
+        }
+    });
+
+    $.ajax({
+        url: url_base + `/funcionarios?page=${page - 1}&size=${rows}`,
+        method: 'GET',
+        success: function(data) {
+            produto = data;
+            renderizarProduto(data);
+            updatePagination(data);
+            $('input[data-toggle="toggle"]').bootstrapToggle();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Erro ao carregar itens:", jqXHR.responseText);
+        },
+        complete: function() {
+            Swal.close(); // Fecha o modal de carregamento
+        }
+    });
+}
+
+
+
+
+function toggleNavigation(data) {
+    var totalPages = data.totalPages;
+    var currentPage = data.number + 1; // No Spring, 'number' começa do 0
+
+    $('#prev').prop('disabled', currentPage === 1);
+    $('#next').prop('disabled', currentPage === totalPages);
+
+    $('#page-numbers').empty();
+
+    var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+    var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+    if (startPage > 1) {
+        $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+        if (startPage > 2) {
+            $('#page-numbers').append('<span>...</span>');
+        }
+    }
+
+    for (var i = startPage; i <= endPage; i++) {
+        var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+        $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            $('#page-numbers').append('<span>...</span>');
+        }
+        $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+    }
+
+    $('.btn-page').click(function() {
+        goToPage(parseInt($(this).data('page')));
+    });
+}
+
+function goToPage(page) {
+    showPage(page);
+}
+
+$('#prev').click(function() {
+    if (currentPage > 1) goToPage(currentPage - 1);
+});
+
+$('#next').click(function() {
+    var totalPages = produto.totalPages;
+    if (currentPage < totalPages) goToPage(currentPage + 1);
+});
+
 $(document).ready(function() {
+	
+	
 
 
 	$.ajax({
-		url: url_base + "/funcionarios",
+		url: url_base + "/funcionarios?page=0&size=12",
 		type: "GET",
 		async: false,
 		beforeSend: function() {
@@ -42,6 +129,7 @@ $(document).ready(function() {
 		}
 	})
 		.done(function(data) {
+			console.log(data)
 			Swal.close();
 			$('#exportar-excel').click(function() {
 				var planilha = XLSX.utils.json_to_sheet(data);
@@ -55,6 +143,9 @@ $(document).ready(function() {
 		})
 
 	function renderizarFuncionarios(funcionarios) {
+		
+		console.log(funcionarios)
+		
 		var html = funcionarios.map(function(item) {
 			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
 
