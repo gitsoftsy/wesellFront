@@ -50,16 +50,6 @@ $(document).ready(function () {
 
   $(".dimensoes").hide().find("input").prop("required", false);
 
-  $('input[name="possuiFrete"]').change(function () {
-    if ($(this).val() === "S") {
-      $(".dimensoes").slideDown().find("input").prop("required", true);
-    } else {
-      $(".dimensoes").slideUp().find("input").prop("required", false);
-      $(".dimensoes input").val("");
-      $("input[name='freteGratis'][value='S']").prop("checked", true);
-    }
-  });
-
   fetchData("/lojistas/ativos", "#lojista", "idLojista", "nomeFantasia");
   fetchData("/marcas/ativos", "#marca", "idMarca", "marca");
   fetchData(
@@ -174,6 +164,16 @@ $(document).ready(function () {
   $("#categoria").change(function () {
     const categoryId = $(this).val();
     loadSubCategories(categoryId);
+  });
+
+  $('input[name="possuiFrete"]').change(function () {
+    if ($(this).val() === "S") {
+      $(".dimensoes").slideDown().find("input").prop("required", true);
+    } else {
+      $(".dimensoes").slideUp().find("input").prop("required", false);
+      $(".dimensoes input").val("");
+      $("input[name='freteGratis'][value='S']").prop("checked", true);
+    }
   });
 
   $("#precoDeVenda").on("input", function (e) {

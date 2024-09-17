@@ -108,6 +108,12 @@ public class LojistaController {
 		
 		return "wesell/notificacoes";
 	}
+
+	@RequestMapping(value = { "notificacoesLojista" }, method = RequestMethod.GET)
+	public String notificacoesLojista(HttpSession session, Model model) throws Exception {
+		
+		return "lojista/notificacoes";
+	}
 		
 	@RequestMapping(value = { "cadastroFuncionario" }, method = RequestMethod.GET)
 	public String cadastroFuncionario(HttpSession session, Model model) throws Exception {

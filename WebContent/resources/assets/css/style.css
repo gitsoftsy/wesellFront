@@ -1,4 +1,4 @@
-	* {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -157,8 +157,8 @@ body {
 
 /* container table */
 .container-table {
-	overflow-x: scroll;
-	overflow-y: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .card {
@@ -523,7 +523,10 @@ a {
 .nav-sidebar a:hover {
   background-color: rgb(4, 45, 89);
 }
-
+.notification-icon a:hover {
+  background-color: transparent;
+  color: #fff;
+}
 .nav-sidebar i {
   width: 28px;
 }
@@ -705,7 +708,6 @@ a {
   transition: all 150ms ease-in-out;
 }
 
-
 #card-table {
   height: 480px !important;
 }
@@ -791,7 +793,7 @@ td {
 @media screen and (max-width: 1439px) {
   .badge {
     right: -2px;
-}
+  }
   .container-res {
     margin-left: 17em;
     margin-right: 3em;
@@ -850,8 +852,6 @@ td {
     width: 223.25px;
     bottom: 15px;
   }
-
-
 
   .card-table .btn-primary {
     align-self: flex-end;

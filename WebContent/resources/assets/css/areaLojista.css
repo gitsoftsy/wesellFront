@@ -11,6 +11,31 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.notification-icon {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  background-color: red;
+  color: white;
+}
+
+.badge.hidden {
+  display: none;
+}
+
 .swal2-input,
 .swal2-select {
   width: 70% !important;
@@ -50,63 +75,63 @@ body {
 /* .modal-backdrop {
   position: relative !important;
 } */
- /* The switch - the box around the slider */
+/* The switch - the box around the slider */
 .switch {
-	transform: rotate(180deg);
-	position: relative;
-	display: inline-block;
-	width: 4em;
-	height: 1.5em;
+  transform: rotate(180deg);
+  position: relative;
+  display: inline-block;
+  width: 4em;
+  height: 1.5em;
 }
- 
+
 /* Hide default HTML checkbox */
 .switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
- 
+
 /* The slider */
 .slider {
-	position: absolute;
-	cursor: pointer;
-	inset: 0;
-	background: #8B0000;
-	border-radius: 50px;
-	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #8b0000;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
- 
+
 .slider-certidao {
-	background: #031e3b;
+  background: #031e3b;
 }
- 
+
 .slider:before {
-	position: absolute;
-	content: "";
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 1.5em;
-	width: 1.5em;
-	inset: 0;
-	background-color: white;
-	border-radius: 50px;
-	border: 1px solid #000;
-	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid #000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
- 
-.switch input:checked+.slider {
-	background: #031e3b;
+
+.switch input:checked + .slider {
+  background: #031e3b;
 }
- 
-.switch input:focus+.slider {
-	box-shadow: 0 0 1px #9cc9fa;;
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #9cc9fa;
 }
- 
-.switch input:checked+.slider:before {
-	transform: translateX(2.6em);
+
+.switch input:checked + .slider:before {
+  transform: translateX(2.6em);
 }
- 
+
 .card-image {
   text-align: center;
   border: 1px solid #dee2e6;
@@ -357,6 +382,13 @@ a {
   color: #183153;
 }
 
+.menuUser {
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nav-sidebar a {
   display: flex;
   align-items: center;
@@ -369,12 +401,18 @@ a {
   color: #fff;
   transition: ease-in-out 0.3s;
 }
+.menuUser > a {
+  width: 75%;
+}
 
 .nav-sidebar a:hover {
   background-color: #e4e4e4;
   color: #2d2d2d;
 }
-
+.notification-icon a:hover {
+  background-color: transparent;
+  color: #fff;
+}
 .nav-sidebar i {
   width: 28px;
 }
@@ -470,13 +508,17 @@ a {
   left: 0;
   height: 100%;
   width: 280px;
-  background-color: #343A40;
+  background-color: #343a40;
   min-height: 100vh;
   top: 0;
   color: #fff;
   text-align: left;
   padding-left: 15px;
   box-shadow: 1px 0px 11px -8px #000;
+}
+
+.container-nome-user {
+  padding-left: 2%;
 }
 
 .title {
@@ -490,8 +532,8 @@ a {
   font-size: 1.4em;
 }
 
-#closeIcon{
-	display: none;
+#closeIcon {
+  display: none;
 }
 
 #sair {
@@ -530,8 +572,7 @@ a {
   height: 640px !important;
 }
 .card {
-      width: 100%;
-
+  width: 100%;
 }
 
 #card-table {
@@ -570,8 +611,8 @@ a {
 
 /* container table */
 .container-table {
-	overflow-x: scroll;
-	overflow-y: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .container-res {
@@ -596,11 +637,14 @@ td {
   text-overflow: ellipsis;
 }
 
-.menu-mobile{
-	display: none;
+.menu-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 1439px) {
+  .badge {
+    right: -2px;
+  }
   .container-res {
     margin-left: 17em;
     margin-right: 3em;
@@ -700,74 +744,69 @@ td {
   }
 }
 
-
 @media screen and (max-width: 768px) {
-	.abracaMenu{
-		display: none;
-		width: 100%;
-		z-index: 99;
-		padding-left: 0;
-	}
-	
-	.container-menu-sair{
-		color: #fff;
-		display: flex;
-		justify-content: end;
-		align-items: center;
-		height: 5%;
-		padding-right: 2%;
-	}
-	
-	.container-menu-sair i{
-		font-size: 1.2rem
-	}
-	
-	.nav-sidebar{
-		padding-left: 2%
-	}
-	
-	.container-menu-img{
-		padding: 2%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	
-	
-	.menu-mobile {
-		display: block;
-		flex-direction: row;
-		height: 20%;
-		width: 100vw;
-		background-color: #343A40;
-		padding: 2%;
-	}
-	
-	.container-header{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-	
-	.fa-bars{
-		color: #fff;
-	}
-	
-	.img-mobile-menu{
-		width: 20%;
-	}
-	
-	.logoSumare{
-		margin-top: 0;
-	}
-	
-	
-	.container-res{
-		margin-left: 2rem
-	}
-	
-	
+  .abracaMenu {
+    display: none;
+    width: 100%;
+    z-index: 99;
+    padding-left: 0;
+  }
+
+  .container-menu-sair {
+    color: #fff;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 5%;
+    padding-right: 2%;
+  }
+
+  .container-menu-sair i {
+    font-size: 1.2rem;
+  }
+
+  .nav-sidebar {
+    padding-left: 2%;
+  }
+
+  .container-menu-img {
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-mobile {
+    display: block;
+    flex-direction: row;
+    height: 20%;
+    width: 100vw;
+    background-color: #343a40;
+    padding: 2%;
+  }
+
+  .container-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fa-bars {
+    color: #fff;
+  }
+
+  .img-mobile-menu {
+    width: 20%;
+  }
+
+  .logoSumare {
+    margin-top: 0;
+  }
+
+  .container-res {
+    margin-left: 2rem;
+  }
 }
 
 @media screen and (max-width: 425px) {
