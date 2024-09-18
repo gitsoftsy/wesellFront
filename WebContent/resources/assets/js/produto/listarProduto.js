@@ -30,95 +30,9 @@ botaoAtiva.addEventListener("click", () => {
 
 
 
-function showPage(page) {
-    // Exibe o modal de carregamento
-    Swal.fire({
-        title: 'Carregando...',
-        text: 'Por favor, aguarde.',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        showConfirmButton: false,
-        onOpen: () => {
-            Swal.showLoading(); // Exibe o spinner de carregamento
-        }
-    });
-
-    $.ajax({
-        url: url_base + `/produtos?page=${page - 1}&size=${rows}`,
-        method: 'GET',
-        success: function(data) {
-            produto = data;
-            renderizarProduto(data);
-            updatePagination(data);
-            $('input[data-toggle="toggle"]').bootstrapToggle();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Erro ao carregar itens:", jqXHR.responseText);
-        },
-        complete: function() {
-            Swal.close(); // Fecha o modal de carregamento
-        }
-    });
-}
-
-
-
-
-function toggleNavigation(data) {
-    var totalPages = data.totalPages;
-    var currentPage = data.number + 1; // No Spring, 'number' começa do 0
-
-    $('#prev').prop('disabled', currentPage === 1);
-    $('#next').prop('disabled', currentPage === totalPages);
-
-    $('#page-numbers').empty();
-
-    var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
-    var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
-
-    if (startPage > 1) {
-        $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
-        if (startPage > 2) {
-            $('#page-numbers').append('<span>...</span>');
-        }
-    }
-
-    for (var i = startPage; i <= endPage; i++) {
-        var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-        $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-    }
-
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-            $('#page-numbers').append('<span>...</span>');
-        }
-        $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
-    }
-
-    $('.btn-page').click(function() {
-        goToPage(parseInt($(this).data('page')));
-    });
-}
-
-function goToPage(page) {
-    showPage(page);
-}
-
-$('#prev').click(function() {
-    if (currentPage > 1) goToPage(currentPage - 1);
-});
-
-$('#next').click(function() {
-    var totalPages = produto.totalPages;
-    if (currentPage < totalPages) goToPage(currentPage + 1);
-});
-
-function updatePagination(data) {
-    toggleNavigation(data);
-}
-
 
 $(document).ready(function() {
+	
 	function base64ToCSVAndDownload(base64String, fileName) {
 		// Decodifica a string Base64 para obter os dados binários
 		var binaryString = atob(base64String);
@@ -217,7 +131,7 @@ $(document).ready(function() {
 			// 	XLSX.writeFile(livro, "produtosLojista.xlsx");
 			// });
 			produto = data;
-			renderizarProduto(data);
+			renderizarProduto(data.content);
 			
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -236,10 +150,12 @@ $(document).ready(function() {
 	
 });
 
+
+
 function renderizarProduto(produtos) {
 	console.log(produto)
     // produtos.content contém os itens da página atual
-    var html = produtos.content.map(function(item) {
+    var html = produtos.map(function(item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
 
         return (
@@ -312,3 +228,203 @@ function alteraStatus(element) {
 		},
 	}).done(function() { });
 }
+
+$("#btnFiltro").on("click", function() {
+    Swal.fire({
+        title: 'Carregando...',
+        text: 'Por favor, aguarde.',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: false,
+        onOpen: () => {
+            Swal.showLoading(); // Exibe o spinner de carregamento
+        }
+    });
+
+    var valorBusca = $("#inputBusca").val();
+
+    $.ajax({
+        url: url_base + "/produtos/produtoPorNome/" + valorBusca,
+        type: "GET",
+        async: false,
+    })
+    .done(function(data) {
+        produto = data; // Atualiza o array de produtos com os dados filtrados
+        currentPage = 1; // Reseta a página atual
+        renderizarProduto(produto.slice(0, rows)); // Renderiza os primeiros 12 produtos
+        updatePaginationByFilter(); // Atualiza a paginação com base no filtro
+        $('input[data-toggle="toggle"]').bootstrapToggle();
+        Swal.close();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+        Swal.close();
+    });
+});
+
+
+
+
+
+
+
+
+function showPageByFilter(page) {
+    var start = (page - 1) * rows;
+    var end = start + rows;
+    $('#colaTabela').html(renderizarProduto(produto.slice(start, end)));
+}
+
+function updatePaginationByFilter() {
+    var totalRows = produto.length;
+    var totalPages = Math.ceil(totalRows / rows);
+
+    $('#prev').prop('disabled', currentPage === 1);
+    $('#next').prop('disabled', currentPage === totalPages);
+
+    $('#pagination').toggle(totalRows > 0);
+    $('#page-numbers').empty();
+
+    if (totalRows > 0) {
+        var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+        var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+        if (startPage > 1) {
+            $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+            if (startPage > 2) {
+                $('#page-numbers').append('<span>...</span>');
+            }
+        }
+
+        for (var i = startPage; i <= endPage; i++) {
+            var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+            $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                $('#page-numbers').append('<span>...</span>');
+            }
+            $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+        }
+
+        $('.btn-page').click(function() {
+            goToPageByFilter(parseInt($(this).data('page')));
+        });
+    }
+}
+
+function goToPageByFilter(page) {
+    if (page >= 1 && page <= Math.ceil(produto.length / rows)) {
+        currentPage = page;
+        showPageByFilter(currentPage);
+        updatePaginationByFilter();
+    }
+}
+
+
+
+
+
+
+
+
+function showPage(page) {
+    // Exibe o modal de carregamento
+    Swal.fire({
+        title: 'Carregando...',
+        text: 'Por favor, aguarde.',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: false,
+        onOpen: () => {
+            Swal.showLoading(); // Exibe o spinner de carregamento
+        }
+    });
+
+    $.ajax({
+        url: url_base + `/produtos?page=${page - 1}&size=${rows}`,
+        method: 'GET',
+        success: function(data) {
+            produto = data;
+            renderizarProduto(data.content);
+            updatePagination(data);
+            $('input[data-toggle="toggle"]').bootstrapToggle();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Erro ao carregar itens:", jqXHR.responseText);
+        },
+        complete: function() {
+            Swal.close(); // Fecha o modal de carregamento
+        }
+    });
+}
+
+
+
+function toggleNavigation(data) {
+	
+	
+    var totalPages = data.totalPages;
+    var currentPage = data.number + 1; // No Spring, 'number' começa do 0
+
+    $('#prev').prop('disabled', currentPage === 1);
+    $('#next').prop('disabled', currentPage === totalPages);
+
+    $('#page-numbers').empty();
+
+    var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+    var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+    if (startPage > 1) {
+        $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+        if (startPage > 2) {
+            $('#page-numbers').append('<span>...</span>');
+        }
+    }
+
+    for (var i = startPage; i <= endPage; i++) {
+        var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+        $('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            $('#page-numbers').append('<span>...</span>');
+        }
+        $('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+    }
+
+    $('.btn-page').click(function() {
+        goToPage(parseInt($(this).data('page')));
+    });
+}
+
+function goToPage(page) {
+    showPage(page);
+}
+
+$('#prev').click(function() {
+	if(produto.content){
+		if (currentPage > 1) goToPage(currentPage - 1);
+	}else{
+		goToPage(currentPage - 1);
+	}
+	
+    
+});
+
+$('#next').click(function() {
+	if(produto.content){
+    	var totalPages = produto.totalPages;
+    	if (currentPage < totalPages) goToPage(currentPage + 1);
+    }else{
+		goToPage(currentPage + 1);
+	}
+    
+});
+
+function updatePagination(data) {
+    toggleNavigation(data);
+}
+

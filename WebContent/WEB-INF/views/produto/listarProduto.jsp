@@ -108,7 +108,7 @@ String contextPath = request.getContextPath();
 				<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar" /> <span
-						class="input-group-text icone-pesquisa"><i
+						class="input-group-text icone-pesquisa" id="btnFiltro" style="cursor: pointer;"><i
 						class="fas fa-search"></i></span>
 				</div>
 
