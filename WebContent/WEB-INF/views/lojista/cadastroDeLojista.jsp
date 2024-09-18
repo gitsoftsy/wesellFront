@@ -413,7 +413,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             </div>
             <div class="col-md-6" id="cardCEP">
               <label for="cepCd" class="form-label"
-                >CEP do CD:<span class="red">*</span></label
+                >CEP do Centro de Distribuição:<span class="red">*</span></label
               >
               <input
                 type="tel"
