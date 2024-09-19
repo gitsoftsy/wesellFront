@@ -22,7 +22,7 @@ function getDados() {
     banners = data;
     dadosFiltrados = banners;
     renderizarItens(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 }

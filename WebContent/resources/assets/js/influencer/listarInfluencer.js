@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     dadosFiltrados = data;
     renderizarInfluencer(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 

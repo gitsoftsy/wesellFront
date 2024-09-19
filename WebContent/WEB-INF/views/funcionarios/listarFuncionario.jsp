@@ -151,22 +151,22 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <tbody id="colaTabela" class="table-group-divider"></tbody>
         </table>
         <ul
-        id="pagination"
-        hidden
-        class="pagination justify-content-end mt-auto"
-      >
-        <li id="prevB" class="page-item">
-          <a class="page-link" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
+          id="pagination"
+          hidden
+          class="pagination justify-content-end mt-auto mb-0"
+        >
+          <li id="prevB" class="page-item">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
 
-        <li id="nextB" class="page-item">
-          <a class="page-link" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
+          <li id="nextB" class="page-item">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
       </section>
     </main>
 

@@ -45,7 +45,7 @@ $(document).ready(function () {
     funcionarios = data;
     dadosFiltrados = funcionarios;
     renderizarFuncionarios(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
     currentPage = 1;
     renderizarFuncionarios(dadosFiltrados);
     renderPageNumbersNew();
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     toggleNavigationNew();
   }
 
@@ -172,7 +172,7 @@ $(document).ready(function () {
         var page = $(this).data("page");
         if (page !== currentPage) {
           currentPage = page;
-          showPageNew(currentPage);
+          showPageNew(currentPageNew);
           renderPageNumbersNew();
           toggleNavigationNew();
         }
@@ -195,7 +195,7 @@ $(document).ready(function () {
         e.preventDefault();
         if (currentPage > 1) {
           currentPage--;
-          showPageNew(currentPage);
+          showPageNew(currentPageNew);
           renderPageNumbersNew();
         }
       });
@@ -204,7 +204,7 @@ $(document).ready(function () {
         e.preventDefault();
         if (currentPage < totalPages) {
           currentPage++;
-          showPageNew(currentPage);
+          showPageNew(currentPageNew);
           renderPageNumbersNew();
         }
       });
@@ -215,7 +215,7 @@ $(document).ready(function () {
   $("#prevB").click(function () {
     if (currentPage > 1) {
       currentPage--;
-      showPageNew(currentPage);
+      showPageNew(currentPageNew);
       renderPageNumbersNew();
     }
   });
@@ -226,7 +226,7 @@ $(document).ready(function () {
 
     if (currentPage < totalPages) {
       currentPage++;
-      showPageNew(currentPage);
+      showPageNew(currentPageNew);
       renderPageNumbersNew();
     }
   });

@@ -34,7 +34,7 @@ $(document).ready(function () {
     categorias = data;
     dadosFiltrados = categorias;
     renderizarCategorias(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 

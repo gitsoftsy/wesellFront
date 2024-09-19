@@ -147,7 +147,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <ul
           id="pagination"
           hidden
-          class="pagination justify-content-end mt-auto"
+          class="pagination justify-content-end mt-auto mb-0"
         >
           <li id="prevB" class="page-item">
             <a class="page-link" aria-label="Previous">

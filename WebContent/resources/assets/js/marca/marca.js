@@ -49,7 +49,7 @@ $(document).ready(function () {
     cargos = data;
     dadosFiltrados = cargos;
     renderizarFuncionarios(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 

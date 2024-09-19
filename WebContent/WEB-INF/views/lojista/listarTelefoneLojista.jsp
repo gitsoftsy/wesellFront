@@ -131,11 +131,23 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </thead>
           <tbody id="colaTabela" class="table-group-divider"></tbody>
         </table>
-        <nav aria-label="Page navigation example">
-          <ul id="pagination-list" class="pagination">
-          
-          </ul>
-        </nav>
+        <ul
+          id="pagination"
+          hidden
+          class="pagination justify-content-end mt-auto mb-0"
+        >
+          <li id="prevB" class="page-item">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+
+          <li id="nextB" class="page-item">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
       </section>
     </main>
     <div
@@ -321,16 +333,15 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
     ></script>
-
-    <script
-      charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/lojista/listarTelefoneLojista.js"
-    ></script>
     <script
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int)(Math.random()*10000)%>"
     ></script>
-    
+    <script
+      charset="UTF-8"
+      src="<%=contextPath%>/resources/assets/js/lojista/listarTelefoneLojista.js"
+    ></script>
+
     <script
       charset="UTF-8"
       src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"

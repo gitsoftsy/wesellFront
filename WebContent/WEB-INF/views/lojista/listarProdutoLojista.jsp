@@ -147,7 +147,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           </thead>
           <tbody id="colaTabela" class="table-group-divider"></tbody>
         </table>
-        <ul id="pagination" class="pagination justify-content-end mt-auto">
+        <ul id="pagination" class="pagination justify-content-end mt-auto mb-0">
           <li id="prevB" class="page-item">
             <a class="page-link" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>

@@ -49,7 +49,7 @@ $(document).ready(function () {
     colaboradores = data;
     dadosFiltrados = colaboradores;
     renderizarColaboradores(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 

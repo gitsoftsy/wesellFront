@@ -60,7 +60,7 @@ $(document).ready(function () {
   }).done(function (data) {
     dadosFiltrados = data;
     renderizarTelefone(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
 
     function renderizarTelefone(telefone) {

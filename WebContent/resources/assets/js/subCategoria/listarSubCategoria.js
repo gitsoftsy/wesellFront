@@ -47,7 +47,7 @@ $(document).ready(function () {
     subCategoria = data;
     dadosFiltrados = subCategoria;
     renderizarSubCategorias(dadosFiltrados);
-    showPageNew(currentPage);
+    showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
 

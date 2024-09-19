@@ -578,7 +578,7 @@ a {
 }
 
 .card-table {
-  min-height: 680px !important;
+  min-height: 720px !important;
 }
 .card {
   width: 100%;
@@ -714,7 +714,7 @@ td {
   }
 
   .card-table {
-    min-height: 680px !important;
+    min-height: 720px !important;
   }
 
   .card-table .btn-primary {
