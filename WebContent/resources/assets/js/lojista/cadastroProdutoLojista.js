@@ -618,7 +618,7 @@ async function cadastrar($button, originalButtonText) {
     altura: $("#altura").val(),
     profundidade: $("#profundidade").val(),
     categoriaId: $("#categoria").val(),
-    subcategoriaId: $("#subCategoria").val(),
+    subcategoriaId: $("#subCategoria").val() || null,
     lojistaId: lojista.lojistaId,
     marcaId: $("#marca").val(),
     nivelRelevancia: $("input[name='nivel']:checked").val(),

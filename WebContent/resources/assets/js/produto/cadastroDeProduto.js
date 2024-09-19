@@ -625,6 +625,13 @@ async function cadastrar($button, originalButtonText) {
 		freteGratis: $("input[name='freteGratis']:checked").val(),
 	};
 
+	if ($("input[name='possuiFrete']:checked").val() == "S") {
+		objeto.largura = null
+		objeto.altura = null
+		objeto.freteGratis = "S"
+		objeto.profundidade = null
+	}
+
 	try {
 		const produtoId = await cadastrarProduto(objeto);
 		await cadastrarImagens(imagensBase64, produtoId);

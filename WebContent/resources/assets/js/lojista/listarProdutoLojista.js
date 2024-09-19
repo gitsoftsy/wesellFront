@@ -231,7 +231,7 @@ function renderizarProduto(produto) {
 				(item.categorias ? item.categorias.categoria : item.categoria) +
 				"</td>" +
 				"<td>" +
-				(item.subcategorias ? item.subcategorias?.nome : item.subcategoria)+
+				((item.subcategorias ? item.subcategorias?.nome : item.subcategoria) || "Não possui")+
 				"</td>" +
 				"<td>" +
 				"R$ " +
