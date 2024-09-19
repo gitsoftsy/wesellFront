@@ -105,12 +105,17 @@ String contextPath = request.getContextPath();
 						<i class="fa-solid fa-file-export"></i>Exportar
 					</button>
 				</div>
-				<div class="input-group">
+				<form id="form-filtro">
+				
+				<div class="input-group group-limpar-filtro">
+					<div>
 					<input id="inputBusca" type="text" class="form-control inputForm"
-						placeholder="Buscar" /> <span
+						placeholder="Buscar" /> <button type="submit"
 						class="input-group-text icone-pesquisa" id="btnFiltro" style="cursor: pointer;"><i
-						class="fas fa-search"></i></span>
+						class="fas fa-search"></i></button></div>
+						<span id="limpa-filtros" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center">Limpar Filtros</span>
 				</div>
+				</form>
 
 			</div>
 

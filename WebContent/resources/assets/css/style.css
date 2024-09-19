@@ -794,6 +794,20 @@ td {
   align-items: center;
   justify-content: center;
 }
+
+.group-limpar-filtro{
+	display: flex;
+	flex-direction: row; 
+	gap: 2%;
+	width: 100%;
+}
+
+.group-limpar-filtro div{
+	display: flex;
+	width: 85%;
+	flex-direction: row; 
+	
+}
 .btn-group > .btn-group:not(:last-child) > .btn,
 .btn-group > .btn.dropdown-toggle-split:first-child,
 .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {

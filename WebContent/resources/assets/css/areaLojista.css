@@ -36,6 +36,20 @@ body {
   display: none;
 }
 
+.group-limpar-filtro{
+	display: flex;
+	flex-direction: row; 
+	gap: 2%;
+	width: 100%;
+}
+
+.group-limpar-filtro div{
+	display: flex;
+	width: 85%;
+	flex-direction: row; 
+	
+}
+
 .swal2-input,
 .swal2-select {
   width: 70% !important;
