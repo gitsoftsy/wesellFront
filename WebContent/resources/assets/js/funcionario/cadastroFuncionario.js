@@ -138,10 +138,19 @@ function cadastrar() {
     error: function (e) {
       Swal.close();
       console.log(e);
-      Swal.fire({
-        icon: "error",
-        title: e.responseJSON.message,
-      });
+
+      if (e.responseJSON[0].campo === "cpf") {
+        Swal.fire({
+          icon: "error",
+          title:
+            "Número do registro de contribuinte individual brasileiro (CPF) inválido",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: e.responseJSON[0].message,
+        });
+      }
     },
   }).done(function (data) {
     var telefone = {

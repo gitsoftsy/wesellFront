@@ -463,8 +463,8 @@ a{
 }
 
 .card-table {
-	height: 640px !important;
-}
+	min-height: 680px !important;
+  }
 
 #card-table {
 	height: 480px !important;
@@ -584,9 +584,6 @@ td {
 		bottom: 15px;
 	}
 
-	.card-table {
-		height: 580px !important;
-	}
 
 	.card-table .btn-primary {
 		align-self: flex-end;

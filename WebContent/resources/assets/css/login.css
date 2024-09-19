@@ -75,8 +75,8 @@ body {
 	}
 
 	.card-table {
-		height: 580px !important;
-	}
+		min-height: 680px !important;
+	  }
 
 	.card-table .btn-primary {
 		align-self: flex-end;
