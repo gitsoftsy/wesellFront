@@ -309,11 +309,20 @@ body {
   padding: 20px;
 }
 
-.pagination {
+/* .pagination {
   display: flex;
   gap: 10px;
   color: red;
   margin-top: 25px;
+} */
+
+#prevB a,
+#nextB a {
+  pointer-events: none;
+}
+#prevB,
+#nextB {
+  cursor: pointer;
 }
 
 a {

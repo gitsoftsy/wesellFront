@@ -1,4 +1,6 @@
 var url_base = "https://api.we-sell.store/api-wesell";
+var rowsNew = 8;
+var currentPageNew = 1;
 
 // Definir o charset padrão para todos os scripts carregados dinamicamente
 document.currentScript.charset = "UTF-8";
@@ -41,7 +43,7 @@ window.addEventListener("load", function () {
 
   const url = window.location.pathname;
   const dataUser = JSON.parse(localStorage.getItem("usuario"));
-  containerResponsivo()
+  containerResponsivo();
   /*containerResponsivoNav()*/
   if (
     url.includes("loginFuncionario") == false &&
@@ -80,7 +82,7 @@ window.addEventListener("load", function () {
         }).then((result) => {
           if (result) {
             window.location.href = "loginFuncionario";
-          }		
+          }
         });
       }
     }
@@ -88,91 +90,215 @@ window.addEventListener("load", function () {
 });
 
 function containerResponsivoNav() {
-	let container = $('<div>')
-	container.addClass('container-table')
-	container.append($('.table'))
-	$("nav").before(container)
+  let container = $("<div>");
+  container.addClass("container-table");
+  container.append($(".table"));
+  $("nav").before(container);
 }
-
 
 function containerResponsivo() {
-	let container = $('<div>')
-	container.addClass('container-table')
-	container.append($('.table').not('.tableNot'))
-	$('#pagination').before(container)
+  let container = $("<div>");
+  container.addClass("container-table");
+  container.append($(".table").not(".tableNot"));
+  $("#pagination").before(container);
 }
 
-
-
 function showPage(page) {
-	var start = (page - 1) * rows;
-	var end = start + rows;
+  var start = (page - 1) * rows;
+  var end = start + rows;
 
-	$('#colaTabela tr').hide();
-	$('#colaTabela tr').slice(start, end).show();
+  $("#colaTabela tr").hide();
+  $("#colaTabela tr").slice(start, end).show();
 }
 
 function toggleNavigation() {
-	var totalRows = $('#colaTabela tr').length;
-	var totalPages = Math.ceil(totalRows / rows);
+  var totalRows = $("#colaTabela tr").length;
+  var totalPages = Math.ceil(totalRows / rows);
 
-	$('#prev').prop('disabled', currentPage === 1);
-	$('#next').prop('disabled', currentPage === totalPages);
+  $("#prev").prop("disabled", currentPage === 1);
+  $("#next").prop("disabled", currentPage === totalPages);
 
-	$('#pagination').toggle(totalRows > 0);
+  $("#pagination").toggle(totalRows > 0);
 
-	$('#page-numbers').empty();
+  $("#page-numbers").empty();
 
-	if (totalRows > 0) {
-		var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
-		var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+  if (totalRows > 0) {
+    var startPage = Math.max(
+      1,
+      Math.min(
+        currentPage - Math.floor(pagesToShow / 2),
+        totalPages - pagesToShow + 1
+      )
+    );
+    var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
 
-		if (startPage > 1) {
-			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
-			if (startPage > 2) {
-				$('#page-numbers').append('<span>...</span>');
-			}
-		}
+    if (startPage > 1) {
+      $("#page-numbers").append(
+        '<button class="btn btn-sm btn-page" data-page="1">1</button>'
+      );
+      if (startPage > 2) {
+        $("#page-numbers").append("<span>...</span>");
+      }
+    }
 
-		for (var i = startPage; i <= endPage; i++) {
-			var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-			$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
-		}
+    for (var i = startPage; i <= endPage; i++) {
+      var btnClass =
+        i === currentPage
+          ? "btn btn-sm btn-page active-page"
+          : "btn btn-sm btn-page";
+      $("#page-numbers").append(
+        '<button class="' +
+          btnClass +
+          '" data-page="' +
+          i +
+          '">' +
+          i +
+          "</button>"
+      );
+    }
 
-		if (endPage < totalPages) {
-			if (endPage < totalPages - 1) {
-				$('#page-numbers').append('<span>...</span>');
-			}
-			$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
-		}
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        $("#page-numbers").append("<span>...</span>");
+      }
+      $("#page-numbers").append(
+        '<button class="btn btn-sm btn-page" data-page="' +
+          totalPages +
+          '">' +
+          totalPages +
+          "</button>"
+      );
+    }
 
-		$('.btn-page').click(function() {
-			goToPage(parseInt($(this).data('page')));
-
-		});
-	}
+    $(".btn-page").click(function () {
+      goToPage(parseInt($(this).data("page")));
+    });
+  }
 }
 
-
 function updatePagination() {
-	toggleNavigation();
+  toggleNavigation();
 }
 
 function goToPage(page) {
-	if (page >= 1 && page <= Math.ceil($('#colaTabela tr').length / rows)) {
-		currentPage = page;
-		showPage(currentPage);
-		updatePagination();
-
-	}
+  if (page >= 1 && page <= Math.ceil($("#colaTabela tr").length / rows)) {
+    currentPage = page;
+    showPage(currentPage);
+    updatePagination();
+  }
 }
 
-$('#prev').click(function() {
-	goToPage(currentPage - 1);
+$("#prev").click(function () {
+  goToPage(currentPage - 1);
 });
 
-$('#next').click(function() {
-	goToPage(currentPage + 1);
+$("#next").click(function () {
+  goToPage(currentPage + 1);
 });
 
+// nova paginação
 
+function showPageNew(page) {
+  var start = (page - 1) * rowsNew;
+  var end = start + rowsNew;
+
+  $("#colaTabela tr").hide();
+  $("#colaTabela tr").slice(start, end).show();
+  toggleNavigationNew();
+}
+
+function renderPageNumbersNew() {
+  var totalRows = dadosFiltrados.length;
+  var totalPages = Math.ceil(totalRows / rowsNew);
+  var pageNumbersHtml = "";
+
+  if (totalPages > 1) {
+    $("#pagination").removeAttr("hidden");
+
+    var startPage = Math.max(1, currentPageNew - 1);
+    var endPage = Math.min(totalPages, currentPageNew + 1);
+
+    if (currentPageNew === 1) {
+      endPage = Math.min(totalPages, 3);
+    } else if (currentPageNew === totalPages) {
+      startPage = Math.max(1, totalPages - 2);
+    }
+
+    if (totalPages > 1) {
+      for (var i = startPage; i <= endPage; i++) {
+        pageNumbersHtml +=
+          '<li class="page-item ' + (i === currentPageNew ? "active" : "") + '">';
+        pageNumbersHtml +=
+          '<a class="page-link" href="#" data-page="' + i + '">' + i + "</a>";
+        pageNumbersHtml += "</li>";
+      }
+    }
+
+    $("#pagination").find("li.page-item:not(#prevB):not(#nextB)").remove();
+    $("#pagination").find("li#prevB").after(pageNumbersHtml);
+
+    $("#pagination").show();
+
+    $("#pagination .page-link").click(function (e) {
+      e.preventDefault();
+      var page = $(this).data("page");
+      if (page !== currentPageNew) {
+        currentPageNew = page;
+        showPageNew(currentPageNew);
+        renderPageNumbersNew();
+        toggleNavigationNew();
+      }
+    });
+  } else {
+    $("#pagination").attr("hidden", true);
+  }
+}
+
+function toggleNavigationNew() {
+  var totalRows = dadosFiltrados.length;
+  var totalPages = Math.ceil(totalRows / rowsNew);
+
+  if (totalRows > rowsNew) {
+    $("#prevB, #nextB").show();
+    $("#prevB").toggleClass("disabled", currentPageNew === 1);
+    $("#nextB").toggleClass("disabled", currentPageNew === totalPages);
+
+    $("#prevB a").click(function (e) {
+      e.preventDefault();
+      if (currentPageNew > 1) {
+        currentPageNew--;
+        showPageNew(currentPageNew);
+        renderPageNumbersNew();
+      }
+    });
+
+    $("#nextB a").click(function (e) {
+      e.preventDefault();
+      if (currentPageNew < totalPages) {
+        currentPageNew++;
+        showPageNew(currentPageNew);
+        renderPageNumbersNew();
+      }
+    });
+  } else {
+    $("#prevB, #nextB").hide();
+  }
+}
+$("#prevB").click(function () {
+  if (currentPageNew > 1) {
+    currentPageNew--;
+    showPageNew(currentPageNew);
+    renderPageNumbersNew();
+  }
+});
+
+$("#nextB").click(function () {
+  var totalRows = dadosFiltrados.length;
+  var totalPages = Math.ceil(totalRows / rowsNew);
+
+  if (currentPageNew < totalPages) {
+    currentPageNew++;
+    showPageNew(currentPageNew);
+    renderPageNumbersNew();
+  }
+});

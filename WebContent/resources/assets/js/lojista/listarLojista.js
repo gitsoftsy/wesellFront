@@ -1,11 +1,6 @@
-$("#pagination").hide();
-
 var dados = [];
 var sortOrder = {};
-var dadosOriginais = [];
-
-var rows = 8;
-var currentPage = 1;
+var dadosFiltrados = [];
 
 const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
@@ -50,8 +45,9 @@ $(document).ready(function () {
     });
 
     lojistas = data;
-    renderizarLojistas(data);
-    showPageNew(currentPage);
+    dadosFiltrados = lojistas;
+    renderizarLojistas(dad);
+    showPageNew(dadosFiltrados);
     renderPageNumbersNew();
   });
 
@@ -137,6 +133,31 @@ $(document).ready(function () {
     }
   });
 
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = lojistas;
+    } else {
+      dadosFiltrados = lojistas.filter(function (item) {
+        return (
+          item.razaoSocial.toLowerCase().includes(valorInput) ||
+          item.nomeFantasia.toLowerCase().includes(valorInput) ||
+          item.cnpj.replace(/\D/g, "").includes(valorInput)
+        );
+      });
+    }
+
+    currentPage = 1;
+    renderizarLojistas(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPage);
+    toggleNavigationNew();
+  }
+
   function showPageNew(page) {
     var start = (page - 1) * rows;
     var end = start + rows;
@@ -147,12 +168,12 @@ $(document).ready(function () {
   }
 
   function renderPageNumbersNew() {
-    var totalRows = lojistas.length;
+    var totalRows = dadosFiltrados.length;
     var totalPages = Math.ceil(totalRows / rows);
     var pageNumbersHtml = "";
 
     if (totalPages > 1) {
-      $("#pagination").show();
+      $("#pagination").removeAttr("hidden");
 
       var startPage = Math.max(1, currentPage - 1);
       var endPage = Math.min(totalPages, currentPage + 1);
@@ -191,12 +212,12 @@ $(document).ready(function () {
         }
       });
     } else {
-      $("#pagination").hide();
+      $("#pagination").attr("hidden", true);
     }
   }
 
   function toggleNavigationNew() {
-    var totalRows = lojistas.length;
+    var totalRows = dadosFiltrados.length;
     var totalPages = Math.ceil(totalRows / rows);
 
     if (totalRows > rows) {
@@ -234,7 +255,7 @@ $(document).ready(function () {
   });
 
   $("#nextB").click(function () {
-    var totalRows = lojistas.length;
+    var totalRows = dadosFiltrados.length;
     var totalPages = Math.ceil(totalRows / rows);
 
     if (currentPage < totalPages) {

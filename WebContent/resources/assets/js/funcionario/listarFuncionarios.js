@@ -1,11 +1,7 @@
-$("#pagination").hide();
-
 var dados = [];
 var sortOrder = {};
-var dadosOriginais = [];
 var funcionarios = [];
-var rows = 8;
-var currentPage = 1;
+var dadosFiltrados = [];
 
 const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
@@ -47,7 +43,8 @@ $(document).ready(function () {
     });
 
     funcionarios = data;
-    renderizarFuncionarios(data);
+    dadosFiltrados = funcionarios;
+    renderizarFuncionarios(dadosFiltrados);
     showPageNew(currentPage);
     renderPageNumbersNew();
   });
@@ -102,6 +99,31 @@ $(document).ready(function () {
     }
   });
 
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = funcionarios;
+    } else {
+      dadosFiltrados = funcionarios.filter(function (item) {
+        return (
+          item.nome.toLowerCase().includes(valorInput) ||
+          item.cargo.cargo.toLowerCase().includes(valorInput) ||
+          item.cpf.toLowerCase().includes(valorInput)
+        );
+      });
+    }
+
+    currentPage = 1;
+    renderizarFuncionarios(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPage);
+    toggleNavigationNew();
+  }
+
   function showPageNew(page) {
     var start = (page - 1) * rows;
     var end = start + rows;
@@ -112,12 +134,12 @@ $(document).ready(function () {
   }
 
   function renderPageNumbersNew() {
-    var totalRows = funcionarios.length;
+    var totalRows = dadosFiltrados.length;
     var totalPages = Math.ceil(totalRows / rows);
     var pageNumbersHtml = "";
 
     if (totalPages > 1) {
-      $("#pagination").show();
+      $("#pagination").removeAttr("hidden");
 
       var startPage = Math.max(1, currentPage - 1);
       var endPage = Math.min(totalPages, currentPage + 1);
@@ -156,12 +178,12 @@ $(document).ready(function () {
         }
       });
     } else {
-      $("#pagination").hide();
+      $("#pagination").attr("hidden", true);
     }
   }
 
   function toggleNavigationNew() {
-    var totalRows = funcionarios.length;
+    var totalRows = dadosFiltrados.length;
     var totalPages = Math.ceil(totalRows / rows);
 
     if (totalRows > rows) {
@@ -199,7 +221,7 @@ $(document).ready(function () {
   });
 
   $("#nextB").click(function () {
-    var totalRows = funcionarios.length;
+    var totalRows = dadosFiltrados.length;
     var totalPages = Math.ceil(totalRows / rows);
 
     if (currentPage < totalPages) {
