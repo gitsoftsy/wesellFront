@@ -48,7 +48,7 @@ $(document).ready(function() {
 	$(".dimensoes").hide().find("input").prop("required", false);
 
 	$('input[name="possuiFrete"]').change(function() {
-		if ($(this).val() === "S") {
+		if ($(this).val() === "N") {
 			$(".dimensoes").slideDown().find("input").prop("required", true);
 		} else {
 			$(".dimensoes").slideUp().find("input").prop("required", false);
@@ -118,10 +118,10 @@ $(document).ready(function() {
 						);
 						$("#largura").val(data.largura);
 						$("#profundidade").val(data.profundidade);
-						$("input[name='possuiFrete'][value='S']").prop("checked", true);
+						$("input[name='possuiFrete'][value='N']").prop("checked", true);
 						$(".dimensoes").slideDown().find("input").prop("required", true);
 					} else {
-						$("input[name='possuiFrete'][value='N']").prop("checked", true);
+						$("input[name='possuiFrete'][value='S']").prop("checked", true);
 					}
 
 					$(`input[name='nivel'][value='${data.nivelRelevancia}']`).prop(

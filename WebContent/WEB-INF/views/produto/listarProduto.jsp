@@ -136,7 +136,7 @@ String contextPath = request.getContextPath();
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
-			<div id="pagination">
+			<div id="pagination" class="pagination">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
 				</button>
