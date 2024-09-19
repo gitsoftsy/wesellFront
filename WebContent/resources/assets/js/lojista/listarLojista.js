@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     lojistas = data;
     dadosFiltrados = lojistas;
-    renderizarLojistas(dad);
+    renderizarLojistas(data);
     showPageNew(dadosFiltrados);
     renderPageNumbersNew();
   });
