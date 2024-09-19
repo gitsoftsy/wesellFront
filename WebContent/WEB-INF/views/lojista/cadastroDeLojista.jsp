@@ -75,12 +75,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
     ></script>
     <script charset="UTF-8" src="sweetalert2.all.min.js"></script>
-
-    <!-- Animation-css -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
   </head>
 
   <body>
@@ -114,7 +108,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="pt-4">
         <form
           id="form-funcionario"
-          class="card form p-5 col-8 mx-auto animate__animated animate__bounceInUp"
+          class="card form p-5 col-8 mx-auto"
         >
           <h1 id="tituloForm" class="text-center mb-5">Cadastro</h1>
           <input
