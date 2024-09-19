@@ -167,7 +167,7 @@ $(document).ready(function () {
   });
 
   $('input[name="possuiFrete"]').change(function () {
-    if ($(this).val() === "S") {
+    if ($(this).val() === "N") {
       $(".dimensoes").slideDown().find("input").prop("required", true);
     } else {
       $(".dimensoes").slideUp().find("input").prop("required", false);
@@ -623,8 +623,15 @@ async function cadastrar($button, originalButtonText) {
     marcaId: $("#marca").val(),
     nivelRelevancia: $("input[name='nivel']:checked").val(),
     destacar: $("input[name='destaque']:checked").val(),
-    freteGratis: $("input[name='freteGratis']:checked").val(),
+    freteGratis: $("input[name='freteGratis']:checked").val()
   };
+  
+  if($("input[name='possuiFrete']:checked").val() == "S"){
+	objeto.largura = null
+	objeto.altura = null
+	objeto.freteGratis = "S"
+	objeto.profundidade = null
+  }
 
   try {
     const produtoId = await cadastrarProduto(objeto);

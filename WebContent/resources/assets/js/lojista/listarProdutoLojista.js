@@ -5,7 +5,8 @@ var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
 var produto = []
-
+var user = localStorage.getItem("usuario");
+var lojista = JSON.parse(user);
 const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
 const elemento = document.querySelector("#modalMenu");
@@ -130,7 +131,7 @@ $("#form-filtro").on("submit", function(e) {
 		"idCategoria": null,
 		"idSubCategoria": null,
 		"idMarca": [],
-		"idLojista": [10],
+		"idLojista": [lojista.lojistaId],
 		"precoDeVendaMin": null,
 		"precoPromocionalMin": null,
 		"precoDeVendaMax": null,
@@ -241,7 +242,7 @@ function renderizarProduto(produto) {
 				item.comissao.toLocaleString("pt-br", { minimumFractionDigits: 2 }) +
 				"</td>" +
 				"<td>" +
-				item.lojista.nomeFantasia +
+				(item.lojista ? item.lojista.nomeFantasia : item.nomeFantasia )+
 				"</td>" +
 				'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
 				item.idProduto +
