@@ -39,14 +39,14 @@
 }  */
 
 
-.pagination{
+/* .pagination{
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;	
 	gap: 20px;
-}
+} */
 
 .badge.hidden {
   display: none;
@@ -749,7 +749,7 @@ a {
   border-color: #183153;
 }
 
-#prev,
+/* #prev,
 #next {
   padding: 6px;
   width: 4em;
@@ -759,12 +759,12 @@ a {
   cursor: pointer;
   margin-top: 1em;
   margin-right: 5px;
-}
-
+} */
+/* 
 #prev:hover,
 #next:hover {
   background-color: #ddd;
-}
+} */
 
 .table thead {
   font-size: 1em;

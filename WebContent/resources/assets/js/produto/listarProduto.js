@@ -398,7 +398,7 @@ function toggleNavigation(data) {
 	var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
 
 	if (startPage > 1) {
-		$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="1">1</button>');
+		$('#page-numbers').append('<a class="page-link" data-page="1">1</a>');
 		if (startPage > 2) {
 			$('#page-numbers').append('<span>...</span>');
 		}
@@ -406,17 +406,17 @@ function toggleNavigation(data) {
 
 	for (var i = startPage; i <= endPage; i++) {
 		var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
-		$('#page-numbers').append('<button class="' + btnClass + '" data-page="' + i + '">' + i + '</button>');
+		$('#page-numbers').append('<a class="page-link" data-page="' + i + '">' + i + '</a>');
 	}
 
 	if (endPage < totalPages) {
 		if (endPage < totalPages - 1) {
 			$('#page-numbers').append('<span>...</span>');
 		}
-		$('#page-numbers').append('<button class="btn btn-sm btn-page" data-page="' + totalPages + '">' + totalPages + '</button>');
+		$('#page-numbers').append('<a class="page-link" data-page="' + totalPages + '">' + totalPages + '</a>');
 	}
 
-	$('.btn-page').click(function() {
+	$('.page-link').click(function() {
 		goToPage(parseInt($(this).data('page')));
 	});
 }

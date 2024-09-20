@@ -106,15 +106,20 @@ String contextPath = request.getContextPath();
 					</button>
 				</div>
 				<form id="form-filtro">
-				
-				<div class="input-group group-limpar-filtro">
-					<div>
-					<input id="inputBusca" type="text" class="form-control inputForm"
-						placeholder="Buscar" /> <button type="submit"
-						class="input-group-text icone-pesquisa" id="btnFiltro" style="cursor: pointer;"><i
-						class="fas fa-search"></i></button></div>
-						<span id="limpa-filtros" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center">Limpar Filtros</span>
-				</div>
+
+					<div class="input-group group-limpar-filtro">
+						<div class="input-group">
+							<input id="inputBusca" type="text" class="form-control inputForm"
+								placeholder="Buscar" />
+							<button type="submit" class="input-group-text icone-pesquisa"
+								id="btnFiltro" style="cursor: pointer;">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+						<button id="limpa-filtros" type="button"
+							class="btn btn-sm btn-danger d-flex align-items-center justify-content-center">Limpar
+							Filtros</button>
+					</div>
 				</form>
 
 			</div>
@@ -136,15 +141,26 @@ String contextPath = request.getContextPath();
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
-			<div id="pagination" class="pagination">
+			<!-- <div id="pagination" class="pagination">
 				<button id="prev" class="btn btn-sm">
 					<i class="fa-solid fa-angle-left fa-xl"></i>
 				</button>
-				<div id="page-numbers" class="btn-group btn-page-numbers mt-2"></div>
+				
 				<button id="next" class="btn btn-sm">
 					<i class="fa-solid fa-angle-right fa-xl"></i>
 				</button>
-			</div>
+			</div> -->
+			
+			<ul id="pagination" 
+				class="pagination justify-content-end mt-3 mb-0">
+				<li id="prev" class="page-item"><a class="page-link"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li id="page-numbers" style="display: flex; flex-direction: row;"></li>
+				<li id="next" class="page-item"><a class="page-link"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
 
 
 

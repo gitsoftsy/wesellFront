@@ -4,6 +4,8 @@ var usuario = JSON.parse(perfil);
 $(document).ready(function () {
   fetchData("/categorias/ativos", "#categoria", "idCategoria", "categoria");
 
+    
+
   async function fetchData(endpoint, selectId, valueKey, textKey) {
     try {
       const response = await $.ajax({
@@ -131,9 +133,17 @@ $("#form-cadastro").on("submit", async function (e) {
         base64arquivo: base64String,
       };
 
+     Swal.fire({
+        title: "Importado com sucesso",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "listarProdutoLojista";
+      });
+ 
       $.ajax({
         url: url_base + "/importacao/produto",
         type: "POST",
+        async: true,
         data: JSON.stringify(objeto),
         contentType: "application/json; charset=utf-8",
         error: function (e) {
@@ -145,16 +155,9 @@ $("#form-cadastro").on("submit", async function (e) {
             text: "Erro ao importar arquivo.",
           });
         },
-      }).done(function (data) {
-        Swal.close();
-        Swal.fire({
-          title: "Importado com sucesso",
-          icon: "success",
-        }).then((data) => {
-          window.location.href = "listarProdutoLojista";
-        });
       });
     };
+ 
 
     reader.readAsDataURL(file);
   } else {
