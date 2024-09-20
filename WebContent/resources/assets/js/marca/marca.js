@@ -133,7 +133,6 @@ const cadastrar = () => {
     marca: $("#marca").val(),
   };
 
-  console.log(objeto);
 
   $.ajax({
     url: url_base + "/marcas",
@@ -158,7 +157,7 @@ const cadastrar = () => {
       title: "Cadastrado com sucesso",
       icon: "success",
     }).then((data) => {
-      window.location.href = "marcas";
+      window.location.href = "listarMarcas";
     });
   });
 
@@ -178,7 +177,6 @@ const editar = () => {
     marca: $("#marcaEdit").val(),
   };
 
-  console.log(objeto);
 
   $.ajax({
     url: url_base + "/marcas",
@@ -203,7 +201,7 @@ const editar = () => {
       title: "Editado com sucesso",
       icon: "success",
     }).then((data) => {
-      window.location.href = "marcas";
+      window.location.href = "listarMarcas";
     });
   });
 
