@@ -101,6 +101,32 @@ $(document).ready(function () {
       $(this).prop("checked", false);
     }
   });
+
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = colaboradores;
+    } else {
+      dadosFiltrados = colaboradores.filter(function (item) {
+        return (
+          item.nome.toLowerCase().includes(valorInput) ||
+          item.cpf.includes(valorInput) ||
+          item.usuario.toLowerCase().includes(valorInput) ||
+          item.email.toLowerCase().includes(valorInput) 
+        );
+      });
+    }
+
+    currentPage = 1;
+    renderizarColaboradores(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPageNew);
+    toggleNavigationNew();
+  }
 });
 
 function editar(user) {

@@ -114,6 +114,43 @@ $(document).ready(function () {
     $("#colaTabela").html(html);
   }
 
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = banners;
+    } else {
+      dadosFiltrados = banners.filter(function (item) {
+        var tipoBanner = item.tipoBanner === "I" ? "influenciador" : "comprador";
+        var tipoDispositivo = item.tipoDispositivo === "M" ? "mobile" : "desktop";
+        var localBanner = item.localBanner === "P" ? "principal" : "secundário";
+  
+        return (
+          tipoBanner.includes(valorInput) ||
+          tipoDispositivo.includes(valorInput) ||
+          localBanner.includes(valorInput) ||
+          item.urlDestino.toLowerCase().includes(valorInput) ||
+          item.ordem.toString().includes(valorInput) ||
+          formatarData(item.dataInicioExibicao).includes(valorInput) ||
+          formatarData(item.dataFimExibicao).includes(valorInput)
+        );
+      });
+    }
+  
+    currentPage = 1;
+    renderizarItens(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPageNew);
+    toggleNavigationNew();
+  }
+  function formatarData(data) {
+    var partes = data.split("-");
+    return partes[2] + "/" + partes[1] + "/" + partes[0];
+  }
+
   $(".checkbox-toggle").each(function () {
     var status = $(this).data("status");
     if (status !== "S") {

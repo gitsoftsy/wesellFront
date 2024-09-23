@@ -1,6 +1,7 @@
 var dados = [];
 var sortOrder = {};
 var dadosFiltrados = [];
+var dados = [];
 
 function formatarDataParaBR(data) {
   var dataObj = new Date(data);
@@ -77,11 +78,49 @@ $(document).ready(function () {
       XLSX.writeFile(livro, "cargos.xlsx");
     });
 
-    dadosFiltrados = data;
+    dados = data;
+    dadosFiltrados = dados;
     renderizarInfluencer(dadosFiltrados);
     showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
+
+  function renderizarInfluencer(influencers) {
+    var html = influencers
+      .map(function (item) {
+        var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
+        return (
+          "<tr>" +
+          "<td>" +
+          '<button type="button" class="btn btn-status btn-sm ' +
+          buttonClass +
+          '" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
+          (item.ativo === "S"
+            ? "<i class='fa-solid fa-check fa-xl'></i>"
+            : '<i class="fa-solid fa-xmark fa-xl"></i>') +
+          "</button>" +
+          "</td>" +
+          "<td>" +
+          item.nome +
+          "</td>" +
+          "<td>" +
+          formatarDataParaBR(item.dtNasc) +
+          "</td>" +
+          "<td>" +
+          item.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3") +
+          "</td>" +
+          '<td class="d-flex"><input type="checkbox" data-status="' +
+          item.ativo +
+          '" data-id="' +
+          item.idVendedor +
+          '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+          "</tr>"
+        );
+      })
+      .join("");
+  
+    $("#colaTabela").html(html);
+  }
 
   $(".checkbox-toggle").each(function () {
     var status = $(this).data("status");
@@ -89,41 +128,30 @@ $(document).ready(function () {
       $(this).prop("checked", false);
     }
   });
+
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = dados;
+    } else {
+      dadosFiltrados = dados.filter(function (item) {
+        return (
+          item.nome.toLowerCase().includes(valorInput) ||
+          item.cpf.includes(valorInput) ||
+          item.celular.includes(valorInput) ||
+          formatarDataParaBR(item.dtNasc).includes(valorInput)
+        );
+      });
+    }
+  
+    currentPage = 1;
+    renderizarInfluencer(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPageNew);
+    toggleNavigationNew();
+  }
 });
-
-function renderizarInfluencer(influencers) {
-  var html = influencers
-    .map(function (item) {
-      var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
-      return (
-        "<tr>" +
-        "<td>" +
-        '<button type="button" class="btn btn-status btn-sm ' +
-        buttonClass +
-        '" style="width: 63px; height: 31px; padding: 2px; display: flex; align-items: center; justify-content: center;" disabled>' +
-        (item.ativo === "S"
-          ? "<i class='fa-solid fa-check fa-xl'></i>"
-          : '<i class="fa-solid fa-xmark fa-xl"></i>') +
-        "</button>" +
-        "</td>" +
-        "<td>" +
-        item.nome +
-        "</td>" +
-        "<td>" +
-        formatarDataParaBR(item.dtNasc) +
-        "</td>" +
-        "<td>" +
-        item.celular.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3") +
-        "</td>" +
-        '<td class="d-flex"><input type="checkbox" data-status="' +
-        item.ativo +
-        '" data-id="' +
-        item.idVendedor +
-        '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
-        "</tr>"
-      );
-    })
-    .join("");
-
-  $("#colaTabela").html(html);
-}

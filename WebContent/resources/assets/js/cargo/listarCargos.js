@@ -89,6 +89,27 @@ $(document).ready(function () {
       $(this).prop("checked", false);
     }
   });
+
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = cargos;
+    } else {
+      dadosFiltrados = cargos.filter(function (item) {
+        return item.cargo.toLowerCase().includes(valorInput);
+      });
+    }
+
+    currentPage = 1;
+    renderizarFuncionarios(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPageNew);
+    toggleNavigationNew();
+  }
 });
 
 function editar(user) {
