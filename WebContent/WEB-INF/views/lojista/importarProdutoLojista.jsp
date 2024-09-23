@@ -174,7 +174,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/lojista/importarProdutoLojista.js"></script>
+		src="<%=contextPath%>/resources/assets/js/lojista/importarProdutoLojista.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"
 		src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 </body>

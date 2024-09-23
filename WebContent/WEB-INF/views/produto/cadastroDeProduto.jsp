@@ -375,7 +375,7 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/produto/cadastroDeProduto.js"></script>
+		src="<%=contextPath%>/resources/assets/js/produto/cadastroDeProduto.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
 	<script
