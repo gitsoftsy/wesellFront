@@ -96,12 +96,14 @@ String contextPath = request.getContextPath();
 				<form id="form-filtro">
 				
 				<div class="input-group group-limpar-filtro">
-					<div>
+					<div class="input-group">
 					<input id="inputBusca" type="text" class="form-control inputForm"
 						placeholder="Buscar" /> <button type="submit"
 						class="input-group-text icone-pesquisa" id="btnFiltro" style="cursor: pointer;"><i
 						class="fas fa-search"></i></button></div>
-						<span id="limpa-filtros" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center">Limpar Filtros</span>
+						<button id="limpa-filtros" type="button"
+							class="btn btn-sm btn-danger d-flex align-items-center justify-content-center">Limpar
+							Filtros</button>
 				</div>
 				</form>
 			</div>
@@ -124,7 +126,7 @@ String contextPath = request.getContextPath();
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
 			<ul id="pagination"
-				class="pagination justify-content-end mt-auto mb-0">
+				class="pagination justify-content-end mt-auto mb-0" hidden>
 				<li id="prevB" class="page-item"><a class="page-link"
 					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 				</a></li>

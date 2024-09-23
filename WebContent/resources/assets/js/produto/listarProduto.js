@@ -388,7 +388,12 @@ function toggleNavigation(data) {
 
 	var totalPages = data.totalPages;
 	var currentPage = data.number + 1; // No Spring, 'number' começa do 0
-
+	
+	if (totalPages > 1) {
+    	$("#pagination").removeAttr("hidden");
+    }else{
+		$("#pagination").attr("hidden", true);
+	}
 	$('#prev').prop('disabled', currentPage === 1);
 	$('#next').prop('disabled', currentPage === totalPages);
 
@@ -431,8 +436,6 @@ $('#prev').click(function() {
 	} else {
 		goToPageByFilter(currentPage - 1);
 	}
-
-
 });
 
 $('#next').click(function() {

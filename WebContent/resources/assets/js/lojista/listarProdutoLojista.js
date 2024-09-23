@@ -177,7 +177,7 @@ $("#limpa-filtros").click(function() {
 	
 	$("#inputBusca").val("")
 	getDados()
-	updatePagination(produto);
+	updatePagination();
 	$('input[data-toggle="toggle"]').bootstrapToggle();
 	Swal.close();
 });
@@ -209,6 +209,7 @@ function editar(user) {
 }
 
 function renderizarProduto(produto) {
+	
 	var html = produto
 		.map(function(item) {
 			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
@@ -332,6 +333,8 @@ function updatePaginationByFilter() {
 		$('.btn-page').click(function() {
 			goToPageByFilter(parseInt($(this).data('page')));
 		});
+	}else{
+		$('#pagination').hide();
 	}
 }
 

@@ -152,7 +152,7 @@ String contextPath = request.getContextPath();
 			</div> -->
 			
 			<ul id="pagination" 
-				class="pagination justify-content-end mt-3 mb-0">
+				class="pagination justify-content-end mt-3 mb-0" hidden>
 				<li id="prev" class="page-item"><a class="page-link"
 					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 				</a></li>

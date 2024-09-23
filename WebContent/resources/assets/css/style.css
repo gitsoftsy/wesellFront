@@ -779,6 +779,10 @@ a {
   margin-right: 10%;
 }
 
+.page-link{
+	cursor:pointer;
+}
+
 /* table {
    width: 100% !important;
   table-layout: fixed !important; 
