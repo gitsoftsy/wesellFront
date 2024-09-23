@@ -1,7 +1,6 @@
 const botaoDesativa = document.querySelector('#teste');
 const botaoAtiva = document.querySelector('.botaoAtivaMenu');
 const elemento = document.querySelector('#modalMenu');
-var user = JSON.parse(localStorage.getItem("usuario"))
 
 botaoDesativa.addEventListener('click', () => {
 	elemento.classList.add('animar-sair');
@@ -15,40 +14,12 @@ botaoAtiva.addEventListener('click', () => {
 });
 
 var importacoes = []
-const lidos = []
-
-const colocarLido = () => {
-	$.ajax({
-		url: url_base + '/importacao/marcarLido',
-		type: "put",
-		data: JSON.stringify(lidos),
-		contentType: "application/json; charset=utf-8",
-		error: function(e) {
-			console.log(e);
-			console.log(e.responseJSON);
-		}
-	}).done(function(data) {
-		Swal.close();
-	})
-}
-
-function downloadFile(path, name) {
-	console.log(path, name)
-	// Cria um elemento <a> oculto para forçar o download
-	var link = document.createElement('a');
-	link.target = "_blank"
-	link.href = path;
-	link.download = name; // Nome do arquivo que será baixado
-	document.body.appendChild(link); // Anexa o link ao corpo do documento
-	link.click(); // Simula o clique no link
-	document.body.removeChild(link); // Remove o link do documento
-}
 
 $(document).ready(function() {
 
 
 	$.ajax({
-		url: url_base + "/importacao/funcionarioLojista/" + user.id,
+		url: url_base + "/importacao",
 		type: "GET",
 		async: false,
 		beforeSend: function() {
@@ -59,7 +30,7 @@ $(document).ready(function() {
 			console.log(e.responseJSON);
 			Swal.fire({
 				icon: "error",
-				title: 'Não foi possível no momento'
+				title: e.responseJSON.message
 			});
 		}
 	})
@@ -78,22 +49,16 @@ $(document).ready(function() {
 
 	function renderizarImportacoes(importacoes) {
 		var html = importacoes.map(function(item) {
-			if (item.lido == 'N') {
-				lidos.push(item.idLogImportacaoProduto)
-			}
-
 			// Determina a classe do botão de status com base no status da importação
-			var buttonClass = item.lido === "S" ? "btn-success" : "btn-danger";
+			var buttonClass = item.statusImport === "C" ? "btn-success" : "btn-danger";
 			var iconClass = item.lido === "S" ? "fa-check" : "fa-xmark";
 			var statusLabel
-
-			if (item.statusImport === "C") {
-				statusLabel = "Concluído"
-			} else if (item.statusImport === "I") {
+			
+			if(item.statusImport === "C"){				
+				statusLabel = "Concluído sem Erros"
+			}else if(item.statusImport === "I") {
 				statusLabel = "Iniciada"
-			} else if (item.statusImport === "E") {
-				statusLabel = "Erro"
-			} else {
+			}else{
 				statusLabel = "Parcial"
 			}
 
@@ -106,18 +71,17 @@ $(document).ready(function() {
 				'<i class="fa-solid ' + iconClass + ' fa-xl"></i>' +
 				"</button>" +
 				"</td>" +
-				"<td>" + item.categoriaNome + "</td>" +
-				"<td>" + item.subCategoriaNome + "</td>" +
+				"<td>"+ item.categoriaNome + "</td>" +
+				"<td>"+ item.subCategoriaNome + "</td>" +
 				"<td>" + item.nomeArquivo + "</td>" +
 				"<td>" + statusLabel + "</td>" +
 				'<td class="d-flex">' +
-				'<span style="width: 60%; margin-right: 5px; height: 31px; padding: 8px; display: flex; gap: 6px; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onclick="downloadFile(\'' + item.pathLog + '\', \'' + item.nomeArquivo + '\')"><i class="fa-regular fa-eye"></i> Ver</span>' +
+				'<span style="width: 60%; margin-right: 5px; height: 31px; padding: 8px; display: flex; gap: 6px; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onclick="baixarArquivo(\'' + item.pathLog + '\')">Baixar</span>' +
 				"</td>" +
 				"</tr>"
 			);
 		}).join("");
 
-		colocarLido()
 		$("#colaTabela").html(html);
 	}
 

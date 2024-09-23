@@ -142,4 +142,11 @@ public class LojistaController {
 
 		return "funcionarios/listarFuncionario";
 	}
+	
+//	@RequestMapping(value = { " listaImportacoesLojista" }, method = RequestMethod.GET)
+//	public String listaImportacoesLojista(HttpSession session, Model model) throws Exception {
+//		
+//		
+//		return "lojista/listaImportacoesLojista";
+//	}
 }

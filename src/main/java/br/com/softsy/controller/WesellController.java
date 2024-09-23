@@ -26,68 +26,67 @@ public class WesellController {
 
 		return "wesell/listarColaboradores";
 	}
-	
+
 	@RequestMapping(value = { "listarInfluencer" }, method = RequestMethod.GET)
 	public String listarInfluencer(HttpSession session, Model model) throws Exception {
 
 		return "wesell/listarInfluencer";
 	}
-	
+
 	@RequestMapping(value = { "listarLojista" }, method = RequestMethod.GET)
 	public String listarLojista(HttpSession session, Model model) throws Exception {
 
 		return "wesell/listarLojista";
 	}
-	
-	
+
 	@RequestMapping(value = { "cadastroDeCategoria" }, method = RequestMethod.GET)
 	public String cadastroDeCategoria(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "categoria/cadastroDeCategoria";
 	}
-	
+
 	@RequestMapping(value = { "listarCategoria" }, method = RequestMethod.GET)
 	public String listarCategoria(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "categoria/listarCategoria";
 	}
-	
+
 	@RequestMapping(value = { "cadastroDeSubCategoria" }, method = RequestMethod.GET)
 	public String cadastroDeSubCategoria(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "sub-categoria/cadastroDeSubCategoria";
 	}
-	
+
 	@RequestMapping(value = { "listarSubCategoria" }, method = RequestMethod.GET)
 	public String listarSubCategoria(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "sub-categoria/listarSubCategoria";
 	}
-	
-	
+
 	@RequestMapping(value = { "cadastroDeCargo" }, method = RequestMethod.GET)
 	public String cadastroDeCargo(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "cargo/cadastroDeCargo";
 	}
-	
+
 	@RequestMapping(value = { " listarCargos" }, method = RequestMethod.GET)
 	public String listarCargos(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "cargo/listarCargos";
 	}
-	
+
 	@RequestMapping(value = { " listarMarcas" }, method = RequestMethod.GET)
 	public String marcas(HttpSession session, Model model) throws Exception {
-		
-		
+
 		return "marca/marca";
 	}
+
+	@RequestMapping(value = { " listaImportacoes" }, method = RequestMethod.GET)
+	public String listaImportacoes(HttpSession session, Model model) throws Exception {
+
+		return "wesell/listaImportacoes";
+	}
+
+
 
 }

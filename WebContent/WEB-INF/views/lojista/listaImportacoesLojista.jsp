@@ -69,11 +69,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <link
       rel="stylesheet"
-      href="<%=contextPath%>/resources/assets/css/areaLojista.css?v=<%=(int) (Math.random() * 10000)%>"
+      href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>"
     />
   </head>
 
-  <header id="menuLojista"></header>
+  <header id="menu"></header>
 
   <body>
     <div class="bg-loading">
@@ -97,7 +97,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
         <div class="card">
           <div class="card-body title">
             <i class="fa-solid fa-download"></i>
-            <span>Lista de Notificações</span>
+            <span>Lista de Importações</span>
           </div>
         </div>
       </section>
@@ -106,7 +106,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           class="table tableTel tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto"
         >
           <caption>
-            Notificações Cadastradas
+            Importações
           </caption>
           <thead>
             <tr>
@@ -209,7 +209,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/notificacoes/notificacoesLojista.js?v=<%=(int) (Math.random() * 10000)%>"
+      src="<%=contextPath%>/resources//assets/js/lojista/listaImportacoesLojista.js"
     ></script>
     <script
       charset="UTF-8"
