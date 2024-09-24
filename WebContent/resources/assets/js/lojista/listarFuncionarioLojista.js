@@ -33,7 +33,7 @@ $(document).ready(function () {
     .done(function (data) {
       funcionarios = data;
       dadosFiltrados = funcionarios;
-      renderizarFuncionarios(dadosFiltrados);
+      renderizarFuncionarios(dadosFiltrados);  $('input[data-toggle="toggle"]').bootstrapToggle();
       showPageNew(currentPageNew);
       renderPageNumbersNew();
     })
@@ -107,7 +107,7 @@ $(document).ready(function () {
     }
 
     currentPage = 1;
-    renderizarFuncionarios(dadosFiltrados);
+    renderizarFuncionarios(dadosFiltrados);  $('input[data-toggle="toggle"]').bootstrapToggle();
     renderPageNumbersNew();
     showPageNew(currentPageNew);
     toggleNavigationNew();

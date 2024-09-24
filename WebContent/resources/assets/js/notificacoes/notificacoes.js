@@ -44,7 +44,7 @@ $(document).ready(function() {
 			});
 
 			funcionarios = data;
-			renderizarFuncionarios(data);
+			renderizarFuncionarios(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 
 /*	function renderizarFuncionarios(funcionarios) {

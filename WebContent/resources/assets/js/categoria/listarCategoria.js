@@ -93,7 +93,7 @@ $(document).ready(function () {
     }
 
     currentPage = 1;
-    renderizarFuncionarios(dadosFiltrados);
+    renderizarFuncionarios(dadosFiltrados);  $('input[data-toggle="toggle"]').bootstrapToggle();
     renderPageNumbersNew();
     showPageNew(currentPageNew);
     toggleNavigationNew();

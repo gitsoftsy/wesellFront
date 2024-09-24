@@ -161,7 +161,7 @@ function getDados(){
 			produto = data;
 			dadosOriginais = [...data.content]; // Armazena os dados originais corretamente
 			content = data;
-			renderizarProduto(data.content);
+			renderizarProduto(data.content);  $('input[data-toggle="toggle"]').bootstrapToggle();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -274,7 +274,7 @@ $("#form-filtro").on("submit", function(e) {
 			currentPage = 1; // Reseta a página atual
 			renderizarProduto(produto.slice(0, rows)); // Renderiza os primeiros 12 produtos
 			updatePaginationByFilter(); // Atualiza a paginação com base no filtro
-			$('input[data-toggle="toggle"]').bootstrapToggle();
+			
 			Swal.close();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -368,9 +368,9 @@ function showPage(page) {
 		method: 'GET',
 		success: function(data) {
 			produto = data;
-			renderizarProduto(data.content);
+			renderizarProduto(data.content);  $('input[data-toggle="toggle"]').bootstrapToggle();
 			updatePagination(data);
-			$('input[data-toggle="toggle"]').bootstrapToggle();
+			
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro ao carregar itens:", jqXHR.responseText);
