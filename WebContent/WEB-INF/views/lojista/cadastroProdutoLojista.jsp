@@ -244,7 +244,7 @@ String contextPath = request.getContextPath();
 								Não </label>
 						</div>
 					</div>
-					<div class="col-md-6 dimensoes">
+					<div class="col-md-6 dimensoes" id="cardPeso"> 
 						<label for="peso" class="form-label">Peso (kg):<span
 							class="red">*</span>
 						</label> <input type="tel" id="peso" autocomplete="off" name="peso"

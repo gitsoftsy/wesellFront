@@ -111,7 +111,7 @@ $(document).ready(function() {
 						$("#peso").val(
 							data.peso
 								.toLocaleString("pt-br", {
-									minimumFractionDigits: 2,
+									minimumFractionDigits: 3,
 									useGrouping: false,
 								})
 								.replace(",", ".")
@@ -198,6 +198,25 @@ $(document).ready(function() {
 		formatKgInput(e, function(formattedValue, rawValue) {
 			peso = rawValue;
 			e.target.value = formattedValue;
+
+			console.log(formattedValue)
+			console.log(formattedValue <= 200.000)
+
+			const messagePeso = $("<p id='errMessagePeso'></p>").text("Peso até 20Kg").css('color', '#FF0000');
+			if (formattedValue <= 200.000) {
+				$("#btn-adicionar").removeAttr('disabled');
+				$("#peso").removeClass('err-message')
+				$('#errMessagePeso').css('display', 'none')
+			} else {
+				if ($("#cardPeso").find('#errMessagePeso').length > 0) {
+					$('#errMessagePeso').remove()
+				}
+				$("#btn-adicionar").attr("disabled", "disabled");
+				$("#peso").addClass('err-message')
+				$("#cardPeso").append(messagePeso)
+				messagePeso.show()
+			}
+
 		});
 	});
 });
@@ -212,7 +231,7 @@ function formatCurrencyInput(event, callback) {
 
 function formatKgInput(event, callback) {
 	let value = event.target.value.replace(/\D/g, "");
-	let rawValue = (value / 100).toFixed(2);
+	let rawValue = (value / 1000).toFixed(3);
 	let formattedValue = rawValue;
 	formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 	callback(formattedValue, rawValue);
@@ -632,13 +651,6 @@ async function cadastrar($button, originalButtonText) {
 		objeto.profundidade = null
 	}
 
-	if (peso > 200.000) {
-		Swal.fire({
-			title: "O peso máximo permitido é de 200Kg",
-			icon: "info",
-		})
-		return
-	}
 
 	try {
 		const produtoId = await cadastrarProduto(objeto);

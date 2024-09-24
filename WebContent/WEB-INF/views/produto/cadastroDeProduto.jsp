@@ -250,11 +250,11 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-2 dimensoes">
-					<div class="col-md-6">
+					<div class="col-md-6" id="cardPeso">
 						<label for="peso" class="form-label">Peso
 							(kg):<span class="red">*</span>
 						</label> <input type="tel" id="peso" autocomplete="off" name="peso"
-							class="form-control inputForm" maxlength="12" />
+							class="form-control inputForm" maxlength="7" />
 					</div>
 					<div class="col-md-6">
 						<label for="largura" class="form-label">Largura
