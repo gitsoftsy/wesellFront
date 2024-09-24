@@ -26,7 +26,7 @@ var funcionarios = [];
 
 $(document).ready(function () {
   $.ajax({
-    url: url_base + "/funcionarios/lojista/" + usuario.lojistaId, 
+    url: url_base + "/funcionarios/lojista/" + usuario.lojistaId,
     type: "GET",
     async: false,
   })
@@ -101,7 +101,7 @@ $(document).ready(function () {
         return (
           item.nome.toLowerCase().includes(valorInput) ||
           item.cargo.cargo.toLowerCase().includes(valorInput) ||
-          item.cpf.toLowerCase().includes(valorInput)
+          item.cpf.replace(/\D/g, "").includes(valorInput)
         );
       });
     }

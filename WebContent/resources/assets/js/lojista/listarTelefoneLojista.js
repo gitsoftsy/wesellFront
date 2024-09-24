@@ -58,56 +58,80 @@ $(document).ready(function () {
     type: "GET",
     async: false,
   }).done(function (data) {
-    dadosFiltrados = data;
+    dados = data;
+    dadosFiltrados = dados;
     renderizarTelefone(dadosFiltrados);
     showPageNew(currentPageNew);
     renderPageNumbersNew();
+  });
+  function renderizarTelefone(telefone) {
+    var html = telefone
+      .map(function (item) {
+        let tel =
+          item.tpTelefone == "C"
+            ? item.telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3")
+            : item.telefone.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1)$2-$3");
+        let tpTel = item.tpTelefone == "C" ? "Celular" : "Telefone";
 
-    function renderizarTelefone(telefone) {
-      var html = telefone
-        .map(function (item) {
-          let teste = (/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3");
-          let tel =
-            item.tpTelefone == "C"
-              ? item.telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3")
-              : item.telefone.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1)$2-$3");
-          let tpTel = item.tpTelefone == "C" ? "Celular" : "Telefone";
+        return (
+          "<tr>" +
+          "<td>" +
+          tel +
+          "</td>" +
+          "<td>" +
+          tpTel +
+          "</td>" +
+          '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
+          item.idTelefoneFuncionario +
+          "" +
+          '" data-id="' +
+          item.idTelefoneFuncionario +
+          '" data-funcionario-id="' +
+          item.funcionarioId +
+          '" data-telefone="' +
+          item.telefone +
+          '" data-tpTelefone="' +
+          item.tpTelefone +
+          '"onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editTel""><i class="fa-solid fa-pen fa-lg"></i></span> </td>' +
+          "</tr>"
+        );
+      })
+      .join("");
 
-          return (
-            "<tr>" +
-            "<td>" +
-            tel +
-            "</td>" +
-            "<td>" +
-            tpTel +
-            "</td>" +
-            '<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
-            item.idTelefoneFuncionario +
-            "" +
-            '" data-id="' +
-            item.idTelefoneFuncionario +
-            '" data-funcionario-id="' +
-            item.funcionarioId +
-            '" data-telefone="' +
-            item.telefone +
-            '" data-tpTelefone="' +
-            item.tpTelefone +
-            '"onclick="showModal(this)" data-bs-toggle="modal" data-bs-target="#editTel""><i class="fa-solid fa-pen fa-lg"></i></span> </td>' +
-            "</tr>"
-          );
-        })
-        .join("");
+    $("#colaTabela").html(html);
+  }
 
-      $("#colaTabela").html(html);
+  $(".checkbox-toggle").each(function () {
+    var status = $(this).data("status");
+    if (status !== "S") {
+      $(this).prop("checked", false);
+    }
+  });
+
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca); // Executa a função de busca
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = dados;
+    } else {
+      dadosFiltrados = dados.filter(function (item) {
+        let telefoneSemFormatacao = item.telefone.replace(/\D/g, ""); 
+        return (
+          telefoneSemFormatacao.includes(valorInput) || 
+          item.tpTelefone.toLowerCase().includes(valorInput) 
+        );
+      });
     }
 
-    $(".checkbox-toggle").each(function () {
-      var status = $(this).data("status");
-      if (status !== "S") {
-        $(this).prop("checked", false);
-      }
-    });
-  });
+    currentPage = 1; 
+    renderizarTelefone(dadosFiltrados);
+    renderPageNumbersNew(); 
+    showPageNew(currentPageNew); 
+    toggleNavigationNew(); 
+  }
 });
 
 $("#formCadastro").on("submit", function (e) {

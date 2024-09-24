@@ -112,7 +112,8 @@ $(document).ready(function () {
         return (
           item.nome.toLowerCase().includes(valorInput) ||
           item.cargo.cargo.toLowerCase().includes(valorInput) ||
-          item.cpf.toLowerCase().includes(valorInput)
+          item.lojista.nomeFantasia.toLowerCase().includes(valorInput) ||
+          item.cpf.replace(/\D/g, "").includes(valorInput) 
         );
       });
     }
