@@ -26,7 +26,7 @@ var funcionarios = [];
 
 $(document).ready(function () {
   $.ajax({
-    url: url_base + "/funcionarios/lojista/" + usuario.lojistaId, //colocar o id lojista aqui
+    url: url_base + "/funcionarios/lojista/" + usuario.lojistaId, 
     type: "GET",
     async: false,
   })

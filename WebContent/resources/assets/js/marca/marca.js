@@ -1,7 +1,3 @@
-var dados = [];
-var sortOrder = {};
-var dadosFiltrados = [];
-
 const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
 const elemento = document.querySelector("#modalMenu");
@@ -46,8 +42,8 @@ $(document).ready(function () {
       XLSX.writeFile(livro, "cargos.xlsx");
     });
 
-    cargos = data;
-    dadosFiltrados = cargos;
+    dados = data;
+    dadosFiltrados = dados;
     renderizarFuncionarios(dadosFiltrados);
     showPageNew(currentPageNew);
     renderPageNumbersNew();
@@ -59,6 +55,27 @@ $(document).ready(function () {
       $(this).prop("checked", false);
     }
   });
+
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = dados;
+    } else {
+      dadosFiltrados = dados.filter(function (item) {
+        return item.marca.toLowerCase().includes(valorInput);
+      });
+    }
+
+    currentPage = 1;
+    renderizarFuncionarios(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPageNew);
+    toggleNavigationNew();
+  }
 });
 
 function alteraStatus(element) {
@@ -133,7 +150,6 @@ const cadastrar = () => {
     marca: $("#marca").val(),
   };
 
-
   $.ajax({
     url: url_base + "/marcas",
     type: "POST",
@@ -176,7 +192,6 @@ const editar = () => {
     idMarca: id,
     marca: $("#marcaEdit").val(),
   };
-
 
   $.ajax({
     url: url_base + "/marcas",

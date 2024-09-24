@@ -146,7 +146,15 @@ $(document).ready(function () {
         return (
           item.razaoSocial.toLowerCase().includes(valorInput) ||
           item.nomeFantasia.toLowerCase().includes(valorInput) ||
-          item.cnpj.replace(/\D/g, "").includes(valorInput)
+          item.cnpj.replace(/\D/g, "").includes(valorInput) || 
+          item.inscrEstadual.toLowerCase().includes(valorInput) ||
+          item.endereco.toLowerCase().includes(valorInput) ||
+          item.numero.toString().includes(valorInput) ||
+          item.bairro.toLowerCase().includes(valorInput) ||
+          item.cidade.toLowerCase().includes(valorInput) ||
+          item.estado.toLowerCase().includes(valorInput) ||
+          item.cep.replace(/\D/g, "").includes(valorInput) || 
+          item.site.toLowerCase().includes(valorInput)
         );
       });
     }

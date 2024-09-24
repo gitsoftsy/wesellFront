@@ -44,8 +44,8 @@ $(document).ready(function () {
       XLSX.writeFile(livro, "subCategorias.xlsx");
     });
 
-    subCategoria = data;
-    dadosFiltrados = subCategoria;
+    subCategorias = data;
+    dadosFiltrados = subCategorias;
     renderizarSubCategorias(dadosFiltrados);
     showPageNew(currentPageNew);
     renderPageNumbersNew();
@@ -94,6 +94,30 @@ $(document).ready(function () {
       $(this).prop("checked", false);
     }
   });
+
+  $("#inputBusca").on("input", function () {
+    var valorBusca = $(this).val().toLowerCase();
+    realizarBusca(valorBusca);
+  });
+
+  function realizarBusca(valorInput) {
+    if (valorInput === "") {
+      dadosFiltrados = subCategorias;
+    } else {
+      dadosFiltrados = subCategorias.filter(function (item) {
+        return (
+          item.nome.toLowerCase().includes(valorInput) ||
+          item.categoria.categoria.toLowerCase().includes(valorInput)
+        );
+      });
+    }
+
+    currentPage = 1;
+    renderizarSubCategorias(dadosFiltrados);
+    renderPageNumbersNew();
+    showPageNew(currentPageNew);
+    toggleNavigationNew();
+  }
 });
 
 function editar(user) {
