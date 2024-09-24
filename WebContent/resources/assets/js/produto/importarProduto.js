@@ -87,7 +87,7 @@ async function loadFuncionarioLojista(lojistaId) {
 			data.forEach((item) => {
 				lojistaIdSelect.append(
 					$("<option>", {
-						value: item.id,
+						value: item.idFuncionario,
 						text: item.nome,
 					})
 				);
@@ -159,7 +159,7 @@ $("#form-cadastro").on("submit", async function(e) {
 			var base64String = reader.result.split(",")[1];
 
 			var objeto = {
-				idUsuarioLojista: $("#logistaId").val(),
+				idUsuarioLojista: $("#lojistaId").val(),
 				idColaborador: usuario.id,
 				nomeArquivo: file.name,
 				idCategoria: $("#categoria").val(),
@@ -169,12 +169,6 @@ $("#form-cadastro").on("submit", async function(e) {
 			};
 
 			console.log(objeto);
-			Swal.fire({
-				title: "Importado com sucesso",
-				icon: "success",
-			}).then(() => {
-				window.location.href = "listarProduto";
-			});
 
 			$.ajax({
 				url: url_base + "/importacao/produto",
@@ -183,14 +177,21 @@ $("#form-cadastro").on("submit", async function(e) {
 				data: JSON.stringify(objeto),
 				contentType: "application/json; charset=utf-8",
 				error: function(e) {
-					Swal.close();
-					console.log(e.responseJSON);
+					console.log(e);
 					Swal.fire({
 						icon: "error",
 						title: "Oops...",
 						text: "Erro ao importar arquivo.",
 					});
 				},
+			}).done(result => {
+
+			})
+			Swal.fire({
+				title: "Importação iniciada!",
+				icon: "success",
+			}).then(() => {
+				window.location.href = "listarProduto";
 			});
 		};
 
