@@ -98,27 +98,44 @@ async function loadFuncionarioLojista(lojistaId) {
 		},
 	});
 }
-
 $("#btnDownload").click(function() {
 	var headers = [
 		{
+			"CODIGO DO PRODUTO": "1",
+			"NOME DO PRODUTO": "produto exemplo",
+			"DESCRIÇÃO": "descricao exemplo do produto",
+			"PREÇO": "10.50",
+			"PREÇO PROMOCIONAL": "9.00",
+			"COMISSAO WESELL": "5.00",
+			"COMISSAO INFLUENCER": "2.00",
+			"FRETE GRÁTIS": "N",
+			"ALTURA(cm)": "10",
+			"LARGURA(cm)": "15",
+			"PROFUNDIDADE(cm)": "22",
+			"PESO(Kg)": "0.270",
+			"NÍVEL RELEVÂNCIA (0-5)": "1",
+			"DESTACAR": "N",
+			"URL IMAGEM": "https://we-sell.store/assets/logoWesell-DHlth4qb.svg",
+		},
+		{
 			"CODIGO DO PRODUTO": "",
 			"NOME DO PRODUTO": "",
-			DESCRIÇÃO: "",
-			PREÇO: "",
+			"DESCRIÇÃO": "",
+			"PREÇO": "",
 			"PREÇO PROMOCIONAL": "",
 			"COMISSAO WESELL": "",
 			"COMISSAO INFLUENCER": "",
 			"FRETE GRÁTIS": "",
-			ALTURA: "",
-			LARGURA: "",
-			PROFUNDIDADE: "",
-			PESO: "",
-			"NÍVEL RELEVÂNCIA": "",
-			DESTACAR: "",
+			"ALTURA(cm)": "",
+			"LARGURA(cm)": "",
+			"PROFUNDIDADE(cm)": "",
+			"PESO(Kg)": "",
+			"NÍVEL RELEVÂNCIA (0-5)": "",
+			"DESTACAR": "",
 			"URL IMAGEM": "",
-		},
+		}
 	];
+
 	var planilha = XLSX.utils.json_to_sheet(headers);
 
 	planilha["!cols"] = [
@@ -146,6 +163,8 @@ $("#btnDownload").click(function() {
 
 	XLSX.writeFile(livro, "modeloImportacao.xlsx");
 });
+
+
 
 $("#form-cadastro").on("submit", async function(e) {
 	e.preventDefault();

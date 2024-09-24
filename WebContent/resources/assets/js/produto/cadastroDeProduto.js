@@ -632,6 +632,14 @@ async function cadastrar($button, originalButtonText) {
 		objeto.profundidade = null
 	}
 
+	if (peso > 200.000) {
+		Swal.fire({
+			title: "O peso máximo permitido é de 200Kg",
+			icon: "info",
+		})
+		return
+	}
+
 	try {
 		const produtoId = await cadastrarProduto(objeto);
 		await cadastrarImagens(imagensBase64, produtoId);
