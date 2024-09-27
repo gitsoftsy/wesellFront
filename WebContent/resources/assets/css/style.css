@@ -8,6 +8,17 @@
   display: table !important;
 } */
 
+.inputComissao{
+	height: 100%;
+/* 	background: transparent;
+	border: none */;
+}
+
+.inputComissao:disabled{
+	background: transparent;
+	border: none
+}
+
 .notification-icon {
   cursor: pointer;
   position: relative;

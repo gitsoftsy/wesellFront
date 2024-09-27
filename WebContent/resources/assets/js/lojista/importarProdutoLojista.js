@@ -67,50 +67,65 @@ async function loadSubCategories(categoryId) {
 
 $("#btnDownload").click(function() {
 	var headers = [
-		{
-			"CODIGO DO PRODUTO": "",
-			"NOME DO PRODUTO": "",
-			DESCRIÇÃO: "",
-			PREÇO: "",
-			"PREÇO PROMOCIONAL": "",
-			"COMISSAO WESELL": "",
-			"COMISSAO INFLUENCER": "",
-			"FRETE GRÁTIS": "",
-			ALTURA: "",
-			LARGURA: "",
-			PROFUNDIDADE: "",
-			PESO: "",
-			"NÍVEL RELEVÂNCIA": "",
-			DESTACAR: "",
-			"URL IMAGEM": "",
-		},
-	];
-	var planilha = XLSX.utils.json_to_sheet(headers);
+			{
+				"CODIGO DO PRODUTO": "1",
+				"NOME DO PRODUTO": "produto exemplo",
+				"DESCRIÇÃO": "descricao exemplo do produto",
+				"PREÇO": "10.50",
+				"PREÇO PROMOCIONAL": "9.00",
+				"COMISSÃO": "5.00",
+				"FRETE GRÁTIS": "N",
+				"ALTURA(cm)": "10",
+				"LARGURA(cm)": "15",
+				"PROFUNDIDADE(cm)": "22",
+				"PESO(Kg)": "0.270",
+				"NÍVEL RELEVÂNCIA (0-5)": "1",
+				"DESTACAR": "N",
+				"URL IMAGEM": "https://we-sell.store/assets/logoWesell-DHlth4qb.svg",
+			},
+			{
+				"CODIGO DO PRODUTO": "",
+				"NOME DO PRODUTO": "",
+				"DESCRIÇÃO": "",
+				"PREÇO": "",
+				"PREÇO PROMOCIONAL": "",
+				"COMISSÃO": "",
+				"FRETE GRÁTIS": "",
+				"ALTURA(cm)": "",
+				"LARGURA(cm)": "",
+				"PROFUNDIDADE(cm)": "",
+				"PESO(Kg)": "",
+				"NÍVEL RELEVÂNCIA (0-5)": "",
+				"DESTACAR": "",
+				"URL IMAGEM": "",
+			}
+		];
 
-	planilha["!cols"] = [
-		{ wch: 20 },
-		{ wch: 30 },
-		{ wch: 50 },
-		{ wch: 10 },
-		{ wch: 20 },
-		{ wch: 20 },
-		{ wch: 20 },
-		{ wch: 15 },
-		{ wch: 15 },
-		{ wch: 10 },
-		{ wch: 10 },
-		{ wch: 15 },
-		{ wch: 10 },
-		{ wch: 20 },
-		{ wch: 15 },
-		{ wch: 50 },
-	];
+		var planilha = XLSX.utils.json_to_sheet(headers);
 
-	var livro = XLSX.utils.book_new();
+		planilha["!cols"] = [
+			{ wch: 20 },
+			{ wch: 30 },
+			{ wch: 50 },
+			{ wch: 10 },
+			{ wch: 20 },
+			{ wch: 20 },
+			{ wch: 15 },
+			{ wch: 15 },
+			{ wch: 10 },
+			{ wch: 10 },
+			{ wch: 15 },
+			{ wch: 10 },
+			{ wch: 20 },
+			{ wch: 15 },
+			{ wch: 50 },
+		];
 
-	XLSX.utils.book_append_sheet(livro, planilha, "Modelo De Importação");
+		var livro = XLSX.utils.book_new();
 
-	XLSX.writeFile(livro, "modeloImportacao.xlsx");
+		XLSX.utils.book_append_sheet(livro, planilha, "Modelo De Importação");
+
+		XLSX.writeFile(livro, "modeloImportacao.xlsx");
 });
 
 $("#form-cadastro").on("submit", async function(e) {

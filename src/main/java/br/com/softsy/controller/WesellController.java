@@ -86,6 +86,12 @@ public class WesellController {
 
 		return "wesell/listaImportacoes";
 	}
+	
+	@RequestMapping(value = { " comissaoWesell" }, method = RequestMethod.GET)
+	public String comissaoWesell(HttpSession session, Model model) throws Exception {
+
+		return "wesell/comissaoWesell";
+	}
 
 
 
