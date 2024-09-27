@@ -96,7 +96,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       <section class="mb-5">
         <div class="card">
           <div class="card-body title">
-            <i class="fa-regular fa-address-card"></i>
+            <i class="fa-solid fa-money-bill-transfer"></i>
             <span>Comissão</span>
           </div>
         </div>
@@ -106,7 +106,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           class="table tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto"
         >
           <caption>
-            Comissão Cadastrada
+            Comissão Wesell
           </caption>
           <thead>
             <tr>
