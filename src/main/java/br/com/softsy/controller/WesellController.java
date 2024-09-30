@@ -92,6 +92,18 @@ public class WesellController {
 
 		return "wesell/comissaoWesell";
 	}
+	
+	@RequestMapping(value = { "dashboard-vendas" }, method = RequestMethod.GET)
+	public String dashboardVendas(HttpSession session, Model model) throws Exception {
+
+		return "wesell/dashboardVendas";
+	}
+	
+	@RequestMapping(value = { "vendas" }, method = RequestMethod.GET)
+	public String listaVendas(HttpSession session, Model model) throws Exception {
+
+		return "wesell/listarVendas";
+	}
 
 
 
