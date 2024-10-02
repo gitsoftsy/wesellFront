@@ -136,15 +136,6 @@ String contextPath = request.getContextPath();
                 </svg>
 					</span>
 					<p class="title-text">Vendas Mensais</p>
-					<p class="percent">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792"
-							fill="currentColor" height="20" width="20">
-                        <path
-								d="M1408 1216q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45 19-45l448-448q19-19 45-19t45 19l448 448q19 19 19 45z">
-                        </path>
-                    </svg>
-						20%
-					</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendasMensal"></p>
@@ -166,15 +157,6 @@ String contextPath = request.getContextPath();
                 </svg>
 					</span>
 					<p class="title-text">Venda Anual</p>
-					<p class="percent">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792"
-							fill="currentColor" height="20" width="20">
-                        <path
-								d="M1408 1216q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45 19-45l448-448q19-19 45-19t45 19l448 448q19 19 19 45z">
-                        </path>
-                    </svg>
-						20%
-					</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendasAnual"></p>
@@ -195,15 +177,6 @@ String contextPath = request.getContextPath();
                 </svg>
 					</span>
 					<p class="title-text">Total Vendas</p>
-					<p class="percent">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792"
-							fill="currentColor" height="20" width="20">
-                        <path
-								d="M1408 1216q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45 19-45l448-448q19-19 45-19t45 19l448 448q19 19 19 45z">
-                        </path>
-                    </svg>
-						20%
-					</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendas"></p>
@@ -215,9 +188,18 @@ String contextPath = request.getContextPath();
 			</div>
 			</div>
 
-			<div>
+			<div class="mb-3" style="height: 400px; display: flex; flex-direction: row; gap: 2%;">
 				<canvas id="myChart"></canvas>
+	
+				<canvas id="myChartDonut"></canvas>
 			</div>
+			
+			
+			<div id="tabelaTopVendedores">
+			
+			</div>
+			
+		
 			
 
 

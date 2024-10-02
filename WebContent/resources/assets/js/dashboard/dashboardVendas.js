@@ -143,17 +143,61 @@ $(document).ready(function() {
 						],
 						hoverOffset: 4
 					}]
-					},
-					options: {
-						scales: {
-							y: {
-								beginAtZero: true
-							}
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
 						}
 					}
-				});
+				}
+			});
 
+			// Criar um mapa para contar as vendas por vendedor
+			const vendasPorVendedor = {};
 
+			data.forEach(venda => {
+				const vendedorId = venda.vendedorId; // Certifique-se que este campo existe
+
+				// Somente considerar vendas com um vendedor associado
+				if (vendedorId) {
+					if (!vendasPorVendedor[vendedorId]) {
+						vendasPorVendedor[vendedorId] = 0;
+					}
+					vendasPorVendedor[vendedorId]++;
+				}
+			});
+
+			// Converter o objeto em um array e ordenar pelos vendedores com mais vendas
+			const topVendedores = Object.keys(vendasPorVendedor)
+				.map(vendedorId => {
+					return { vendedorId, totalVendas: vendasPorVendedor[vendedorId] };
+				})
+				.sort((a, b) => b.totalVendas - a.totalVendas); // Ordenar por número de vendas
+
+			// Gerar a tabela HTML
+			let tabelaTopVendedores = `
+				<table class="table">
+				<caption>Top Logistas</caption>
+	            <thead>
+	                <tr>
+	                    <th>Vendedor ID</th>
+	                    <th>Total de Vendas</th>
+	                </tr>
+	            </thead>
+	            <tbody>`;
+
+			topVendedores.forEach(vendedor => {
+				tabelaTopVendedores += `<tr>
+	                <td>${vendedor.vendedorId}</td>
+	                <td>${vendedor.totalVendas}</td>
+	            </tr>`;
+			});
+
+			tabelaTopVendedores += `</tbody></table>`;
+
+			// Inserir a tabela na página
+			$("#tabelaTopVendedores").html(tabelaTopVendedores);
 
 		});
 

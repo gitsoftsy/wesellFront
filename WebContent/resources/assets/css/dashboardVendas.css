@@ -12,6 +12,9 @@
   display: flex;
 }
 
+table {
+    caption-side: top;
+}
 .title-dash span {
   position: relative;
   padding: 0.5rem;
