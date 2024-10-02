@@ -44,5 +44,11 @@ public class InfluencerController {
 
 		return "influencer/perguntaInfluencer";
 	}
+	
+	@RequestMapping(value = { "editarInfluencer" }, method = RequestMethod.GET)
+	public String editarInfluencer(HttpSession session, Model model) throws Exception {
+
+		return "influencer/editarInfluencer";
+	}
 
 }

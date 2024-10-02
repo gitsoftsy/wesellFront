@@ -124,6 +124,7 @@ function cadastrar() {
       .val()
       .replace(/[^a-zA-Z0-9 ]/g, ""),
     valorMinimoDaCompra: valorConvertidoPreco,
+    idTransacao: $("#idTransacao").val(),
   };
 
   $.ajax({
@@ -200,6 +201,7 @@ function editar() {
       .val()
       .replace(/[^a-zA-Z0-9 ]/g, ""),
     valorMinimoDaCompra: valorConvertidoPreco,
+	idTransacao: $("#idTransacao").val(),
   };
 
   $.ajax({
