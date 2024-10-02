@@ -106,16 +106,7 @@ String contextPath = request.getContextPath();
                     </path>
                 </svg>
 					</span>
-					<p class="title-text">Vendas Semanais</p>
-					<p class="percent">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792"
-							fill="currentColor" height="20" width="20">
-                        <path
-								d="M1408 1216q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45 19-45l448-448q19-19 45-19t45 19l448 448q19 19 19 45z">
-                        </path>
-                    </svg>
-						20%
-					</p>
+					<p class="title-text">Vendas Semanal</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendasSemanal"></p>
@@ -135,7 +126,7 @@ String contextPath = request.getContextPath();
                     </path>
                 </svg>
 					</span>
-					<p class="title-text">Vendas Mensais</p>
+					<p class="title-text">Vendas Mensal</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendasMensal"></p>
@@ -156,7 +147,7 @@ String contextPath = request.getContextPath();
                     </path>
                 </svg>
 					</span>
-					<p class="title-text">Venda Anual</p>
+					<p class="title-text">Vendas Anual</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendasAnual"></p>
@@ -176,7 +167,7 @@ String contextPath = request.getContextPath();
                     </path>
                 </svg>
 					</span>
-					<p class="title-text">Total Vendas</p>
+					<p class="title-text">Total de Vendas</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendas"></p>

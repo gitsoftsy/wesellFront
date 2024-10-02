@@ -68,11 +68,15 @@ $(document).ready(function() {
 				return dataVenda.getFullYear() === currentYear;
 			});
 
+
+			let valorTotalVendas = data.reduce((total, venda) => total + venda.valorTotal, 0);
+
 			// Atualizar a interface com os resultados
-			$("#numeroVendas").text(data.length); // Total de vendas
+			$("#numeroVendas").text(`R$${valorTotalVendas}`); // Total de vendas
 			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
 			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
 			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
+
 
 			Swal.close();
 
@@ -92,6 +96,20 @@ $(document).ready(function() {
 				totalVendas++;
 			});
 
+			let pix = 0;
+			let cartao = 0;
+			let boleto = 0;
+
+			data.forEach(function(venda) {
+				if (venda.formaPagamento === "P") {
+					pix++;
+				} else if (venda.formaPagamento === "C") {
+					cartao++;
+				} else if (venda.statusVenda === "B") {
+					boleto++;
+				}
+			});
+
 
 
 
@@ -109,7 +127,7 @@ $(document).ready(function() {
 				data: {
 					labels: ["Aguardando Pagamento", "Pago", "Cancelados"],
 					datasets: [{
-						label: 'Conversão do checkout',
+						label: "Status de Pagamento",
 						data: [aguardandoPagamento, pago, cancelado],
 						borderWidth: 1,
 						backgroundColor: ['rgba(255, 255, 000, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
@@ -117,6 +135,15 @@ $(document).ready(function() {
 					}]
 				},
 				options: {
+					plugins: {
+						title: {
+							display: true,
+							text: 'Status das Vendas',
+							font: {
+								size: 18
+							}
+						}
+					},
 					scales: {
 						y: {
 							beginAtZero: true
@@ -129,22 +156,35 @@ $(document).ready(function() {
 				type: 'doughnut',
 				data: {
 					labels: [
-						'Red',
-						'Blue',
-						'Yellow'
+						'Cartão',
+						'Pix',
+						'Boleto'
 					],
 					datasets: [{
-						label: 'My First Dataset',
-						data: [300, 50, 100],
+						label: [
+							'Cartão',
+							'Pix',
+							'Boleto'
+						],
+						data: [cartao, pix, boleto],
 						backgroundColor: [
 							'rgb(255, 99, 132)',
-							'rgb(54, 162, 235)',
+							'#10B981',
 							'rgb(255, 205, 86)'
 						],
 						hoverOffset: 4
 					}]
 				},
 				options: {
+					plugins: {
+						title: {
+							display: true,
+							text: 'Métodos de Pagamento Utilizados',
+							font: {
+								size: 18
+							}
+						}
+					},
 					scales: {
 						y: {
 							beginAtZero: true
@@ -168,7 +208,7 @@ $(document).ready(function() {
 				}
 			});
 
-			// Converter o objeto em um array e ordenar pelos vendedores com mais vendas
+			/*// Converter o objeto em um array e ordenar pelos vendedores com mais vendas
 			const topVendedores = Object.keys(vendasPorVendedor)
 				.map(vendedorId => {
 					return { vendedorId, totalVendas: vendasPorVendedor[vendedorId] };
@@ -179,25 +219,25 @@ $(document).ready(function() {
 			let tabelaTopVendedores = `
 				<table class="table">
 				<caption>Top Logistas</caption>
-	            <thead>
-	                <tr>
-	                    <th>Vendedor ID</th>
-	                    <th>Total de Vendas</th>
-	                </tr>
-	            </thead>
-	            <tbody>`;
+				<thead>
+					<tr>
+						<th>Vendedor ID</th>
+						<th>Total de Vendas</th>
+					</tr>
+				</thead>
+				<tbody>`;
 
 			topVendedores.forEach(vendedor => {
 				tabelaTopVendedores += `<tr>
-	                <td>${vendedor.vendedorId}</td>
-	                <td>${vendedor.totalVendas}</td>
-	            </tr>`;
+					<td>${vendedor.vendedorId}</td>
+					<td>${vendedor.totalVendas}</td>
+				</tr>`;
 			});
 
 			tabelaTopVendedores += `</tbody></table>`;
 
 			// Inserir a tabela na página
-			$("#tabelaTopVendedores").html(tabelaTopVendedores);
+			$("#tabelaTopVendedores").html(tabelaTopVendedores);*/
 
 		});
 
