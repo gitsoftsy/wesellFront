@@ -106,7 +106,8 @@ String contextPath = request.getContextPath();
                     </path>
                 </svg>
 					</span>
-					<p class="title-text">Vendas Semanal</p>
+					<p class="title-text">Vendas Semanal
+					</p>
 				</div>
 				<div class="data">
 					<p id="numeroVendasSemanal"></p>

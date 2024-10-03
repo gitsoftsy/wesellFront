@@ -194,52 +194,64 @@ $(document).ready(function() {
 			});
 
 			// Criar um mapa para contar as vendas por vendedor
-			const vendasPorVendedor = {};
 
-			data.forEach(venda => {
-				const vendedorId = venda.vendedorId; // Certifique-se que este campo existe
 
-				// Somente considerar vendas com um vendedor associado
-				if (vendedorId) {
-					if (!vendasPorVendedor[vendedorId]) {
-						vendasPorVendedor[vendedorId] = 0;
-					}
-					vendasPorVendedor[vendedorId]++;
-				}
+
+
+		});
+
+	$.ajax({
+		url: url_base + "/lojistas/top5Vendas",
+		type: "GET",
+		async: false,
+		beforeSend: function() {
+			Swal.showLoading();
+		},
+		error: function(e) {
+			Swal.close();
+			console.log(e.responseJSON);
+			Swal.fire({
+				icon: "error",
+				title: e.responseJSON.message
 			});
+		}
+	})
+		.done(function(data) {
 
-			/*// Converter o objeto em um array e ordenar pelos vendedores com mais vendas
-			const topVendedores = Object.keys(vendasPorVendedor)
-				.map(vendedorId => {
-					return { vendedorId, totalVendas: vendasPorVendedor[vendedorId] };
-				})
-				.sort((a, b) => b.totalVendas - a.totalVendas); // Ordenar por número de vendas
+
 
 			// Gerar a tabela HTML
 			let tabelaTopVendedores = `
-				<table class="table">
-				<caption>Top Logistas</caption>
-				<thead>
-					<tr>
-						<th>Vendedor ID</th>
-						<th>Total de Vendas</th>
-					</tr>
-				</thead>
-				<tbody>`;
+        <div class="caption-container">
+            <caption>Top 5 Lojistas</caption>
+            <div class="info">
+                <div class="tooltiptext">Lojistas com mais ITENS vendidos</div>
+                <i class="fa-solid fa-info" aria-hidden="true"></i>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Lojista</th>
+                    <th>Itens Vendidos</th>
+                </tr>
+            </thead>
+            <tbody>`;
 
-			topVendedores.forEach(vendedor => {
+			data.forEach(vendedor => {
 				tabelaTopVendedores += `<tr>
-					<td>${vendedor.vendedorId}</td>
-					<td>${vendedor.totalVendas}</td>
-				</tr>`;
+            <td>${vendedor.nomeFantasia}</td>
+            <td>${vendedor.totalVendido}</td>
+        </tr>`;
 			});
 
 			tabelaTopVendedores += `</tbody></table>`;
 
 			// Inserir a tabela na página
-			$("#tabelaTopVendedores").html(tabelaTopVendedores);*/
+			$("#tabelaTopVendedores").html(tabelaTopVendedores);
 
-		});
+
+		})
 
 
 

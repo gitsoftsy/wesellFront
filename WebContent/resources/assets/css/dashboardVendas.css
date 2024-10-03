@@ -76,6 +76,7 @@ table {
 }
 
 .data .range .fill {
+
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -83,4 +84,50 @@ table {
 	width: 76%;
 	height: 100%;
 	border-radius: 0.25rem;
+}
+
+.caption-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Espaçamento entre o título e a tabela */
+}
+
+.info {
+    background-color: #183153;
+    color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 1000ms;
+    margin-left: 10px; /* Espaço entre o título e o ícone */
+}
+
+.info i {
+    font-size: .7rem;
+}
+
+.info .tooltiptext {
+    visibility: hidden;
+    width: fit-content;
+    background-color: #183153;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 1%;
+    position: absolute;
+    z-index: 999;
+    left: 15%;
+    top: 66%;
+    opacity: 0;
+    transition: opacity 0.6s;
+    font-size: .8rem;
+}
+
+.info:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
