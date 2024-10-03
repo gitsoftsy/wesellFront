@@ -193,7 +193,7 @@ $(document).ready(function() {
 				}
 			});
 
-			
+
 
 		});
 
@@ -238,10 +238,10 @@ $(document).ready(function() {
 	
 			$("#colaTabela").html(html);
 		}*/
-		
-		
+
+
 	$.ajax({
-		url: url_base + "/produtos/lojista/top5?idLojista" + ,
+		url: url_base + "/produtos/vendedor/top5?idVendedor=" + 43,
 		type: "GET",
 		async: false,
 		beforeSend: function() {
@@ -257,9 +257,49 @@ $(document).ready(function() {
 		}
 	})
 		.done(function(data) {
+			var html = data.map((item, index) => {
+				$.ajax({
+					url: url_base + "/produtos/vendedor/top5?idVendedor=" + 43, ///produtos/lojista/top5?idLojista=5
+					type: "GET",
+					async: false,
+					beforeSend: function() {
+						Swal.showLoading();
+					},
+					error: function(e) {
+						Swal.close();
+						console.log(e.responseJSON);
+						Swal.fire({
+							icon: "error",
+							title: e.responseJSON.message
+						});
+					}
+				})
+				
+				let caminho = item.imagem.split("ROOT");
+				const srcImage = `https://api.we-sell.store${caminho[1]}`
 
-// Criar um mapa para contar as vendas por vendedor
-			const vendasPorVendedor = {};
+				return (
+					`		
+					<div class="itemProduto">
+					   <span class="classificacao">${index + 1}</span>
+					   <div class="boxImg">
+					      <img src=${srcImage} alt="Imagem do produto" />
+					   </div>
+					   <div class="dadosProduto">
+					      <p>${item.nomeProduto}</p>
+					      <span>${item.totalQuantidade} VENDIDOS</span>
+					   </div>
+					</div>
+						`
+				);
+			}).join("");
+
+			$("#tabelaTopVendedores").html(html);
+
+
+
+			// Criar um mapa para contar as vendas por vendedor
+			/*const vendasPorVendedor = {};
 
 			data.forEach(venda => {
 				const nomeVendedor = venda.vendedor.nomeVendedor; // Certifique-se que este campo existe
@@ -302,7 +342,7 @@ $(document).ready(function() {
 			tabelaTopVendedores += `</tbody></table>`;
 
 			// Inserir a tabela na página
-			$("#tabelaTopVendedores").html(tabelaTopVendedores);
+			$("#tabelaTopVendedores").html(tabelaTopVendedores);*/
 
 
 		})
