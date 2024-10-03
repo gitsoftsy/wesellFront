@@ -72,7 +72,7 @@ $(document).ready(function() {
 			let valorTotalVendas = data.reduce((total, venda) => total + venda.valorTotal, 0);
 
 			// Atualizar a interface com os resultados
-			$("#numeroVendas").text(`R$${valorTotalVendas.toFixed(2))}`); // Total de vendas
+			$("#numeroVendas").text(`R$${valorTotalVendas.toFixed(2)}`); // Total de vendas
 			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
 			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
 			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
