@@ -69,10 +69,8 @@ $(document).ready(function() {
 			});
 
 
-			let valorTotalVendas = data.reduce((total, venda) => total + venda.valorTotal, 0);
-
 			// Atualizar a interface com os resultados
-			$("#numeroVendas").text(`R$${valorTotalVendas}`); // Total de vendas
+		
 			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
 			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
 			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
@@ -95,6 +93,8 @@ $(document).ready(function() {
 				}
 				totalVendas++;
 			});
+			
+				$("#numeroVendas").text(totalVendas); // Total de vendas
 
 			let pix = 0;
 			let cartao = 0;
@@ -105,9 +105,9 @@ $(document).ready(function() {
 					pix++;
 				} else if (venda.formaPagamento === "C") {
 					cartao++;
-				} else if (venda.statusVenda === "B") {
+				} else if (venda.formaPagamento === "B") {
 					boleto++;
-				}
+				} else { }
 			});
 
 
@@ -218,6 +218,8 @@ $(document).ready(function() {
 	})
 		.done(function(data) {
 
+			console.log(data)
+
 
 
 			// Gerar a tabela HTML
@@ -249,8 +251,6 @@ $(document).ready(function() {
 
 			// Inserir a tabela na página
 			$("#tabelaTopVendedores").html(tabelaTopVendedores);
-
-
 		})
 
 

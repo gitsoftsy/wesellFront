@@ -182,8 +182,7 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 
-			<div class="mb-3"
-				style="height: 400px; display: flex; flex-direction: row; gap: 2%;">
+			<div class="mb-3 card-charts">
 				<canvas id="myChart"></canvas>
 
 				<canvas id="myChartDonut"></canvas>

@@ -105,9 +105,9 @@ $(document).ready(function() {
 					pix++;
 				} else if (venda.formaPagamento === "C") {
 					cartao++;
-				} else if (venda.statusVenda === "B") {
+				} else if (venda.formaPagamento === "B") {
 					boleto++;
-				}
+				} else { }
 			});
 
 
@@ -241,7 +241,7 @@ $(document).ready(function() {
 
 
 	$.ajax({
-		url: url_base + "/produtos/vendedor/top5?idVendedor=" + 43,
+		url: url_base + "/produtos/lojista/top5?idLojista=" + 5,
 		type: "GET",
 		async: false,
 		beforeSend: function() {
@@ -257,124 +257,66 @@ $(document).ready(function() {
 		}
 	})
 		.done(function(data) {
+			
+			console.log(data)
+			
 			var html = data.map((item, index) => {
-				$.ajax({
-					url: url_base + "/produtos/vendedor/top5?idVendedor=" + 43, ///produtos/lojista/top5?idLojista=5
-					type: "GET",
-					async: false,
-					beforeSend: function() {
-						Swal.showLoading();
-					},
-					error: function(e) {
-						Swal.close();
-						console.log(e.responseJSON);
-						Swal.fire({
-							icon: "error",
-							title: e.responseJSON.message
-						});
-					}
-				})
-				
-				let caminho = item.imagem.split("ROOT");
-				const srcImage = `https://api.we-sell.store${caminho[1]}`
+				// Pega a primeira imagem, se houver mais de uma
+				let caminho = item.imagem.split(",")[0].trim().split("ROOT");
+				const srcImage = `https://api.we-sell.store${caminho[1]}`;
 
 				return (
 					`		
-					<div class="itemProduto">
-					   <span class="classificacao">${index + 1}</span>
-					   <div class="boxImg">
-					      <img src=${srcImage} alt="Imagem do produto" />
-					   </div>
-					   <div class="dadosProduto">
-					      <p>${item.nomeProduto}</p>
-					      <span>${item.totalQuantidade} VENDIDOS</span>
-					   </div>
-					</div>
-						`
+            <div class="itemProduto">
+                <span class="classificacao">${index + 1}</span>
+                <div class="boxImg">
+                    <img src=${srcImage} alt="Imagem do produto" />
+                </div>
+                <div class="dadosProduto">
+                    <p>${item.nomeProduto}</p>
+                    <span>${item.totalQuantidade} VENDIDOS</span>
+                </div>
+            </div>
+            `
 				);
 			}).join("");
 
+			Swal.close();
 			$("#tabelaTopVendedores").html(html);
 
 
 
-			// Criar um mapa para contar as vendas por vendedor
-			/*const vendasPorVendedor = {};
 
-			data.forEach(venda => {
-				const nomeVendedor = venda.vendedor.nomeVendedor; // Certifique-se que este campo existe
+})
 
-				// Somente considerar vendas com um vendedor associado
-				if (vendedorId) {
-					if (!vendasPorVendedor[vendedorId]) {
-						vendasPorVendedor[vendedorId] = 0;
-					}
-					vendasPorVendedor[vendedorId]++;
-				}
+$('.searchButton').click(function() {
+	var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+	var columnToSearch = $(this).closest('.sortable').data('column');
+	var filteredData;
+
+	if (columnToSearch === 'escolaId') {
+		filteredData = dadosOriginais.filter(function(item) {
+			var escola = escolas.find(function(school) {
+				return school.idEscola === item.escolaId;
 			});
+			var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
+			return nomeEscola.includes(searchInput);
+		});
+	} else if (columnToSearch === 'anoVigente') {
+		var filteredData = dadosOriginais.filter(function(item) {
+			return item.anoVigente == searchInput;
+		});
+	} else {
+		filteredData = dadosOriginais.filter(function(item) {
+			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
+		});
+	}
 
-			// Converter o objeto em um array e ordenar pelos vendedores com mais vendas
-			const topVendedores = Object.keys(vendasPorVendedor)
-				.map(vendedorId => {
-					return { nomeVendedor, totalVendas: vendasPorVendedor[vendedorId] };
-				})
-				.sort((a, b) => b.totalVendas - a.totalVendas); // Ordenar por número de vendas
+	listarDados(filteredData);
 
-			// Gerar a tabela HTML
-			let tabelaTopVendedores = `
-				<table class="table">
-				<caption>Top Logistas</caption>
-				<thead>
-					<tr>
-						<th>Vendedor ID</th>
-						<th>Total de Vendas</th>
-					</tr>
-				</thead>
-				<tbody>`;
-
-			topVendedores.forEach(vendedor => {
-				tabelaTopVendedores += `<tr>
-					<td>${vendedor.nomeVendedor}</td>
-					<td>${vendedor.totalVendas}</td>
-				</tr>`;
-			});
-
-			tabelaTopVendedores += `</tbody></table>`;
-
-			// Inserir a tabela na página
-			$("#tabelaTopVendedores").html(tabelaTopVendedores);*/
-
-
-		})
-
-	$('.searchButton').click(function() {
-		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
-		var columnToSearch = $(this).closest('.sortable').data('column');
-		var filteredData;
-
-		if (columnToSearch === 'escolaId') {
-			filteredData = dadosOriginais.filter(function(item) {
-				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
-				});
-				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-				return nomeEscola.includes(searchInput);
-			});
-		} else if (columnToSearch === 'anoVigente') {
-			var filteredData = dadosOriginais.filter(function(item) {
-				return item.anoVigente == searchInput;
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-			});
-		}
-
-		listarDados(filteredData);
-
-		$(this).siblings('.searchInput').val('');
-		$(this).closest('.dropdown-content-form').removeClass('show');
-	})
+	$(this).siblings('.searchInput').val('');
+	$(this).closest('.dropdown-content-form').removeClass('show');
+})
 
 
 });
