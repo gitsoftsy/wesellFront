@@ -50,27 +50,35 @@ $(document).ready(function() {
 			const currentMonth = today.getMonth(); // Mês atual (0-11)
 			const currentYear = today.getFullYear(); // Ano atual
 
+
+
 			// Filtrar vendas da semana
-			const vendasSemana = data.filter(venda => {
-				const dataVenda = new Date(venda.dataCadastro);
-				return dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek;
-			});
+			const vendasSemana = []
 
 			// Filtrar vendas do mês
-			const vendasMes = data.filter(venda => {
-				const dataVenda = new Date(venda.dataCadastro);
-				return dataVenda.getMonth() === currentMonth && dataVenda.getFullYear() === currentYear;
-			});
+			const vendasMes = []
 
 			// Filtrar vendas do ano
-			const vendasAno = data.filter(venda => {
+			const vendasAno = []
+
+			data.map(venda => {
 				const dataVenda = new Date(venda.dataCadastro);
-				return dataVenda.getFullYear() === currentYear;
-			});
+				if (dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek) {
+					vendasSemana.push(venda)
+				}
+
+				if (dataVenda.getMonth() === currentMonth && dataVenda.getFullYear() === currentYear) {
+					vendasMes.push(venda)
+				} 
+				
+				if (dataVenda.getFullYear() === currentYear) {
+					vendasAno.push(venda)
+				}
+			})
 
 
 			// Atualizar a interface com os resultados
-		
+
 			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
 			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
 			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
@@ -83,18 +91,18 @@ $(document).ready(function() {
 			let pago = 0;
 			let cancelado = 0;
 
-			data.forEach(function(venda) {
-				if (venda.statusVenda === "A") {
-					aguardandoPagamento++;
-				} else if (venda.statusVenda === "P") {
-					pago++;
-				} else if (venda.statusVenda === "C") {
-					cancelado++;
-				}
-				totalVendas++;
-			});
-			
-				$("#numeroVendas").text(totalVendas); // Total de vendas
+			/*		data.forEach(function(venda) {
+						if (venda.statusVenda === "A") {
+							aguardandoPagamento++;
+						} else if (venda.statusVenda === "P") {
+							pago++;
+						} else if (venda.statusVenda === "C") {
+							cancelado++;
+						}
+						totalVendas++;
+					});*/
+
+			$("#numeroVendas").text(data.length); // Total de vendas
 
 			let pix = 0;
 			let cartao = 0;

@@ -96,7 +96,7 @@ String contextPath = request.getContextPath();
 
 
 
-			<div class="d-flex w-100" style="gap: 1%;">
+			<div class="d-flex flex-wrap w-100" style="gap: 1%;">
 
 
 
@@ -182,20 +182,20 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 
-			<div class="mb-3 card-charts">
+			<div class="d-flex flex-wrap mb-3 card-charts">
 				<canvas id="myChart"></canvas>
 
 				<canvas id="myChartDonut"></canvas>
 			</div>
 
 
-				<div class='cardTopVenda card'>
-					<div class='title'>
-						<p>TOP PRODUTOS</p>
+			<div class='cardTopVenda card'>
+				<div class='title'>
+					<p>TOP PRODUTOS</p>
 
-					</div>
-					<div class='produtos' id="tabelaTopVendedores"></div>
 				</div>
+				<div class='produtos' id="tabelaTopVendedores"></div>
+			</div>
 		</section>
 	</main>
 

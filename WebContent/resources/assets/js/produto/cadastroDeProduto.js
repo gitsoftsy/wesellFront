@@ -729,6 +729,8 @@ function validarValores(texto, valorMaior, valorMenor, container, card) {
 
 	console.log(valorMaior + ` - ` + valorMenor)
 	console.log(valorMaior > valorMenor)
+	console.log(Number(valorMaior.replace(",", ".")))
+	console.log(Number(valorMenor.replace(",", ".")))
 	console.log(Number(valorMaior.replace(",", ".")) > Number(valorMenor.replace(",", ".")))
 	if (Number(valorMaior.replace(",", ".")) > Number(valorMenor.replace(",", "."))) {
 		$("#btn-submit").removeAttr('disabled')

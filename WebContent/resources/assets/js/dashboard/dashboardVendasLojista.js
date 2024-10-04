@@ -51,41 +51,37 @@ $(document).ready(function() {
 			const currentYear = today.getFullYear(); // Ano atual
 
 			// Filtrar vendas da semana
-			const vendasSemana = data.filter(venda => {
-				const dataVenda = new Date(venda.dataCadastro);
-				return dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek;
-			});
+			const vendasSemana = []
 
 			// Filtrar vendas do mês
-			const vendasMes = data.filter(venda => {
-				const dataVenda = new Date(venda.dataCadastro);
-				return dataVenda.getMonth() === currentMonth && dataVenda.getFullYear() === currentYear;
-			});
+			const vendasMes = []
 
 			// Filtrar vendas do ano
-			const vendasAno = data.filter(venda => {
-				const dataVenda = new Date(venda.dataCadastro);
-				return dataVenda.getFullYear() === currentYear;
-			});
-
-
-			let valorTotalVendas = data.reduce((total, venda) => total + venda.valorTotal, 0);
-
-			// Atualizar a interface com os resultados
-			$("#numeroVendas").text(`R$${valorTotalVendas.toFixed(2)}`); // Total de vendas
-			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
-			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
-			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
-
-
-			Swal.close();
+			const vendasAno = []
 
 			let totalVendas = 0;
 			let aguardandoPagamento = 0;
 			let pago = 0;
 			let cancelado = 0;
 
-			data.forEach(function(venda) {
+			let pix = 0;
+			let cartao = 0;
+			let boleto = 0;
+
+			data.map(venda => {
+				const dataVenda = new Date(venda.dataCadastro);
+				if (dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek) {
+					vendasSemana.push(venda)
+				}
+
+				if (dataVenda.getMonth() === currentMonth && dataVenda.getFullYear() === currentYear) {
+					vendasMes.push(venda)
+				}
+
+				if (dataVenda.getFullYear() === currentYear) {
+					vendasAno.push(venda)
+				}
+
 				if (venda.statusVenda === "A") {
 					aguardandoPagamento++;
 				} else if (venda.statusVenda === "P") {
@@ -94,13 +90,8 @@ $(document).ready(function() {
 					cancelado++;
 				}
 				totalVendas++;
-			});
 
-			let pix = 0;
-			let cartao = 0;
-			let boleto = 0;
 
-			data.forEach(function(venda) {
 				if (venda.formaPagamento === "P") {
 					pix++;
 				} else if (venda.formaPagamento === "C") {
@@ -108,11 +99,19 @@ $(document).ready(function() {
 				} else if (venda.formaPagamento === "B") {
 					boleto++;
 				} else { }
-			});
+			})
 
 
+			let valorTotalVendas = data.reduce((total, venda) => total + venda.valorTotal, 0);
+
+			// Atualizar a interface com os resultados
+			$("#numeroVendas").text(data.length); // Total de vendas
+			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
+			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
+			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
 
 
+			Swal.close();
 
 			// Ou para exibir detalhes:
 			// const detalhesVendas = vendasSemana.map(venda => `ID: ${venda.idVenda}, Data: ${new Date(venda.dataCadastro).toLocaleDateString()}`).join(', ');
@@ -257,9 +256,9 @@ $(document).ready(function() {
 		}
 	})
 		.done(function(data) {
-			
+
 			console.log(data)
-			
+
 			var html = data.map((item, index) => {
 				// Pega a primeira imagem, se houver mais de uma
 				let caminho = item.imagem.split(",")[0].trim().split("ROOT");
@@ -287,36 +286,36 @@ $(document).ready(function() {
 
 
 
-})
+		})
 
-$('.searchButton').click(function() {
-	var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
-	var columnToSearch = $(this).closest('.sortable').data('column');
-	var filteredData;
+	$('.searchButton').click(function() {
+		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
+		var columnToSearch = $(this).closest('.sortable').data('column');
+		var filteredData;
 
-	if (columnToSearch === 'escolaId') {
-		filteredData = dadosOriginais.filter(function(item) {
-			var escola = escolas.find(function(school) {
-				return school.idEscola === item.escolaId;
+		if (columnToSearch === 'escolaId') {
+			filteredData = dadosOriginais.filter(function(item) {
+				var escola = escolas.find(function(school) {
+					return school.idEscola === item.escolaId;
+				});
+				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
+				return nomeEscola.includes(searchInput);
 			});
-			var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-			return nomeEscola.includes(searchInput);
-		});
-	} else if (columnToSearch === 'anoVigente') {
-		var filteredData = dadosOriginais.filter(function(item) {
-			return item.anoVigente == searchInput;
-		});
-	} else {
-		filteredData = dadosOriginais.filter(function(item) {
-			return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-		});
-	}
+		} else if (columnToSearch === 'anoVigente') {
+			var filteredData = dadosOriginais.filter(function(item) {
+				return item.anoVigente == searchInput;
+			});
+		} else {
+			filteredData = dadosOriginais.filter(function(item) {
+				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
+			});
+		}
 
-	listarDados(filteredData);
+		listarDados(filteredData);
 
-	$(this).siblings('.searchInput').val('');
-	$(this).closest('.dropdown-content-form').removeClass('show');
-})
+		$(this).siblings('.searchInput').val('');
+		$(this).closest('.dropdown-content-form').removeClass('show');
+	})
 
 
 });

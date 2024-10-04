@@ -138,11 +138,21 @@ table {
 	gap: 2%;
 }
 
+@media screen and (max-width: 1600px) {
+	#myChartDonut{
+		max-height: 400px;
+	}
+	
+	.card-charts{
+		height: auto
+	}
+}
+
 
 @media screen and (max-width: 1449px) {
 	
 	.card-charts{
-		height: 300px
+		height: auto
 	}
 	
 	.info .tooltiptext{
