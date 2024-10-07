@@ -242,7 +242,7 @@ $(document).ready(function() {
                 <i class="fa-solid fa-info" aria-hidden="true"></i>
             </div>
         </div>
-        <table class="table">
+        <table class="table tableNot tableTel tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
             <thead>
                 <tr>
                     <th>Lojista</th>
