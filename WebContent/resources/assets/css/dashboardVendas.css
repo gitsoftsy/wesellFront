@@ -1,209 +1,199 @@
+.card-charts {
+  height: 300px;
+}
+
+#myChartDonut {
+  max-height: 100%;
+  max-width: 100%;
+  height: auto !important;
+  width: auto !important;
+}
+
+#myChart {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto !important;
+  height: 100% !important;
+}
+
+.cardTopVenda {
+  overflow-x: scroll;
+}
+
 .card-dash {
-	padding: 1rem;
-	background-color: #fff;
-	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-	width: 300px;
-	border-radius: 20px;
-	height: fit-content;
-	transition: all 0.3s ease-in-out;
+  padding: 1rem;
+  background-color: #fff;
+  width: 300px;
+  border-radius: 20px;
+  height: fit-content;
+  transition: all 0.3s ease-in-out;
 }
 
 .title-dash {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .title-dash span {
-	position: relative;
-	padding: 0.5rem;
-	background-color: #10b981;
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 9999px;
+  position: relative;
+  padding: 0.5rem;
+  background-color: #10b981;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
 }
 
 .title-dash span svg {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: #ffffff;
-	height: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  height: 1rem;
 }
 
 .title-text {
-	margin-left: 0.5rem;
-	color: #374151;
-	font-size: 18px;
+  margin-left: 0.5rem;
+  color: #374151;
+  font-size: 18px;
 }
 
 .percent {
-	margin-left: 0.5rem;
-	color: #02972f;
-	font-weight: 600;
-	display: flex;
-	align-items: center;
+  margin-left: 0.5rem;
+  color: #02972f;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 
 .data {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .data p {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	color: #1f2937;
-	font-size: 2.25rem;
-	line-height: 2.5rem;
-	font-weight: 700;
-	text-align: left;
-	height: 80px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  text-align: left;
+  height: 80px;
 }
 
 .data .range {
-	position: relative;
-	background-color: #e5e7eb;
-	width: 100%;
-	height: 0.5rem;
-	border-radius: 0.25rem;
+  position: relative;
+  background-color: #e5e7eb;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .data .range .fill {
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: #10b981;
-	width: 76%;
-	height: 100%;
-	border-radius: 0.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #10b981;
+  width: 76%;
+  height: 100%;
+  border-radius: 0.25rem;
 }
 
 .info {
-	background-color: #183153;
-	color: #fff;
-	width: 15px;
-	height: 15px;
-	border-radius: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	transition: 1000ms;
-	margin-left: 10px; /* Espaço entre o título e o ícone */
+  background-color: #183153;
+  color: #fff;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 1000ms;
+  margin-left: 10px; /* Espaço entre o título e o ícone */
 }
 
 .info i {
-	font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .info .tooltiptext {
-	visibility: hidden;
-	width: fit-content;
-	background-color: #183153;
-	color: #fff;
-	text-align: center;
-	border-radius: 5px;
-	padding: 1%;
-	position: absolute;
-	z-index: 999;
-	left: 15%;
-	top: 66%;
-	opacity: 0;
-	transition: opacity 0.6s;
-	font-size: .8rem;
+  visibility: hidden;
+  width: fit-content;
+  background-color: #183153;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 1%;
+  position: absolute;
+  z-index: 999;
+  left: 15%;
+  top: 66%;
+  opacity: 0;
+  transition: opacity 0.6s;
+  font-size: 0.8rem;
 }
 
 .caption-container {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px; /* Espaçamento entre o título e a tabela */
-}		
-
-
-.card-charts {
-	height: 250px;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	gap: 5%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Espaçamento entre o título e a tabela */
 }
-
- #myChartDonut{
-	max-height: 100%;
-	max-width: 100%;
-	height: auto !important;
-	width: auto !important;
-	
-}
-
-
-#myChart{
-	max-height: 100%;
-	max-width: 100%;
-	width: auto !important;
-	height: 100% !important;
-}
-
-
-.cardTopVenda{
-	overflow-x: scroll; 
-}
-
 
 /* Media Queries para responsividade */
 @media screen and (max-width: 1449px) {
-	.card-dash {
-		width: 40%; /* O card agora ocupa a largura total */
-	}
-	
-	.info .tooltiptext{
-		left: 18%;
-	}		
-	.card-container{
-		justify-content: center;
-	}
+  .card-dash {
+    width: 40%;
+  }
+
+  .info .tooltiptext {
+    left: 18%;
+  }
+  .card-container {
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-
-	.percent {
-		font-size: 16px; /* Ajuste de tamanho de texto para telas menores */
-	}
-	
-	
+  .percent {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-	.card-dash {
-		padding: 0.5rem; /* Menos padding em telas muito pequenas */
-	}
-	
-	.title-text {
-		font-size: 16px; /* Ajuste de fonte do título */
-	}
+  .card-dash {
+    width: 100%;
+  }
 
-	.data p {
-		font-size: 1.5rem; /* Diminui o tamanho do número */
-	}
-	
-	.card-charts{
-		height: auto;
-		flex-direction: column;
-	}
-	
-	
-	 #myChart ,#myChartDonut{
-		max-height: 200px;
-	}
-	
-	
-	.card{
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-	}
+  .title-text {
+    font-size: 16px;
+  }
 
+  .data p {
+    font-size: 1.5rem;
+  }
+
+  .card-charts {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 5%;
+  }
+
+  #myChart,
+  #myChartDonut {
+    height: auto !important;
+    max-height: 200px;
+  }
+
+  #myChart {
+    margin-bottom: 1em;
+  }
+
+  .card-table {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+  }
 }
-
-

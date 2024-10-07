@@ -587,12 +587,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           <div class="row mb-4">
           	<div class="col-md-6">
               <label for="idTransacao" class="form-label"
-                >ID da transação:<span class="red">*</span></label
+                >ID da transação:</label
               >
               <input
                 type="text"
                 id="idTransacao"
-                required
+             
                 autocomplete="off"
                 name="idTransacao"
                 class="form-control inputForm"

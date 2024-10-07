@@ -94,6 +94,8 @@ $("#cep").blur(function () {
 });
 
 function cadastrar() {
+  var transacao = $("#idTransacao").val() ? $("#idTransacao").val() : null;
+
   var objeto = {
     colaboradorId: jsonUser.id,
     cnpj: $("#cnpj")
@@ -124,7 +126,7 @@ function cadastrar() {
       .val()
       .replace(/[^a-zA-Z0-9 ]/g, ""),
     valorMinimoDaCompra: valorConvertidoPreco,
-    idTransacao: $("#idTransacao").val(),
+    transacoes: transacao,
   };
 
   $.ajax({
@@ -201,7 +203,7 @@ function editar() {
       .val()
       .replace(/[^a-zA-Z0-9 ]/g, ""),
     valorMinimoDaCompra: valorConvertidoPreco,
-	idTransacao: $("#idTransacao").val(),
+    transacoes: $("#idTransacao").val(),
   };
 
   $.ajax({
@@ -307,6 +309,7 @@ $(document).ready(function () {
         $("#complemento").val(data.complemento);
         $("#bairro").val(data.bairro);
         $("#cidade").val(data.cidade);
+        $("#idTransacao").val(data.transacoes)
         $("#estado").val(data.estado);
         $("#cep").val(data.cep.replace(/^(\d{5})(\d{3})$/, "$1-$2"));
         $("#site").val(data.site);
