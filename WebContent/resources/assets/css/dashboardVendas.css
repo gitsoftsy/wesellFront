@@ -1,25 +1,22 @@
 .card-dash {
 	padding: 1rem;
 	background-color: #fff;
-	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
-		rgba(0, 0, 0, 0.05);
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	width: 300px;
 	border-radius: 20px;
 	height: fit-content;
+	transition: all 0.3s ease-in-out;
 }
 
 .title-dash {
 	display: flex;
-}
-
-table {
-	caption-side: top;
+	align-items: center;
 }
 
 .title-dash span {
 	position: relative;
 	padding: 0.5rem;
-	background-color: #10B981;
+	background-color: #10b981;
 	width: 1.5rem;
 	height: 1.5rem;
 	border-radius: 9999px;
@@ -45,6 +42,7 @@ table {
 	color: #02972f;
 	font-weight: 600;
 	display: flex;
+	align-items: center;
 }
 
 .data {
@@ -54,22 +52,19 @@ table {
 }
 
 .data p {
-	display: "flex";
-	align-items: "flex-end";
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-	color: #1F2937;
+	color: #1f2937;
 	font-size: 2.25rem;
 	line-height: 2.5rem;
 	font-weight: 700;
 	text-align: left;
 	height: 80px;
-	margin-top: 1rem;
 }
 
 .data .range {
 	position: relative;
-	background-color: #E5E7EB;
+	background-color: #e5e7eb;
 	width: 100%;
 	height: 0.5rem;
 	border-radius: 0.25rem;
@@ -79,16 +74,10 @@ table {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #10B981;
+	background-color: #10b981;
 	width: 76%;
 	height: 100%;
 	border-radius: 0.25rem;
-}
-
-.caption-container {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px; /* Espaçamento entre o título e a tabela */
 }
 
 .info {
@@ -126,10 +115,12 @@ table {
 	font-size: .8rem;
 }
 
-.info:hover .tooltiptext {
-	visibility: visible;
-	opacity: 1;
-}
+.caption-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px; /* Espaçamento entre o título e a tabela */
+}		
+
 
 .card-charts {
 	height: 400px;
@@ -138,18 +129,16 @@ table {
 	gap: 2%;
 }
 
-@media screen and (max-width: 1600px) {
-	#myChartDonut{
-		max-height: 400px;
-	}
-	
-	.card-charts{
-		height: auto
-	}
+.cardTopVenda{
+	overflow-x: scroll; 
 }
 
 
+/* Media Queries para responsividade */
 @media screen and (max-width: 1449px) {
+	.card-dash {
+		width: 40%; /* O card agora ocupa a largura total */
+	}
 	
 	.card-charts{
 		height: auto
@@ -158,20 +147,38 @@ table {
 	.info .tooltiptext{
 		left: 18%;
 	}
-	
+	.card-container{
+		justify-content: center;
+	}
 }
-
-
 
 @media screen and (max-width: 1024px) {
+	.card-dash {
+		width: 40%; /* O card ocupa a largura total da tela menor */
+	}
 	
-	.card-charts{
+	.card-charts {
+		flex-direction: column; /* Alinhamento de coluna para layouts menores */
 		height: fit-content;
-		flex-direction: column;
+	}
+
+	.percent {
+		font-size: 16px; /* Ajuste de tamanho de texto para telas menores */
 	}
 	
-	.info .tooltiptext{
-		left: 18%;
+	
+}
+
+@media screen and (max-width: 768px) {
+	.card-dash {
+		padding: 0.5rem; /* Menos padding em telas muito pequenas */
 	}
 	
+	.title-text {
+		font-size: 16px; /* Ajuste de fonte do título */
+	}
+
+	.data p {
+		font-size: 1.5rem; /* Diminui o tamanho do número */
+	}
 }

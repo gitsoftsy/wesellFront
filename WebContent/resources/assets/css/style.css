@@ -8,6 +8,30 @@
   display: table !important;
 } */
 
+
+/* Personalizando a largura da barra de rolagem */
+::-webkit-scrollbar {
+  width: 8px; /* Largura do scroll vertical */
+  height: 8px; /* Altura do scroll horizontal */
+}
+
+/* Cor de fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Cor e estilo da barra de rolagem (parte que desliza) */
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Cor da barra de rolagem */
+  border-radius: 10px;
+  border: 3px solid transparent; /* Cria um efeito "gap" ao redor da barra */
+}
+
+/* Cor da barra de rolagem ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 .inputComissao{
 	height: 100%;
 /* 	background: transparent;
@@ -121,6 +145,12 @@ body {
 .tabela-acessar-escolas .th-sem-filtro {
   cursor: default;
 }
+
+.rotate {
+  transform: rotate(90deg); /* Gira o ícone 90 graus */
+  transition: transform 0.3s ease;
+}
+
 .abracaMenu .menu .item a {
   color: #fff;
   font-size: 16px;
@@ -666,6 +696,7 @@ a {
 }
 
 .abracaMenu {
+  overflow-y: scroll;
   position: fixed;
   left: 0;
   height: 100%;
@@ -676,6 +707,7 @@ a {
   color: #fff;
   text-align: left;
   box-shadow: 1px 0px 11px -8px #000;
+   
 }
 
 .container-nome-user {
@@ -700,9 +732,17 @@ a {
 }
 
 #sair {
-  position: absolute;
-  width: 251.75px;
-  bottom: 15px;
+  margin-top: auto; /* Empurra o link "Sair" para o final */
+  color: #fff;
+  padding-left: 5%;
+  padding: 14px 15px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.4s ease-in-out;
+}
+
+#sair:hover {
+  background-color: rgb(4, 45, 89);
 }
 
 .img-container {

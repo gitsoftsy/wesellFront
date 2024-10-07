@@ -93,10 +93,8 @@ String contextPath = request.getContextPath();
 
 
 
-			<div class="d-flex w-100" style="gap: 1%;">
+			<div class="d-flex flex-wrap w-100 card-container" style="gap: 1%;">
 				
-			
-			
 			<div class="card-dash mb-3">
 				<div class="title-dash">
 					<span> <svg width="20" fill="currentColor" height="20"
@@ -180,7 +178,7 @@ String contextPath = request.getContextPath();
 			</div>
 			</div>
 
-			<div class="mb-3 card-charts">
+			<div class="d-flex flex-wrap mb-3 card-charts">
 				<canvas id="myChart"></canvas>
 	
 				<canvas id="myChartDonut"></canvas>
