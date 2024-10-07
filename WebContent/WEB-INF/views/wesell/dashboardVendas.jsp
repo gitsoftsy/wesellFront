@@ -178,10 +178,9 @@ String contextPath = request.getContextPath();
 			</div>
 			</div>
 
-			<div class="d-flex flex-wrap mb-3 card-charts">
-				<canvas id="myChart"></canvas>
-	
-				<canvas id="myChartDonut"></canvas>
+			<div class="d-flex mb-3 card-charts">
+				<div class="col-md-6 col-12"> <canvas id="myChart"></canvas></div>
+				<div class="col-md-6 col-12"><canvas id="myChartDonut"></canvas></div>
 			</div>
 			
 			

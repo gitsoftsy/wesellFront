@@ -29,7 +29,7 @@ const { firstDayOfWeek, lastDayOfWeek } = getWeekRange(new Date(today));
 
 $(document).ready(function() {
 
-	$.ajax({
+	/*$.ajax({
 		url: url_base + "/vendas",
 		type: "GET",
 		async: false,
@@ -91,7 +91,7 @@ $(document).ready(function() {
 			let pago = 0;
 			let cancelado = 0;
 
-			/*		data.forEach(function(venda) {
+					data.forEach(function(venda) {
 						if (venda.statusVenda === "A") {
 							aguardandoPagamento++;
 						} else if (venda.statusVenda === "P") {
@@ -100,7 +100,7 @@ $(document).ready(function() {
 							cancelado++;
 						}
 						totalVendas++;
-					});*/
+					});
 
 			$("#numeroVendas").text(data.length); // Total de vendas
 
@@ -126,17 +126,27 @@ $(document).ready(function() {
 			// const detalhesVendas = vendasSemana.map(venda => `ID: ${venda.idVenda}, Data: ${new Date(venda.dataCadastro).toLocaleDateString()}`).join(', ');
 			// $("#numeroVendasSemanal").text(detalhesVendas);
 
-			const ctx = $('#myChart');
+			
+
+			// Criar um mapa para contar as vendas por vendedor
+
+
+
+
+		});*/
+		
+		
+	const ctx = $('#myChart');
 			const ctxDonut = $('#myChartDonut');
 
 			// Criar o gráfico com os dados processados
-			new Chart(ctx, {
+			new Chart(ctx, {	
 				type: 'bar',
 				data: {
 					labels: ["Aguardando Pagamento", "Pago", "Cancelados"],
 					datasets: [{
 						label: "Status de Pagamento",
-						data: [aguardandoPagamento, pago, cancelado],
+						data: [1,2,3],
 						borderWidth: 1,
 						backgroundColor: ['rgba(255, 255, 000, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
 						borderColor: ['rgba(255, 255, 000, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)']
@@ -174,7 +184,7 @@ $(document).ready(function() {
 							'Pix',
 							'Boleto'
 						],
-						data: [cartao, pix, boleto],
+						data: [1,2,3],
 						backgroundColor: [
 							'rgb(255, 99, 132)',
 							'#10B981',
@@ -200,13 +210,6 @@ $(document).ready(function() {
 					}
 				}
 			});
-
-			// Criar um mapa para contar as vendas por vendedor
-
-
-
-
-		});
 
 	$.ajax({
 		url: url_base + "/lojistas/top5Vendas",
@@ -331,7 +334,8 @@ $(document).ready(function() {
 		$(this).siblings('.searchInput').val('');
 		$(this).closest('.dropdown-content-form').removeClass('show');
 	})
-
+	
+	Swal.close()
 
 });
 

@@ -963,12 +963,6 @@ td {
     margin-left: 0.5em;
   }
 
-  #sair {
-    position: absolute;
-    width: 223.25px;
-    bottom: 15px;
-  }
-
   .card-table .btn-primary {
     align-self: flex-end;
     display: flex;
