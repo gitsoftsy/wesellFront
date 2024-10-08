@@ -78,7 +78,7 @@ $(document).ready(function () {
     let boleto = 0;
 
     data.map((venda) => {
-      const dataVenda = new Date(venda.dataCadastro);
+      const dataVenda = new Date(venda.dataVenda);
       if (dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek) {
         vendasSemana.push(venda);
       }

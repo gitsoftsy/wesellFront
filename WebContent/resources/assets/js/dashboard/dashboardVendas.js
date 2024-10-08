@@ -63,7 +63,7 @@ $(document).ready(function () {
     const vendasAno = [];
 
     data.map((venda) => {
-      const dataVenda = new Date(venda.dataCadastro);
+      const dataVenda = new Date(venda.dataVenda);
       if (dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek) {
         vendasSemana.push(venda);
       }
@@ -121,9 +121,7 @@ $(document).ready(function () {
 
     // const detalhesVendas = vendasSemana.map(venda => `ID: ${venda.idVenda}, Data: ${new Date(venda.dataCadastro).toLocaleDateString()}`).join(', ');
     // $("#numeroVendasSemanal").text(detalhesVendas);
-  });
-
-  const ctx = $("#myChart");
+     const ctx = $("#myChart");
   const ctxDonut = $("#myChartDonut");
 
   new Chart(ctx, {
@@ -132,8 +130,8 @@ $(document).ready(function () {
       labels: ["Aguardando Pagamento", "Pago", "Cancelados"],
       datasets: [
         {
-          label: "Status de Pagamento",
-          data: [1, 2, 3],
+          label: ["Aguardando Pagamento", "Pago", "Cancelados"],
+          data: [aguardandoPagamento, pago, cancelado],
           borderWidth: 1,
           backgroundColor: [
             "rgba(255, 255, 000, 0.2)",
@@ -173,7 +171,7 @@ $(document).ready(function () {
       datasets: [
         {
           label: ["Cartão", "Pix", "Boleto"],
-          data: [1, 2, 3],
+          data: [cartao, pix, boleto],
           backgroundColor: [
             "rgb(255, 99, 132)",
             "#10B981",
@@ -200,6 +198,9 @@ $(document).ready(function () {
       },
     },
   });
+  });
+
+ 
 
   $.ajax({
     url: url_base + "/lojistas/top5Vendas",
@@ -245,6 +246,8 @@ $(document).ready(function () {
     tabelaTopVendedores += `</tbody></table></div>`;
 
     $("#tabelaTopVendedores").html(tabelaTopVendedores);
+    
+    
   });
 
   /*	function renderizarImportacoes(importacoes) {
