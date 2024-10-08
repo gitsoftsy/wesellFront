@@ -1,240 +1,223 @@
-const botaoDesativa = document.querySelector('#teste');
-const botaoAtiva = document.querySelector('.botaoAtivaMenu');
-const elemento = document.querySelector('#modalMenu');
+const botaoDesativa = document.querySelector("#teste");
+const botaoAtiva = document.querySelector(".botaoAtivaMenu");
+const elemento = document.querySelector("#modalMenu");
 const today = new Date();
 
-botaoDesativa.addEventListener('click', () => {
-	elemento.classList.add('animar-sair');
-	elemento.classList.remove('animar-entrar');
-
+botaoDesativa.addEventListener("click", () => {
+  elemento.classList.add("animar-sair");
+  elemento.classList.remove("animar-entrar");
 });
 
-botaoAtiva.addEventListener('click', () => {
-	elemento.classList.add('animar-entrar');
-	elemento.classList.remove('animar-sair');
+botaoAtiva.addEventListener("click", () => {
+  elemento.classList.add("animar-entrar");
+  elemento.classList.remove("animar-sair");
 });
 
-
-// Função para obter o primeiro e último dia da semana atual
 function getWeekRange(date) {
-	const firstDayOfWeek = new Date(date.setDate(date.getDate() - date.getDay()));
-	const lastDayOfWeek = new Date(date.setDate(firstDayOfWeek.getDate() + 6));
-	return { firstDayOfWeek, lastDayOfWeek };
+  const firstDayOfWeek = new Date(date.setDate(date.getDate() - date.getDay()));
+  const lastDayOfWeek = new Date(date.setDate(firstDayOfWeek.getDate() + 6));
+  return { firstDayOfWeek, lastDayOfWeek };
 }
-
-// Obter o intervalo de datas para a semana atual
 
 const { firstDayOfWeek, lastDayOfWeek } = getWeekRange(new Date(today));
 
+$(document).ready(function () {
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
 
-$(document).ready(function() {
+  if (isMobile()) {
+    $("section.pt-4.card.card-table.px-5.py-3").removeClass();
+  }
 
-	/*$.ajax({
-		url: url_base + "/vendas",
-		type: "GET",
-		async: false,
-		beforeSend: function() {
-			Swal.showLoading();
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	})
-		.done(function(data) {
-			const today = new Date();
-			const currentMonth = today.getMonth(); // Mês atual (0-11)
-			const currentYear = today.getFullYear(); // Ano atual
+  $(window).resize(function () {
+    if (isMobile()) {
+      $("section.pt-4.card.card-table.px-5.py-3").removeClass();
+    }
+  });
 
+  $.ajax({
+    url: url_base + "/vendas",
+    type: "GET",
+    async: false,
+    beforeSend: function () {
+      Swal.showLoading();
+    },
+    error: function (e) {
+      Swal.close();
+      console.log(e.responseJSON);
+      Swal.fire({
+        icon: "error",
+        title: e.responseJSON.message,
+      });
+    },
+  }).done(function (data) {
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
 
+    const vendasSemana = [];
 
-			// Filtrar vendas da semana
-			const vendasSemana = []
+    const vendasMes = [];
 
-			// Filtrar vendas do mês
-			const vendasMes = []
+    const vendasAno = [];
 
-			// Filtrar vendas do ano
-			const vendasAno = []
+    data.map((venda) => {
+      const dataVenda = new Date(venda.dataCadastro);
+      if (dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek) {
+        vendasSemana.push(venda);
+      }
 
-			data.map(venda => {
-				const dataVenda = new Date(venda.dataCadastro);
-				if (dataVenda >= firstDayOfWeek && dataVenda <= lastDayOfWeek) {
-					vendasSemana.push(venda)
-				}
+      if (
+        dataVenda.getMonth() === currentMonth &&
+        dataVenda.getFullYear() === currentYear
+      ) {
+        vendasMes.push(venda);
+      }
 
-				if (dataVenda.getMonth() === currentMonth && dataVenda.getFullYear() === currentYear) {
-					vendasMes.push(venda)
-				} 
-				
-				if (dataVenda.getFullYear() === currentYear) {
-					vendasAno.push(venda)
-				}
-			})
+      if (dataVenda.getFullYear() === currentYear) {
+        vendasAno.push(venda);
+      }
+    });
 
+    $("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
+    $("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
+    $("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
 
-			// Atualizar a interface com os resultados
+    Swal.close();
 
-			$("#numeroVendasSemanal").text(vendasSemana.length); // Vendas da semana
-			$("#numeroVendasMensal").text(vendasMes.length); // Vendas do mês
-			$("#numeroVendasAnual").text(vendasAno.length); // Vendas do ano
+    let totalVendas = 0;
+    let aguardandoPagamento = 0;
+    let pago = 0;
+    let cancelado = 0;
 
+    data.forEach(function (venda) {
+      if (venda.statusVenda === "A") {
+        aguardandoPagamento++;
+      } else if (venda.statusVenda === "P") {
+        pago++;
+      } else if (venda.statusVenda === "C") {
+        cancelado++;
+      }
+      totalVendas++;
+    });
 
-			Swal.close();
+    $("#numeroVendas").text(data.length); // Total de vendas
 
-			let totalVendas = 0;
-			let aguardandoPagamento = 0;
-			let pago = 0;
-			let cancelado = 0;
+    let pix = 0;
+    let cartao = 0;
+    let boleto = 0;
 
-					data.forEach(function(venda) {
-						if (venda.statusVenda === "A") {
-							aguardandoPagamento++;
-						} else if (venda.statusVenda === "P") {
-							pago++;
-						} else if (venda.statusVenda === "C") {
-							cancelado++;
-						}
-						totalVendas++;
-					});
+    data.forEach(function (venda) {
+      if (venda.formaPagamento === "P") {
+        pix++;
+      } else if (venda.formaPagamento === "C") {
+        cartao++;
+      } else if (venda.formaPagamento === "B") {
+        boleto++;
+      } else {
+      }
+    });
 
-			$("#numeroVendas").text(data.length); // Total de vendas
+    // const detalhesVendas = vendasSemana.map(venda => `ID: ${venda.idVenda}, Data: ${new Date(venda.dataCadastro).toLocaleDateString()}`).join(', ');
+    // $("#numeroVendasSemanal").text(detalhesVendas);
+  });
 
-			let pix = 0;
-			let cartao = 0;
-			let boleto = 0;
+  const ctx = $("#myChart");
+  const ctxDonut = $("#myChartDonut");
 
-			data.forEach(function(venda) {
-				if (venda.formaPagamento === "P") {
-					pix++;
-				} else if (venda.formaPagamento === "C") {
-					cartao++;
-				} else if (venda.formaPagamento === "B") {
-					boleto++;
-				} else { }
-			});
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Aguardando Pagamento", "Pago", "Cancelados"],
+      datasets: [
+        {
+          label: "Status de Pagamento",
+          data: [1, 2, 3],
+          borderWidth: 1,
+          backgroundColor: [
+            "rgba(255, 255, 000, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(255, 99, 132, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 255, 000, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(255, 99, 132, 1)",
+          ],
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Status das Vendas",
+          font: {
+            size: 18,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 
+  new Chart(ctxDonut, {
+    type: "doughnut",
+    data: {
+      labels: ["Cartão", "Pix", "Boleto"],
+      datasets: [
+        {
+          label: ["Cartão", "Pix", "Boleto"],
+          data: [1, 2, 3],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "#10B981",
+            "rgb(255, 205, 86)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Métodos de Pagamento Utilizados",
+          font: {
+            size: 18,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 
-
-
-
-			// Ou para exibir detalhes:
-			// const detalhesVendas = vendasSemana.map(venda => `ID: ${venda.idVenda}, Data: ${new Date(venda.dataCadastro).toLocaleDateString()}`).join(', ');
-			// $("#numeroVendasSemanal").text(detalhesVendas);
-
-			
-
-			// Criar um mapa para contar as vendas por vendedor
-
-
-
-
-		});*/
-		
-		
-	const ctx = $('#myChart');
-			const ctxDonut = $('#myChartDonut');
-
-			// Criar o gráfico com os dados processados
-			new Chart(ctx, {	
-				type: 'bar',
-				data: {
-					labels: ["Aguardando Pagamento", "Pago", "Cancelados"],
-					datasets: [{
-						label: "Status de Pagamento",
-						data: [1,2,3],
-						borderWidth: 1,
-						backgroundColor: ['rgba(255, 255, 000, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-						borderColor: ['rgba(255, 255, 000, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)']
-					}]
-				},
-				options: {
-					plugins: {
-						title: {
-							display: true,
-							text: 'Status das Vendas',
-							font: {
-								size: 18
-							}
-						}
-					},
-					scales: {
-						y: {
-							beginAtZero: true
-						}
-					}
-				}
-			});
-
-			new Chart(ctxDonut, {
-				type: 'doughnut',
-				data: {
-					labels: [
-						'Cartão',
-						'Pix',
-						'Boleto'
-					],
-					datasets: [{
-						label: [
-							'Cartão',
-							'Pix',
-							'Boleto'
-						],
-						data: [1,2,3],
-						backgroundColor: [
-							'rgb(255, 99, 132)',
-							'#10B981',
-							'rgb(255, 205, 86)'
-						],
-						hoverOffset: 4
-					}]
-				},
-				options: {
-					plugins: {
-						title: {
-							display: true,
-							text: 'Métodos de Pagamento Utilizados',
-							font: {
-								size: 18
-							}
-						}
-					},
-					scales: {
-						y: {
-							beginAtZero: true
-						}
-					}
-				}
-			});
-
-	$.ajax({
-		url: url_base + "/lojistas/top5Vendas",
-		type: "GET",
-		async: false,
-		beforeSend: function() {
-			Swal.showLoading();
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON);
-			Swal.fire({
-				icon: "error",
-				title: e.responseJSON.message
-			});
-		}
-	})
-		.done(function(data) {
-
-			console.log(data)
-
-
-
-			// Gerar a tabela HTML
-			let tabelaTopVendedores = `
+  $.ajax({
+    url: url_base + "/lojistas/top5Vendas",
+    type: "GET",
+    async: false,
+    beforeSend: function () {
+      Swal.showLoading();
+    },
+    error: function (e) {
+      Swal.close();
+      console.log(e.responseJSON);
+      Swal.fire({
+        icon: "error",
+        title: e.responseJSON.message,
+      });
+    },
+  }).done(function (data) {
+    let tabelaTopVendedores = `
         <div class="caption-container">
             <caption>Top 5 Lojistas</caption>
             <div class="info">
@@ -242,6 +225,7 @@ $(document).ready(function() {
                 <i class="fa-solid fa-info" aria-hidden="true"></i>
             </div>
         </div>
+		<div class="table-responsive">
         <table class="table tableNot tableTel tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
             <thead>
                 <tr>
@@ -251,22 +235,19 @@ $(document).ready(function() {
             </thead>
             <tbody>`;
 
-			data.forEach(vendedor => {
-				tabelaTopVendedores += `<tr>
+    data.forEach((vendedor) => {
+      tabelaTopVendedores += `<tr>
             <td>${vendedor.nomeFantasia}</td>
             <td>${vendedor.totalVendido}</td>
         </tr>`;
-			});
+    });
 
-			tabelaTopVendedores += `</tbody></table>`;
+    tabelaTopVendedores += `</tbody></table></div>`;
 
-			// Inserir a tabela na página
-			$("#tabelaTopVendedores").html(tabelaTopVendedores);
-		})
+    $("#tabelaTopVendedores").html(tabelaTopVendedores);
+  });
 
-
-
-	/*	function renderizarImportacoes(importacoes) {
+  /*	function renderizarImportacoes(importacoes) {
 			var html = importacoes.map(function(item) {
 				// Determina a classe do botão de status com base no status da importação
 				var buttonClass = item.lido === "S" ? "btn-success" : "btn-danger";
@@ -306,36 +287,37 @@ $(document).ready(function() {
 			$("#colaTabela").html(html);
 		}*/
 
-	$('.searchButton').click(function() {
-		var searchInput = $(this).siblings('.searchInput').val().toLowerCase();
-		var columnToSearch = $(this).closest('.sortable').data('column');
-		var filteredData;
+  $(".searchButton").click(function () {
+    var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
+    var columnToSearch = $(this).closest(".sortable").data("column");
+    var filteredData;
 
-		if (columnToSearch === 'escolaId') {
-			filteredData = dadosOriginais.filter(function(item) {
-				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
-				});
-				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-				return nomeEscola.includes(searchInput);
-			});
-		} else if (columnToSearch === 'anoVigente') {
-			var filteredData = dadosOriginais.filter(function(item) {
-				return item.anoVigente == searchInput;
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch].toString().toLowerCase().includes(searchInput);
-			});
-		}
+    if (columnToSearch === "escolaId") {
+      filteredData = dadosOriginais.filter(function (item) {
+        var escola = escolas.find(function (school) {
+          return school.idEscola === item.escolaId;
+        });
+        var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
+        return nomeEscola.includes(searchInput);
+      });
+    } else if (columnToSearch === "anoVigente") {
+      var filteredData = dadosOriginais.filter(function (item) {
+        return item.anoVigente == searchInput;
+      });
+    } else {
+      filteredData = dadosOriginais.filter(function (item) {
+        return item[columnToSearch]
+          .toString()
+          .toLowerCase()
+          .includes(searchInput);
+      });
+    }
 
-		listarDados(filteredData);
+    listarDados(filteredData);
 
-		$(this).siblings('.searchInput').val('');
-		$(this).closest('.dropdown-content-form').removeClass('show');
-	})
-	
-	Swal.close()
+    $(this).siblings(".searchInput").val("");
+    $(this).closest(".dropdown-content-form").removeClass("show");
+  });
 
+  Swal.close();
 });
-
