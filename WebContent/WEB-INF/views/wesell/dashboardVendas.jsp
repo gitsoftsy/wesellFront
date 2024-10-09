@@ -221,6 +221,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
     <script
       charset="UTF-8"
@@ -247,7 +248,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/dashboard/dashboardVendas.js?v=<%=(int) (Math.random() * 10000)%>"
+      src="<%=contextPath%>/resources/assets/js/dashboard/dashboardVendas.js"
     ></script>
     <script
       charset="UTF-8"
