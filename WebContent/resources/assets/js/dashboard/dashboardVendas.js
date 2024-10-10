@@ -237,7 +237,7 @@ $(document).ready(function() {
       <div class="info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Top 5 lojistas com mais vendas">
           <i class="fa-solid fa-info" aria-hidden="true"></i>
       </div>
-    </div>
+    </div>	
 		<div class="table-responsive">
         <table class="table tableNot tableTel tabela-funcionarios table-striped table-bordered mb-0 caption-top mx-auto">
             <thead>
@@ -301,38 +301,6 @@ $(document).ready(function() {
   	
 			  $("#colaTabela").html(html);
 		  }*/
-
-	$(".searchButton").click(function() {
-		var searchInput = $(this).siblings(".searchInput").val().toLowerCase();
-		var columnToSearch = $(this).closest(".sortable").data("column");
-		var filteredData;
-
-		if (columnToSearch === "escolaId") {
-			filteredData = dadosOriginais.filter(function(item) {
-				var escola = escolas.find(function(school) {
-					return school.idEscola === item.escolaId;
-				});
-				var nomeEscola = escola ? escola.nomeEscola.toLowerCase() : "";
-				return nomeEscola.includes(searchInput);
-			});
-		} else if (columnToSearch === "anoVigente") {
-			var filteredData = dadosOriginais.filter(function(item) {
-				return item.anoVigente == searchInput;
-			});
-		} else {
-			filteredData = dadosOriginais.filter(function(item) {
-				return item[columnToSearch]
-					.toString()
-					.toLowerCase()
-					.includes(searchInput);
-			});
-		}
-
-		listarDados(filteredData);
-
-		$(this).siblings(".searchInput").val("");
-		$(this).closest(".dropdown-content-form").removeClass("show");
-	});
-
+	
 	Swal.close();
 });

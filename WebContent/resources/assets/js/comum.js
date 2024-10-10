@@ -22,6 +22,41 @@ if (window.location.origin.includes("localhost") > 0) {
 	path_menu = path_base + "/resources/menu";
 }
 
+
+var contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 1));
+
+// Array de favicons para adicionar
+var favicons = [
+	{ rel: 'apple-touch-icon', sizes: '180x180', href: `${contextPath}/resources/assets/favicon/apple-touch-icon.png` },
+	{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `${contextPath}/resources/assets/favicon/favicon-32x32.png` },
+	{ rel: 'icon', type: 'image/png', sizes: '16x16', href: `${contextPath}/resources/assets/favicon/favicon-16x16.png` }
+];
+
+// Loop para criar e adicionar cada favicon
+$.each(favicons, function(index, favicon) {
+	var link = $('<link>', {
+		rel: favicon.rel,
+		sizes: favicon.sizes,
+		href: favicon.href
+	});
+	
+
+	// Se o favicon tiver um tipo, adiciona ao link
+	if (favicon.type) {
+		link.attr('type', favicon.type);
+	}
+
+	// Adiciona o link ao <head> do documento
+	$('head').append(link);
+})
+
+
+var link = $('<link>', {
+		rel: "manifest",
+		href: `${contextPath}/resources/assets/favicon/site.webmanifest`
+	});
+	
+$('head').append(link)
 window.addEventListener("load", function() {
 	$("#menu").load(path_menu + "/menu.html");
 	const loader = document.querySelector(".bg-loading");
