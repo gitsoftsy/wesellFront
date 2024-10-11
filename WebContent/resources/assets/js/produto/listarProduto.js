@@ -124,6 +124,7 @@ $(document).ready(function() {
 			$(this).prop("checked", false);
 		}
 	});
+	
 	getDados()
 	updatePagination(produto);
 
@@ -145,7 +146,7 @@ $("#limpa-filtros").click(function() {
 	$("#inputBusca").val("")
 	getDados()
 	updatePagination(produto);
-	
+	$('input[data-toggle="toggle"]').bootstrapToggle();
 	Swal.close();
 });
 
@@ -198,8 +199,8 @@ function renderizarProduto(produtos) {
 			item.idProduto + '" onclick="editar(this)">' +
 			'<i class="fa-solid fa-pen fa-lg"></i></span>' +
 			'<input type="checkbox" data-status="' +
-			item.ativo + '" data-id="' + item.idProduto + '" onChange="alteraStatus(this)"' +
-			' checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+			item.ativo + '" data-id="' + item.idProduto + `" ${item.ativo !== "S" ? "" : "checked"}` + ' onChange="alteraStatus(this)"' +
+			' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
 			"</tr>"
 		);
 	}).join("");
@@ -274,7 +275,7 @@ $("#form-filtro").on("submit", function(e) {
 			currentPage = 1; // Reseta a página atual
 			renderizarProduto(produto.slice(0, rows)); // Renderiza os primeiros 12 produtos
 			updatePaginationByFilter(); // Atualiza a paginação com base no filtro
-			
+			$('input[data-toggle="toggle"]').bootstrapToggle();
 			Swal.close();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {

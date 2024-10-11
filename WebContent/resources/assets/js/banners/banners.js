@@ -21,7 +21,7 @@ function getDados() {
 
     banners = data;
     dadosFiltrados = banners;
-    renderizarItens(dadosFiltrados);
+    renderizarItens(dadosFiltrados); $('input[data-toggle="toggle"]').bootstrapToggle();
     showPageNew(currentPageNew);
     renderPageNumbersNew();
   });
@@ -103,7 +103,7 @@ $(document).ready(function () {
           item.ativo +
           '" data-id="' +
           item.idBanner +
-          '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"> <button style="margin-left: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-value="' +
+          '" onChange="alteraStatus(this)"' + `" ${item.ativo !== "S" ? "" : "checked"}` + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"> <button style="margin-left: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-danger btn-sm" data-value="' +
           item.idBanner +
           '" onclick="remover(this)">Remover</button></td>' +
           "</tr>"
@@ -141,7 +141,8 @@ $(document).ready(function () {
     }
   
     currentPage = 1;
-    renderizarItens(dadosFiltrados);
+    renderizarItens(dadosFiltrados); 
+    $('input[data-toggle="toggle"]').bootstrapToggle();
     renderPageNumbersNew();
     showPageNew(currentPageNew);
     toggleNavigationNew();

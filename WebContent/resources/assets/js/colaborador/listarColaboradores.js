@@ -54,7 +54,7 @@ $(document).ready(function () {
   });
 
   function renderizarColaboradores(funcionarios) {
-    var html = colaboradores
+    var html = funcionarios // Atenção: aqui deve ser 'funcionarios', pois estamos lidando com os dados filtrados
       .map(function (item) {
         var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
         return (
@@ -86,14 +86,15 @@ $(document).ready(function () {
           item.ativo +
           '" data-id="' +
           item.idColaborador +
-          '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+          `" ${item.ativo !== "S" ? "" : "checked"}` + ' onChange="alteraStatus(this)" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' + // Removido o segundo "checked"
           "</tr>"
         );
       })
       .join("");
 
     $("#colaTabela").html(html);
-  }
+}
+
 
   $(".checkbox-toggle").each(function () {
     var status = $(this).data("status");
@@ -126,6 +127,7 @@ $(document).ready(function () {
     renderPageNumbersNew();
     showPageNew(currentPageNew);
     toggleNavigationNew();
+    $('input[data-toggle="toggle"]').bootstrapToggle();
   }
 });
 

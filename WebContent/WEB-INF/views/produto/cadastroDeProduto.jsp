@@ -278,8 +278,7 @@ String contextPath = request.getContextPath();
 							name="profundidade" class="form-control inputForm" maxlength="12" />
 					</div>
 					<div class="col-md-6">
-						<label htmlFor="freteGratis" class="form-label"> Frete
-							grátis?<span class="red">*</span>
+						<label htmlFor="freteGratis" class="form-label"> Frete grátis?<span class="red">*</span>
 						</label>
 						<div class="btn-group area-radio mb-4" role="group"
 							aria-label="Basic radio toggle button group">

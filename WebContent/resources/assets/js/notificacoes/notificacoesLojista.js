@@ -52,7 +52,7 @@ $(document).ready(function() {
 		type: "GET",
 		async: false,
 		beforeSend: function() {
-			Swal.showLoading()
+			Swal.showLoading();
 		},
 		error: function(e) {
 			Swal.close();
@@ -71,10 +71,17 @@ $(document).ready(function() {
 				XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 				XLSX.writeFile(livro, "FuncionariosLojista.xlsx");
 			});
+			console.log(data);
+			// Correção: usar data.length sem parênteses
+			if (data.length > 0) {
+				importacoes = data;
+				renderizarImportacoes(data);
+			} else {
+				$(".container-table").hide();
+				$(".card-table").append('<span class="title">Nenhuma Notificação</span>');
+			}
+		});
 
-			importacoes = data;
-			renderizarImportacoes(data);
-		})
 
 	function renderizarImportacoes(importacoes) {
 		var html = importacoes.map(function(item) {

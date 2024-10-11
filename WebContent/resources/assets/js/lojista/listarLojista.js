@@ -117,7 +117,7 @@ $(document).ready(function () {
           item.ativo +
           '" data-id="' +
           item.idLojista +
-          '" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+          '" onChange="alteraStatus(this)"' +  `" ${item.ativo !== "S" ? "" : "checked"}` + ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
           "</tr>"
         );
       })
@@ -161,6 +161,7 @@ $(document).ready(function () {
 
     currentPage = 1;
     renderizarLojistas(dadosFiltrados);
+    $('input[data-toggle="toggle"]').bootstrapToggle();
     renderPageNumbersNew();
     showPageNew(currentPageNew);
     toggleNavigationNew();

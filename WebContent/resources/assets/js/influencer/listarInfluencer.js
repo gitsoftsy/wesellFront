@@ -114,7 +114,7 @@ $(document).ready(function() {
 					item.ativo +
 					'" data-id="' +
 					item.idVendedor +
-					'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm">		  <span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
+					'" onChange="alteraStatus(this)" ' + `" ${item.ativo !== "S" ? "" : "checked"}` +' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm">		  <span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
 					item.idVendedor +
 					'" data-id="' +
 					item.idVendedor +
@@ -155,6 +155,7 @@ $(document).ready(function() {
 
 		currentPage = 1;
 		renderizarInfluencer(dadosFiltrados);
+		$('input[data-toggle="toggle"]').bootstrapToggle();
 		renderPageNumbersNew();
 		showPageNew(currentPageNew);
 		toggleNavigationNew();

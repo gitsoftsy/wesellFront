@@ -25,7 +25,7 @@ $(document).ready(function() {
 	}).done(function(data) {
 		Swal.close();
 		console.log(data)
-		if (data.cnpj == "") {
+		if (data.cnpj == "" || data.cnpj == null || data.cnpj == undefined) {
 			$("#cardCNPJ").hide();
 			$("#cpf").val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"))
 			$('#cpf').attr('required', true);
