@@ -8,7 +8,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>Wesell</title>
+    <title>ADM - Wesell</title>
 
     <!-- Sweetalert -->
     <script
