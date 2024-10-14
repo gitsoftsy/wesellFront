@@ -192,7 +192,7 @@ $(document).ready(function () {
 
   $("#comissao").on("input", function (e) {
     formatCurrencyInput(e, function (formattedValue, rawValue) {
-      ValorConvertidoComissao = rawValue;
+      valorConvertidoComissao = rawValue;
       e.target.value = formattedValue;
     });
   });
@@ -566,6 +566,13 @@ async function editar($button, originalButtonText) {
     destacar: $("input[name='destaque']:checked").val(),
     freteGratis: $("input[name='freteGratis']:checked").val(),
   };
+
+  if ($("input[name='possuiFrete']:checked").val() == "S") {
+    objetoEdit.largura = null;
+    objetoEdit.altura = null;
+    objetoEdit.freteGratis = "S";
+    objetoEdit.profundidade = null;
+  }
 
   $.ajax({
     url: url_base + "/produtos",

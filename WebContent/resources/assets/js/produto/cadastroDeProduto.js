@@ -593,6 +593,13 @@ async function editar($button, originalButtonText) {
 		freteGratis: $('input[name="freteGratis"]:checked').val()
 	};
 
+	if ($("input[name='possuiFrete']:checked").val() == "S") {
+		objetoEdit.largura = null;
+		objetoEdit.altura = null;
+		objetoEdit.freteGratis = "S";
+		objetoEdit.profundidade = null;
+	}
+
 	$.ajax({
 		url: url_base + "/produtos",
 		type: "PUT",
