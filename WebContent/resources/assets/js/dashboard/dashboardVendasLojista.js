@@ -293,7 +293,7 @@ $(document).ready(function() {
 		  }*/
 
 	$.ajax({
-		url: url_base + "/produtos/lojista/top5?idLojista=" + 5,
+		url: url_base + "/produtos/lojista/top5?idLojista=" + usuario.lojistaId,
 		type: "GET",
 		async: false,
 		beforeSend: function() {
