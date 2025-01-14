@@ -155,4 +155,11 @@ public class LojistaController {
 //		
 //		return "lojista/listaImportacoesLojista";
 //	}
+	
+	
+	@RequestMapping(value = { "cadastroDeLojistaPagarme" }, method = RequestMethod.GET)
+	public String cadastroDeLojistaPagarme(HttpSession session, Model model) throws Exception {
+		
+		return "lojista/cadastroDeLojistaPagarme";
+	}
 }
