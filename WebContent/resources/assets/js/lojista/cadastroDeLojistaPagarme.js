@@ -2,7 +2,7 @@ const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
 const elemento = document.querySelector("#modalMenu");
 var edição = "";
-const idLojista = params.get("id");
+const idLojista = localStorage.getItem("idLojista");
 const user = localStorage.getItem("usuario");
 const jsonUser = JSON.parse(user);
 let preco = 0;
@@ -93,44 +93,56 @@ $("#cep").blur(function() {
 	});
 });
 
+
 function cadastrar() {
-	var transacao = $("#idTransacao").val() ? $("#idTransacao").val() : null;
+
 
 	var objeto = {
-		colaboradorId: jsonUser.id,
-		cnpj: $("#cnpj")
+		"idLojista": idLojista,
+		"receitaAnual": $("#receitaAnual").val(),
+		"idTipoEmpresa": $("#idTipoEmpresa").val(),
+		"dataFundacaoEmpresa": $("#dataFundacaoEmpresa").val(),
+		"emailRepLegal": $("#emailRepLegal").val(),
+		"foneDDD": $("#foneNumero").val().replace(/\D/g, '').substring(0, 2),
+		"foneNumero": $("#foneNumero").val().replace(/\D/g, '').substring(2),
+		"foneType": $("#tipoTelefone").val(),
+		"nmRepLegal": "João Silva",
+		"cpfRepLegal": $("#cpfRepLegal").val().replace(/[^\d]+/g, ''),
+		"nmMaeRepLegal": $("#nmMaeRepLegal").val(),
+		"dataNascRepLegal": $("#dataNascRepLegal").val(),
+		"rendaMensalRepLegal": $("#rendaMensalRepLegal").val(),
+		"ocupacaoRepLegal": $("#ocupacaoRepLegal").val(),
+		"repLegal": "S",
+		"enderecoRepLegal": $("#endereco").val(),
+		"numeroRepLegal": $("#numero").val(),
+		"complementoRepLegal": $("#complemento").val(),
+		"bairroRepLegal": $("#bairro").val(),
+		"cidadeRepLegal": $("#cidade").val(),
+		"estadoRepLegal": $("#estado").val(),
+		"cepRepLegal": $("#cep")
 			.val()
 			.replace(/[^a-zA-Z0-9 ]/g, ""),
-		nomeFantasia: $("#nomeFantasia").val(),
-		razaoSocial: $("#razaoSocial").val(),
-		inscrEstadual: $("#inscricaoEstadual").val(),
-		endereco: $("#endereco").val(),
-		numero: $("#numero").val(),
-		complemento: $("#complemento").val(),
-		bairro: $("#bairro").val(),
-		cidade: $("#cidade").val(),
-		estado: $("#estado").val(),
-		cep: $("#cep")
-			.val()
-			.replace(/[^a-zA-Z0-9 ]/g, ""),
-		site: $("#site").val(),
-		calcularFrete: $('input[name="calcularFrete"]:checked').val(),
-		avisoRecebimento: $('input[name="avisoRecebimento"]:checked').val(),
-		maosProprias: $('input[name="maosProprias"]:checked').val(),
-		aceitaBoleto: $('input[name="aceitaBoleto"]:checked').val(),
-		aceitaPix: $('input[name="aceitaPix"]:checked').val(),
-		aceitaCartao: $('input[name="aceitaCartao"]:checked').val(),
-		possuiParcelamento: $('input[name="possuiParcelamento"]:checked').val(),
-		maximoParcelas: $("#maximoParcelas").val(),
-		cepCd: $("#cepCd")
-			.val()
-			.replace(/[^a-zA-Z0-9 ]/g, ""),
-		valorMinimoDaCompra: valorConvertidoPreco,
-		transacoes: null,
-	};
+		"transfAutomatica": "S",
+		"transfIntervalo": "M",
+		"transfDia": $("#transfDia").val(),
+		"idBanco": $("#idBanco").val(),
+		"agenciaNum": $("#agenciaNum").val(),
+		"agenciaDv": $("#agenciaDv").val(),
+		"contaNum": $("#contaNum").val(),
+		"contaDv": $("#contaDv").val(),
+		"tipoConta": "C",
+		"antecipacaoRecebimento": "N",
+		"antecipacaoTp": null,
+		"antecipacaoVolume": null,
+		"antecipacaoDias": null,
+		"antecipacaoDeplay": null,
+		"idRecebedorPagarme": null
+	}
+
+	console.log(objeto)
 
 	$.ajax({
-		url: url_base + "/lojistas",
+		url: url_base + "/lojistaFinan",
 		type: "post",
 		data: JSON.stringify(objeto),
 		contentType: "application/json; charset=utf-8",
@@ -238,23 +250,45 @@ function editar() {
 $(document).ready(function() {
 
 
+
 	$.ajax({
-		url: url_base + "/bancos" ,
+		url: url_base + "/bancos",
+		type: "get",
+		async: false,
+	}).done(function(data) {
+
+		$.each(data, function(index, item) {
+			$("#idBanco").append(
+				$("<option>", {
+					value: item.idBanco,
+					text: `${item.banco} - ${item.codigo}`,
+					name: item.banco,
+				})
+			);
+		});
+	});
+
+
+	$.ajax({
+		url: url_base + "/tipoEmpresa",
 		type: "get",
 		async: false,
 	}).done(function(data) {
 		console.log(data)
 		$.each(data, function(index, item) {
-			$("#idBanco").append(
+			$("#idTipoEmpresa").append(
 				$("<option>", {
-					value: item.idConcurso,
-					text: item.concurso,
-					name: item.concurso,
+					value: item.idTipoEmpresa,
+					text: `${item.tipoEmpresa} - ${item.descricao}`,
+					name: item.tipoEmpresa,
 				})
 			);
 		});
 	});
-	
+
+
+	$("#idBanco").select2()
+	$('#foneNumero').mask('(00) 00000-0000');
 	function toggleFields() {
 		var calcularFrete = $('input[name="calcularFrete"]:checked').val();
 		var aceitaCartao = $('input[name="aceitaCartao"]:checked').val();
@@ -441,9 +475,7 @@ $(document).ready(function() {
 });
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
-	if (idLojista != undefined) {
-		editar();
-	} else {
-		cadastrar();
-	}
+
+	cadastrar();
+
 });

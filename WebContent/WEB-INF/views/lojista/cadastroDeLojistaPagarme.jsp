@@ -55,6 +55,15 @@ String contextPath = request.getContextPath();
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/style.css?v=<%=(int) (Math.random() * 10000)%>" />
 
+
+<!-- Select 2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- Sweetalert -->
 <script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -96,136 +105,86 @@ String contextPath = request.getContextPath();
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
+			
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="nomeFantasia" class="form-label">Nome
-							Fantasia:<span class="red">*</span>
-						</label> <input required autocomplete="off" type="text" id="nomeFantasia"
-							name="nomeFantasia" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="razaoSocial" class="form-label">Razão Social:<span
-							class="red">*</span>
-						</label> <input type="text" id="razaoSocial" autocomplete="off"
-							name="razaoSocial" required class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cpf" class="form-label">CPF:<span class="red">*</span></label>
-						<input required autocomplete="off" type="text" id="cpf" name="cpf"
-							class="form-control inputForm" maxlength="14"
+						<label for="cpfRepLegal" class="form-label">CPF
+							Responsável Legal: <span class="red">*</span></label> <input type="text" id="cpfRepLegal"
+							name="cpfRepLegal" class="form-control inputForm" maxlength="14"
 							data-mask="000.000.000-00" />
 					</div>
 					<div class="col-md-6">
-						<label for="email" class="form-label">Email:<span
-							class="red">*</span>
-						</label> <input type="email" id="email" autocomplete="off" name="email"
-							required class="form-control inputForm" maxlength="255" />
+						<label for="emailRepLegal" class="form-label">Email
+							Responsável Legal: <span class="red">*</span></label> <input type="email" id="emailRepLegal"
+							name="emailRepLegal" class="form-control inputForm"
+							maxlength="255" />
 					</div>
 				</div>
 
+				
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="cnpj" class="form-label">Data de Fundação da
-							Empresa:<span class="red">*</span>
+						<label for="dataFundacaoEmpresa" class="form-label">Data
+							de Fundação da Empresa:<span class="red">*</span>
 						</label> <input required autocomplete="off" type="date"
 							id="dataFundacaoEmpresa" name="dataFundacaoEmpresa"
-							class="form-control inputForm" maxlength="14" />
+							class="form-control inputForm" />
 					</div>
+					
 					<div class="col-md-6">
-						<label for="foneNumero" class="form-label">Telefone:<span
-							class="red">*</span></label> <input type="tel" id="foneNumero"
-							autocomplete="off" name="foneNumero" required
-							class="form-control inputForm" maxlength="15" />
-					</div>
-
-				</div>
-
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-
-						<label for="tipoTelefone" class="form-label">Tipo
-							Telefone: </label> <select class="form-select" aria-label="tipoTelefone"
-							id="tipoTelefone" name="tipoTelefone">
-							<option selected disabled>Selecione uma opção</option>
-							<option value="M">Mobile</option>
-							<option value="F">Não sei</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<label for="foneNumero" class="form-label">Telefone:<span
-							class="red">*</span>
+						<label for="foneNumero" class="form-label">Telefone (Com
+							DDD):<span class="red">*</span>
 						</label> <input type="tel" id="foneNumero" autocomplete="off"
 							name="foneNumero" required class="form-control inputForm"
 							maxlength="255" />
 					</div>
+					
 				</div>
-
-
-
-				<div class="row mb-2">
+				<div class="row mb-4">
 					<div class="col-md-6">
-						<label for="idLojista" class="form-label">ID do Lojista:</label> <input
-							type="text" id="idLojista" name="idLojista"
-							class="form-control inputForm" maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="receitaAnual" class="form-label">Receita
-							Anual: <span class="red">*</span>
-						</label> <input type="number" id="receitaAnual" name="receitaAnual"
-							class="form-control inputForm" required />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="idTipoEmpresa" class="form-label">Tipo de
-							Empresa:</label> <select id="idTipoEmpresa" name="idTipoEmpresa"
-							class="form-select">
-							<option selected disabled>Selecione um tipo</option>
-							<option value="1">Microempresa</option>
-							<option value="2">Pequena Empresa</option>
-							<option value="3">Média Empresa</option>
+						<label for="tipoTelefone" class="form-label">Tipo
+							Telefone <span class="red">*</span>:</label> <select class="form-select" id="tipoTelefone"
+							name="tipoTelefone">
+							<option selected disabled>Selecione uma opção</option>
+							<option value="R">Residencial</option>
+							<option value="F">Fixo</option>
 						</select>
 					</div>
+					
 					<div class="col-md-6">
-						<label for="emailRepLegal" class="form-label">Email
-							Representante Legal:</label> <input type="email" id="emailRepLegal"
-							name="emailRepLegal" class="form-control inputForm"
-							maxlength="255" />
+						<label for="idTipoEmpresa" class="form-label">Tipo de
+							Empresa: <span class="red">*</span> </label> <select id="idTipoEmpresa" name="idTipoEmpresa"
+							class="form-select">
+							<option selected disabled>Selecione um tipo</option>
+						</select>
 					</div>
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="nmRepLegal" class="form-label">Nome
-							Representante Legal: <span class="red">*</span>
+							Responsável Legal:<span class="red">*</span>
 						</label> <input type="text" id="nmRepLegal" name="nmRepLegal"
 							class="form-control inputForm" maxlength="255" required />
 					</div>
 					<div class="col-md-6">
-						<label for="cpfRepLegal" class="form-label">CPF
-							Representante Legal:</label> <input type="text" id="cpfRepLegal"
-							name="cpfRepLegal" class="form-control inputForm" maxlength="14"
-							data-mask="000.000.000-00" />
+						<label for="receitaAnual" class="form-label">Receita
+							Anual:<span class="red">*</span>
+						</label> <input type="number" id="receitaAnual" name="receitaAnual"
+							class="form-control inputForm" required />
 					</div>
 				</div>
-
+				
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="nmMaeRepLegal" class="form-label">Nome da Mãe
-							Representante Legal:</label> <input type="text" id="nmMaeRepLegal"
+							Responsável Legal:</label> <input type="text" id="nmMaeRepLegal"
 							name="nmMaeRepLegal" class="form-control inputForm"
 							maxlength="255" />
 					</div>
 					<div class="col-md-6">
 						<label for="dataNascRepLegal" class="form-label">Data de
-							Nascimento Representante Legal:</label> <input type="date"
+							Nascimento Responsável Legal:</label> <input type="date"
 							id="dataNascRepLegal" name="dataNascRepLegal"
 							class="form-control inputForm" />
 					</div>
@@ -234,19 +193,19 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="rendaMensalRepLegal" class="form-label">Renda
-							Mensal Representante Legal:</label> <input type="number"
+							Mensal Responsável Legal:</label> <input type="number"
 							id="rendaMensalRepLegal" name="rendaMensalRepLegal"
 							class="form-control inputForm" />
 					</div>
 					<div class="col-md-6">
 						<label for="ocupacaoRepLegal" class="form-label">Ocupação
-							Representante Legal:</label> <input type="text" id="ocupacaoRepLegal"
+							Responsável Legal:</label> <input type="text" id="ocupacaoRepLegal"
 							name="ocupacaoRepLegal" class="form-control inputForm"
 							maxlength="255" />
 					</div>
 				</div>
 
-				<div class="row mb-2">
+				<div class="row mb-4">
 					<div class="col-md-6">
 						<label for="transfDia" class="form-label">Dia da
 							Transferência:</label> <select id="transfDia" name="transfDia"
@@ -263,7 +222,7 @@ String contextPath = request.getContextPath();
 						<label for="idBanco" class="form-label">Banco:</label> <select
 							id="idBanco" name="idBanco" class="form-select">
 							<option selected disabled>Selecione um dia</option>
-						
+
 						</select>
 					</div>
 				</div>
@@ -293,6 +252,8 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" maxlength="1" />
 					</div>
 				</div>
+
+		
 
 
 				<div class="row mb-2">
@@ -346,17 +307,12 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="text" class="form-control inputForm"
 							maxlength="255" />
 					</div>
-					<div class="col-md-6">
-						<label for="site" class="form-label">Site:<span
-							class="red">*</span></label> <input type="text" id="site" required
-							autocomplete="off" name="site" class="form-control inputForm"
-							maxlength="255" />
-					</div>
+					
 				</div>
 
 
 
-				<div class="row mb-4">
+				<div class="row mb-4" hidden>
 					<div class="col-md-6">
 						<label for="idTransacao" class="form-label">ID da
 							transação:</label> <input type="text" id="idTransacao" autocomplete="off"
@@ -407,11 +363,16 @@ String contextPath = request.getContextPath();
 		src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/lojista/cadastroDeLojistaPagarme.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
 </body>
 </html>
