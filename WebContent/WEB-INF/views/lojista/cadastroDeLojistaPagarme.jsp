@@ -98,9 +98,9 @@ String contextPath = request.getContextPath();
 				</div>
 			</div>
 		</section>
-		<form id="form-funcionario" >
-		<section class="pt-4 card form p-5 col-8 mx-auto">
-			
+		<form id="form-funcionario">
+			<section class="pt-4 card form p-5 col-8 mx-auto">
+
 				<h1 id="tituloForm" class="text-center mb-5">Cadastro
 					Financeiro</h1>
 				<input type="text" id="usuarioCadastro" hidden
@@ -203,7 +203,7 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				
+
 
 				<!-- Button modal de cadastro  -->
 				<button type="button" style="display: none" class="btn btn-primary"
@@ -223,80 +223,80 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-			
-		</section>
 
-		<section class="mt-4 card form p-5 col-8 mx-auto">
+			</section>
 
-			<div class="row mb-2">
-				<div class="col-md-6">
-					<label for="rendaMensalRepLegal" class="form-label">Renda
-						Mensal Responsável Legal:</label> <input type="number"
-						id="rendaMensalRepLegal" name="rendaMensalRepLegal"
-						class="form-control inputForm" />
-				</div>
-				<div class="col-md-6">
-					<label for="ocupacaoRepLegal" class="form-label">Ocupação
-						Responsável Legal:</label> <input type="text" id="ocupacaoRepLegal"
-						name="ocupacaoRepLegal" class="form-control inputForm"
-						maxlength="255" />
-				</div>
-			</div>
+			<section class="mt-4 card form p-5 col-8 mx-auto">
 
-			<div class="row mb-4">
-				<div class="col-md-6">
-					<label for="transfDia" class="form-label">Dia da
-						Transferência:</label> <select id="transfDia" name="transfDia"
-						class="form-select">
-						<option selected disabled>Selecione um dia</option>
-						<option value="1">1</option>
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="15">15</option>
-						<option value="20">20</option>
-					</select>
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="rendaMensalRepLegal" class="form-label">Renda
+							Mensal Responsável Legal:</label> <input type="number"
+							id="rendaMensalRepLegal" name="rendaMensalRepLegal"
+							class="form-control inputForm" />
+					</div>
+					<div class="col-md-6">
+						<label for="ocupacaoRepLegal" class="form-label">Ocupação
+							Responsável Legal:</label> <input type="text" id="ocupacaoRepLegal"
+							name="ocupacaoRepLegal" class="form-control inputForm"
+							maxlength="255" />
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="idBanco" class="form-label">Banco: <span
-						class="red">*</span></label> <select id="idBanco" name="idBanco"
-						class="form-select" required>
-						<option selected disabled value=''>Selecione um dia</option>
-					</select>
-				</div>
-			</div>
 
-			<div class="row mb-2">
-				<div class="col-md-6">
-					<label for="agenciaNum" class="form-label">Agência Número:
-						<span class="red">*</span>
-					</label> <input type="text" id="agenciaNum" name="agenciaNum"
-						class="form-control inputForm" maxlength="4" required />
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<label for="transfDia" class="form-label">Dia da
+							Transferência:</label> <select id="transfDia" name="transfDia"
+							class="form-select">
+							<option selected disabled>Selecione um dia</option>
+							<option value="1">1</option>
+							<option value="5">5</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="idBanco" class="form-label">Banco: <span
+							class="red">*</span></label> <select id="idBanco" name="idBanco"
+							class="form-select" required>
+							<option selected disabled value=''>Selecione um dia</option>
+						</select>
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="agenciaDv" class="form-label">Dígito
-						Verificador da Agência: <span class="red">*</span>
-					</label> <input type="text" id="agenciaDv" name="agenciaDv"
-						class="form-control inputForm" maxlength="1" required />
-				</div>
-			</div>
 
-			<div class="row mb-2">
-				<div class="col-md-6">
-					<label for="contaNum" class="form-label">Conta Número:<span
-						class="red">*</span></label> <input type="text" id="contaNum"
-						name="contaNum" class="form-control inputForm" maxlength="10"
-						required />
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="agenciaNum" class="form-label">Agência Número:
+							<span class="red">*</span>
+						</label> <input type="text" id="agenciaNum" name="agenciaNum"
+							class="form-control inputForm" maxlength="4" required />
+					</div>
+					<div class="col-md-6">
+						<label for="agenciaDv" class="form-label">Dígito
+							Verificador da Agência: <span class="red">*</span>
+						</label> <input type="text" id="agenciaDv" name="agenciaDv"
+							class="form-control inputForm" maxlength="1" required />
+					</div>
 				</div>
-				<div class="col-md-6">
-					<label for="contaDv" class="form-label">Dígito Verificador
-						da Conta: <span class="red">*</span>
-					</label> <input type="text" id="contaDv" name="contaDv"
-						class="form-control inputForm" maxlength="1" required />
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="contaNum" class="form-label">Conta Número:<span
+							class="red">*</span></label> <input type="text" id="contaNum"
+							name="contaNum" class="form-control inputForm" maxlength="10"
+							required />
+					</div>
+					<div class="col-md-6">
+						<label for="contaDv" class="form-label">Dígito Verificador
+							da Conta: <span class="red">*</span>
+						</label> <input type="text" id="contaDv" name="contaDv"
+							class="form-control inputForm" maxlength="1" required />
+					</div>
 				</div>
-			</div>
-		</section>
-		
-		<section class="mt-4 card form p-5 col-8 mx-auto">
+			</section>
+
+			<section class="mt-4 card form p-5 col-8 mx-auto">
 				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
@@ -350,16 +350,26 @@ String contextPath = request.getContextPath();
 					</div>
 
 				</div>
-				
-				
+
+				<div class="row mb-2">
+					<div class="col-md-12">
+						<input type="checkbox" id="checkAceitoTermos" required
+							autocomplete="off" name="checkAceitoTermos" class="inputForm" />
+						<small class="form-text text-muted"> Declaro que os dados
+							mencionados são do responsável da empresa e que o CPF informado é
+							do responsável. </small>
+					</div>
+				</div>
+
+
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button type="submit" id="btn-submit"
 							class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
-		
-		</section>
+
+			</section>
 		</form>
 	</main>
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
