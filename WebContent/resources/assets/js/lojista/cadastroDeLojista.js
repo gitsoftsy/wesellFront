@@ -200,7 +200,7 @@ function editar() {
 			.val()
 			.replace(/[^a-zA-Z0-9 ]/g, ""),
 		valorMinimoDaCompra: valorConvertidoPreco,
-		transacoes: $("#idTransacao").val(),
+		transacoes: null,
 	};
 
 	$.ajax({
@@ -233,10 +233,6 @@ function editar() {
 }
 
 $(document).ready(function() {
-
-
-
-
 
 	function toggleFields() {
 		var calcularFrete = $('input[name="calcularFrete"]:checked').val();
@@ -287,6 +283,7 @@ $(document).ready(function() {
 		}
 	}
 	if (idLojista == undefined) {
+		$("#navEdit").hide()
 	} else {
 		$("#tituloPagina, #tituloForm").text("Editar Lojista");
 		$("#btn-submit").text("Salvar");
@@ -407,6 +404,82 @@ $(document).ready(function() {
 				console.log("erro ao buscar dados.");
 				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
 			});
+
+
+		$.ajax({
+			url: url_base + "/bancos",
+			type: "get",
+			async: false,
+		}).done(function(data) {
+
+			$.each(data, function(index, item) {
+				$("#idBanco").append(
+					$("<option>", {
+						value: item.idBanco,
+						text: `${item.banco} - ${item.codigo}`,
+						name: item.banco,
+					})
+				);
+			});
+		});
+
+
+		$.ajax({
+			url: url_base + "/tipoEmpresa",
+			type: "get",
+			async: false,
+		}).done(function(data) {
+			console.log(data)
+			$.each(data, function(index, item) {
+				$("#idTipoEmpresa").append(
+					$("<option>", {
+						value: item.idTipoEmpresa,
+						text: `${item.tipoEmpresa} - ${item.descricao}`,
+						name: item.tipoEmpresa,
+					})
+				);
+			});
+		});
+
+		$.ajax({
+			url: url_base + "/lojistas/dadosFinan/" + idLojista,
+			type: "GET",
+			async: false,
+		})
+			.done(function(data) {
+				$("#cpfRepLegal").val(data.cpfRepLegal);
+				$("#emailRepLegal").val(data.emailRepLegal);
+				$("#dataFundacaoEmpresa").val(data.dataFundacaoEmpresa);
+				$("#foneNumero").val(data.foneNumero);
+				$("#tipoTelefone").val(data.foneType);
+				$("#idTipoEmpresa").val(data.tipoEmpresa.idTipoEmpresa);
+				$("#nmRepLegal").val(data.nmRepLegal);
+				$("#nmMaeRepLegal").val(data.nmMaeRepLegal);
+				$("#receitaAnual").val(data.receitaAnual);
+				$("#dataNascRepLegal").val(data.dataNascRepLegal);
+				$("#rendaMensalRepLegal").val(data.rendaMensalRepLegal);
+				$("#ocupacaoRepLegal").val(data.ocupacaoRepLegal);
+				$("#transfDia").val(data.transfDia);
+				$("#idBanco").val(data.banco.idBanco);
+				$("#agenciaNum").val(data.agenciaNum);
+				$("#agenciaDv").val(data.agenciaDv);
+				$("#contaNum").val(data.contaNum);
+				$("#contaDv").val(data.contaDv);
+				$("#cepFinan").val(data.cepRepLegal);
+				$("#enderecoFinan").val(data.enderecoRepLegal);
+				$("#numeroFinan").val(data.numeroRepLegal);
+				$("#bairroFinan").val(data.bairroRepLegal);
+				$("#estadoFinan").val(data.estadoRepLegal);
+				$("#cidadeFinan").val(data.cidadeRepLegal);
+				$("#complementoFinan").val(data.complementoRepLegal);
+
+
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log("erro ao buscar dados.");
+				console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
+			});
+
 	}
 	$('input[name="calcularFrete"]').change(toggleFields);
 	$('input[name="aceitaCartao"]').change(toggleFields);

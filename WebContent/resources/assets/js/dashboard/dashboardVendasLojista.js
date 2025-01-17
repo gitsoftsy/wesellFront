@@ -308,15 +308,18 @@ $(document).ready(function() {
 			});
 		},
 	}).done(function(data) {
-		console.log(data);
+		
+		console.log(data)
 
-		var html = data
-			.map((item, index) => {
-				// Pega a primeira imagem, se houver mais de uma
-				let caminho = item.imagem.split(",")[0].trim().split("ROOT");
-				const srcImage = `https://api.we-sell.store${caminho[1]}`;
 
-				return `		
+		if (data != "Nenhum resultado encontrado para os parâmetros informados.") {
+			var html = data
+				.map((item, index) => {
+					// Pega a primeira imagem, se houver mais de uma
+					let caminho = item.imagem.split(",")[0].trim().split("ROOT");
+					const srcImage = `https://api.we-sell.store${caminho[1]}`;
+
+					return `		
             <div class="itemProduto">
                 <span class="classificacao">${index + 1}</span>
                 <div class="boxImg">
@@ -328,11 +331,18 @@ $(document).ready(function() {
                 </div>
             </div>
             `;
-			})
-			.join("");
+				})
+				.join("");
 
-		Swal.close();
-		$("#tabelaTopVendedores").html(html);
+			Swal.close();
+			$("#tabelaTopVendedores").html(html);
+		}else{
+			var html = "<h2 class'title')>Nenhuma venda foi realizada no momento!</h2>"
+			Swal.close();
+			$("#tabelaTopVendedores").html(html);
+			
+			
+		}
 	});
 
 	$(".searchButton").click(function() {

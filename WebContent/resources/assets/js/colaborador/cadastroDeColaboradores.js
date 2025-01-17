@@ -22,6 +22,7 @@ $(document).ready(function () {
 
     $("#tituloPagina, #tituloForm").text("Editar Colaborador");
     $("#btn-submit").text("Salvar");
+    $("#usuario").attr("disabled", "disabled")
 
     $(".divSenhas").hide();
     $("#senha, #confirmarSenha").prop("required", false);

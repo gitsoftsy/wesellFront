@@ -90,282 +90,522 @@ String contextPath = request.getContextPath();
 			</div>
 		</section>
 		<section class="pt-4">
+
 			<form id="form-funcionario" class="card form p-5 col-8 mx-auto">
 				<h1 id="tituloForm" class="text-center mb-5">Cadastro</h1>
+
+				<nav id="navEdit">
+					<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+						<button class="nav-link active" id="nav-dados-lojista-tab"
+							data-bs-toggle="tab" data-bs-target="#nav-dados-lojista"
+							type="button" role="tab" aria-controls="nav-dados-lojista"
+							aria-selected="true">Dados Lojista</button>
+						<button class="nav-link" id="nav-finan-tab" data-bs-toggle="tab"
+							data-bs-target="#nav-finan" type="button" role="tab"
+							aria-controls="nav-finan" aria-selected="false">Dados
+							Financeiro</button>
+					</div>
+				</nav>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="nomeFantasia" class="form-label">Nome
-							Fantasia:<span class="red">*</span>
-						</label> <input required autocomplete="off" type="text" id="nomeFantasia"
-							name="nomeFantasia" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="razaoSocial" class="form-label">Razão
-							Social:<span class="red">*</span>
-						</label> <input type="text" id="razaoSocial" autocomplete="off"
-							name="razaoSocial" required class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cnpj" class="form-label">CNPJ:<span
-							class="red">*</span></label> <input required autocomplete="off"
-							type="text" id="cnpj" name="cnpj" class="form-control inputForm"
-							maxlength="14" data-mask="00.000.000/0000-00" />
-					</div>
-					<div class="col-md-6">
-						<label for="inscricaoEstadual" class="form-label">Inscrição
-							Estadual:</label> <input type="text" id="inscricaoEstadual"
-							autocomplete="off" name="inscricaoEstadual"
-							class="form-control inputForm" maxlength="9" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:<span
-							class="red">*</span></label> <input type="text" id="cep" required
-							autocomplete="off" name="cep" class="form-control inputForm"
-							maxlength="8" data-mask="00000-000" />
-					</div>
-					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:<span
-							class="red">*</span></label> <input type="text" id="endereco" required
-							autocomplete="off" name="endereco" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="numero" class="form-label">N°:<span
-							class="red">*</span></label> <input required autocomplete="off"
-							type="text" id="numero" name="numero"
-							class="form-control inputForm" maxlength="10" />
-					</div>
-					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:<span
-							class="red">*</span></label> <input type="text" id="bairro" required
-							autocomplete="off" name="bairro" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input
-							type="text" id="complemento" autocomplete="off"
-							name="complemento" class="form-control inputForm" maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="estado" class="form-label">Estado:<span
-							class="red">*</span></label> <input type="text" id="estado" required
-							autocomplete="off" name="estado" class="form-control inputForm"
-							maxlength="2" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cidade" class="form-label">Cidade:<span
-							class="red">*</span></label> <input type="text" id="cidade" required
-							autocomplete="off" name="text" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="site" class="form-label">Site:<span
-							class="red">*</span></label> <input type="text" id="site" required
-							autocomplete="off" name="site" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-4">
-					<div class="col-md-6">
-						<label for="calcularFrete" class="form-label">Calcular
-							Frete:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="calcularFrete" id="calcularFreteSim" value="S" required />
-								<label class="form-check-label" for="calcularFreteSim">Sim</label>
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active mb-4" id="nav-dados-lojista"
+						role="tabpanel" aria-labelledby="nav-dados-lojista-tab"
+						tabindex="0">
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="nomeFantasia" class="form-label">Nome
+									Fantasia:<span class="red">*</span>
+								</label> <input required autocomplete="off" type="text"
+									id="nomeFantasia" name="nomeFantasia"
+									class="form-control inputForm" maxlength="255" />
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="calcularFrete" id="calcularFreteNao" value="N" required />
-								<label class="form-check-label" for="calcularFreteNao">Não</label>
+							<div class="col-md-6">
+								<label for="razaoSocial" class="form-label">Razão
+									Social:<span class="red">*</span>
+								</label> <input type="text" id="razaoSocial" autocomplete="off"
+									name="razaoSocial" required class="form-control inputForm"
+									maxlength="255" />
 							</div>
 						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="cnpj" class="form-label">CNPJ:<span
+									class="red">*</span></label> <input required autocomplete="off"
+									type="text" id="cnpj" name="cnpj"
+									class="form-control inputForm" maxlength="14"
+									data-mask="00.000.000/0000-00" />
+							</div>
+							<div class="col-md-6">
+								<label for="inscricaoEstadual" class="form-label">Inscrição
+									Estadual:</label> <input type="text" id="inscricaoEstadual"
+									autocomplete="off" name="inscricaoEstadual"
+									class="form-control inputForm" maxlength="9" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="cep" class="form-label">CEP:<span
+									class="red">*</span></label> <input type="text" id="cep" required
+									autocomplete="off" name="cep" class="form-control inputForm"
+									maxlength="8" data-mask="00000-000" />
+							</div>
+							<div class="col-md-6">
+								<label for="endereco" class="form-label">Endereço:<span
+									class="red">*</span></label> <input type="text" id="endereco" required
+									autocomplete="off" name="endereco"
+									class="form-control inputForm" maxlength="255" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="numero" class="form-label">N°:<span
+									class="red">*</span></label> <input required autocomplete="off"
+									type="text" id="numero" name="numero"
+									class="form-control inputForm" maxlength="10" />
+							</div>
+							<div class="col-md-6">
+								<label for="bairro" class="form-label">Bairro:<span
+									class="red">*</span></label> <input type="text" id="bairro" required
+									autocomplete="off" name="bairro" class="form-control inputForm"
+									maxlength="255" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="complemento" class="form-label">Complemento:</label>
+								<input type="text" id="complemento" autocomplete="off"
+									name="complemento" class="form-control inputForm"
+									maxlength="255" />
+							</div>
+							<div class="col-md-6">
+								<label for="estado" class="form-label">Estado:<span
+									class="red">*</span></label> <input type="text" id="estado" required
+									autocomplete="off" name="estado" class="form-control inputForm"
+									maxlength="2" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="cidade" class="form-label">Cidade:<span
+									class="red">*</span></label> <input type="text" id="cidade" required
+									autocomplete="off" name="text" class="form-control inputForm"
+									maxlength="255" />
+							</div>
+							<div class="col-md-6">
+								<label for="site" class="form-label">Site:<span
+									class="red">*</span></label> <input type="text" id="site" required
+									autocomplete="off" name="site" class="form-control inputForm"
+									maxlength="255" />
+							</div>
+						</div>
+
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="calcularFrete" class="form-label">Calcular
+									Frete:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="calcularFrete" id="calcularFreteSim" value="S" required />
+										<label class="form-check-label" for="calcularFreteSim">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="calcularFrete" id="calcularFreteNao" value="N" required />
+										<label class="form-check-label" for="calcularFreteNao">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="avisoRecebimento" class="form-label">Aviso
+									de Recebimento:<span class="red">*</span>
+								</label>
+								<div class="form-control" id="avisoRecebimento">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="avisoRecebimento" id="avisoRecebimentoS" value="S"
+											required /> <label class="form-check-label"
+											for="avisoRecebimentoS">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="avisoRecebimento" id="avisoRecebimentoN" value="N"
+											required /> <label class="form-check-label"
+											for="avisoRecebimentoN">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="maosProprias" class="form-label">Mãos
+									Próprias:<span class="red">*</span>
+								</label>
+								<div class="form-control" id="maosProprias">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="maosProprias" id="maosPropriasSim" value="S" required />
+										<label class="form-check-label" for="maosPropriasSim">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="maosProprias" id="maosPropriasNao" value="N" required />
+										<label class="form-check-label" for="maosPropriasNao">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6" id="cardCEP">
+								<label for="cepCd" class="form-label">CEP do Centro de
+									Distribuição:<span class="red">*</span>
+								</label> <input type="tel" class="form-control" id="cepCd"
+									data-mask="00000-000" name="cepCd" />
+							</div>
+						</div>
+
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="aceitaBoleto" class="form-label">Aceita
+									Boleto:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="aceitaBoleto" id="aceitaBoletoS" value="S" required />
+										<label class="form-check-label" for="aceitaBoletoS">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="aceitaBoleto" id="aceitaBoletoN" value="N" required />
+										<label class="form-check-label" for="aceitaBoletoN">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="aceitaPix" class="form-label">Aceita Pix:<span
+									class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="aceitaPix"
+											id="aceitaPixSim" value="S" required /> <label
+											class="form-check-label" for="aceitaPixSim">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="aceitaPix"
+											id="aceitaPixNao" value="N" required /> <label
+											class="form-check-label" for="aceitaPixNao">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="aceitaCartao" class="form-label">Aceita
+									Cartão:<span class="red">*</span>
+								</label>
+								<div class="form-control">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="aceitaCartao" id="aceitaCartaoSim" value="S" required />
+										<label class="form-check-label" for="aceitaCartaoSim">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="aceitaCartao" id="aceitaCartaoNao" value="N" required />
+										<label class="form-check-label" for="aceitaCartaoNao">Não</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="possuiParcelamento" class="form-label">Possui
+									Parcelamento:<span class="red">*</span>
+								</label>
+								<div class="form-control" id="possuiParcelamento">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="possuiParcelamento" id="possuiParcelamentoS" value="S"
+											required /> <label class="form-check-label"
+											for="possuiParcelamentoS">Sim</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio"
+											name="possuiParcelamento" id="possuiParcelamentoN" value="N"
+											required /> <label class="form-check-label"
+											for="possuiParcelamentoN">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="maximoParcelas" class="form-label">Máximo de
+									Parcelas:<span class="red">*</span>
+								</label> <input type="text" id="maximoParcelas" required
+									autocomplete="off" name="maximoParcelas" data-mask="00"
+									class="form-control" />
+							</div>
+							<div class="col-md-6">
+								<label for="valorMinimoDaCompra" class="form-label">Valor
+									Mínimo da Compra:<span class="red">*</span>
+								</label> <input type="text" id="valorMinimoDaCompra" required
+									autocomplete="off" name="valorMinimoDaCompra"
+									class="form-control inputForm" maxlength="12" />
+							</div>
+						</div>
+
+						<div class="row mb-4" hidden>
+							<div class="col-md-6">
+								<label for="idTransacao" class="form-label">ID da
+									transação:</label> <input type="text" id="idTransacao"
+									autocomplete="off" name="idTransacao"
+									class="form-control inputForm" maxlength="255" />
+							</div>
+						</div>
+
+
+						<div class="row mb-2">
+							<div class="col-md-12 text-center">
+								<button type="submit" id="btn-submit"
+									class="btn confirm btn-primary btn-register">Próximo</button>
+							</div>
+						</div>
+
 					</div>
-					<div class="col-md-6">
-						<label for="avisoRecebimento" class="form-label">Aviso
-							de Recebimento:<span class="red">*</span>
-						</label>
-						<div class="form-control" id="avisoRecebimento">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="avisoRecebimento" id="avisoRecebimentoS" value="S"
-									required /> <label class="form-check-label"
-									for="avisoRecebimentoS">Sim</label>
+				
+
+					<div class="tab-pane fade mb-5" id="nav-finan" role="tabpanel"
+					aria-labelledby="nav-finan-tab" tabindex="0">
+
+
+
+							<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="cpfRepLegal" class="form-label">CPF
+									Responsável Legal:
+								</label> <input type="text" id="cpfRepLegal" name="cpfRepLegal"
+									class="form-control inputForm" maxlength="14"
+									data-mask="000.000.000-00" disabled/>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="avisoRecebimento" id="avisoRecebimentoN" value="N"
-									required /> <label class="form-check-label"
-									for="avisoRecebimentoN">Não</label>
+							<div class="col-md-6">
+								<label for="emailRepLegal" class="form-label">Email
+									Responsável Legal: <span class="red">*</span>
+								</label> <input type="email" id="emailRepLegal" name="emailRepLegal"
+									class="form-control inputForm" maxlength="255" disabled />
 							</div>
+						</div>
+
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="dataFundacaoEmpresa" class="form-label">Data
+									de Fundação da Empresa:
+								</label> <input autocomplete="off" type="date"
+									id="dataFundacaoEmpresa" name="dataFundacaoEmpresa"
+									class="form-control inputForm"  disabled/>
+							</div>
+
+							<div class="col-md-6">
+								<label for="foneNumero" class="form-label">Telefone (Com
+									DDD):<span class="red">*</span>
+								</label> <input type="tel" id="foneNumero" autocomplete="off"
+									name="foneNumero"  class="form-control inputForm"
+									maxlength="255"  disabled/>
+							</div>
+
+						</div>
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="tipoTelefone" class="form-label">Tipo
+									Telefone :
+								</label> <select class="form-select" id="tipoTelefone"
+									name="tipoTelefone" disabled>
+									<option selected disabled>Selecione uma opção</option>
+									<option value="C">Celular</option>
+									<option value="F">Fixo</option>
+								</select>
+							</div>
+
+							<div class="col-md-6">
+								<label for="idTipoEmpresa" class="form-label">Tipo de
+									Empresa: 
+								</label> <select id="idTipoEmpresa" name="idTipoEmpresa"
+									class="form-select" disabled> 
+									<option selected disabled>Selecione um tipo</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="nmRepLegal" class="form-label">Nome
+									Responsável Legal:
+								</label> <input type="text" id="nmRepLegal" name="nmRepLegal"
+									class="form-control inputForm" maxlength="255"  disabled/>
+							</div>
+							<div class="col-md-6">
+								<label for="receitaAnual" class="form-label">Receita
+									Anual:
+								</label> <input type="number" id="receitaAnual" name="receitaAnual"
+									class="form-control inputForm"  disabled/>
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="nmMaeRepLegal" class="form-label">Nome da
+									Mãe Responsável Legal:</label> <input type="text" id="nmMaeRepLegal"
+									name="nmMaeRepLegal" class="form-control inputForm"
+									maxlength="255" disabled/>
+							</div>
+							<div class="col-md-6">
+								<label for="dataNascRepLegal" class="form-label">Data de
+									Nascimento Responsável Legal:</label> <input type="date"
+									id="dataNascRepLegal" name="dataNascRepLegal"
+									class="form-control inputForm"  disabled/>
+							</div>
+						</div>
+
+
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="rendaMensalRepLegal" class="form-label">Renda
+									Mensal Responsável Legal:</label> <input type="number"
+									id="rendaMensalRepLegal" name="rendaMensalRepLegal"
+									class="form-control inputForm" disabled/>
+							</div>
+							<div class="col-md-6">
+								<label for="ocupacaoRepLegal" class="form-label">Ocupação
+									Responsável Legal:</label> <input type="text" id="ocupacaoRepLegal"
+									name="ocupacaoRepLegal" class="form-control inputForm"
+									maxlength="255" disabled/>
+							</div>
+						</div>
+
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<label for="transfDia" class="form-label">Dia da
+									Transferência:</label> <select id="transfDia" name="transfDia"
+									class="form-select" disabled>
+									<option selected disabled>Selecione um dia</option>
+									<option value="1">1</option>
+									<option value="5">5</option>
+									<option value="10">10</option>
+									<option value="15">15</option>
+									<option value="20">20</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="idBanco" class="form-label">Banco: <span
+									class="red">*</span></label> <select id="idBanco" name="idBanco"
+									class="form-select" disabled>
+									<option selected disabled value=''>Selecione um dia</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="agenciaNum" class="form-label">Agência
+									Número: 
+								</label> <input type="text" id="agenciaNum" name="agenciaNum"
+									class="form-control inputForm" maxlength="4" disabled />
+							</div>
+							<div class="col-md-6">
+								<label for="agenciaDv" class="form-label">Dígito
+									Verificador da Agência: 
+								</label> <input type="text" id="agenciaDv" name="agenciaDv"
+									class="form-control inputForm" maxlength="1"  disabled/>
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="contaNum" class="form-label">Conta Número:</label> <input type="text" id="contaNum"
+									name="contaNum" class="form-control inputForm" maxlength="10"
+									disabled />
+							</div>
+							<div class="col-md-6">
+								<label for="contaDv" class="form-label">Dígito
+									Verificador da Conta: 
+								</label> <input type="text" id="contaDv" name="contaDv"
+									class="form-control inputForm" maxlength="1" disabled />
+							</div>
+						</div>
+
+
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="cep" class="form-label">CEP:<span
+									class="red">*</span></label> <input type="text" id="cepFinan" disabled
+									autocomplete="off" name="cep" class="form-control inputForm"
+									maxlength="8" data-mask="00000-000" />
+							</div>
+							<div class="col-md-6">
+								<label for="endereco" class="form-label">Endereço:<span
+									class="red">*</span></label> <input type="text" id="enderecoFinan" disabled
+									autocomplete="off" name="endereco"
+									class="form-control inputForm" maxlength="255" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="numero" class="form-label">N°:</label> <input disabled autocomplete="off"
+									type="text" id="numeroFinan" name="numero"
+									class="form-control inputForm" maxlength="10" />
+							</div>
+							<div class="col-md-6">
+								<label for="bairro" class="form-label">Bairro:</label> <input type="text" id="bairroFinan" disabled
+									autocomplete="off" name="bairro" class="form-control inputForm"
+									maxlength="255" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="complemento" class="form-label">Complemento:</label>
+								<input type="text" id="complementoFinan" autocomplete="off"
+									name="complemento" class="form-control inputForm"
+									maxlength="255" disabled />
+							</div>
+							<div class="col-md-6">
+								<label for="estado" class="form-label">Estado:<span
+									class="red">*</span></label> <input type="text" id="estadoFinan" disabled
+									autocomplete="off" name="estado" class="form-control inputForm"
+									maxlength="2" />
+							</div>
+						</div>
+
+						<div class="row mb-2">
+							<div class="col-md-6">
+								<label for="cidade" class="form-label">Cidade:<span
+									class="red">*</span></label> <input type="text" id="cidadeFinan" disabled
+									autocomplete="off" name="text" class="form-control inputForm"
+									maxlength="255" />
+							</div>
+
 						</div>
 					</div>
 				</div>
 
-				<div class="row mb-4">
-					<div class="col-md-6">
-						<label for="maosProprias" class="form-label">Mãos
-							Próprias:<span class="red">*</span>
-						</label>
-						<div class="form-control" id="maosProprias">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="maosProprias"
-									id="maosPropriasSim" value="S" required />
-								<label class="form-check-label" for="maosPropriasSim">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="maosProprias"
-									id="maosPropriasNao" value="N" required />
-								<label class="form-check-label" for="maosPropriasNao">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6" id="cardCEP">
-						<label for="cepCd" class="form-label">CEP
-							do Centro de Distribuição:<span class="red">*</span>
-						</label> <input type="tel" class="form-control" id="cepCd"
-							data-mask="00000-000" name="cepCd" />
-					</div>
-				</div>
-
-				<div class="row mb-4">
-					<div class="col-md-6">
-						<label for="aceitaBoleto" class="form-label">Aceita
-							Boleto:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaBoleto"
-									id="aceitaBoletoS" value="S" required /> <label
-									class="form-check-label" for="aceitaBoletoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaBoleto"
-									id="aceitaBoletoN" value="N" required /> <label
-									class="form-check-label" for="aceitaBoletoN">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="aceitaPix" class="form-label">Aceita
-							Pix:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaPix"
-									id="aceitaPixSim" value="S" required /> <label
-									class="form-check-label" for="aceitaPixSim">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaPix"
-									id="aceitaPixNao" value="N" required /> <label
-									class="form-check-label" for="aceitaPixNao">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-4">
-					<div class="col-md-6">
-						<label for="aceitaCartao" class="form-label">Aceita
-							Cartão:<span class="red">*</span>
-						</label>
-						<div class="form-control">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaCartao"
-									id="aceitaCartaoSim" value="S" required />
-								<label class="form-check-label" for="aceitaCartaoSim">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="aceitaCartao"
-									id="aceitaCartaoNao" value="N" required />
-								<label class="form-check-label" for="aceitaCartaoNao">Não</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="possuiParcelamento" class="form-label">Possui
-							Parcelamento:<span class="red">*</span>
-						</label>
-						<div class="form-control" id="possuiParcelamento">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiParcelamento" id="possuiParcelamentoS" value="S"
-									required /> <label class="form-check-label"
-									for="possuiParcelamentoS">Sim</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="possuiParcelamento" id="possuiParcelamentoN" value="N"
-									required /> <label class="form-check-label"
-									for="possuiParcelamentoN">Não</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-4">
-					<div class="col-md-6">
-						<label for="maximoParcelas" class="form-label">Máximo
-							de Parcelas:<span class="red">*</span>
-						</label> <input type="text" id="maximoParcelas" required
-							autocomplete="off" name="maximoParcelas" data-mask="00"
-							class="form-control" />
-					</div>
-					<div class="col-md-6">
-						<label for="valorMinimoDaCompra" class="form-label">Valor
-							Mínimo da Compra:<span class="red">*</span>
-						</label> <input type="text" id="valorMinimoDaCompra" required
-							autocomplete="off" name="valorMinimoDaCompra"
-							class="form-control inputForm" maxlength="12" />
-					</div>
-				</div>
-
-				<div class="row mb-4" hidden>
-					<div class="col-md-6">
-						<label for="idTransacao" class="form-label">ID
-							da transação:</label> <input type="text" id="idTransacao"
-							autocomplete="off" name="idTransacao"
-							class="form-control inputForm" maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-12 text-center">
-						<button type="submit" id="btn-submit"
-							class="btn confirm btn-primary btn-register">
-							Próximo</button>
-					</div>
-				</div>
 
 				<!-- Button modal de cadastro  -->
 				<button type="button" style="display: none" class="btn btn-primary"
 					id="openModalBtn" data-bs-toggle="modal"
-					data-bs-target="#exampleModal">Launch demo
-					modal</button>
+					data-bs-target="#exampleModal">Launch demo modal</button>
 
 				<!-- Modal de cadastro -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
