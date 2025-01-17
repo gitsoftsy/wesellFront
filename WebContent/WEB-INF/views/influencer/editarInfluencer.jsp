@@ -139,12 +139,7 @@ String contextPath = request.getContextPath();
 							data-mask="(00)00000-0000" maxlength="11" />
 					</div>
 
-					<div class="col-md-6">
-						<label for="idTransacao" class="form-label">ID
-							da transação:<span class="red">*</span>
-						</label> <input type="text" id="idTransacao" required autocomplete="off"
-							name="idTransacao" class="form-control inputForm" maxlength="255" />
-					</div>
+					
 
 				</div>
 

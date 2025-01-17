@@ -214,8 +214,8 @@ function editar() {
 		cepCd: $("#cepCd")
 			.val()
 			.replace(/[^a-zA-Z0-9 ]/g, ""),
-		valorMinimoDaCompra: valorConvertidoPreco,
-		transacoes: $("#idTransacao").val(),
+		valorMinimoDaCompra: valorConvertidoPreco
+		
 	};
 
 	$.ajax({

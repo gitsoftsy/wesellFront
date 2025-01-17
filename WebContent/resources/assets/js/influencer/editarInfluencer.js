@@ -29,19 +29,21 @@ $(document).ready(function() {
 			$("#cardCNPJ").hide();
 			$("#cpf").val(data.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4"))
 			$('#cpf').attr('required', true);
+			$('#cpf').attr('disabled', true);
 			$('#cnpj').attr('required', false);
 		} else {
 			$("#cardCPF").hide();
 			$("#cnpj").val(data.cnpj)
 			$('#cpf').attr('required', false);
 			$('#cnpj').attr('required', true);
+			$('#cnpj').attr('disabled', true);
 		}
 		vendedor = data
 		$("#nome").val(data.nome)
 		$("#dtNasc").val(data.dtNasc)
 		$("#email").val(data.email)
 		$("#celular").val(data.celular)
-		$("#idTransacao").val(data.transacoes)
+	
 
 	});
 });
@@ -57,9 +59,11 @@ function editar() {
 			.replace(/[^a-zA-Z0-9 ]/g, ""),
 		email: $("#email").val(),
 		celular: $("#celular").val(),
-		cnpj: $("#cnpj").val().replace(/[^a-zA-Z0-9 ]/g, ""),
-		transacoes: $("#idTransacao").val(),
+		cnpj: $("#cnpj").val().replace(/[^a-zA-Z0-9 ]/g, "") == "" ? null : $("#cnpj").val().replace(/[^a-zA-Z0-9 ]/g, "")
+
 	};
+	
+	console.log(objetoFinal)
 
 	$.ajax({
 		url: url_base + "/vendedor",
