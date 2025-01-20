@@ -125,46 +125,11 @@ function cadastrar() {
 		cepCd: $("#cepCd")
 			.val()
 			.replace(/[^a-zA-Z0-9 ]/g, ""),
-		valorMinimoDaCompra: valorConvertidoPreco,
-		transacoes: null,
+		valorMinimoDaCompra: valorConvertidoPreco
 	};
-
-	$.ajax({
-		url: url_base + "/lojistas",
-		type: "post",
-		data: JSON.stringify(objeto),
-		contentType: "application/json; charset=utf-8",
-		beforeSend: function() {
-			Swal.showLoading();
-		},
-		error: function(e) {
-			Swal.close();
-			console.log(e.responseJSON.message);
-			console.log(e.responseJSON.error);
-
-			if (
-				e.responseJSON.message ==
-				"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement"
-			) {
-				Swal.fire({
-					icon: "error",
-					title: "Erro",
-					text: "Já exite um lojista com esse cnpj ",
-				});
-			} else {
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Não foi possível cadastrar no momento, tente mais tarde!",
-				});
-			}
-		},
-	}).done(function(data) {
-		console.log(data)
-		localStorage.setItem("idLojista", data.idLojista)
-		Swal.close();
-		window.location.href = "cadastroDeLojistaPagarme"
-	});
+	
+	localStorage.setItem("dadosLojista", JSON.stringify(objeto))
+	window.location.href = "cadastroDeLojistaPagarme"
 }
 
 function editar() {

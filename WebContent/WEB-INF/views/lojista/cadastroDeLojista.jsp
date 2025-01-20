@@ -643,6 +643,6 @@ String contextPath = request.getContextPath();
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/lojista/cadastroDeLojista.js"></script>
+		src="<%=contextPath%>/resources/assets/js/lojista/cadastroDeLojista.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 </body>
 </html>

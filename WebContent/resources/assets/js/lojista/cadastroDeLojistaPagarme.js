@@ -2,7 +2,7 @@ const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
 const elemento = document.querySelector("#modalMenu");
 var edição = "";
-const idLojista = localStorage.getItem("idLojista");
+var idLojista
 const user = localStorage.getItem("usuario");
 const jsonUser = JSON.parse(user);
 let preco = 0;
@@ -97,54 +97,13 @@ $("#cep").blur(function() {
 function cadastrar() {
 
 
-	var objeto = {
-		"idLojista": idLojista,
-		"receitaAnual": $("#receitaAnual").val(),
-		"idTipoEmpresa": $("#idTipoEmpresa").val(),
-		"dataFundacaoEmpresa": $("#dataFundacaoEmpresa").val(),
-		"emailRepLegal": $("#emailRepLegal").val(),
-		"foneDDD": $("#foneNumero").val().replace(/\D/g, '').substring(0, 2),
-		"foneNumero": $("#foneNumero").val().replace(/\D/g, '').substring(2),
-		"foneType": $("#tipoTelefone").val(),
-		"nmRepLegal": "João Silva",
-		"cpfRepLegal": $("#cpfRepLegal").val().replace(/[^\d]+/g, ''),
-		"nmMaeRepLegal": $("#nmMaeRepLegal").val(),
-		"dataNascRepLegal": $("#dataNascRepLegal").val(),
-		"rendaMensalRepLegal": $("#rendaMensalRepLegal").val(),
-		"ocupacaoRepLegal": $("#ocupacaoRepLegal").val(),
-		"repLegal": "S",
-		"enderecoRepLegal": $("#endereco").val(),
-		"numeroRepLegal": $("#numero").val(),
-		"complementoRepLegal": $("#complemento").val(),
-		"bairroRepLegal": $("#bairro").val(),
-		"cidadeRepLegal": $("#cidade").val(),
-		"estadoRepLegal": $("#estado").val(),
-		"cepRepLegal": $("#cep")
-			.val()
-			.replace(/[^a-zA-Z0-9 ]/g, ""),
-		"transfAutomatica": "S",
-		"transfIntervalo": "M",
-		"transfDia": $("#transfDia").val(),
-		"idBanco": $("#idBanco").val(),
-		"agenciaNum": $("#agenciaNum").val(),
-		"agenciaDv": $("#agenciaDv").val(),
-		"contaNum": $("#contaNum").val(),
-		"contaDv": $("#contaDv").val(),
-		"tipoConta": "C",
-		"antecipacaoRecebimento": "N",
-		"antecipacaoTp": null,
-		"antecipacaoVolume": null,
-		"antecipacaoDias": null,
-		"antecipacaoDeplay": null,
-		"idRecebedorPagarme": null
-	}
-
-	console.log(objeto)
+	
+	var dadosLojista = JSON.parse(localStorage.getItem('dadosLojista'))
 
 	$.ajax({
-		url: url_base + "/lojistaFinan",
+		url: url_base + "/lojistas",
 		type: "post",
-		data: JSON.stringify(objeto),
+		data: JSON.stringify(dadosLojista),
 		contentType: "application/json; charset=utf-8",
 		beforeSend: function() {
 			Swal.showLoading();
@@ -172,14 +131,92 @@ function cadastrar() {
 			}
 		},
 	}).done(function(data) {
-		Swal.close();
-		Swal.fire({
-			title: "Criado com sucesso",
-			icon: "success",
-		}).then((result) => {
-			window.location.href = "listarLojista";
+		idLojista = data.idLojista
+
+		 objeto = {
+			"idLojista": Number(idLojista),
+			"receitaAnual": $("#receitaAnual").val(),
+			"idTipoEmpresa": $("#idTipoEmpresa").val(),
+			"dataFundacaoEmpresa": $("#dataFundacaoEmpresa").val(),
+			"emailRepLegal": $("#emailRepLegal").val(),
+			"foneDDD": $("#foneNumero").val().replace(/\D/g, '').substring(0, 2),
+			"foneNumero": $("#foneNumero").val().replace(/\D/g, '').substring(2),
+			"foneType": $("#tipoTelefone").val(),
+			"nmRepLegal": "João Silva",
+			"cpfRepLegal": $("#cpfRepLegal").val().replace(/[^\d]+/g, ''),
+			"nmMaeRepLegal": $("#nmMaeRepLegal").val(),
+			"dataNascRepLegal": $("#dataNascRepLegal").val(),
+			"rendaMensalRepLegal": $("#rendaMensalRepLegal").val(),
+			"ocupacaoRepLegal": $("#ocupacaoRepLegal").val(),
+			"repLegal": "S",
+			"enderecoRepLegal": $("#endereco").val(),
+			"numeroRepLegal": $("#numero").val(),
+			"complementoRepLegal": $("#complemento").val(),
+			"bairroRepLegal": $("#bairro").val(),
+			"cidadeRepLegal": $("#cidade").val(),
+			"estadoRepLegal": $("#estado").val(),
+			"cepRepLegal": $("#cep")
+				.val()
+				.replace(/[^a-zA-Z0-9 ]/g, ""),
+			"transfAutomatica": "S",
+			"transfIntervalo": "M",
+			"transfDia": $("#transfDia").val(),
+			"idBanco": $("#idBanco").val(),
+			"agenciaNum": $("#agenciaNum").val(),
+			"agenciaDv": $("#agenciaDv").val(),
+			"contaNum": $("#contaNum").val(),
+			"contaDv": $("#contaDv").val(),
+			"tipoConta": "C",
+			"antecipacaoRecebimento": "N",
+			"antecipacaoTp": null,
+			"antecipacaoVolume": null,
+			"antecipacaoDias": null,
+			"antecipacaoDeplay": null,
+			"idRecebedorPagarme": null
+		}
+
+
+		$.ajax({
+			url: url_base + "/lojistaFinan",
+			type: "post",
+			data: JSON.stringify(objeto),
+			contentType: "application/json; charset=utf-8",
+			error: function(e) {
+				Swal.close();
+				console.log(e.responseJSON.message);
+				console.log(e.responseJSON.error);
+
+				if (
+					e.responseJSON.message ==
+					"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement"
+				) {
+					Swal.fire({
+						icon: "error",
+						title: "Erro",
+						text: "Já exite um lojista com esse cnpj ",
+					});
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Não foi possível cadastrar no momento, tente mais tarde!",
+					});
+				}
+			},
+		}).done(function(data) {
+			Swal.close();
+			Swal.fire({
+				title: "Criado com sucesso",
+				icon: "success",
+			}).then((result) => {
+				window.location.href = "listarLojista";
+			});
 		});
+		
+
 	});
+
+
 }
 
 function editar() {
@@ -215,7 +252,7 @@ function editar() {
 			.val()
 			.replace(/[^a-zA-Z0-9 ]/g, ""),
 		valorMinimoDaCompra: valorConvertidoPreco
-		
+
 	};
 
 	$.ajax({
@@ -337,7 +374,7 @@ $(document).ready(function() {
 			$("#maximoParcelas").prop("disabled", false);
 		}
 	}
-	
+
 });
 $("#form-funcionario").on("submit", function(e) {
 	e.preventDefault();
