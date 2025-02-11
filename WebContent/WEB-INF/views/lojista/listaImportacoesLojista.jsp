@@ -209,7 +209,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/lojista/listaImportacoesLojista.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/listaImportacoesLojista.js?v=<%=(int) (Math.random() * 10000)%>"
     ></script>
     <script
       charset="UTF-8"

@@ -199,7 +199,7 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources//assets/js/colaborador/listaImportacoes.js?v=<%=(int) (Math.random() * 10000)%>"></script>
+		src="<%=contextPath%>/resources/assets/js/colaborador/listaImportacoes.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 	<script charset="UTF-8"

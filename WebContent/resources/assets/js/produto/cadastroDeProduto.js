@@ -366,7 +366,7 @@ async function listarImagens() {
 
 function addImageCard(img) {
 	var imageUrl = img.imagem.replace(
-		"/opt/apache-tomcat-9.0.89/webapps/ROOT",
+		"/opt/apache-tomcat-9.0.89/webapps",
 		"https://api.we-sell.store"
 	);
 

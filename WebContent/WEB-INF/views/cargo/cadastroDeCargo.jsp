@@ -224,7 +224,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/cargo/cadastroDeCargo.js"
+      src="<%=contextPath%>/resources/assets/js/cargo/cadastroDeCargo.js?v=<%=(int) (Math.random() * 10000)%>"
     ></script>
   </body>
 </html>

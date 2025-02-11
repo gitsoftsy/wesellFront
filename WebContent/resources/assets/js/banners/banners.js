@@ -5,7 +5,7 @@ var dadosFiltrados = [];
 
 function getDados() {
   $.ajax({
-    url: url_base + "/banners/ativos",
+    url: url_base + "/banners",
     type: "GET",
     async: false,
     error: function (e) {
@@ -28,7 +28,7 @@ function getDados() {
 }
 $(document).ready(function () {
   $.ajax({
-    url: url_base + "/banners/ativos",
+    url: url_base + "/banners",
     type: "GET",
     async: false,
     error: function (e) {

@@ -528,7 +528,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources//assets/js/lojista/cadastroEmpresa.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/cadastroEmpresa.js?v=<%=(int) (Math.random() * 10000)%>"
     ></script>
   </body>
 </html>
