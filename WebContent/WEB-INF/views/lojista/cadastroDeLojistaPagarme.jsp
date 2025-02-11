@@ -100,14 +100,15 @@ String contextPath = request.getContextPath();
 		</section>
 		<form id="form-funcionario">
 			<section class="pt-4 card form p-5 col-8 mx-auto">
-
 				<h1 id="tituloForm" class="text-center mb-5">Cadastro
 					Financeiro</h1>
 				<input type="text" id="usuarioCadastro" hidden
 					value="${funcionario.idUsuario}" />
 
-
+				<!-- Dados Pessoais -->
 				<div class="row mb-2">
+					
+					
 					<div class="col-md-6">
 						<label for="cpfRepLegal" class="form-label">CPF
 							Responsável Legal: <span class="red">*</span>
@@ -115,24 +116,36 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" maxlength="14"
 							data-mask="000.000.000-00" />
 					</div>
+					
 					<div class="col-md-6">
-						<label for="emailRepLegal" class="form-label">Email
+						<label for="nmRepLegal" class="form-label">Nome
 							Responsável Legal: <span class="red">*</span>
-						</label> <input type="email" id="emailRepLegal" name="emailRepLegal"
-							class="form-control inputForm" maxlength="255" />
+						</label> <input type="text" id="nmRepLegal" name="nmRepLegal"
+							class="form-control inputForm" maxlength="255" required />
 					</div>
+
 				</div>
 
-
 				<div class="row mb-2">
+
 					<div class="col-md-6">
-						<label for="dataFundacaoEmpresa" class="form-label">Data
-							de Fundação da Empresa:<span class="red">*</span>
-						</label> <input required autocomplete="off" type="date"
-							id="dataFundacaoEmpresa" name="dataFundacaoEmpresa"
+						<label for="dataNascRepLegal" class="form-label">Data de
+							Nascimento Responsável Legal:</label> <input type="date"
+							id="dataNascRepLegal" name="dataNascRepLegal"
 							class="form-control inputForm" />
 					</div>
+					
+					<div class="col-md-6">
+						<label for="nmMaeRepLegal" class="form-label">Nome da Mãe
+							Responsável Legal:</label> <input type="text" id="nmMaeRepLegal"
+							name="nmMaeRepLegal" class="form-control inputForm"
+							maxlength="255" />
+					</div>
 
+				</div>
+
+				<!-- Contato -->
+				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="foneNumero" class="form-label">Telefone (Com
 							DDD):<span class="red">*</span>
@@ -140,9 +153,6 @@ String contextPath = request.getContextPath();
 							name="foneNumero" required class="form-control inputForm"
 							maxlength="255" />
 					</div>
-
-				</div>
-				<div class="row mb-4">
 					<div class="col-md-6">
 						<label for="tipoTelefone" class="form-label">Tipo Telefone
 							<span class="red">*</span>:
@@ -152,49 +162,18 @@ String contextPath = request.getContextPath();
 							<option value="F">Fixo</option>
 						</select>
 					</div>
-
-					<div class="col-md-6">
-						<label for="idTipoEmpresa" class="form-label">Tipo de
-							Empresa: <span class="red">*</span>
-						</label> <select id="idTipoEmpresa" name="idTipoEmpresa"
-							class="form-select">
-							<option selected disabled>Selecione um tipo</option>
-						</select>
-					</div>
 				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="nmRepLegal" class="form-label">Nome
-							Responsável Legal:<span class="red">*</span>
-						</label> <input type="text" id="nmRepLegal" name="nmRepLegal"
-							class="form-control inputForm" maxlength="255" required />
-					</div>
-					<div class="col-md-6">
-						<label for="receitaAnual" class="form-label">Receita
-							Anual:<span class="red">*</span>
-						</label> <input type="number" id="receitaAnual" name="receitaAnual"
-							class="form-control inputForm" required />
+						<label for="emailRepLegal" class="form-label">Email
+							Responsável Legal: <span class="red">*</span>
+						</label> <input type="email" id="emailRepLegal" name="emailRepLegal"
+							class="form-control inputForm" maxlength="255" />
 					</div>
 				</div>
 
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="nmMaeRepLegal" class="form-label">Nome da Mãe
-							Responsável Legal:</label> <input type="text" id="nmMaeRepLegal"
-							name="nmMaeRepLegal" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="dataNascRepLegal" class="form-label">Data de
-							Nascimento Responsável Legal:</label> <input type="date"
-							id="dataNascRepLegal" name="dataNascRepLegal"
-							class="form-control inputForm" />
-					</div>
-				</div>
-
-
-
+				<!-- Campo oculto de ID da transação -->
 				<div class="row mb-4" hidden>
 					<div class="col-md-6">
 						<label for="idTransacao" class="form-label">ID da
@@ -203,14 +182,12 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-
-
-				<!-- Button modal de cadastro  -->
+				<!-- Botão Modal -->
 				<button type="button" style="display: none" class="btn btn-primary"
 					id="openModalBtn" data-bs-toggle="modal"
 					data-bs-target="#exampleModal">Launch demo modal</button>
 
-				<!-- Modal de cadastro -->
+				<!-- Modal de Cadastro -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -223,10 +200,107 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
+			</section>
+
+
+
+			<section class="mt-4 card form p-5 col-8 mx-auto">
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
+						<input type="text" id="cep" required autocomplete="off" name="cep"
+							class="form-control inputForm" maxlength="8"
+							data-mask="00000-000" />
+					</div>
+					<div class="col-md-6">
+						<label for="endereco" class="form-label">Endereço:<span
+							class="red">*</span></label> <input type="text" id="endereco" required
+							autocomplete="off" name="endereco" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="numero" class="form-label">N°:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="text" id="numero" name="numero"
+							class="form-control inputForm" maxlength="10" />
+					</div>
+					<div class="col-md-6">
+						<label for="bairro" class="form-label">Bairro:<span
+							class="red">*</span></label> <input type="text" id="bairro" required
+							autocomplete="off" name="bairro" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="complemento" class="form-label">Complemento:</label> <input
+							type="text" id="complemento" autocomplete="off"
+							name="complemento" class="form-control inputForm" maxlength="255" />
+					</div>
+					<div class="col-md-6">
+						<label for="estado" class="form-label">Estado:<span
+							class="red">*</span></label> <input type="text" id="estado" required
+							autocomplete="off" name="estado" class="form-control inputForm"
+							maxlength="2" />
+					</div>
+				</div>
+
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label for="cidade" class="form-label">Cidade:<span
+							class="red">*</span></label> <input type="text" id="cidade" required
+							autocomplete="off" name="text" class="form-control inputForm"
+							maxlength="255" />
+					</div>
+
+				</div>
+
+
+
 
 			</section>
 
 			<section class="mt-4 card form p-5 col-8 mx-auto">
+
+
+				<div class="row mb-2">
+
+					<div class="col-md-6">
+						<label for="receitaAnual" class="form-label">Receita
+							Anual:<span class="red">*</span>
+						</label> <input type="number" id="receitaAnual" name="receitaAnual"
+							class="form-control inputForm" required />
+					</div>
+
+				</div>
+
+
+				<div class="row mb-2">
+
+
+					<div class="col-md-6">
+						<label for="dataFundacaoEmpresa" class="form-label">Data
+							de Fundação da Empresa:<span class="red">*</span>
+						</label> <input required autocomplete="off" type="date"
+							id="dataFundacaoEmpresa" name="dataFundacaoEmpresa"
+							class="form-control inputForm" />
+					</div>
+
+
+					<div class="col-md-6">
+						<label for="idTipoEmpresa" class="form-label">Tipo de
+							Empresa: <span class="red">*</span>
+						</label> <select id="idTipoEmpresa" name="idTipoEmpresa"
+							class="form-select">
+							<option selected disabled>Selecione um tipo</option>
+						</select>
+					</div>
+
+				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-6">
@@ -294,62 +368,8 @@ String contextPath = request.getContextPath();
 							class="form-control inputForm" maxlength="1" required />
 					</div>
 				</div>
-			</section>
 
-			<section class="mt-4 card form p-5 col-8 mx-auto">
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cep" class="form-label">CEP:<span class="red">*</span></label>
-						<input type="text" id="cep" required autocomplete="off" name="cep"
-							class="form-control inputForm" maxlength="8"
-							data-mask="00000-000" />
-					</div>
-					<div class="col-md-6">
-						<label for="endereco" class="form-label">Endereço:<span
-							class="red">*</span></label> <input type="text" id="endereco" required
-							autocomplete="off" name="endereco" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
 
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="numero" class="form-label">N°:<span
-							class="red">*</span></label> <input required autocomplete="off"
-							type="text" id="numero" name="numero"
-							class="form-control inputForm" maxlength="10" />
-					</div>
-					<div class="col-md-6">
-						<label for="bairro" class="form-label">Bairro:<span
-							class="red">*</span></label> <input type="text" id="bairro" required
-							autocomplete="off" name="bairro" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="complemento" class="form-label">Complemento:</label> <input
-							type="text" id="complemento" autocomplete="off"
-							name="complemento" class="form-control inputForm" maxlength="255" />
-					</div>
-					<div class="col-md-6">
-						<label for="estado" class="form-label">Estado:<span
-							class="red">*</span></label> <input type="text" id="estado" required
-							autocomplete="off" name="estado" class="form-control inputForm"
-							maxlength="2" />
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="cidade" class="form-label">Cidade:<span
-							class="red">*</span></label> <input type="text" id="cidade" required
-							autocomplete="off" name="text" class="form-control inputForm"
-							maxlength="255" />
-					</div>
-
-				</div>
 
 				<div class="row mb-2">
 					<div class="col-md-12">
@@ -361,7 +381,6 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button type="submit" id="btn-submit"
@@ -370,6 +389,8 @@ String contextPath = request.getContextPath();
 				</div>
 
 			</section>
+
+
 		</form>
 	</main>
 	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
