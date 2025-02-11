@@ -367,7 +367,7 @@ async function listarImagens() {
 function addImageCard(img) {
 	var imageUrl = img.imagem.replace(
 		"/opt/apache-tomcat-9.0.89/webapps/ROOT",
-		"http://ec2-18-235-243-90.compute-1.amazonaws.com:8080"
+		"https://api.we-sell.store"
 	);
 
 	var divCard = $("<div>", {
@@ -561,14 +561,11 @@ function formatKg2(value) {
 
 async function editar($button, originalButtonText) {
 	let precoDeVendaVal = $("#precoDeVenda").val();
-	let comissaoVal = $("#comissao").val();
 	let precoPromoVal = $("#precoPromocional").val();
 	let pesoVal = $("#peso").val();
 
 	let precoConvertido =
 		ValorConvertidoPreco || formatCurrencyInput2(precoDeVendaVal).rawValue;
-	let comissaoConvertida =
-		ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
 	let precoPromocional =
 		ValorConvertidoPrecoPromo || formatCurrencyInput2(precoPromoVal).rawValue;
 	let pesoConvertido = peso || formatKg2(pesoVal).rawValue;
@@ -578,7 +575,7 @@ async function editar($button, originalButtonText) {
 		nomeProduto: $("#nomeProdutoEdit").val(),
 		descrProduto: $("#descricao").val(),
 		precoVenda: precoConvertido,
-		comissao: comissaoConvertida,
+		comissao: 0,
 		precoPromocional: precoPromocional,
 		peso: pesoConvertido,
 		largura: $("#largura").val(),

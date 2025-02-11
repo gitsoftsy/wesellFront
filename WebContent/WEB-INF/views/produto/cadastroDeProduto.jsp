@@ -107,8 +107,8 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2" id="area-input-edit" hidden>
 					<div class="col-md-12">
-						<label for="nomeProdutoEdit" class="form-label">Nome
-							do produto:<span class="red">*</span>
+						<label for="nomeProdutoEdit" class="form-label">Nome do
+							produto:<span class="red">*</span>
 						</label> <input type="text" id="nomeProdutoEdit" autocomplete="off"
 							name="nomeProdutoEdit" class="form-control inputForm"
 							maxlength="255" />
@@ -117,14 +117,14 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2" id="area-input-cadastro">
 					<div class="col-md-6">
-						<label for="nomeProduto" class="form-label">Nome
-							do produto:<span class="red">*</span>
+						<label for="nomeProduto" class="form-label">Nome do
+							produto:<span class="red">*</span>
 						</label> <input type="text" id="nomeProduto" autocomplete="off"
 							name="nomeProduto" class="form-control inputForm" maxlength="255" />
 					</div>
 					<div id="boxImg" class="col-md-6">
-						<label for="file" class="form-label">Imagens
-							do Produto:<span class="red">*</span>
+						<label for="file" class="form-label">Imagens do Produto:<span
+							class="red">*</span>
 						</label> <input autocomplete="off" type="file" accept="image/*"
 							id="imagem-produto" name="file" class="form-control inputForm"
 							multiple />
@@ -142,8 +142,8 @@ String contextPath = request.getContextPath();
 
 				<div class="row mb-2">
 					<div class="col-md-6" id="cardPrecoDeVenda">
-						<label for="precoDeVenda" class="form-label">Preço
-							de venda:<span class="red">*</span>
+						<label for="precoDeVenda" class="form-label">Preço de
+							venda:<span class="red">*</span>
 						</label> <input type="tel" id="precoDeVenda" required autocomplete="off"
 							name="precoDeVenda" class="form-control" maxlength="12" />
 					</div>
@@ -157,11 +157,12 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-2">
-					<div class="col-md-6" id="cardComissao">
-						<label for="comissao" class="form-label">Comissão:<span
-							class="red">*</span></label> <input required autocomplete="off"
-							type="tel" id="comissao" name="comissao" class="form-control"
-							maxlength="12" />
+					<div class="col-md-6">
+						<label for="lojista" class="form-label">Lojista:<span
+							class="red">*</span></label> <select id="lojista" required name="lojista"
+							class="form-select inputForm">
+							<option value="" selected disabled>Selecione...</option>
+						</select>
 					</div>
 					<div class="col-md-6">
 						<label for="categoria" class="form-label">Categoria:<span
@@ -188,14 +189,90 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
+
+
 				<div class="row mb-2">
 					<div class="col-md-6">
-						<label for="lojista" class="form-label">Lojista:<span
-							class="red">*</span></label> <select id="lojista" required name="lojista"
-							class="form-select inputForm">
-							<option value="" selected disabled>Selecione...</option>
-						</select>
+						<label htmlFor="nivel" class="form-label"> Qual o nível de
+							relevância?<span class="red">*</span>
+						</label>
+						<div class="btn-group area-radio mb-4" role="group"
+							aria-label="Basic radio toggle button group">
+							<input type="radio" required class="btn-check" name="nivel"
+								id="padrao" value="1" /> <label
+								class="btn btn-outline-secondary" for="padrao"> Padrão </label>
+
+							<input type="radio" required class="btn-check" name="nivel"
+								id="media" value="2" /> <label
+								class="btn btn-outline-secondary" for="media"> Média </label> <input
+								type="radio" required class="btn-check" name="nivel" id="alta"
+								value="3" /> <label class="btn btn-outline-secondary"
+								for="alta"> Alta </label>
+						</div>
 					</div>
+					<div class="col-md-6">
+						<label htmlFor="possuiFrete" class="form-label"> Possui
+							frete?<span class="red">*</span>
+						</label>
+						<div class="btn-group area-radio mb-4" role="group"
+							aria-label="Basic radio toggle button group">
+							<input type="radio" required class="btn-check" name="possuiFrete"
+								id="possuiFreteS" value="N" /> <label
+								class="btn btn-outline-secondary" for="possuiFreteS">
+								Sim </label> <input type="radio" required class="btn-check"
+								name="possuiFrete" id="possuiFreteN" value="S" /> <label
+								class="btn btn-outline-secondary" for="possuiFreteN">
+								Não </label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-2 dimensoes">
+					<div class="col-md-6" id="cardPeso">
+						<label for="peso" class="form-label">Peso (kg):<span
+							class="red">*</span>
+						</label> <input type="tel" id="peso" autocomplete="off" name="peso"
+							class="form-control inputForm" maxlength="7" />
+					</div>
+					<div class="col-md-6">
+						<label for="largura" class="form-label">Largura (cm):<span
+							class="red">*</span>
+						</label> <input autocomplete="off" type="number" min="1" id="largura"
+							name="largura" class="form-control inputForm" maxlength="12" />
+					</div>
+				</div>
+
+				<div class="row mb-3 dimensoes">
+					<div class="col-md-6">
+						<label for="altura" class="form-label">Altura (cm):<span
+							class="red">*</span>
+						</label> <input type="number" min="1" id="altura" autocomplete="off"
+							name="altura" class="form-control inputForm" maxlength="12" />
+					</div>
+					<div class="col-md-6">
+						<label for="profundidade" class="form-label">Profundidade
+							(cm):<span class="red">*</span>
+						</label> <input autocomplete="off" type="number" min="1" id="profundidade"
+							name="profundidade" class="form-control inputForm" maxlength="12" />
+					</div>
+					<div class="col-md-6">
+						<label htmlFor="freteGratis" class="form-label"> Frete
+							grátis?<span class="red">*</span>
+						</label>
+						<div class="btn-group area-radio mb-4" role="group"
+							aria-label="Basic radio toggle button group">
+							<input type="radio" required class="btn-check" name="freteGratis"
+								id="freteGratisS" value="S" /> <label
+								class="btn btn-outline-secondary" for="freteGratisS">
+								Sim </label> <input type="radio" required class="btn-check"
+								name="freteGratis" id="freteGratisN" value="N" /> <label
+								class="btn btn-outline-secondary" for="freteGratisN">
+								Não </label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-2">
 					<div class="col-md-6">
 						<label htmlFor="destaque" class="form-label"> Produto em
 							destaque?<span class="red">*</span>
@@ -213,93 +290,12 @@ String contextPath = request.getContextPath();
 					</div>
 				</div>
 
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label htmlFor="nivel" class="form-label"> Qual o nível de
-							relevância?<span class="red">*</span>
-						</label>
-						<div class="btn-group area-radio mb-4" role="group"
-							aria-label="Basic radio toggle button group">
-							<input type="radio" required class="btn-check" name="nivel"
-								id="padrao" value="1" /> <label
-								class="btn btn-outline-secondary" for="padrao"> Padrão </label>
-
-							<input type="radio" required class="btn-check" name="nivel"
-								id="media" value="2" /> <label
-								class="btn btn-outline-secondary" for="media"> Média </label> <input
-								type="radio" required class="btn-check" name="nivel" id="alta"
-								value="3" /> <label
-								class="btn btn-outline-secondary" for="alta"> Alta </label>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label htmlFor="possuiFrete" class="form-label"> Possui
-							frete?<span class="red">*</span>
-						</label>
-						<div class="btn-group area-radio mb-4" role="group"
-							aria-label="Basic radio toggle button group">
-							<input type="radio" required class="btn-check" name="possuiFrete"
-								id="possuiFreteS" value="N" /> <label
-								class="btn btn-outline-secondary" for="possuiFreteS">
-								Sim </label> <input type="radio" required class="btn-check"
-								name="possuiFrete" id="possuiFreteN" value="S" />
-							<label class="btn btn-outline-secondary" for="possuiFreteN">
-								Não </label>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-2 dimensoes">
-					<div class="col-md-6" id="cardPeso">
-						<label for="peso" class="form-label">Peso
-							(kg):<span class="red">*</span>
-						</label> <input type="tel" id="peso" autocomplete="off" name="peso"
-							class="form-control inputForm" maxlength="7" />
-					</div>
-					<div class="col-md-6">
-						<label for="largura" class="form-label">Largura
-							(cm):<span class="red">*</span>
-						</label> <input autocomplete="off" type="number" min="1" id="largura"
-							name="largura" class="form-control inputForm" maxlength="12" />
-					</div>
-				</div>
-
-				<div class="row mb-3 dimensoes">
-					<div class="col-md-6">
-						<label for="altura" class="form-label">Altura
-							(cm):<span class="red">*</span>
-						</label> <input type="number" min="1" id="altura" autocomplete="off"
-							name="altura" class="form-control inputForm" maxlength="12" />
-					</div>
-					<div class="col-md-6">
-						<label for="profundidade" class="form-label">Profundidade
-							(cm):<span class="red">*</span>
-						</label> <input autocomplete="off" type="number" min="1" id="profundidade"
-							name="profundidade" class="form-control inputForm" maxlength="12" />
-					</div>
-					<div class="col-md-6">
-						<label htmlFor="freteGratis" class="form-label"> Frete grátis?<span class="red">*</span>
-						</label>
-						<div class="btn-group area-radio mb-4" role="group"
-							aria-label="Basic radio toggle button group">
-							<input type="radio" required class="btn-check" name="freteGratis"
-								id="freteGratisS" value="S" /> <label
-								class="btn btn-outline-secondary" for="freteGratisS">
-								Sim </label> <input type="radio" required class="btn-check"
-								name="freteGratis" id="freteGratisN" value="N" />
-							<label class="btn btn-outline-secondary" for="freteGratisN">
-								Não </label>
-						</div>
-					</div>
-				</div>
-
 				<div class="row mb-3" id="title-imagens" hidden>
 					<div class="col-md-12 d-flex justify-content-between">
 						<h5 class="m-0">Imagens do produto</h5>
 						<button type="button" class="btn btn-success btn-sm"
 							onclick="limpaInput()" data-bs-toggle="modal"
-							data-bs-target="#exampleModal">
-							Adicionar</button>
+							data-bs-target="#exampleModal">Adicionar</button>
 					</div>
 				</div>
 				<div id="area-carrossel" class="mb-3" hidden>
@@ -316,8 +312,7 @@ String contextPath = request.getContextPath();
 				<div class="row mb-2">
 					<div class="col-md-12 text-center">
 						<button type="submit" id="btn-submit"
-							class="btn confirm btn-primary btn-register">
-							Cadastrar</button>
+							class="btn confirm btn-primary btn-register">Cadastrar</button>
 					</div>
 				</div>
 			</form>
@@ -342,8 +337,7 @@ String contextPath = request.getContextPath();
 							</div>
 							<div class="col">
 								<button type="submit" id="btn-submit-modal"
-									class="btn px-4 btn-primary ms-auto">
-									Adicionar</button>
+									class="btn px-4 btn-primary ms-auto">Adicionar</button>
 							</div>
 						</form>
 					</div>

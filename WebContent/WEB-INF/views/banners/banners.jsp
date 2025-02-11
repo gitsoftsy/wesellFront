@@ -111,7 +111,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
               ><i class="fa-regular fa-pen-to-square"></i>Novo banner</a
             >
           </div>
-          <div class="input-group">
+          <!-- <div class="input-group">
             <input
               id="inputBusca"
               type="text"
@@ -121,7 +121,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
             <span class="input-group-text icone-pesquisa"
               ><i class="fas fa-search"></i
             ></span>
-          </div>
+          </div> -->
         </div>
 
         <table
