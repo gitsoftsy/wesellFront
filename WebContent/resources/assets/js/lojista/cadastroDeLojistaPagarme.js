@@ -204,6 +204,8 @@ function cadastrar() {
 				}
 			},
 		}).done(function(data) {
+			
+			
 			Swal.close();
 			Swal.fire({
 				title: "Criado com sucesso",
