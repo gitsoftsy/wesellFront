@@ -288,6 +288,8 @@ String contextPath = request.getContextPath();
 
 
 						</div>
+						
+						<hr>
 
 
 						<div class="row mb-2">
@@ -342,6 +344,8 @@ String contextPath = request.getContextPath();
 							</div>
 
 						</div>
+						
+						<hr>
 
 						<div class="row mb-2">
 
@@ -401,8 +405,7 @@ String contextPath = request.getContextPath();
 								</select>
 							</div>
 							<div class="col-md-6">
-								<label for="idBanco" class="form-label">Banco: <span
-									class="red">*</span></label> <select id="idBanco" name="idBanco"
+								<label for="idBanco" class="form-label">Banco: </label> <select id="idBanco" name="idBanco"
 									class="form-select" disabled>
 									<option selected disabled value=''>Selecione um dia</option>
 								</select>

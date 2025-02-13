@@ -658,7 +658,7 @@ async function cadastrar($button, originalButtonText) {
 		nomeProduto: $("#nomeProduto").val(),
 		descrProduto: $("#descricao").val(),
 		precoVenda: ValorConvertidoPreco,
-		comissao: ValorConvertidoComissao,
+		comissao: 0,
 		precoPromocional: ValorConvertidoPrecoPromo,
 		peso: peso || null,
 		largura: $("#largura").val(),

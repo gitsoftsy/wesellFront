@@ -130,9 +130,9 @@ String contextPath = request.getContextPath();
 
 					<div class="col-md-6">
 						<label for="dataNascRepLegal" class="form-label">Data de
-							Nascimento Responsável Legal:</label> <input type="date"
+							Nascimento Responsável Legal: <span class="red">*</span></label> <input type="date"
 							id="dataNascRepLegal" name="dataNascRepLegal"
-							class="form-control inputForm" />
+							class="form-control inputForm" required/>
 					</div>
 					
 					<div class="col-md-6">
@@ -320,9 +320,9 @@ String contextPath = request.getContextPath();
 				<div class="row mb-4">
 					<div class="col-md-6">
 						<label for="transfDia" class="form-label">Dia da
-							Transferência:</label> <select id="transfDia" name="transfDia"
-							class="form-select">
-							<option selected disabled>Selecione um dia</option>
+							Transferência:<span class="red">*</span></label> <select id="transfDia" name="transfDia"
+							class="form-select" required>
+							<option selected disabled value="">Selecione um dia</option>
 							<option value="1">1</option>
 							<option value="5">5</option>
 							<option value="10">10</option>
