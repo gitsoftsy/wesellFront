@@ -339,7 +339,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     ></script>
     <script
       charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/lojista/listarTelefoneLojista.js"
+      src="<%=contextPath%>/resources/assets/js/lojista/listarTelefoneLojista.js?v=<%=(int)(Math.random()*10000)%>"
     ></script>
 
     <script

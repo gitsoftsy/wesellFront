@@ -125,7 +125,7 @@ $("#form-filtro").on("submit", function(e) {
 	});
 
 	var valorBusca = $("#inputBusca").val();
-	
+
 	const body = {
 		"nmProduto": valorBusca,
 		"idCategoria": null,
@@ -149,9 +149,10 @@ $("#form-filtro").on("submit", function(e) {
 		contentType: "application/json; charset=utf-8",
 	})
 		.done(function(data) {
+			console.log(data)
 			produto = data; // Atualiza o array de produtos com os dados filtrados
 			currentPage = 1; // Reseta a página atual
-			renderizarProduto(produto.slice(0, rows)); // Renderiza os primeiros 12 produtos
+			renderizarProduto(produto != 'Nenhum resultado encontrado para os parâmetros informados.' ? produto.slice(0, rows) : []); // Renderiza os primeiros 12 produtos
 			updatePaginationByFilter(); // Atualiza a paginação com base no filtro
 			$('input[data-toggle="toggle"]').bootstrapToggle();
 			Swal.close();
@@ -174,7 +175,7 @@ $("#limpa-filtros").click(function() {
 			Swal.showLoading(); // Exibe o spinner de carregamento
 		}
 	});
-	
+
 	$("#inputBusca").val("")
 	getDados()
 	updatePagination();
@@ -196,8 +197,8 @@ function getDados() {
 				XLSX.writeFile(livro, "produtosLojista.xlsx");
 			});
 			produto = data;
-			renderizarProduto(data);  $('input[data-toggle="toggle"]').bootstrapToggle();
-			
+			renderizarProduto(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.error("Erro na solicitação AJAX:", textStatus, errorThrown);
@@ -210,7 +211,7 @@ function editar(user) {
 }
 
 function renderizarProduto(produto) {
-	
+
 	var html = produto
 		.map(function(item) {
 			var buttonClass = item.ativo === "S" ? "btn-success" : "btn-danger";
@@ -233,7 +234,7 @@ function renderizarProduto(produto) {
 				(item.categorias ? item.categorias.categoria : item.categoria) +
 				"</td>" +
 				"<td>" +
-				((item.subcategorias ? item.subcategorias?.nome : item.subcategoria) || "Não possui")+
+				((item.subcategorias ? item.subcategorias?.nome : item.subcategoria) || "Não possui") +
 				"</td>" +
 				"<td>" +
 				"R$ " +
@@ -244,7 +245,7 @@ function renderizarProduto(produto) {
 				item.comissao.toLocaleString("pt-br", { minimumFractionDigits: 2 }) +
 				"</td>" +
 				"<td>" +
-				(item.lojista ? item.lojista.nomeFantasia : item.nomeFantasia )+
+				(item.lojista ? item.lojista.nomeFantasia : item.nomeFantasia) +
 				"</td>" +
 				'<td class="d-flex"><span style="width: 63px; margin-right: 5px; height: 31px; padding: 8px; display: flex; align-items: center; justify-content: center;" class="btn btn-warning btn-sm" data-value="' +
 				item.idProduto +
@@ -252,7 +253,9 @@ function renderizarProduto(produto) {
 				item.ativo +
 				'" data-id="' +
 				item.idProduto +
-				'" onChange="alteraStatus(this)" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
+				'" onChange="alteraStatus(this)" 				' +
+				`${item.ativo === "S" ? "checked" : ""}` +
+				' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="63" class="checkbox-toggle" data-size="sm"></td>' +
 				"</tr>"
 			);
 		})
@@ -334,7 +337,7 @@ function updatePaginationByFilter() {
 		$('.btn-page').click(function() {
 			goToPageByFilter(parseInt($(this).data('page')));
 		});
-	}else{
+	} else {
 		$('#pagination').hide();
 	}
 }

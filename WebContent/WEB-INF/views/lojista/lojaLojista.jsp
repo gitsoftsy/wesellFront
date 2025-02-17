@@ -463,13 +463,13 @@ String contextPath = request.getContextPath();
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources//assets/js/lojista/lojaLojista.js"></script>
+		src="<%=contextPath%>/resources//assets/js/lojista/lojaLojista.js?v=<%=(int)(Math.random()*10000)%>"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js"></script>
+		src="<%=contextPath%>/resources/assets/js/lojista/comumLojista.js?v=<%=(int)(Math.random()*10000)%>"></script>
 </body>
 </html>

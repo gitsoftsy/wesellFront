@@ -1,9 +1,32 @@
 var usuario;
 
+async function fetchCategoria(endpoint, selectId, valueKey, textKey) {
+	try {
+		const response = await $.ajax({
+			url: url_base + endpoint,
+			type: "GET",
+			async: false,
+		});
+
+		response.data.forEach((item) => {
+			$(selectId).append(
+				$("<option>", {
+					value: item[valueKey],
+					id: item[valueKey],
+					text: item[textKey],
+					name: item[textKey],
+				})
+			);
+		});
+	} catch (error) {
+		console.error(`Erro ao buscar dados de ${endpoint}:`, error);
+	}
+}
+
 $(document).ready(function() {
 	usuario = JSON.parse(localStorage.getItem("usuario"));
 	fetchData("/lojistas/ativos", "#lojista", "idLojista", "nomeFantasia");
-	fetchData("/categorias/ativos", "#categoria", "idCategoria", "categoria");
+	fetchCategoria("/categorias/ativos", "#categoria", "idCategoria", "categoria");
 
 	async function fetchData(endpoint, selectId, valueKey, textKey) {
 		try {

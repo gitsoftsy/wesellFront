@@ -260,14 +260,14 @@ String contextPath = request.getContextPath();
 							grátis?<span class="red">*</span>
 						</label>
 						<div class="btn-group area-radio mb-4" role="group"
-							aria-label="Basic radio toggle button group">
+							aria-label="Escolha frete grátis">
 							<input type="radio" required class="btn-check" name="freteGratis"
 								id="freteGratisS" value="S" /> <label
-								class="btn btn-outline-secondary" for="freteGratisS">
-								Sim </label> <input type="radio" required class="btn-check"
-								name="freteGratis" id="freteGratisN" value="N" /> <label
-								class="btn btn-outline-secondary" for="freteGratisN">
-								Não </label>
+								class="btn btn-outline-secondary" for="freteGratisS">Sim</label>
+
+							<input type="radio" required class="btn-check" name="freteGratis"
+								id="freteGratisN" value="N" /> <label
+								class="btn btn-outline-secondary" for="freteGratisN">Não</label>
 						</div>
 					</div>
 				</div>
@@ -287,6 +287,13 @@ String contextPath = request.getContextPath();
 								id="destaqueN" value="N" /> <label
 								class="btn btn-outline-secondary" for="destaqueN"> Não </label>
 						</div>
+					</div>
+					<div class="col-md-6" id="cardComissao">
+						<label for="comissao" class="form-label">Comissão:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="tel" id="comissao" name="comissao" class="form-control"
+							maxlength="12" />
+
 					</div>
 				</div>
 

@@ -563,19 +563,22 @@ async function editar($button, originalButtonText) {
 	let precoDeVendaVal = $("#precoDeVenda").val();
 	let precoPromoVal = $("#precoPromocional").val();
 	let pesoVal = $("#peso").val();
+	let comissaoVal = $("#comissao").val();
 
 	let precoConvertido =
 		ValorConvertidoPreco || formatCurrencyInput2(precoDeVendaVal).rawValue;
 	let precoPromocional =
 		ValorConvertidoPrecoPromo || formatCurrencyInput2(precoPromoVal).rawValue;
 	let pesoConvertido = peso || formatKg2(pesoVal).rawValue;
-
+	let comissaoConvertida =
+			ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
+			
 	var objetoEdit = {
 		idProduto: idProduto,
 		nomeProduto: $("#nomeProdutoEdit").val(),
 		descrProduto: $("#descricao").val(),
 		precoVenda: precoConvertido,
-		comissao: 0,
+		comissao: comissaoConvertida,
 		precoPromocional: precoPromocional,
 		peso: pesoConvertido,
 		largura: $("#largura").val(),
@@ -658,7 +661,7 @@ async function cadastrar($button, originalButtonText) {
 		nomeProduto: $("#nomeProduto").val(),
 		descrProduto: $("#descricao").val(),
 		precoVenda: ValorConvertidoPreco,
-		comissao: 0,
+		comissao: ValorConvertidoComissao,
 		precoPromocional: ValorConvertidoPrecoPromo,
 		peso: peso || null,
 		largura: $("#largura").val(),

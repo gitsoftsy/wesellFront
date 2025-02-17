@@ -102,6 +102,8 @@ $(document).ready(function () {
         data[0].telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3")
       );
     });
+  }else{
+	$("#senha, #confirmarSenha").prop("required", true);
   }
 });
 

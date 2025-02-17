@@ -2,11 +2,9 @@ var perfil = localStorage.getItem("usuario");
 var usuario = JSON.parse(perfil);
 
 $(document).ready(function() {
-	fetchData("/categorias/ativos", "#categoria", "idCategoria", "categoria");
+	fetchCategoria("/categorias/ativos", "#categoria", "idCategoria", "categoria");
 
-
-
-	async function fetchData(endpoint, selectId, valueKey, textKey) {
+	async function fetchCategoria(endpoint, selectId, valueKey, textKey) {
 		try {
 			const response = await $.ajax({
 				url: url_base + endpoint,
@@ -14,7 +12,7 @@ $(document).ready(function() {
 				async: false,
 			});
 
-			response.forEach((item) => {
+			response.data.forEach((item) => {
 				$(selectId).append(
 					$("<option>", {
 						value: item[valueKey],
