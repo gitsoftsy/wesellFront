@@ -114,7 +114,7 @@ String contextPath = request.getContextPath();
 							Responsável Legal: <span class="red">*</span>
 						</label> <input type="text" id="cpfRepLegal" name="cpfRepLegal"
 							class="form-control inputForm" maxlength="14"
-							data-mask="000.000.000-00" />
+							data-mask="000.000.000-00" required/>
 					</div>
 					
 					<div class="col-md-6">
@@ -156,8 +156,8 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6">
 						<label for="tipoTelefone" class="form-label">Tipo Telefone
 							<span class="red">*</span>:
-						</label> <select class="form-select" id="tipoTelefone" name="tipoTelefone">
-							<option selected disabled>Selecione uma opção</option>
+						</label> <select class="form-select" id="tipoTelefone" name="tipoTelefone" required>
+							<option selected disabled value="">Selecione uma opção</option>
 							<option value="C">Celular</option>
 							<option value="F">Fixo</option>
 						</select>
@@ -169,7 +169,7 @@ String contextPath = request.getContextPath();
 						<label for="emailRepLegal" class="form-label">Email
 							Responsável Legal: <span class="red">*</span>
 						</label> <input type="email" id="emailRepLegal" name="emailRepLegal"
-							class="form-control inputForm" maxlength="255" />
+							class="form-control inputForm" maxlength="255" required/>
 					</div>
 				</div>
 
@@ -295,8 +295,8 @@ String contextPath = request.getContextPath();
 						<label for="idTipoEmpresa" class="form-label">Tipo de
 							Empresa: <span class="red">*</span>
 						</label> <select id="idTipoEmpresa" name="idTipoEmpresa"
-							class="form-select">
-							<option selected disabled>Selecione um tipo</option>
+							class="form-select" required>
+							<option selected disabled value="">Selecione um tipo</option>
 						</select>
 					</div>
 
