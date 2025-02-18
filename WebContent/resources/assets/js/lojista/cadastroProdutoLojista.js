@@ -590,13 +590,6 @@ async function editar($button, originalButtonText) {
 		freteGratis: $("input[name='freteGratis']:checked").val(),
 	};
 
-	if ($("input[name='possuiFrete']:checked").val() == "S") {
-		objetoEdit.largura = null;
-		objetoEdit.altura = null;
-		objetoEdit.freteGratis = "S";
-		objetoEdit.profundidade = null;
-	}
-
 	$.ajax({
 		url: url_base + "/produtos",
 		type: "PUT",
@@ -672,13 +665,6 @@ async function cadastrar($button, originalButtonText) {
 		destacar: $("input[name='destaque']:checked").val(),
 		freteGratis: $("input[name='freteGratis']:checked").val(),
 	};
-
-	if ($("input[name='possuiFrete']:checked").val() == "S") {
-		objeto.largura = null;
-		objeto.altura = null;
-		objeto.freteGratis = "S";
-		objeto.profundidade = null;
-	}
 
 	try {
 		const produtoId = await cadastrarProduto(objeto);
