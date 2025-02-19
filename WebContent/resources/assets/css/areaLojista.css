@@ -607,7 +607,7 @@ a {
   border-color: #183153;
 }
 
-#prev,
+/* #prev,
 #next {
   padding: 6px;
   width: 4em;
@@ -615,8 +615,16 @@ a {
   border: 1px solid #ccc;
   color: #333;
   cursor: pointer;
-  margin-top: 1em;
+  margin-top: 0em;
   margin-right: 5px;
+} */
+
+#prevB a, #nextB a {
+	pointer-events: none;
+}
+
+.page-link {
+	cursor: pointer;
 }
 
 #prev:hover,
@@ -662,6 +670,54 @@ td {
 
 .menu-mobile {
   display: none;
+}
+
+
+.area-radio {
+	margin-top: 0.2em;
+	width: 100%;
+}
+
+.btn-page-numbers {
+	gap: 2%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.group-limpar-filtro {
+	display: flex;
+	flex-direction: row;
+	gap: 2%;
+	width: 100%;
+}
+
+.group-limpar-filtro div {
+	display: flex;
+	width: 85%;
+	flex-direction: row;
+}
+
+.btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn.dropdown-toggle-split:first-child,
+	.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+	border-color: #dee2e6 !important;
+}
+
+.btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3),
+	.btn-group>:not(.btn-check)+.btn {
+	border-color: #dee2e6 !important;
+}
+
+.btn-group .btn-check:checked+.btn, .btn-group .btn.active, .btn-group .btn.show,
+	.btn-group .btn:first-child:active, .btn-group :not(.btn-check)+.btn:active
+	{
+	background-color: #8a8a8a !important;
+	border-color: #8a8a8a !important;
+	color: #fff !important;
+}
+
+.menu-mobile {
+	display: none;
 }
 
 @media screen and (max-width: 1439px) {

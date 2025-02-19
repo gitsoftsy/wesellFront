@@ -32,7 +32,7 @@ var imge = [];
 
 $(document).ready(function() {
 
-	getDados()
+
 
 	function base64ToCSVAndDownload(base64String, fileName) {
 		// Decodifica a string Base64 para obter os dados binários
@@ -103,9 +103,8 @@ $(document).ready(function() {
 			$(this).prop("checked", false);
 		}
 	});
-
-	showPage(currentPage);
-	updatePagination();
+	getDados()
+	updatePagination(produto);
 })
 
 
@@ -126,26 +125,15 @@ $("#form-filtro").on("submit", function(e) {
 
 	var valorBusca = $("#inputBusca").val();
 
-	const body = {
-		"nmProduto": valorBusca,
-		"idCategoria": null,
-		"idSubCategoria": null,
-		"idMarca": [],
-		"idLojista": [lojista.lojistaId],
-		"precoDeVendaMin": null,
-		"precoPromocionalMin": null,
-		"precoDeVendaMax": null,
-		"precoPromocionalMax": null,
-		"comissaoMin": null,
-		"comissaoMax": null,
-		"ordenacao": null
-	}
+
+
+	console.log(valorBusca)
+	console.log(usuario.lojistaId)
 
 	$.ajax({
-		url: url_base + "/produtos/listar",
-		type: "POST",
+		url: url_base + "/produtos/produtoPorNome/" + valorBusca + '?idLojista=' + usuario.lojistaId,
+		type: "GET",
 		async: false,
-		data: JSON.stringify(body),
 		contentType: "application/json; charset=utf-8",
 	})
 		.done(function(data) {
@@ -178,26 +166,32 @@ $("#limpa-filtros").click(function() {
 
 	$("#inputBusca").val("")
 	getDados()
-	updatePagination();
+	updatePagination(produto);
+
 	$('input[data-toggle="toggle"]').bootstrapToggle();
 	Swal.close();
 });
 
 function getDados() {
 	$.ajax({
-		url: url_base + "/produtos/lojista/" + usuario.lojistaId,
+		url: url_base + "/produtos/lojista/" + usuario.lojistaId + '?page=0&size=12',
 		type: "GET",
 		async: false,
 	})
 		.done(function(data) {
+			console.log(data)
+			console.log(usuario.lojistaId)
 			$("#exportar-excel").click(function() {
 				var planilha = XLSX.utils.json_to_sheet(data);
 				var livro = XLSX.utils.book_new();
 				XLSX.utils.book_append_sheet(livro, planilha, "Planilha1");
 				XLSX.writeFile(livro, "produtosLojista.xlsx");
 			});
+			dadosOriginais = [...data.content]; // Armazena os dados originais corretamente
+			content = data;
 			produto = data;
-			renderizarProduto(data); $('input[data-toggle="toggle"]').bootstrapToggle();
+			
+			renderizarProduto(data.content); $('input[data-toggle="toggle"]').bootstrapToggle();
 
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
@@ -348,5 +342,116 @@ function goToPageByFilter(page) {
 		showPageByFilter(currentPage);
 		updatePaginationByFilter();
 	}
+}
+
+
+
+function showPage(page) {
+	// Exibe o modal de carregamento
+	Swal.fire({
+		title: 'Carregando...',
+		text: 'Por favor, aguarde.',
+		allowOutsideClick: false,
+		allowEscapeKey: false,
+		showConfirmButton: false,
+		onOpen: () => {
+			Swal.showLoading(); // Exibe o spinner de carregamento
+		}
+	});
+
+	$.ajax({
+		url: url_base + `/produtos/lojista/${usuario.lojistaId}?page=${page - 1}&size=${rows}`,
+		method: 'GET',
+		success: function(data) {
+			produto = data;
+			renderizarProduto(data.content); $('input[data-toggle="toggle"]').bootstrapToggle();
+			updatePagination(data);
+
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			console.error("Erro ao carregar itens:", jqXHR.responseText);
+		},
+		complete: function() {
+			Swal.close(); // Fecha o modal de carregamento
+		}
+	});
+}
+
+
+
+function toggleNavigation(data) {
+	console.log(data)
+
+	var totalPages = data.totalPages;
+	var currentPage = data.number + 1; // No Spring, 'number' começa do 0
+
+	console.log(totalPages)
+	
+	if (totalPages > 1) {
+		$("#pagination").removeAttr("hidden");
+	} else {
+		$("#pagination").attr("hidden", true);
+	}
+	$('#prev').prop('disabled', currentPage === 1);
+	$('#next').prop('disabled', currentPage === totalPages);
+
+	$('#page-numbers').empty();
+
+	var startPage = Math.max(1, Math.min(currentPage - Math.floor(pagesToShow / 2), totalPages - pagesToShow + 1));
+	var endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+	
+	console.log(startPage)
+	console.log(endPage)
+
+	if (startPage > 1) {
+		$('#page-numbers').append('<a class="page-link" data-page="1">1</a>');
+		if (startPage > 2) {
+			$('#page-numbers').append('<span>...</span>');
+		}
+	}
+
+	for (var i = startPage; i <= endPage; i++) {
+		var btnClass = (i === currentPage) ? 'btn btn-sm btn-page active-page' : 'btn btn-sm btn-page';
+		console.log(btnClass)
+				console.log(i)
+		$('#page-numbers').append('<a class="page-link" data-page="' + i + '">' + i + '</a>');
+	}
+
+	if (endPage < totalPages) {
+		if (endPage < totalPages - 1) {
+			$('#page-numbers').append('<span>...</span>');
+		}
+		$('#page-numbers').append('<a class="page-link" data-page="' + totalPages + '">' + totalPages + '</a>');
+	}
+
+	$('.page-link').click(function() {
+		goToPage(parseInt($(this).data('page')));
+	});
+}
+
+function goToPage(page) {
+	showPage(page);
+}
+
+$('#prev').click(function() {
+	if (produto.content) {
+		if (currentPage > 1) goToPage(currentPage - 1);
+	} else {
+		goToPageByFilter(currentPage - 1);
+	}
+});
+
+$('#next').click(function() {
+	if (produto.content) {
+		var totalPages = produto.totalPages;
+		if (currentPage < totalPages) goToPage(currentPage + 1);
+	} else {
+		goToPageByFilter(currentPage + 1);
+	}
+
+});
+
+function updatePagination(data) {
+	toggleNavigation(data);
 }
 

@@ -90,21 +90,23 @@ String contextPath = request.getContextPath();
 						class="btn btn-success gap-2 d-flex align-items-center justify-content-center">
 						<i class="fa-solid fa-file-export"></i>Importar
 					</a> <a href="cadastroProdutoLojista"
-						class="btn btn-primary btn-lg px-3 py-1">Novo
-						Produto</a>
+						class="btn btn-primary btn-lg px-3 py-1">Novo Produto</a>
 				</div>
 				<form id="form-filtro">
-				
-				<div class="input-group group-limpar-filtro">
-					<div class="input-group">
-					<input id="inputBusca" type="text" class="form-control inputForm"
-						placeholder="Buscar" /> <button type="submit"
-						class="input-group-text icone-pesquisa" id="btnFiltro" style="cursor: pointer;"><i
-						class="fas fa-search"></i></button></div>
+
+					<div class="input-group group-limpar-filtro">
+						<div class="input-group">
+							<input id="inputBusca" type="text" class="form-control inputForm"
+								placeholder="Buscar" />
+							<button type="submit" class="input-group-text icone-pesquisa"
+								id="btnFiltro" style="cursor: pointer;">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
 						<button id="limpa-filtros" type="button"
 							class="btn btn-sm btn-danger d-flex align-items-center justify-content-center">Limpar
 							Filtros</button>
-				</div>
+					</div>
 				</form>
 			</div>
 
@@ -125,13 +127,13 @@ String contextPath = request.getContextPath();
 				</thead>
 				<tbody id="colaTabela" class="table-group-divider"></tbody>
 			</table>
-			<ul id="pagination"
-				class="pagination justify-content-end mt-auto mb-0" hidden>
-				<li id="prevB" class="page-item"><a class="page-link"
+			<ul id="pagination" 
+				class="pagination justify-content-end mt-3 mb-0" hidden>
+				<li id="prev" class="page-item"><a class="page-link"
 					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 				</a></li>
-
-				<li id="nextB" class="page-item"><a class="page-link"
+				<li id="page-numbers" style="display: flex; flex-direction: row;"></li>
+				<li id="next" class="page-item"><a class="page-link"
 					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>
@@ -151,11 +153,11 @@ String contextPath = request.getContextPath();
 		crossorigin="anonymous"></script>
 	<script charset="UTF-8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-	<script charset="UTF-8"
-		src="<%=contextPath%>/resources/assets/js/lojista/listarProdutoLojista.js?v=<%=(int)(Math.random()*10000)%>"></script>
 	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/lojista/listarProdutoLojista.js?v=<%=(int) (Math.random() * 10000)%>"></script>
+
 
 	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
