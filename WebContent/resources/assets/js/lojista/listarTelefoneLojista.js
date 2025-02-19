@@ -6,9 +6,9 @@ const botaoDesativa = document.querySelector("#teste");
 const botaoAtiva = document.querySelector(".botaoAtivaMenu");
 const elemento = document.querySelector("#modalMenu");
 var id = "";
-var idFuncionario = "";
 var user = localStorage.getItem("usuario");
 const funcionario = JSON.parse(user);
+var idFuncionario = funcionario.id	;
 
 /*botaoDesativa.addEventListener('click', () => {
   elemento.classList.add('animar-sair');
@@ -20,11 +20,9 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.add('animar-entrar');
   elemento.classList.remove('animar-sair');
   });*/
+ 
 
-var user = localStorage.getItem("usuario");
-var usuario = JSON.parse(user);
 
-$("#usuarioNome").text(usuario.nome);
 
 var produto = [];
 var imge = [];
@@ -54,7 +52,7 @@ $(document).ready(function () {
   $("#telefoneT").hide();
 
   $.ajax({
-    url: url_base + "/telefones",
+    url: url_base + `/telefones/funcionario/${idFuncionario}`,
     type: "GET",
     async: false,
   }).done(function (data) {

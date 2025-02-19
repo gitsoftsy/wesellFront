@@ -141,12 +141,24 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-2">
+				
+				<div class="col-md-6">
+						<label for="lojista" class="form-label">Lojista:<span
+							class="red">*</span></label> <select id="lojista" required name="lojista"
+							class="form-select inputForm">
+							<option value="" selected disabled>Selecione...</option>
+						</select>
+					</div>
 					<div class="col-md-6" id="cardPrecoDeVenda">
 						<label for="precoDeVenda" class="form-label">Preço de
 							venda:<span class="red">*</span>
 						</label> <input type="tel" id="precoDeVenda" required autocomplete="off"
 							name="precoDeVenda" class="form-control" maxlength="12" />
 					</div>
+					
+				</div>
+
+				<div class="row mb-2">
 					<div class="col-md-6" id="cardPrecoPromocional">
 						<label for="precoPromocional" class="form-label">Preço
 							promocional:<span class="red">*</span>
@@ -154,16 +166,20 @@ String contextPath = request.getContextPath();
 							autocomplete="off" name="precoPromocional" class="form-control"
 							maxlength="12" />
 					</div>
+					
+					<div class="col-md-6" id="cardComissao">
+						<label for="comissao" class="form-label">Comissão:<span
+							class="red">*</span></label> <input required autocomplete="off"
+							type="tel" id="comissao" name="comissao" class="form-control"
+							maxlength="12" />
+
+					</div>
+					
+				
 				</div>
 
 				<div class="row mb-2">
-					<div class="col-md-6">
-						<label for="lojista" class="form-label">Lojista:<span
-							class="red">*</span></label> <select id="lojista" required name="lojista"
-							class="form-select inputForm">
-							<option value="" selected disabled>Selecione...</option>
-						</select>
-					</div>
+				
 					<div class="col-md-6">
 						<label for="categoria" class="form-label">Categoria:<span
 							class="red">*</span></label> <select id="categoria" required
@@ -171,9 +187,6 @@ String contextPath = request.getContextPath();
 							<option value="" selected disabled>Selecione...</option>
 						</select>
 					</div>
-				</div>
-
-				<div class="row mb-2">
 					<div class="col-md-6">
 						<label for="subCategoria" class="form-label">Sub-Categoria:</label>
 						<select id="subCategoria" name="subCategoria"
@@ -181,17 +194,19 @@ String contextPath = request.getContextPath();
 							<option value="" selected disabled>Selecione...</option>
 						</select>
 					</div>
-					<div class="col-md-6">
-						<label for="marca" class="form-label">Marca:</label> <select
-							id="marca" name="marca" class="form-select inputForm">
-							<option value="" selected disabled>Selecione...</option>
-						</select>
-					</div>
+					
 				</div>
 
 
 
 				<div class="row mb-2">
+				
+				<div class="col-md-6">
+						<label for="marca" class="form-label">Marca:</label> <select
+							id="marca" name="marca" class="form-select inputForm">
+							<option value="" selected disabled>Selecione...</option>
+						</select>
+					</div>
 					<div class="col-md-6">
 						<label htmlFor="nivel" class="form-label"> Qual o nível de
 							relevância?<span class="red">*</span>
@@ -210,6 +225,29 @@ String contextPath = request.getContextPath();
 								for="alta"> Alta </label>
 						</div>
 					</div>
+					
+				</div>
+				
+			
+				
+				
+				<div class="row mb-2">
+					<div class="col-md-6">
+						<label htmlFor="destaque" class="form-label"> Produto em
+							destaque?<span class="red">*</span>
+						</label>
+						<div class="btn-group area-radio mb-4" role="group"
+							aria-label="Basic radio toggle button group">
+							<input type="radio" required class="btn-check" name="destaque"
+								id="destaqueS" value="S" /> <label
+								class="btn btn-outline-secondary" for="destaqueS"> Sim </label>
+
+							<input type="radio" required class="btn-check" name="destaque"
+								id="destaqueN" value="N" /> <label
+								class="btn btn-outline-secondary" for="destaqueN"> Não </label>
+						</div>
+					</div>
+					
 					<div class="col-md-6">
 						<label htmlFor="possuiFrete" class="form-label"> Possui
 							frete?<span class="red">*</span>
@@ -225,7 +263,10 @@ String contextPath = request.getContextPath();
 								Não </label>
 						</div>
 					</div>
+					
 				</div>
+				
+				
 
 				<div class="row mb-2 dimensoes">
 					<div class="col-md-6" id="cardPeso">
@@ -271,31 +312,7 @@ String contextPath = request.getContextPath();
 						</div>
 					</div>
 				</div>
-
-				<div class="row mb-2">
-					<div class="col-md-6">
-						<label htmlFor="destaque" class="form-label"> Produto em
-							destaque?<span class="red">*</span>
-						</label>
-						<div class="btn-group area-radio mb-4" role="group"
-							aria-label="Basic radio toggle button group">
-							<input type="radio" required class="btn-check" name="destaque"
-								id="destaqueS" value="S" /> <label
-								class="btn btn-outline-secondary" for="destaqueS"> Sim </label>
-
-							<input type="radio" required class="btn-check" name="destaque"
-								id="destaqueN" value="N" /> <label
-								class="btn btn-outline-secondary" for="destaqueN"> Não </label>
-						</div>
-					</div>
-					<div class="col-md-6" id="cardComissao">
-						<label for="comissao" class="form-label">Comissão:<span
-							class="red">*</span></label> <input required autocomplete="off"
-							type="tel" id="comissao" name="comissao" class="form-control"
-							maxlength="12" />
-
-					</div>
-				</div>
+				
 
 				<div class="row mb-3" id="title-imagens" hidden>
 					<div class="col-md-12 d-flex justify-content-between">

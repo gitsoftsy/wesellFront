@@ -125,7 +125,7 @@ String contextPath = request.getContextPath();
 					<div class="col-md-6" id="divLogoEscola">
 						<label for="logoEscola" class="form-label">Imagem:<span
 							class="red">*</span></label> <input class="form-control inputForm"
-							type="file" id="inputImage" name="logoEscola"> </input>
+							type="file" id="inputImage" name="logoEscola" required> </input>
 					</div>
 
 				</div>

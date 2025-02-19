@@ -226,14 +226,13 @@ $('input[name="alteraLogo"]').change(function() {
 $(document).ready(function() {
 
 
-
-
 	if (idCategoria == undefined) {
 		$("#alterarLogo").hide();
 	} else {
-
+		
 		$("#tituloPagina, #tituloForm").text("Editar Categoria")
 		$("#btn-submit").text("Salvar")
+		$("#inputImage").removeAttr("required")
 
 		$.ajax({
 			url: url_base + "/categorias/" + idCategoria,
