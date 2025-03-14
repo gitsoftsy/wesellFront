@@ -21,7 +21,7 @@ String contextPath = request.getContextPath();
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-<script  charset="UTF-8"
+<script charset="UTF-8"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
@@ -41,14 +41,15 @@ String contextPath = request.getContextPath();
 	rel="stylesheet" />
 
 <!-- FontAwesome -->
-<script  charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
+<script charset="UTF-8" src="https://kit.fontawesome.com/3ce21ff22c.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="<%=contextPath%>/resources/assets/css/login.css" />
 
 <!-- Sweetalert -->
-<script  charset="UTF-8" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script  charset="UTF-8" src="sweetalert2.all.min.js"></script>
+<script charset="UTF-8"
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="UTF-8" src="sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -75,41 +76,45 @@ String contextPath = request.getContextPath();
 				<input type="password" class="form-control" autocomplete="off"
 					required name="senha" id="senha" placeholder="senha" /> <label
 					for="senha">Senha</label>
+
 				<div class="form-floating mt-3">
 					<select id="tipoLogin" required class="form-select inputForm"
 						style="padding-top: 10px">
 						<option value='' selected disabled>Selecione uma opção</option>
 						<option value='COLABORADOR'>Wesell</option>
-						<!-- <option value='FUNCIONARIO'>Funcionário do Lojista</option> -->
 						<option value='FUNCIONARIO'>Lojista</option>
 					</select>
 				</div>
-				<!-- <span id="olho" class="olhos-icone"><i id="valor-olho" class="fa-solid fa-eye-slash"></i></span -->
 			</div>
+
 			<button type="submit" class="btn btn-primary mt-4 mb-3"
 				style="font-size: 18px">Login</button>
-			<a class="text-center link-dark link-offset-2 link-underline-dark"
+				 <a href="#"
+					class=" text-end text-decoration-none d-block mt-2" id="esqueciSenha">Esqueci
+					a senha</a>
+			<a class="text-end link-dark link-offset-2 link-underline-dark"
 				href="home" hidden>Trocar perfil de acesso</a>
 		</form>
 	</div>
 
 
-	<script  charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
+	<script charset="UTF-8" src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 		crossorigin="anonymous"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 		crossorigin="anonymous"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
-	<script  charset="UTF-8" src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int)(Math.random()*10000)%>"></script>
-	<script  charset="UTF-8"
+	<script charset="UTF-8"
+		src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"></script>
+	<script charset="UTF-8"
 		src="<%=contextPath%>/resources/assets/js/login/loginFuncionario.js"></script>
 
-	<script  charset="UTF-8" type="text/javascript"
+	<script charset="UTF-8" type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
