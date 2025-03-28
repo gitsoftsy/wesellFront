@@ -13,6 +13,7 @@ function removeObjeto() {
 	localStorage.clear();
 }
 let path_base = window.location.origin;
+const fullBaseUrl = window.location.origin + window.location.pathname.split('/').slice(0, 2).join('/');
 let path_menu = "";
 
 let path_img = "";
@@ -20,7 +21,7 @@ let path_img = "";
 if (window.location.origin.includes("localhost") > 0) {
 	path_menu = path_base + "/wesell-front/resources/menu";
 } else {
-	path_menu = path_base + "/resources/menu";
+	path_menu = fullBaseUrl + "/resources/menu";
 }
 
 
