@@ -118,7 +118,7 @@ $(document).ready(function() {
 				"<td>" + item.nomeArquivo + "</td>" +
 				"<td>" + statusLabel + "</td>" +
 				'<td class="d-flex">' +
-				'<span style="width: 60%; margin-right: 5px; height: 31px; padding: 8px; display: flex; gap: 6px; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onclick="downloadFile(\'' + item.pathLog + '\', \'' + item.nomeArquivo + '\')"><i class="fa-regular fa-eye"></i> Ver</span>' +
+				'<span style="width: 60%; margin-right: 5px; height: 31px; padding: 8px; display: flex; gap: 6px; align-items: center; justify-content: center;" class="btn btn-primary btn-sm" onclick="downloadFile(\'' + item.pathLog.replace("/opt/tomcat9/webapps", url_image) + '\', \'' + item.nomeArquivo + '\')"><i class="fa-regular fa-eye"></i> Ver</span>' +
 				"</td>" +
 				"</tr>"
 			);
