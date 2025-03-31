@@ -4,7 +4,7 @@ var valorConvertidoPrecoPromo;
 var valorConvertidoComissao;
 var peso;
 var edição = "";
-
+let freteGratis = ""
 let swiper;
 
 async function fetchCategoria(endpoint, selectId, valueKey, textKey) {
@@ -190,14 +190,16 @@ $(document).ready(function() {
 	});
 
 	$('input[name="possuiFrete"]').change(function() {
-		if ($(this).val() === "N") {
-			$(".dimensoes").slideDown().find("input").prop("required", true);
-		} else {
-			$(".dimensoes").slideUp().find("input").prop("required", false);
-			$(".dimensoes input").val("");
-			$("input[name='freteGratis'][value='S']").prop("checked", true);
-		}
-	});
+    if ($(this).val() === "N") {
+        $(".dimensoes").slideDown().find("input").prop("required", true);
+    } else {
+        $(".dimensoes").slideUp().find("input").prop("required", false);
+        $(".dimensoes input").val(""); 
+        $("#freteGratisS").val("S")
+        $("#freteGratisS").val("N")
+        $("#freteGratisS").prop("checked", true).trigger("change");
+    }
+});
 
 	$("#precoDeVenda").on("input", function(e) {
 		formatCurrencyInput(e, function(formattedValue, rawValue) {

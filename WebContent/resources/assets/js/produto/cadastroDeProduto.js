@@ -53,7 +53,9 @@ $(document).ready(function() {
 		} else {
 			$(".dimensoes").slideUp().find("input").prop("required", false);
 			$(".dimensoes input").val("");
-			$("input[name='freteGratis'][value='S']").prop("checked", true);
+			$("#freteGratisS").val("S")
+			$("#freteGratisN").val("N")
+			$("#freteGratisS").prop("checked", true).trigger("change");
 		}
 	});
 
@@ -369,7 +371,7 @@ function addImageCard(img) {
 		"/opt/tomcat9/webapps",
 		url_image
 	);
-	
+
 	console.log(imageUrl)
 
 	var divCard = $("<div>", {
@@ -573,8 +575,8 @@ async function editar($button, originalButtonText) {
 		ValorConvertidoPrecoPromo || formatCurrencyInput2(precoPromoVal).rawValue;
 	let pesoConvertido = peso || formatKg2(pesoVal).rawValue;
 	let comissaoConvertida =
-			ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
-			
+		ValorConvertidoComissao || formatCurrencyInput2(comissaoVal).rawValue;
+
 	var objetoEdit = {
 		idProduto: idProduto,
 		nomeProduto: $("#nomeProdutoEdit").val(),
