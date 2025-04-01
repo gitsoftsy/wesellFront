@@ -27,6 +27,7 @@ $(document).ready(function() {
 	usuario = JSON.parse(localStorage.getItem("usuario"));
 	fetchData("/lojistas/ativos", "#lojista", "idLojista", "nomeFantasia");
 	fetchCategoria("/categorias/ativos", "#categoria", "idCategoria", "categoria");
+	fetchMarca("/marcas/ativos", "#marca", "idMarca", "marca");
 
 	async function fetchData(endpoint, selectId, valueKey, textKey) {
 		try {
@@ -50,6 +51,29 @@ $(document).ready(function() {
 			console.error(`Erro ao buscar dados de ${endpoint}:`, error);
 		}
 	}
+	
+	async function fetchMarca(endpoint, selectId, valueKey, textKey) {
+    try {
+      const response = await $.ajax({
+        url: url_base + endpoint,
+        type: "GET",
+        async: false,
+      });
+
+      response.forEach((item) => {
+        $(selectId).append(
+          $("<option>", {
+            value: item[valueKey],
+            id: item[valueKey],
+            text: item[textKey],
+            name: item[textKey],
+          })
+        );
+      });
+    } catch (error) {
+      console.error(`Erro ao buscar dados de ${endpoint}:`, error);
+    }
+  }
 });
 
 $("#categoria").change(function() {
@@ -204,6 +228,7 @@ $("#form-cadastro").on("submit", async function(e) {
 				idCategoria: $("#categoria").val(),
 				idSubCategoria: $("#subCategoria").val(),
 				idLojista: $("#lojista").val(),
+				idMarca: $("#marca").val(),
 				base64arquivo: base64String,
 			};
 

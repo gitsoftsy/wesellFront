@@ -148,6 +148,16 @@ String contextPath = request.getContextPath();
 				</div>
 
 				<div class="row mb-3">
+
+					<div class="col-md-6">
+						<label for="marca" class="form-label">Marca: <span
+							class="red">*</span>
+						</label> <select id="marca" name="marca" class="form-select inputForm">
+							<option value="" selected disabled required>
+								Selecione...</option>
+						</select>
+					</div>
+
 					<div class="col-md-6">
 						<label for="modelo" class="form-label">Baixe o modelo de
 							arquivo a ser preenchido:</label>

@@ -15,10 +15,12 @@ botaoAtiva.addEventListener("click", () => {
 
 var importacoes = [];
 const lidos = [];
-
 var rows = 12;
 var currentPage = 1;
 var pagesToShow = 5;
+var dados = [];
+var sortOrder = {};
+var dadosFiltrados = [];
 
 const colocarLido = () => {
   $.ajax({
@@ -64,6 +66,7 @@ $(document).ready(function () {
       });
     },
   }).done(function (data) {
+	
     Swal.close();
     $("#exportar-excel").click(function () {
       var planilha = XLSX.utils.json_to_sheet(data);
@@ -73,10 +76,13 @@ $(document).ready(function () {
     });
     if (data.length > 0) {
       importacoes = data;
+      dados = data
+      dadosFiltrados = data
       
       renderizarImportacoes(data);
       showPageNew(currentPageNew);
       renderPageNumbersNew();
+      
     } else {
       $(".container-table").hide();
       $(".card-table").append('<span class="title">Nenhuma Notificação</span>');

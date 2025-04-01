@@ -21,9 +21,6 @@ botaoAtiva.addEventListener('click', () => {
   elemento.classList.remove('animar-sair');
   });*/
  
-
-
-
 var produto = [];
 var imge = [];
 
