@@ -125,7 +125,6 @@ $(document).ready(function() {
 		type: "get",
 		async: false,
 	}).done(function(data) {
-		console.log(data)
 		$.each(data, function(index, item) {
 			$("#idTipoEmpresa").append(
 				$("<option>", {

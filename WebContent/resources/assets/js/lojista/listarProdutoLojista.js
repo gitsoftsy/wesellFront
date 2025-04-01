@@ -137,7 +137,6 @@ $("#form-filtro").on("submit", function(e) {
 		contentType: "application/json; charset=utf-8",
 	})
 		.done(function(data) {
-			console.log(data)
 			produto = data; // Atualiza o array de produtos com os dados filtrados
 			currentPage = 1; // Reseta a página atual
 			renderizarProduto(produto != 'Nenhum resultado encontrado para os parâmetros informados.' ? produto.slice(0, rows) : []); // Renderiza os primeiros 12 produtos
@@ -179,8 +178,6 @@ function getDados() {
 		async: false,
 	})
 		.done(function(data) {
-			console.log(data)
-			console.log(usuario.lojistaId)
 			$("#exportar-excel").click(function() {
 				var planilha = XLSX.utils.json_to_sheet(data);
 				var livro = XLSX.utils.book_new();
@@ -380,7 +377,6 @@ function showPage(page) {
 
 
 function toggleNavigation(data) {
-	console.log(data)
 
 	var totalPages = data.totalPages;
 	var currentPage = data.number + 1; // No Spring, 'number' começa do 0

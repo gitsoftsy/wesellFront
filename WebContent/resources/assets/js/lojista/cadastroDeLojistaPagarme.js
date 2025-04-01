@@ -60,11 +60,11 @@ $("#cepCd").blur(function() {
 		async: false,
 	}).done(function(data) {
 		if (data.erro == "true") {
-			console.log(data);
+			
 
 			ValidarCEP(false);
 		} else {
-			console.log(data);
+			
 
 			ValidarCEP(true);
 		}
@@ -313,7 +313,7 @@ $(document).ready(function() {
 		type: "get",
 		async: false,
 	}).done(function(data) {
-		console.log(data)
+	
 		$.each(data, function(index, item) {
 			$("#idTipoEmpresa").append(
 				$("<option>", {

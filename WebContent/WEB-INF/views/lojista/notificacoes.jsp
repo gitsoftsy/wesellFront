@@ -206,15 +206,15 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
       charset="UTF-8"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
     ></script>
-
+ <script
+      charset="UTF-8"
+      src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"
+    ></script>
     <script
       charset="UTF-8"
       src="<%=contextPath%>/resources/assets/js/notificacoes/notificacoesLojista.js?v=<%=(int) (Math.random() * 10000)%>"
     ></script>
-    <script
-      charset="UTF-8"
-      src="<%=contextPath%>/resources/assets/js/comum.js?v=<%=(int) (Math.random() * 10000)%>"
-    ></script>
+   
     <script
       charset="UTF-8"
       src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"
